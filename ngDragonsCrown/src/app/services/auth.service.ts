@@ -87,8 +87,12 @@ export class AuthService {
     return false;
   }
 
+  // generateBasicAuthCredentials(username: string, password: string): string {
+  //   return Buffer.from(`${username}:${password}`).toString('base64');
+  // }
+
   generateBasicAuthCredentials(username: string, password: string): string {
-    return Buffer.from(`${username}:${password}`).toString('base64');
+    return btoa(`${username}:${password}`);
   }
 
   getCredentials(): string | null {
