@@ -1,67 +1,4 @@
-/* .bg-overlay {
-  backface-visibility: visible;
-  background-color: rgba(0, 0, 0, 0);
-  background-image: url("https://dragons-crown.com/resources/img/top/overlay.png");
-  background-repeat: repeat;
-  background-position: 0% 0%;
-  background-size: auto;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-origin: padding-box;
-  background-blend-mode: normal;
-  block-size: 100%;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  overflow: hidden;
-}
-
-#video-background-player:active,
-#video-background-player:focus {
-  pointer-events: none;
-}
-
-#logoImg {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 300px;
-  height: auto;
-  z-index: 2;
-}
-
-.main {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  height: auto;
-  padding: 20px;
-  min-height: 100vh;
-}
-
-.gdiv {
-  width: 100%;
-}
-
-.gdiv img {
-  width: 100%;
-  height: auto;
-  position: relative;
-  z-index: 1000;
-  top: -28px;
-}
-
-.wrapper {
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-} */
-
 /* scroll button: https://dragons-crown.com/resources/img/common/btn_to_top.png */
-
-
 
 .wrapper {
   position: relative;
@@ -129,11 +66,12 @@
   padding: 20px; /* Add some padding around the content */
   /* padding-top: 0; */
   background: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
+  border: 1px solid #808080;
   border-radius: 8px; /* Optional: Round corners for the content box */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow for depth */
   background-color: rgba(21, 43, 56, 1);
   color: #fff;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: 0px 0px 10px 2px #000000;
 }
 
 .gdiv {
@@ -207,4 +145,46 @@
 .spacer {
   height: 500px;
 }
+
+.position-gif {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gif-wrapper {
+  position: relative; /* This is crucial for absolute positioning of children */
+  width: 210px;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.gif-crt {
+  position: absolute; /* Changed from relative to absolute */
+  top: 0;
+  left: 0;
+  right: 0; /* Ensure it covers the whole area */
+  bottom: 0; /* Ensure it covers the whole area */
+  background-color: rgba(0, 0, 0, 0); /* Semi-transparent overlay */
+  z-index: 2; /* Higher z-index since we want this on top */
+  background-image: url("https://dragons-crown.com/resources/img/top/overlay.png");
+  background-repeat: repeat;
+  pointer-events: none; /* Allows click events to pass through */
+  opacity: 0.2;
+  border-radius: 15px;
+}
+
+.gif-animation {
+  position: relative;
+  width: auto; /* This will be relative to .gif-wrapper's width */
+  /* height: auto; */
+  z-index: 1; /* Lower z-index, but it's not necessary with the absolute positioning */
+  background-color: #fff;
+  border-radius: 15px;
+  max-height: 150px;
+}
+
 
