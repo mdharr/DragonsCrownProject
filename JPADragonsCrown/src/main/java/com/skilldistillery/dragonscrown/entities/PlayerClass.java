@@ -1,5 +1,6 @@
 package com.skilldistillery.dragonscrown.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +25,9 @@ public class PlayerClass {
 	private String animationUrl;
 	@Column(name = "artwork_url")
 	private String artworkUrl;
+	
+	@OneToMany(mappedBy = "playerClass")
+	private List<ClassStats> classStats;
 	
 	public PlayerClass() {
 		super();

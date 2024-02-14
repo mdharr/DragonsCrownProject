@@ -8,6 +8,7 @@
 		<!-- begin entities -->
 		<class>com.skilldistillery.dragonscrown.entities.User</class>
 		<class>com.skilldistillery.dragonscrown.entities.PlayerClass</class>
+		<class>com.skilldistillery.dragonscrown.entities.ClassStats</class>
 
 
 		<!-- end entities -->
