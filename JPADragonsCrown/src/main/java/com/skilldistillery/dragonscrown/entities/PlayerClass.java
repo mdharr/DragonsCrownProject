@@ -33,14 +33,18 @@ public class PlayerClass {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl) {
+
+	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl,
+			List<ClassStats> classStats) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.animationUrl = animationUrl;
 		this.artworkUrl = artworkUrl;
+		this.classStats = classStats;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -71,6 +75,15 @@ public class PlayerClass {
 	public void setArtworkUrl(String artworkUrl) {
 		this.artworkUrl = artworkUrl;
 	}
+	
+	public List<ClassStats> getClassStats() {
+		return classStats;
+	}
+
+	public void setClassStats(List<ClassStats> classStats) {
+		this.classStats = classStats;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
