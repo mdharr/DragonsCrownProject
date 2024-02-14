@@ -46,5 +46,11 @@ class ClassStatsTest {
 		assertNotNull(classStats);
 		assertEquals(16, classStats.getStrength());
 	}
+	
+	@Test
+	void test_ClassStats_PlayerClass_many_to_one_mapping() {
+		assertNotNull(classStats);
+		assertEquals("Fighter", classStats.getPlayerClass().getName());
+	}
 
 }
