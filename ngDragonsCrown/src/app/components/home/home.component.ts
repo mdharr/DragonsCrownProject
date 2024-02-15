@@ -75,7 +75,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.currentClassData = this.playerClasses[classIndex];
     console.log(this.currentClassData);
     console.log(this.currentClassData.animationUrl);
-    // Assuming typeOutText is adapted to work with Angular's rendering
     this.typeOutText(this.currentClassData.description, 'description-text');
   }
 

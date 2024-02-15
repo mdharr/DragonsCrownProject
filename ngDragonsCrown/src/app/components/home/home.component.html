@@ -13,122 +13,132 @@
     <!-- Your main content goes here -->
     <div class="content">
       <div class="gdiv">
-        <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt="">
+        <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->
+        <img src="https://media.discordapp.net/attachments/1080302897599877181/1207690958725062696/gold_top_pattern.png?ex=65e090da&is=65ce1bda&hm=ac5bc0a2420188bf0e13a35ee31169787d4fccf11b93bc05ff872bc3a97c3b9a&=&format=webp&quality=lossless&width=1784&height=86" alt="">
       </div>
-      <hr>
-      <div class="story-label">
-        <img src="https://atlus.com/dragonscrown/img/common/menu_story.png" alt="">
-      </div>
-      <hr>
-      <p>"You came to Hydeland as an adventurer. Like many of your fellows, you strove to challenge the dangerous labyrinths here. The labyrinths were every bit as perilous as you'd heard. Most were lucky to even have their bones exit the ruins. You don't currently belong to the guild. I recommend registering. You can get jobs there and learn skills."</p>
+      <div class="middle">
+
+        <!-- <hr> -->
+        <div class="story-label">
+          <img src="https://atlus.com/dragonscrown/img/common/menu_story.png" alt="">
+        </div>
         <hr>
-      <div class="characters-label">
-        <img src="https://atlus.com/dragonscrown/img/common/menu_character.png" alt="">
-      </div>
-      <hr>
-      <p>Swords, Dungeons, Sorcery, and Dragons... Enjoy the Ultimate Gamemaster-driven Fantasy!
-        "The paths that lead people to this land are many and varied, but they share a single goal.
-        Now you have journeyed here to brave the dangerous, monster-ridden dungeons.
-        Daring adventurers from far and wide have come to face the labyrinths on the outskirts of town, and you are joining their ranks.
-        You must first gather a strong party.
-        No matter how brave you are, it’s not safe to go alone.
-        Let us begin your journey...
-        I wish you good luck."</p>
-      <p class="small-text">Select a class to get started:</p>
-      <div class="portraits">
-        <ul id="portraits-ul">
-          <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id" (click)="loadClassData(i)" [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}">
-            <img [src]="classData.portraitUrl" [alt]="classData.name">
-          </li>
-        </ul>
-      </div>
-      <div class="class-description">
-        <p id="description-text"></p>
-      </div>
-      <div class="planner" *ngIf="classSelected">
-        <div class="col n1">
-          <div class="player-class">
-            <label for="class">Class</label>
-            <div class="wrapper-class">
-              <span id="class-name">{{currentClassData?.name}}</span>
-            </div>
-          </div>
-          <div class="mini-captions">
-            <span>Attribute</span>
-            <span>Current</span>
-          </div>
-          <div class="player-level">
-            <label for="level">Level</label>
-            <input id="level" type="number" [value]="currentClassData?.classStats[0]?.level">
-            <!-- <button class="material-icons down">keyboard_arrow_down</button>
-            <button class="material-icons up">keyboard_arrow_up</button> -->
-          </div>
-          <div class="player-attributes">
-            <div>
-              <label for="">HP</label>
-              <div class="stat-wrapper">
-                <span id="health" [textContent]="currentClassData?.classStats[0]?.health">0</span>
-              </div>
-            </div>
-            <div>
-              <label for="">STR</label>
-              <div class="stat-wrapper">
-                <span id="strength" [textContent]="currentClassData?.classStats[0]?.strength">0</span>
-              </div>
-            </div>
-            <div>
-              <label for="">INT</label>
-              <div class="stat-wrapper">
-                <span id="intelligence" [textContent]="currentClassData?.classStats[0]?.intelligence">0</span>
-              </div>
-            </div>
-            <div>
-              <label for="">CON</label>
-              <div class="stat-wrapper">
-                <span id="constitution" [textContent]="currentClassData?.classStats[0]?.constitution">0</span>
-              </div>
-            </div>
-            <div>
-              <label for="">MGR</label>
-              <div class="stat-wrapper">
-                <span id="magic-resistance" [textContent]="currentClassData?.classStats[0]?.magicResistance">0</span>
-              </div>
-            </div>
-            <div>
-              <label for="">DEX</label>
-              <div class="stat-wrapper">
-                <span id="dexterity" [textContent]="currentClassData?.classStats[0]?.dexterity">0</span>
-              </div>
-            </div>
-            <div>
-              <label for="">LUC</label>
-              <div class="stat-wrapper">
-                <span id="luck" [textContent]="currentClassData?.classStats[0]?.luck">0</span>
-              </div>
-            </div>
-          </div>
-          <div class="exp-cost"></div>
+        <p>"You came to Hydeland as an adventurer. Like many of your fellows, you strove to challenge the dangerous labyrinths here. The labyrinths were every bit as perilous as you'd heard. Most were lucky to even have their bones exit the ruins. You don't currently belong to the guild. I recommend registering. You can get jobs there and learn skills."</p>
+          <hr>
+        <div class="characters-label">
+          <img src="https://atlus.com/dragonscrown/img/common/menu_character.png" alt="">
         </div>
-        <div class="n3">
-          <!-- <div class="gif-crt"></div> -->
-          <div class="class-title">
-            <img id="title-img" [src]="currentClassData?.titleUrl" alt="">
+        <hr>
+        <p>Swords, Dungeons, Sorcery, and Dragons... Enjoy the Ultimate Gamemaster-driven Fantasy!
+          "The paths that lead people to this land are many and varied, but they share a single goal.
+          Now you have journeyed here to brave the dangerous, monster-ridden dungeons.
+          Daring adventurers from far and wide have come to face the labyrinths on the outskirts of town, and you are joining their ranks.
+          You must first gather a strong party.
+          No matter how brave you are, it’s not safe to go alone.
+          Let us begin your journey...
+          I wish you good luck."</p>
+        <p class="small-text">Select a class to get started:</p>
+        <div class="portraits">
+          <ul id="portraits-ul">
+            <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id" (click)="loadClassData(i)" [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}">
+              <img [src]="classData.portraitUrl" [alt]="classData.name">
+            </li>
+          </ul>
+        </div>
+        <div class="class-description">
+          <p id="description-text"></p>
+        </div>
+        <div class="planner" *ngIf="classSelected">
+          <div class="col n1">
+            <div class="player-class">
+              <label for="class">Class</label>
+              <div class="wrapper-class">
+                <span id="class-name">{{currentClassData?.name}}</span>
+              </div>
+            </div>
+            <div class="mini-captions">
+              <span>Attribute</span>
+              <span>Current</span>
+            </div>
+            <div class="player-level">
+              <label for="level">Level</label>
+              <input id="level" type="number" [value]="currentClassData?.classStats[0]?.level">
+              <!-- <button class="material-icons down">keyboard_arrow_down</button>
+              <button class="material-icons up">keyboard_arrow_up</button> -->
+            </div>
+            <div class="player-attributes">
+              <div>
+                <label for="">HP</label>
+                <div class="stat-wrapper">
+                  <span id="health" [textContent]="currentClassData?.classStats[0]?.health">0</span>
+                </div>
+              </div>
+              <div>
+                <label for="">STR</label>
+                <div class="stat-wrapper">
+                  <span id="strength" [textContent]="currentClassData?.classStats[0]?.strength">0</span>
+                </div>
+              </div>
+              <div>
+                <label for="">INT</label>
+                <div class="stat-wrapper">
+                  <span id="intelligence" [textContent]="currentClassData?.classStats[0]?.intelligence">0</span>
+                </div>
+              </div>
+              <div>
+                <label for="">CON</label>
+                <div class="stat-wrapper">
+                  <span id="constitution" [textContent]="currentClassData?.classStats[0]?.constitution">0</span>
+                </div>
+              </div>
+              <div>
+                <label for="">MGR</label>
+                <div class="stat-wrapper">
+                  <span id="magic-resistance" [textContent]="currentClassData?.classStats[0]?.magicResistance">0</span>
+                </div>
+              </div>
+              <div>
+                <label for="">DEX</label>
+                <div class="stat-wrapper">
+                  <span id="dexterity" [textContent]="currentClassData?.classStats[0]?.dexterity">0</span>
+                </div>
+              </div>
+              <div>
+                <label for="">LUC</label>
+                <div class="stat-wrapper">
+                  <span id="luck" [textContent]="currentClassData?.classStats[0]?.luck">0</span>
+                </div>
+              </div>
+            </div>
+            <div class="exp-cost"></div>
           </div>
-          <div class="position-gif">
-            <div class="gif-wrapper">
-              <!-- <div class="gif-crt"></div> -->
-              <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="Character Sprite">
+          <div class="n3">
+            <!-- <div class="gif-crt"></div> -->
+            <div class="class-title">
+              <img id="title-img" [src]="currentClassData?.titleUrl" alt="">
+            </div>
+            <div class="position-gif">
+              <div class="gif-wrapper">
+                <!-- <div class="gif-crt"></div> -->
+                <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="Character Sprite">
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="meta-wrapper">
-        <div class="skills-wrapper"></div>
-        <div class="stats-wrapper"></div>
+        <div class="meta-wrapper">
+          <div class="skills-wrapper"></div>
+          <div class="stats-wrapper"></div>
+        </div>
+        <!-- <div style="position: relative; top:0; right:0; opacity: 0.2;">
+          <img style="position: relative" src="https://dragons-crown.com/resources/img/top/dragon.png" alt="">
+        </div> -->
+        <!-- <div class="spacer" *ngIf="classSelected"></div> -->
       </div>
-
-      <div class="spacer" *ngIf="classSelected"></div>
+      <div class="bdiv">
+        <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->
+        <img src="https://media.discordapp.net/attachments/1080302897599877181/1207690958032871454/gold_bottom_pattern.png?ex=65e090da&is=65ce1bda&hm=a0b04199b6d535a3e5eda1e27729cc80f9f2268c0862fcc9028bc5ef1063ea1a&=&format=webp&quality=lossless&width=1784&height=86" alt="">
+      </div>
     </div>
   </div>
 </div>

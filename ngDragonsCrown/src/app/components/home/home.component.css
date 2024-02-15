@@ -64,25 +64,27 @@
   margin: 0 auto; /* Center content horizontally */
   margin-top: 95px; /* Adjust as needed */
   margin-bottom: 100px;
-  padding: 20px; /* Add some padding around the content */
-  padding-top: 60px;
+  /* padding: 20px; */
+  padding-top: 50px;
   /* padding-top: 0; */
   background: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
-  border: 1px solid #808080;
-  border-radius: 8px; /* Optional: Round corners for the content box */
+  /* border: 1px solid #808080; */
+  /* border-radius: 8px; */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow for depth */
   background-color: rgba(21, 43, 56, 0.9);
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
-  background-image: url(https://atlus.com/dragonscrown/img/system/magicshop_bg1.png);
+  /* background-image: url(https://atlus.com/dragonscrown/img/system/magicshop_bg1.png); */
+  background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1207689951928524810/bg_pattern.png?ex=65e08fea&is=65ce1aea&hm=3cab9c5770813158e8b23ce931039d2ca009e0b1aac83518580d17f2e5a6b615&=&format=webp&quality=lossless&width=584&height=1056);
   background-repeat: repeat;
   background-position: top left;
   background-size: 100%;
+  z-index:1;
 }
 
 .gdiv {
   position: absolute; /* Position relative to .content */
-  top: -23px; /* Adjust this value so that .gdiv's bottom aligns with .content's top */
+  top: 0px; /* Adjust this value so that .gdiv's bottom aligns with .content's top */
   left: 0;
   width: 100%; /* Ensure it spans the full width of .content */
   z-index: 10; /* Ensure it's above the content */
@@ -94,6 +96,27 @@
   height: auto;
 }
 
+.bdiv {
+  position: relative;
+  bottom: 0; /* Adjust this value so that .gdiv's bottom aligns with .content's top */
+  left: 0;
+  width: 100%; /* Ensure it spans the full width of .content */
+  z-index: 10; /* Ensure it's above the content */
+}
+
+.bdiv img {
+  display: block; /* Remove any default spacing/margin */
+  width: 100%;
+  height: auto;
+}
+
+.middle {
+  width: 100%;
+  background: url(https://media.discordapp.net/attachments/1080302897599877181/1207690958418870293/gold_middle_pattern.png?ex=65e090da&is=65ce1bda&hm=ffd88fa78367350490fee1af6b3e310b0d0c1733b0c87f6a8c2d2474acc473d1&=&format=webp&quality=lossless&width=1390&height=1058) repeat-y left bottom;
+  background-size: 100% auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
 .content h1 {
   color: #222; /* Heading color */
@@ -256,11 +279,32 @@
 }
 
 .planner {
+  position: relative;
   width: 958px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   margin-top: 30px;
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: url(https://dragons-crown.com/resources/img/top/dragon.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  /* background-size: 100%; */
+  background-size: contain;
+  transform: scaleX(-1);
+  overflow: unset;
+  filter: brightness(0.3);
+  opacity:0.4;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .col {
