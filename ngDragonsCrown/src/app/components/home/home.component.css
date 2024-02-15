@@ -156,18 +156,20 @@
 .position-gif {
   display: none;
   justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .gif-wrapper {
   position: relative; /* This is crucial for absolute positioning of children */
   width: 210px;
+  /* width: 615px; */
   height: fit-content;
   display: flex;
   justify-content: center;
   background-color: #fff;
   padding: 5px;
-  border-radius: 15px;
-  border: 2px solid red;
+  /* border-radius: 15px;
+  border: 2px solid red; */
 }
 
 .gif-crt {
@@ -182,7 +184,7 @@
   background-repeat: repeat;
   pointer-events: none; /* Allows click events to pass through */
   opacity: 0.2;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 
 .gif-animation {
@@ -193,6 +195,7 @@
   background-color: #fff;
   border-radius: 15px;
   max-height: 150px;
+  padding: 10px;
 }
 
 .planner {
