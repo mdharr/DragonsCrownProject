@@ -314,6 +314,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(gifElement) {
       gifElement.setAttribute('src', sorceressData.animationUrl);
     }
+    if(titleImgElement) {
+      titleImgElement.setAttribute('src', sorceressData.titleUrl);
+    }
   }
 
   loadWizardData() {
