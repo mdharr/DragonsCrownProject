@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadElfData() {
-    const elfData = this.playerClasses[1];
+    const elfData = this.playerClasses[2];
     console.log(elfData);
     const className = document.querySelector('#class-name');
     const level = document.querySelector('#level');
@@ -171,7 +171,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadDwarfData() {
-    const dwarfData = this.playerClasses[1];
+    const dwarfData = this.playerClasses[3];
     console.log(dwarfData);
     const className = document.querySelector('#class-name');
     const level = document.querySelector('#level');
@@ -213,7 +213,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadSorceressData() {
-    const sorceressData = this.playerClasses[1];
+    const sorceressData = this.playerClasses[4];
     console.log(sorceressData);
     const className = document.querySelector('#class-name');
     const level = document.querySelector('#level');
@@ -255,7 +255,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadWizardData() {
-    const wizardData = this.playerClasses[1];
+    const wizardData = this.playerClasses[5];
     console.log(wizardData);
     const className = document.querySelector('#class-name');
     const level = document.querySelector('#level');
