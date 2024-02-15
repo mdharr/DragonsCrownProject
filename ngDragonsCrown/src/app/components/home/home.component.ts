@@ -239,6 +239,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(luck !== null) {
       luck.textContent = dwarfData.classStats[0].luck.toString();
     }
+    if(gifWrapper) {
+      const styles = gifWrapper.style;
+      styles.display = 'flex';
+    }
+    if(gifElement) {
+      gifElement.setAttribute('src', dwarfData.animationUrl);
+    }
   }
 
   loadSorceressData() {
