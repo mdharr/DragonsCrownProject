@@ -259,6 +259,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(gifElement) {
       gifElement.setAttribute('src', dwarfData.animationUrl);
     }
+    if(titleImgElement) {
+      titleImgElement.setAttribute('src', dwarfData.titleUrl);
+    }
   }
 
   loadSorceressData() {
