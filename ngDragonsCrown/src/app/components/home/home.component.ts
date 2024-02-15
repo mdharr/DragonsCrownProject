@@ -212,4 +212,45 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  loadSorceressData() {
+    const sorceressData = this.playerClasses[1];
+    console.log(sorceressData);
+    const className = document.querySelector('#class-name');
+    const level = document.querySelector('#level');
+    const health = document.querySelector('#health');
+    const strength = document.querySelector('#strength');
+    const intelligence = document.querySelector('#intelligence');
+    const constitution = document.querySelector('#constitution');
+    const magicResistance = document.querySelector('#magic-resistance');
+    const dexterity = document.querySelector('#dexterity');
+    const luck = document.querySelector('#luck');
+    console.log(level);
+    if(className !== null) {
+      className.textContent = sorceressData.name;
+    }
+    if(level !== null) {
+      level.setAttribute('value', sorceressData.classStats[0].level.toString());
+    }
+    if(health !== null) {
+      health.textContent = sorceressData.classStats[0].health.toString();
+    }
+    if(strength !== null) {
+      strength.textContent = sorceressData.classStats[0].strength.toString();
+    }
+    if(intelligence !== null) {
+      intelligence.textContent = sorceressData.classStats[0].intelligence.toString();
+    }
+    if(constitution !== null) {
+      constitution.textContent = sorceressData.classStats[0].constitution.toString();
+    }
+    if(magicResistance !== null) {
+      magicResistance.textContent = sorceressData.classStats[0].magicResistance.toString();
+    }
+    if(dexterity !== null) {
+      dexterity.textContent = sorceressData.classStats[0].dexterity.toString();
+    }
+    if(luck !== null) {
+      luck.textContent = sorceressData.classStats[0].luck.toString();
+    }
+  }
 }
