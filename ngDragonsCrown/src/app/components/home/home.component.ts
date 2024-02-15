@@ -369,5 +369,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(gifElement) {
       gifElement.setAttribute('src', wizardData.animationUrl);
     }
+    if(titleImgElement) {
+      titleImgElement.setAttribute('src', wizardData.titleUrl);
+    }
   }
 }
