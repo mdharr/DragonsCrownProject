@@ -204,6 +204,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(gifElement) {
       gifElement.setAttribute('src', elfData.animationUrl);
     }
+    if(titleImgElement) {
+      titleImgElement.setAttribute('src', elfData.titleUrl);
+    }
   }
 
   loadDwarfData() {
