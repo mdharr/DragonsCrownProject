@@ -391,5 +391,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(titleImgElement) {
       titleImgElement.setAttribute('src', wizardData.titleUrl);
     }
+    this.typeOutText(wizardData.description, 'description-text');
   }
+
+  async typeOutText(input: string, elementId: string): Promise<void> {
+    const element = document.getElementById(elementId) as HTMLParagraphElement;
+
+    if (!element) {
+      console.error('Element not found');
+      return;
+    }
+
+    for (let i = 0; i < input.length; i++) {
+      await new Promise<void>((resolve) =>
+        setTimeout(() => {
+          element.textContent += input[i];
+          resolve();
+        }, 50)
+      );
+    }
+  }
+
 }
