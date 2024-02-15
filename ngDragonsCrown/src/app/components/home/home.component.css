@@ -43,8 +43,13 @@
 
 .main {
   display: flex; /* This ensures it's on top of the fixed-position elements */
+  flex-direction:column;
   background: none; /* Adjust if you want a background for content */
-  padding: 1em; /* Padding around content */
+  padding: 1em;
+  padding-bottom:0;
+  padding-left:0;
+  padding-right:0;
+  /* background-color:#000000; */
   /* Further styling for your content */
 }
 
@@ -280,11 +285,11 @@
 
 .planner {
   position: relative;
-  width: 958px;
+  width: 940px;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .content::before {
@@ -433,3 +438,27 @@ hr {
 #level {
   pointer-events: none;
 }
+
+.footer {
+  color: #fff;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #d9b359;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.footer-text {
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-text p {
+  margin:0;
+}
+
+

@@ -18,18 +18,18 @@
       </div>
       <div class="middle">
 
-        <!-- <hr> -->
+        <!-- <hr style="margin-top:0;"> -->
         <div class="story-label">
           <img src="https://atlus.com/dragonscrown/img/common/menu_story.png" alt="">
         </div>
-        <hr>
-        <p>"You came to Hydeland as an adventurer. Like many of your fellows, you strove to challenge the dangerous labyrinths here. The labyrinths were every bit as perilous as you'd heard. Most were lucky to even have their bones exit the ruins. You don't currently belong to the guild. I recommend registering. You can get jobs there and learn skills."</p>
+        <hr style="margin-bottom:0;">
+        <p style="background-color: rgba(0, 0, 0, 0.01);">"You came to Hydeland as an adventurer. Like many of your fellows, you strove to challenge the dangerous labyrinths here. The labyrinths were every bit as perilous as you'd heard. Most were lucky to even have their bones exit the ruins. You don't currently belong to the guild. I recommend registering. You can get jobs there and learn skills."</p>
           <hr>
         <div class="characters-label">
           <img src="https://atlus.com/dragonscrown/img/common/menu_character.png" alt="">
         </div>
-        <hr>
-        <p>Swords, Dungeons, Sorcery, and Dragons... Enjoy the Ultimate Gamemaster-driven Fantasy!
+        <hr style="margin-bottom:0;">
+        <p style="background-color: rgba(0, 0, 0, 0.01);">Swords, Dungeons, Sorcery, and Dragons... Enjoy the Ultimate Gamemaster-driven Fantasy!
           "The paths that lead people to this land are many and varied, but they share a single goal.
           Now you have journeyed here to brave the dangerous, monster-ridden dungeons.
           Daring adventurers from far and wide have come to face the labyrinths on the outskirts of town, and you are joining their ranks.
@@ -37,7 +37,8 @@
           No matter how brave you are, it’s not safe to go alone.
           Let us begin your journey...
           I wish you good luck."</p>
-        <p class="small-text">Select a class to get started:</p>
+          <hr style="margin-bottom:0;">
+        <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">Select a class to get started:</p>
         <div class="portraits">
           <ul id="portraits-ul">
             <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id" (click)="loadClassData(i)" [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}">
@@ -45,11 +46,13 @@
             </li>
           </ul>
         </div>
+        <hr style="margin-bottom: 0;">
         <div class="class-description">
-          <p id="description-text"></p>
+          <p style="background-color: rgba(0, 0, 0, 0.01);" id="description-text"></p>
         </div>
         <div class="planner" *ngIf="classSelected">
-          <div class="col n1">
+          <hr>
+          <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3);">
             <div class="player-class">
               <label for="class">Class</label>
               <div class="wrapper-class">
@@ -138,6 +141,11 @@
       <div class="bdiv">
         <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->
         <img src="https://media.discordapp.net/attachments/1080302897599877181/1207690958032871454/gold_bottom_pattern.png?ex=65e090da&is=65ce1bda&hm=a0b04199b6d535a3e5eda1e27729cc80f9f2268c0862fcc9028bc5ef1063ea1a&=&format=webp&quality=lossless&width=1784&height=86" alt="">
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-text">
+        <p>©2024 Dragon's Crown Planner | Michael Harrington</p>
       </div>
     </div>
   </div>
