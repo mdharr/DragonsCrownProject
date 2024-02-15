@@ -153,10 +153,37 @@
   height: 500px;
 }
 
+.n3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://atlus.com/dragonscrown/img/story/storytext_bg.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 8px;
+  width: 500px;
+  max-width: 500px;
+  -webkit-filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 1.0));
+}
+
+.class-title {
+  display: flex;
+  justify-content: center;
+  width:100%;
+}
+
+#title-img {
+  width: auto;
+  height: 40px;
+}
+
 .position-gif {
   display: none;
   justify-content: flex-end;
   align-items: flex-end;
+  height:160px;
 }
 
 .gif-wrapper {
@@ -166,7 +193,7 @@
   height: fit-content;
   display: flex;
   justify-content: center;
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 5px;
   /* border-radius: 15px;
   border: 2px solid red; */
@@ -192,10 +219,11 @@
   width: auto; /* This will be relative to .gif-wrapper's width */
   /* height: auto; */
   z-index: 1; /* Lower z-index, but it's not necessary with the absolute positioning */
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 15px;
   max-height: 150px;
   padding: 10px;
+  -webkit-filter: drop-shadow(0px 0px 3px rgba(255, 255, 255, 1.0));
 }
 
 .planner {

@@ -56,7 +56,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
-    const titleImgElement = document.querySelector('title-img') as HTMLElement;
+    const n3Element = document.querySelector('.n3') as HTMLElement;
+    const titleImgElement = document.querySelector('#title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -87,6 +88,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(luck !== null) {
       luck.textContent = fighterData.classStats[0].luck.toString();
     }
+    if(n3Element) {
+    }
     if(gifWrapper) {
       const styles = gifWrapper.style;
       styles.display = 'flex';
@@ -111,7 +114,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
-    const titleImgElement = document.querySelector('title-img') as HTMLElement;
+    const n3Element = document.querySelector('.n3') as HTMLElement;
+    const titleImgElement = document.querySelector('#title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -142,6 +146,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(luck !== null) {
       luck.textContent = amazonData.classStats[0].luck.toString();
     }
+    if(n3Element) {
+
+    }
     if(gifWrapper) {
       const styles = gifWrapper.style;
       styles.display = 'flex';
@@ -166,7 +173,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
-    const titleImgElement = document.querySelector('title-img') as HTMLElement;
+    const n3Element = document.querySelector('.n3') as HTMLElement;
+    const titleImgElement = document.querySelector('#title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -197,6 +205,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(luck !== null) {
       luck.textContent = elfData.classStats[0].luck.toString();
     }
+    if(n3Element) {
+    }
     if(gifWrapper) {
       const styles = gifWrapper.style;
       styles.display = 'flex';
@@ -221,7 +231,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
-    const titleImgElement = document.querySelector('title-img') as HTMLElement;
+    const n3Element = document.querySelector('.n3') as HTMLElement;
+    const titleImgElement = document.querySelector('#title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -252,6 +263,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(luck !== null) {
       luck.textContent = dwarfData.classStats[0].luck.toString();
     }
+    if(n3Element) {
+    }
     if(gifWrapper) {
       const styles = gifWrapper.style;
       styles.display = 'flex';
@@ -276,7 +289,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
-    const titleImgElement = document.querySelector('title-img') as HTMLElement;
+    const n3Element = document.querySelector('.n3') as HTMLElement;
+    const titleImgElement = document.querySelector('#title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -307,6 +321,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(luck !== null) {
       luck.textContent = sorceressData.classStats[0].luck.toString();
     }
+    if(n3Element) {
+    }
     if(gifWrapper) {
       const styles = gifWrapper.style;
       styles.display = 'flex';
@@ -331,7 +347,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
-    const titleImgElement = document.querySelector('title-img') as HTMLElement;
+    const n3Element = document.querySelector('.n3') as HTMLElement;
+    const titleImgElement = document.querySelector('#title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -361,6 +378,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     if(luck !== null) {
       luck.textContent = wizardData.classStats[0].luck.toString();
+    }
+    if(n3Element) {
     }
     if(gifWrapper) {
       const styles = gifWrapper.style;
