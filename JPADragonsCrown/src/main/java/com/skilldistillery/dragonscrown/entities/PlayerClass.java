@@ -27,6 +27,8 @@ public class PlayerClass {
 	private String artworkUrl;
 	@Column(name = "title_url")
 	private String titleUrl;
+	@Column(name = "portrait_url")
+	private String portraitUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -37,7 +39,7 @@ public class PlayerClass {
 	}
 
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
-			List<ClassStats> classStats) {
+			String portraitUrl, List<ClassStats> classStats) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -45,6 +47,7 @@ public class PlayerClass {
 		this.animationUrl = animationUrl;
 		this.artworkUrl = artworkUrl;
 		this.titleUrl = titleUrl;
+		this.portraitUrl = portraitUrl;
 		this.classStats = classStats;
 	}
 
@@ -87,6 +90,14 @@ public class PlayerClass {
 		this.titleUrl = titleUrl;
 	}
 
+	public String getPortraitUrl() {
+		return portraitUrl;
+	}
+
+	public void setPortraitUrl(String portraitUrl) {
+		this.portraitUrl = portraitUrl;
+	}
+
 	public List<ClassStats> getClassStats() {
 		return classStats;
 	}
@@ -110,11 +121,12 @@ public class PlayerClass {
 		PlayerClass other = (PlayerClass) obj;
 		return id == other.id;
 	}
+
 	@Override
 	public String toString() {
 		return "PlayerClass [id=" + id + ", name=" + name + ", description=" + description + ", animationUrl="
-				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", classStats=" + classStats
-				+ "]";
+				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
+				+ portraitUrl + ", classStats=" + classStats + "]";
 	}
 	
 }

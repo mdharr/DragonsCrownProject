@@ -8,6 +8,7 @@ export class PlayerClass {
   animationUrl: string;
   artworkUrl: string;
   titleUrl: string;
+  portraitUrl: string;
   classStats: ClassStats[];
 
   constructor(
@@ -17,6 +18,7 @@ export class PlayerClass {
     animationUrl: string = '',
     artworkUrl: string = '',
     titleUrl: string = '',
+    portraitUrl: string = '',
     classStats: ClassStats[] = []
   ) {
     this.id = id;
@@ -25,6 +27,7 @@ export class PlayerClass {
     this.animationUrl = animationUrl;
     this.artworkUrl = artworkUrl;
     this.titleUrl = titleUrl;
+    this.portraitUrl = portraitUrl;
     this.classStats = classStats;
   }
 }

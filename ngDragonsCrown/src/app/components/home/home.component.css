@@ -74,6 +74,10 @@
   background-color: rgba(21, 43, 56, 0.9);
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
+  background-image: url(https://atlus.com/dragonscrown/img/system/magicshop_bg1.png);
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 100%;
 }
 
 .gdiv {
@@ -143,11 +147,22 @@
 }
 
 .portraits ul li:hover img {
-  opacity: 1;
   cursor: pointer;
+  opacity: 1;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
   /* transform: translateY(-5px); */
 }
+
+.selected {
+  opacity: 1;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
+}
+
+.unselected {
+  opacity: 0.5;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
+}
+
 
 .spacer {
   height: 500px;
@@ -168,6 +183,10 @@
   -webkit-filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 1.0));
 }
 
+.class-description {
+  min-height: 150px;
+}
+
 .class-title {
   display: flex;
   justify-content: center;
@@ -177,10 +196,11 @@
 #title-img {
   width: auto;
   height: 40px;
+  -webkit-filter: drop-shadow(0px 0px 1px rgba(10, 10, 10, 1.0));
 }
 
 .position-gif {
-  display: none;
+  display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   height:160px;
@@ -263,6 +283,7 @@
   width: 150px;
   border: 1px #555 solid;
   padding-left: 5px;
+  background-color:rgb(21 43 56);
 }
 
 input {
@@ -309,6 +330,7 @@ label {
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
+  background-color: rgb(21 43 56);
 }
 
 .player-attributes div {
@@ -339,7 +361,8 @@ hr {
   border: 0;
     height: 2px;
     width: 100%;
-    background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255,255,255),rgb(255,255,255));
+    background-color:rgb(202 179 92);
+    /* background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255,255,255),rgb(255,255,255)); */
 }
 
 #level {

@@ -14,6 +14,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   // properties
   playerClasses: PlayerClass[] = [];
 
+  // booleans
+  classSelected: boolean = false;
+  currentClassData: any = null;
+  selectedClassIndex: number | null = null;
+
+  // typewriter
+  currentTimeoutId: number | null = null;
+
   // subscriptions
   private playerClassSubscription: Subscription | undefined;
 
@@ -44,7 +52,36 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  resetPortraits() {
+    const ul = document.querySelector('#portraits-ul');
+    if(ul) {
+      Array.from(ul.childNodes).forEach(child => {
+        const element = child as HTMLElement;
+        element.style.opacity = '0.5';
+        element.style.filter = 'drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5))';
+      })
+    }
+  }
+
+  selectPortrait(elementId: string) {
+    const element = document.querySelector(`#${elementId}`) as HTMLElement;
+    element.style.opacity = '1';
+    element.style.filter = 'filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1)';
+  }
+
+  loadClassData(classIndex: number): void {
+    this.resetPortraits();
+    this.selectPortrait();
+    this.classSelected = true;
+    this.currentClassData = this.playerClasses[classIndex];
+    console.log(this.currentClassData);
+    console.log(this.currentClassData.animationUrl);
+    // Assuming typeOutText is adapted to work with Angular's rendering
+    this.typeOutText(this.currentClassData.description, 'description-text');
+  }
+
   loadFighterData() {
+    this.classSelected = true;
     const fighterData = this.playerClasses[0];
     console.log(fighterData);
     const className = document.querySelector('#class-name');
@@ -100,9 +137,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(titleImgElement) {
       titleImgElement.setAttribute('src', fighterData.titleUrl);
     }
+    this.typeOutText(fighterData.description, 'description-text');
   }
 
   loadAmazonData() {
+    this.classSelected = true;
     const amazonData = this.playerClasses[1];
     console.log(amazonData);
     const className = document.querySelector('#class-name');
@@ -159,9 +198,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(titleImgElement) {
       titleImgElement.setAttribute('src', amazonData.titleUrl);
     }
+    this.typeOutText(amazonData.description, 'description-text');
   }
 
   loadElfData() {
+    this.classSelected = true;
     const elfData = this.playerClasses[2];
     console.log(elfData);
     const className = document.querySelector('#class-name');
@@ -217,9 +258,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(titleImgElement) {
       titleImgElement.setAttribute('src', elfData.titleUrl);
     }
+    this.typeOutText(elfData.description, 'description-text');
   }
 
   loadDwarfData() {
+    this.classSelected = true;
     const dwarfData = this.playerClasses[3];
     console.log(dwarfData);
     const className = document.querySelector('#class-name');
@@ -275,9 +318,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(titleImgElement) {
       titleImgElement.setAttribute('src', dwarfData.titleUrl);
     }
+    this.typeOutText(dwarfData.description, 'description-text');
   }
 
   loadSorceressData() {
+    this.classSelected = true;
     const sorceressData = this.playerClasses[4];
     console.log(sorceressData);
     const className = document.querySelector('#class-name');
@@ -333,9 +378,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(titleImgElement) {
       titleImgElement.setAttribute('src', sorceressData.titleUrl);
     }
+    this.typeOutText(sorceressData.description, 'description-text');
   }
 
   loadWizardData() {
+    this.classSelected = true;
     const wizardData = this.playerClasses[5];
     console.log(wizardData);
     const className = document.querySelector('#class-name');
@@ -396,20 +443,37 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async typeOutText(input: string, elementId: string): Promise<void> {
     const element = document.getElementById(elementId) as HTMLParagraphElement;
-
     if (!element) {
-      console.error('Element not found');
-      return;
+        console.error('Element not found');
+        return;
+    }
+
+    // Clear existing text content
+    element.textContent = '';
+
+    // If there's an ongoing typing animation, clear the timeout
+    if (this.currentTimeoutId !== null) {
+        clearTimeout(this.currentTimeoutId);
+        this.currentTimeoutId = null;
     }
 
     for (let i = 0; i < input.length; i++) {
-      await new Promise<void>((resolve) =>
-        setTimeout(() => {
-          element.textContent += input[i];
-          resolve();
-        }, 50)
-      );
+        // Check if we should stop the typing animation
+        if (this.currentTimeoutId === null && i !== 0) {
+            return;
+        }
+
+        // Wait for a bit before typing the next character
+        await new Promise<void>((resolve) => {
+            this.currentTimeoutId = window.setTimeout(() => {
+                element.textContent += input[i];
+                resolve();
+            }, 10);
+        });
     }
+
+    // Reset the timeout ID to allow for new typing animations
+    this.currentTimeoutId = null;
   }
 
 }
