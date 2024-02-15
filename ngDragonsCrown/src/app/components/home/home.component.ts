@@ -1,30 +1,44 @@
+import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { PlayerClass } from 'src/app/models/player-class';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  auth = inject(AuthService)
+  // properties
+  playerClasses: PlayerClass[] = [];
 
-  constructor() {}
+  // subscriptions
+  private playerClassSubscription: Subscription | undefined;
+
+  // dependencies
+  auth = inject(AuthService);
+  playerClassService = inject(PlayerClassService);
 
   ngOnInit() {
-    this.tempTestDeleteMeLater(); // DELETE LATER!!!
+    this.subscribeToPlayerClassData();
   }
 
-  tempTestDeleteMeLater() {
-    this.auth.login('admin', 'wombat1').subscribe({
+  ngOnDestroy() {
+    if(this.playerClassSubscription) {
+      this.playerClassSubscription.unsubscribe();
+    }
+  }
+
+  subscribeToPlayerClassData() {
+    this.playerClassSubscription = this.playerClassService.indexAll().subscribe({
       next: (data) => {
-        console.log('Logged in: ');
-        console.log(data)
+        this.playerClasses = data;
       },
       error: (fail) => {
-        console.error('Error authenticating: ')
-        console.error(fail)
+        console.error('Error retrieving player classes data');
+        console.error(fail);
       }
     });
   }
