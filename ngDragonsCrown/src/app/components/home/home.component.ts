@@ -70,9 +70,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadClassData(classIndex: number): void {
-    this.resetPortraits();
-    this.selectPortrait();
     this.classSelected = true;
+    this.selectedClassIndex = classIndex;
     this.currentClassData = this.playerClasses[classIndex];
     console.log(this.currentClassData);
     console.log(this.currentClassData.animationUrl);
