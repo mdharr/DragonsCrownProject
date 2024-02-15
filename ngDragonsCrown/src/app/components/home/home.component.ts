@@ -253,4 +253,46 @@ export class HomeComponent implements OnInit, OnDestroy {
       luck.textContent = sorceressData.classStats[0].luck.toString();
     }
   }
+
+  loadWizardData() {
+    const wizardData = this.playerClasses[1];
+    console.log(wizardData);
+    const className = document.querySelector('#class-name');
+    const level = document.querySelector('#level');
+    const health = document.querySelector('#health');
+    const strength = document.querySelector('#strength');
+    const intelligence = document.querySelector('#intelligence');
+    const constitution = document.querySelector('#constitution');
+    const magicResistance = document.querySelector('#magic-resistance');
+    const dexterity = document.querySelector('#dexterity');
+    const luck = document.querySelector('#luck');
+    console.log(level);
+    if(className !== null) {
+      className.textContent = wizardData.name;
+    }
+    if(level !== null) {
+      level.setAttribute('value', wizardData.classStats[0].level.toString());
+    }
+    if(health !== null) {
+      health.textContent = wizardData.classStats[0].health.toString();
+    }
+    if(strength !== null) {
+      strength.textContent = wizardData.classStats[0].strength.toString();
+    }
+    if(intelligence !== null) {
+      intelligence.textContent = wizardData.classStats[0].intelligence.toString();
+    }
+    if(constitution !== null) {
+      constitution.textContent = wizardData.classStats[0].constitution.toString();
+    }
+    if(magicResistance !== null) {
+      magicResistance.textContent = wizardData.classStats[0].magicResistance.toString();
+    }
+    if(dexterity !== null) {
+      dexterity.textContent = wizardData.classStats[0].dexterity.toString();
+    }
+    if(luck !== null) {
+      luck.textContent = wizardData.classStats[0].luck.toString();
+    }
+  }
 }
