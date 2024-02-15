@@ -127,4 +127,48 @@ export class HomeComponent implements OnInit, OnDestroy {
       luck.textContent = amazonData.classStats[0].luck.toString();
     }
   }
+
+  loadElfData() {
+    const elfData = this.playerClasses[1];
+    console.log(elfData);
+    const className = document.querySelector('#class-name');
+    const level = document.querySelector('#level');
+    const health = document.querySelector('#health');
+    const strength = document.querySelector('#strength');
+    const intelligence = document.querySelector('#intelligence');
+    const constitution = document.querySelector('#constitution');
+    const magicResistance = document.querySelector('#magic-resistance');
+    const dexterity = document.querySelector('#dexterity');
+    const luck = document.querySelector('#luck');
+    console.log(level);
+    if(className !== null) {
+      className.textContent = elfData.name;
+    }
+    if(level !== null) {
+      level.setAttribute('value', elfData.classStats[0].level.toString());
+    }
+    if(health !== null) {
+      health.textContent = elfData.classStats[0].health.toString();
+    }
+    if(strength !== null) {
+      strength.textContent = elfData.classStats[0].strength.toString();
+    }
+    if(intelligence !== null) {
+      intelligence.textContent = elfData.classStats[0].intelligence.toString();
+    }
+    if(constitution !== null) {
+      constitution.textContent = elfData.classStats[0].constitution.toString();
+    }
+    if(magicResistance !== null) {
+      magicResistance.textContent = elfData.classStats[0].magicResistance.toString();
+    }
+    if(dexterity !== null) {
+      dexterity.textContent = elfData.classStats[0].dexterity.toString();
+    }
+    if(luck !== null) {
+      luck.textContent = elfData.classStats[0].luck.toString();
+    }
+  }
+
+
 }
