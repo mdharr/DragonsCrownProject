@@ -19,22 +19,22 @@
       <p>Select a class to get started:</p>
       <div class="portraits">
         <ul>
-          <li>
+          <li id="fighter">
             <img src="https://media.discordapp.net/attachments/1080302897599877181/1207157823264395346/fighter-portrait.png?ex=65dea054&is=65cc2b54&hm=9017b9edae302163441d1b5f5f855bee9226a0cb1d14e22458e14bb37c1a4d77&=&format=webp&quality=lossless&width=400&height=180" alt="Fighter">
           </li>
-          <li>
+          <li id="amazon">
             <img src="https://media.discordapp.net/attachments/1080302897599877181/1207157822366818344/amazon-portrait.png?ex=65dea054&is=65cc2b54&hm=7402c1089c13c59871f711d9837ce9cd6ba9f52a63e5f610d3426158d02c2a46&=&format=webp&quality=lossless&width=400&height=180" alt="Amazon">
           </li>
-          <li>
+          <li id="elf">
             <img src="https://media.discordapp.net/attachments/1080302897599877181/1207157822995832872/elf-portrait.png?ex=65dea054&is=65cc2b54&hm=9ba3048b2f5671bd705fa8ec1bb29af8fd5af8c32ee67d3a0aa75f6be97ba77c&=&format=webp&quality=lossless&width=400&height=180" alt="Elf">
           </li>
-          <li>
+          <li id="dwarf">
             <img src="https://media.discordapp.net/attachments/1080302897599877181/1207157822685577256/dwarf-portrait.png?ex=65dea054&is=65cc2b54&hm=cfc53cda237847ed4382644d181689efb81e9263e67584dc71e20d0b4de9ff81&=&format=webp&quality=lossless&width=400&height=180" alt="Dwarf">
           </li>
-          <li>
+          <li id="sorceress">
             <img src="https://media.discordapp.net/attachments/1080302897599877181/1207157823558123580/sorceress-portrait.png?ex=65dea055&is=65cc2b55&hm=abe4a99325e573be169a2cf54349416c80d2e1c1ff15647205ee44713ba98841&=&format=webp&quality=lossless&width=400&height=180" alt="Sorceress">
           </li>
-          <li>
+          <li id="wizard">
             <img src="https://media.discordapp.net/attachments/1080302897599877181/1207157823864049704/wizard-portrait.png?ex=65dea055&is=65cc2b55&hm=f3f55e077ca77cb8afa09db9d0d095ec92c065ba036fb434584af355e723e4c5&=&format=webp&quality=lossless&width=400&height=180" alt="Wizard">
           </li>
         </ul>
@@ -43,16 +43,77 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
       <p>Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue.</p>
       <p>Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales.</p>
+      <div class="planner">
+        <div class="col n1">
+          <div class="player-class">
+            <label for="class">Class</label>
+            <div class="wrapper-class">
+              <span>Fighter</span>
+            </div>
+          </div>
+          <div class="player-level">
+            <label for="level">Level</label>
+            <input id="level" type="number" value="0">
+            <!-- <button class="material-icons down">keyboard_arrow_down</button>
+            <button class="material-icons up">keyboard_arrow_up</button> -->
+          </div>
+          <div class="player-attributes">
+            <div>
+              <label for="">HP</label>
+              <div class="stat-wrapper">
+                <span>0</span>
+              </div>
+            </div>
+            <div>
+              <label for="">STR</label>
+              <div class="stat-wrapper">
+                <span>0</span>
+              </div>
+            </div>
+            <div>
+              <label for="">INT</label>
+              <div class="stat-wrapper">
+                <span>0</span>
+              </div>
+            </div>
+            <div>
+              <label for="">CON</label>
+              <div class="stat-wrapper">
+                <span>0</span>
+              </div>
+            </div>
+            <div>
+              <label for="">MGR</label>
+              <div class="stat-wrapper">
+                <span>0</span>
+              </div>
+            </div>
+            <div>
+              <label for="">DEX</label>
+              <div class="stat-wrapper">
+                <span>0</span>
+              </div>
+            </div>
+            <div>
+              <label for="">LUC</label>
+              <div class="stat-wrapper">
+                <span>0</span>
+              </div>
+            </div>
+          </div>
+          <div class="exp-cost"></div>
+        </div>
+        <div class="position-gif">
+          <div class="gif-wrapper">
+            <div class="gif-crt"></div>
+            <img class="gif-animation" src="https://static.wikia.nocookie.net/dragons-crown/images/a/aa/Walking_animation.gif" alt="Fighter Sprite">
+          </div>
+        </div>
+      </div>
 
       <div class="meta-wrapper">
         <div class="skills-wrapper"></div>
         <div class="stats-wrapper"></div>
-      </div>
-      <div class="position-gif">
-        <div class="gif-wrapper">
-          <div class="gif-crt"></div>
-          <img class="gif-animation" src="https://static.wikia.nocookie.net/dragons-crown/images/a/aa/Walking_animation.gif" alt="Fighter Sprite">
-        </div>
       </div>
 
       <div class="spacer"></div>

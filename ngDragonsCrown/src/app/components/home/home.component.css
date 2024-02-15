@@ -187,4 +187,91 @@
   max-height: 150px;
 }
 
+.planner {
+  width: 958px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
 
+.col {
+  padding: 8px;
+  border: 1px solid #555;
+  width: 320px;
+  max-width: 320px;
+}
+
+.player-class {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.player-class label {
+  width: 122px;
+}
+
+.player-level {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.player-level input {
+  padding-left: 14px;
+}
+
+.wrapper-class {
+  width: 150px;
+  border: 1px #555 solid;
+  padding-left: 5px;
+}
+
+input {
+  text-align: center;
+  border: 1px #555 solid;
+  border-radius: 0;
+  color: #ccc;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input[type=number] {
+  background: rgb(21 43 56);
+}
+
+label {
+  color: tan;
+}
+
+.player-level label {
+  width: 122px;
+}
+
+.player-level input {
+  width: 46px;
+}
+
+.player-attributes div label {
+  width: 122px;
+}
+
+.player-attributes .stat-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 46px;
+  border: 1px #555 solid;
+  border-radius: 0;
+  color: #ccc;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.player-attributes div {
+  display: flex;
+  margin-bottom: 5px;
+}
