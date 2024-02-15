@@ -94,6 +94,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(gifElement) {
       gifElement.setAttribute('src', fighterData.animationUrl);
     }
+    if(titleImgElement) {
+      titleImgElement.setAttribute('src', fighterData.titleUrl);
+    }
   }
 
   loadAmazonData() {
@@ -145,6 +148,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     if(gifElement) {
       gifElement.setAttribute('src', amazonData.animationUrl);
+    }
+    if(titleImgElement) {
+      titleImgElement.setAttribute('src', amazonData.titleUrl);
     }
   }
 
