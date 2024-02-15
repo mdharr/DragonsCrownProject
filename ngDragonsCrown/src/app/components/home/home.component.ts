@@ -35,12 +35,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.playerClassSubscription = this.playerClassService.indexAll().subscribe({
       next: (data) => {
         this.playerClasses = data;
+        console.log(this.playerClasses);
       },
       error: (fail) => {
         console.error('Error retrieving player classes data');
         console.error(fail);
       }
     });
+  }
+
+  loadPlayerClass() {
+
   }
 
 }
