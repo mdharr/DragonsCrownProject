@@ -56,6 +56,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
+    const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
     if(className !== null) {
       className.textContent = fighterData.name;
@@ -84,6 +86,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(luck !== null) {
       luck.textContent = fighterData.classStats[0].luck.toString();
     }
+    if(gifWrapper) {
+      const styles = gifWrapper.style;
+      styles.display = 'flex';
+    }
+    if(gifElement) {
+      gifElement.setAttribute('src', fighterData.animationUrl);
+    }
   }
 
   loadAmazonData() {
@@ -98,6 +107,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const gifWrapper = document.querySelector('.position-gif');
+    const gifElement = document.querySelector('.gif-wrapper img');
     console.log(level);
     if(className !== null) {
       className.textContent = amazonData.name;
@@ -140,6 +151,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const gifWrapper = document.querySelector('.position-gif');
+    const gifElement = document.querySelector('.gif-wrapper img');
     console.log(level);
     if(className !== null) {
       className.textContent = elfData.name;
@@ -182,6 +195,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const gifWrapper = document.querySelector('.position-gif');
+    const gifElement = document.querySelector('.gif-wrapper img');
     console.log(level);
     if(className !== null) {
       className.textContent = dwarfData.name;
@@ -224,6 +239,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const gifWrapper = document.querySelector('.position-gif');
+    const gifElement = document.querySelector('.gif-wrapper img');
     console.log(level);
     if(className !== null) {
       className.textContent = sorceressData.name;
@@ -266,6 +283,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const gifWrapper = document.querySelector('.position-gif');
+    const gifElement = document.querySelector('.gif-wrapper img');
     console.log(level);
     if(className !== null) {
       className.textContent = wizardData.name;

@@ -154,7 +154,7 @@
 }
 
 .position-gif {
-  display: flex;
+  display: none;
   justify-content: flex-end;
 }
 
