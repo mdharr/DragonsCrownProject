@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const titleImgElement = document.querySelector('title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -107,6 +108,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const titleImgElement = document.querySelector('title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -158,6 +160,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const titleImgElement = document.querySelector('title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -209,6 +212,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const titleImgElement = document.querySelector('title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -260,6 +264,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const titleImgElement = document.querySelector('title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
@@ -311,6 +316,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const magicResistance = document.querySelector('#magic-resistance');
     const dexterity = document.querySelector('#dexterity');
     const luck = document.querySelector('#luck');
+    const titleImgElement = document.querySelector('title-img') as HTMLElement;
     const gifWrapper = document.querySelector('.position-gif') as HTMLElement;
     const gifElement = document.querySelector('.gif-wrapper img') as HTMLElement;
     console.log(level);
