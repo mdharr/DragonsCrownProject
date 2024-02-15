@@ -282,6 +282,7 @@
 .player-level {
   display: flex;
   margin-bottom: 5px;
+  pointer-events: none;
 }
 
 .player-level input {
@@ -345,6 +346,17 @@ label {
 .player-attributes div {
   display: flex;
   margin-bottom: 5px;
+}
+
+.n1 .mini-captions {
+  font-size: 10px;
+  color: #ccc;
+  display: flex;
+}
+
+.mini-captions span {
+  width: 122px;
+  margin-bottom: 4px;
 }
 
 .characters-label {
