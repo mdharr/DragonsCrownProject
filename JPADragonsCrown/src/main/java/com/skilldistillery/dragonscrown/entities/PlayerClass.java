@@ -25,6 +25,8 @@ public class PlayerClass {
 	private String animationUrl;
 	@Column(name = "artwork_url")
 	private String artworkUrl;
+	@Column(name = "title_url")
+	private String titleUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -34,7 +36,7 @@ public class PlayerClass {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl,
+	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			List<ClassStats> classStats) {
 		super();
 		this.id = id;
@@ -42,6 +44,7 @@ public class PlayerClass {
 		this.description = description;
 		this.animationUrl = animationUrl;
 		this.artworkUrl = artworkUrl;
+		this.titleUrl = titleUrl;
 		this.classStats = classStats;
 	}
 
@@ -76,6 +79,14 @@ public class PlayerClass {
 		this.artworkUrl = artworkUrl;
 	}
 	
+	public String getTitleUrl() {
+		return titleUrl;
+	}
+
+	public void setTitleUrl(String titleUrl) {
+		this.titleUrl = titleUrl;
+	}
+
 	public List<ClassStats> getClassStats() {
 		return classStats;
 	}
@@ -102,7 +113,8 @@ public class PlayerClass {
 	@Override
 	public String toString() {
 		return "PlayerClass [id=" + id + ", name=" + name + ", description=" + description + ", animationUrl="
-				+ animationUrl + ", artworkUrl=" + artworkUrl + "]";
+				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", classStats=" + classStats
+				+ "]";
 	}
 	
 }

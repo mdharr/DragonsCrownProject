@@ -55,21 +55,23 @@
   position: absolute;
   top: 15px;
   left: 15px;
+  -webkit-filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 1.0));
 }
 
 .content {
   position: relative; /* This makes it the reference point for absolute positioning inside */
   max-width: 1000px; /* Limit content width for readability */
   margin: 0 auto; /* Center content horizontally */
-  margin-top: 200px; /* Adjust as needed */
+  margin-top: 95px; /* Adjust as needed */
   margin-bottom: 100px;
   padding: 20px; /* Add some padding around the content */
+  padding-top: 60px;
   /* padding-top: 0; */
   background: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
   border: 1px solid #808080;
   border-radius: 8px; /* Optional: Round corners for the content box */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow for depth */
-  background-color: rgba(21, 43, 56, 1);
+  background-color: rgba(21, 43, 56, 0.9);
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
 }
@@ -98,6 +100,11 @@
 .content p {
   line-height: 1.6; /* Increase line-height for readability */
   margin-bottom: 20px; /* Spacing between paragraphs */
+  font-family: fantasy;
+  padding-top: 20px;
+  -webkit-filter: drop-shadow(0px 0px 8px rgba(14, 14, 14, 1.0));
+  text-align: justify;
+  color: #fff;
 }
 
 .content button {
@@ -160,6 +167,7 @@
   background-color: #fff;
   padding: 5px;
   border-radius: 15px;
+  border: 2px solid red;
 }
 
 .gif-crt {
@@ -192,6 +200,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  margin-top: 30px;
 }
 
 .col {
@@ -275,3 +284,28 @@ label {
   display: flex;
   margin-bottom: 5px;
 }
+
+.characters-label {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 60px;
+  margin-bottom: 30px; */
+}
+
+.story-label {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 60px;
+  margin-bottom: 30px; */
+}
+
+.small-text {
+  font-size: 12px;
+  margin-bottom: 2px !important;
+}
+
+hr {
+  border: 0;
+    height: 2px;
+    width: 100%;
+    background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255,255,255),rgb(255,255,255));}
