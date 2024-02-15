@@ -1,3 +1,5 @@
+import { ClassStats } from "./class-stats";
+
 export class PlayerClass {
 
   id: number;
@@ -6,7 +8,7 @@ export class PlayerClass {
   animationUrl: string;
   artworkUrl: string;
   titleUrl: string;
-  // classStats: ClassStats[];
+  classStats: ClassStats[];
 
   constructor(
     id: number = 0,
@@ -15,7 +17,7 @@ export class PlayerClass {
     animationUrl: string = '',
     artworkUrl: string = '',
     titleUrl: string = '',
-    // classStats: ClassStats[] = []
+    classStats: ClassStats[] = []
   ) {
     this.id = id;
     this.name = name;
@@ -23,6 +25,6 @@ export class PlayerClass {
     this.animationUrl = animationUrl;
     this.artworkUrl = artworkUrl;
     this.titleUrl = titleUrl;
-    // this.classStats = classStats;
+    this.classStats = classStats;
   }
 }
