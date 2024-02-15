@@ -170,5 +170,46 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  loadDwarfData() {
+    const dwarfData = this.playerClasses[1];
+    console.log(dwarfData);
+    const className = document.querySelector('#class-name');
+    const level = document.querySelector('#level');
+    const health = document.querySelector('#health');
+    const strength = document.querySelector('#strength');
+    const intelligence = document.querySelector('#intelligence');
+    const constitution = document.querySelector('#constitution');
+    const magicResistance = document.querySelector('#magic-resistance');
+    const dexterity = document.querySelector('#dexterity');
+    const luck = document.querySelector('#luck');
+    console.log(level);
+    if(className !== null) {
+      className.textContent = dwarfData.name;
+    }
+    if(level !== null) {
+      level.setAttribute('value', dwarfData.classStats[0].level.toString());
+    }
+    if(health !== null) {
+      health.textContent = dwarfData.classStats[0].health.toString();
+    }
+    if(strength !== null) {
+      strength.textContent = dwarfData.classStats[0].strength.toString();
+    }
+    if(intelligence !== null) {
+      intelligence.textContent = dwarfData.classStats[0].intelligence.toString();
+    }
+    if(constitution !== null) {
+      constitution.textContent = dwarfData.classStats[0].constitution.toString();
+    }
+    if(magicResistance !== null) {
+      magicResistance.textContent = dwarfData.classStats[0].magicResistance.toString();
+    }
+    if(dexterity !== null) {
+      dexterity.textContent = dwarfData.classStats[0].dexterity.toString();
+    }
+    if(luck !== null) {
+      luck.textContent = dwarfData.classStats[0].luck.toString();
+    }
+  }
 
 }
