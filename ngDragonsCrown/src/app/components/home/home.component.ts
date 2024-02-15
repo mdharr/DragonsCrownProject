@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.playerClassSubscription = this.playerClassService.indexAll().subscribe({
       next: (data) => {
         this.playerClasses = data;
-        console.log(this.playerClasses);
+        // console.log(this.playerClasses);
       },
       error: (fail) => {
         console.error('Error retrieving player classes data');
@@ -44,8 +44,87 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadPlayerClass() {
-
+  loadFighterData() {
+    const fighterData = this.playerClasses[0];
+    console.log(fighterData);
+    const className = document.querySelector('#class-name');
+    const level = document.querySelector('#level');
+    const health = document.querySelector('#health');
+    const strength = document.querySelector('#strength');
+    const intelligence = document.querySelector('#intelligence');
+    const constitution = document.querySelector('#constitution');
+    const magicResistance = document.querySelector('#magic-resistance');
+    const dexterity = document.querySelector('#dexterity');
+    const luck = document.querySelector('#luck');
+    console.log(level);
+    if(className !== null) {
+      className.textContent = fighterData.name;
+    }
+    if(level !== null) {
+      level.setAttribute('value', fighterData.classStats[0].level.toString());
+    }
+    if(health !== null) {
+      health.textContent = fighterData.classStats[0].health.toString();
+    }
+    if(strength !== null) {
+      strength.textContent = fighterData.classStats[0].strength.toString();
+    }
+    if(intelligence !== null) {
+      intelligence.textContent = fighterData.classStats[0].intelligence.toString();
+    }
+    if(constitution !== null) {
+      constitution.textContent = fighterData.classStats[0].constitution.toString();
+    }
+    if(magicResistance !== null) {
+      magicResistance.textContent = fighterData.classStats[0].magicResistance.toString();
+    }
+    if(dexterity !== null) {
+      dexterity.textContent = fighterData.classStats[0].dexterity.toString();
+    }
+    if(luck !== null) {
+      luck.textContent = fighterData.classStats[0].luck.toString();
+    }
   }
 
+  loadAmazonData() {
+    const amazonData = this.playerClasses[1];
+    console.log(amazonData);
+    const className = document.querySelector('#class-name');
+    const level = document.querySelector('#level');
+    const health = document.querySelector('#health');
+    const strength = document.querySelector('#strength');
+    const intelligence = document.querySelector('#intelligence');
+    const constitution = document.querySelector('#constitution');
+    const magicResistance = document.querySelector('#magic-resistance');
+    const dexterity = document.querySelector('#dexterity');
+    const luck = document.querySelector('#luck');
+    console.log(level);
+    if(className !== null) {
+      className.textContent = amazonData.name;
+    }
+    if(level !== null) {
+      level.setAttribute('value', amazonData.classStats[0].level.toString());
+    }
+    if(health !== null) {
+      health.textContent = amazonData.classStats[0].health.toString();
+    }
+    if(strength !== null) {
+      strength.textContent = amazonData.classStats[0].strength.toString();
+    }
+    if(intelligence !== null) {
+      intelligence.textContent = amazonData.classStats[0].intelligence.toString();
+    }
+    if(constitution !== null) {
+      constitution.textContent = amazonData.classStats[0].constitution.toString();
+    }
+    if(magicResistance !== null) {
+      magicResistance.textContent = amazonData.classStats[0].magicResistance.toString();
+    }
+    if(dexterity !== null) {
+      dexterity.textContent = amazonData.classStats[0].dexterity.toString();
+    }
+    if(luck !== null) {
+      luck.textContent = amazonData.classStats[0].luck.toString();
+    }
+  }
 }
