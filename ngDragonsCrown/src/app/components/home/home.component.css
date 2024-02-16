@@ -215,7 +215,13 @@
 }
 
 .class-description {
-  min-height: 150px;
+  min-height: 400px;
+  position: relative;
+  padding: 0px 50px 0px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid rgb(202, 179, 92);
 }
 
 .class-title {
@@ -594,4 +600,19 @@ html {
   background-position: top right;
   filter: brightness(50%) opacity(70%);
   z-index: -1;
+}
+
+.class-description::before {
+  content: '';
+  position: absolute; /* Changed from relative to absolute */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('https://www.4gamer.net/img/sp_dragonscrown/bg_dc_character_def.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top right;
+  filter: brightness(50%) opacity(90%);
+  z-index: -1; /* This ensures the pseudo-element is behind the content of .portraits */
 }
