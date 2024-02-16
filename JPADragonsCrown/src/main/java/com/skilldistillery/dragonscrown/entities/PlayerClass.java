@@ -29,6 +29,10 @@ public class PlayerClass {
 	private String titleUrl;
 	@Column(name = "portrait_url")
 	private String portraitUrl;
+	@Column(name = "background_url")
+	private String backgroundUrl;
+	@Column(name = "icon_url")
+	private String iconUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -39,7 +43,7 @@ public class PlayerClass {
 	}
 
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
-			String portraitUrl, List<ClassStats> classStats) {
+			String portraitUrl, String backgroundUrl, String iconUrl, List<ClassStats> classStats) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -48,6 +52,8 @@ public class PlayerClass {
 		this.artworkUrl = artworkUrl;
 		this.titleUrl = titleUrl;
 		this.portraitUrl = portraitUrl;
+		this.backgroundUrl = backgroundUrl;
+		this.iconUrl = iconUrl;
 		this.classStats = classStats;
 	}
 
@@ -98,6 +104,22 @@ public class PlayerClass {
 		this.portraitUrl = portraitUrl;
 	}
 
+	public String getBackgroundUrl() {
+		return backgroundUrl;
+	}
+
+	public void setBackgroundUrl(String backgroundUrl) {
+		this.backgroundUrl = backgroundUrl;
+	}
+
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
 	public List<ClassStats> getClassStats() {
 		return classStats;
 	}
@@ -126,7 +148,8 @@ public class PlayerClass {
 	public String toString() {
 		return "PlayerClass [id=" + id + ", name=" + name + ", description=" + description + ", animationUrl="
 				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
-				+ portraitUrl + ", classStats=" + classStats + "]";
+				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", classStats="
+				+ classStats + "]";
 	}
 	
 }

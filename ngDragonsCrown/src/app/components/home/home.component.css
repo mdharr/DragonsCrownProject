@@ -547,3 +547,19 @@ hr {
 html {
   scroll-behavior: auto;
 }
+
+/* .character-pointer {
+  padding-top: 10px;
+  left: 0;
+  top: 5px;
+  position: relative;
+  z-index: 100;
+  -ms-animation: new_blink 1.5s ease-in-out 0 infinite normal;
+  -moz-animation: new_blink 1.5s ease-in-out 0 infinite normal;
+  -webkit-animation: new_blink 1.5s ease-in-out 0 infinite normal;
+  animation-name: new_blink;
+  animation-duration: 1.5s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+} */
