@@ -102,19 +102,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   updateLevel(newLevel: number): void {
-    // Check if the new level exists within the classStats
-    const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === newLevel);
+    // Enforce level constraints with fixed min (1) and max (99) levels
+    const validLevel = Math.max(1, Math.min(newLevel, 2));
+
+    const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === validLevel);
     if (stats) {
-      // Update currentStats with the found stats
-      this.currentStats = {...stats};
+      this.currentStats = { ...stats };
     } else {
-      console.error('Stats for level', newLevel, 'not found');
+      console.error('Stats for level', validLevel, 'not found');
+      // Optionally, revert to a safe default if no stats are found
     }
   }
 
   onLevelChange(): void {
-    // Directly use the currentStats.level which should already be updated due to [(ngModel)]
-    this.updateLevel(Number(this.currentStats.level));
+    // Assuming currentStats.level is updated due to [(ngModel)]
+    const enteredLevel = Number(this.currentStats.level);
+    this.updateLevel(enteredLevel);
   }
 
   async typeOutText(input: string, elementId: string): Promise<void> {

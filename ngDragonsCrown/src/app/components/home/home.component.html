@@ -52,93 +52,98 @@
         </div>
         <div class="planner" *ngIf="classSelected">
           <hr>
-          <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3);">
-            <div class="player-class">
-              <label style="pointer-events:none;" for="class">Class</label>
-              <div class="wrapper-class">
-                <span id="class-name">{{currentClassData?.name}}</span>
+          <div class="n1-wrapper">
+            <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3);">
+              <div class="player-class">
+                <label style="pointer-events:none;" for="class">Class</label>
+                <div class="wrapper-class">
+                  <span id="class-name">{{currentClassData?.name}}</span>
+                </div>
               </div>
-            </div>
-            <div class="mini-captions">
-              <span>Attribute</span>
-              <span>Current</span>
-            </div>
-            <div class="player-level">
-              <label for="level">Level</label>
-              <input id="level" type="text" [(ngModel)]="currentStats.level"
-                     (blur)="onLevelChange()"
-                     (keyup.enter)="onLevelChange()">
-              <!-- Material button with an icon -->
-              <button mat-icon-button class="arrow-buttons" id="down-arrow" (click)="levelDown()">
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </button>
+              <div class="mini-captions">
+                <span>Attribute</span>
+                <span>Current</span>
+              </div>
+              <div class="player-level">
+                <label for="level">Level</label>
+                <input id="level" type="text" [(ngModel)]="currentStats.level"
+                       (blur)="onLevelChange()"
+                       (keyup.enter)="onLevelChange()">
+                <!-- Material button with an icon -->
+                <button mat-icon-button class="arrow-buttons" id="down-arrow" (click)="levelDown()">
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
 
-              <!-- Material icon button -->
-              <button mat-icon-button class="arrow-buttons" id="up-arrow" (click)="levelUp()">
-                <mat-icon>keyboard_arrow_up</mat-icon>
-              </button>
-            </div>
+                <!-- Material icon button -->
+                <button mat-icon-button class="arrow-buttons" id="up-arrow" (click)="levelUp()">
+                  <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+              </div>
 
-            <div class="player-attributes">
-              <div>
-                <label for="">HP</label>
-                <div class="stat-wrapper">
-                  <span id="health">{{currentStats?.health}}</span>
+              <div class="player-attributes">
+                <div>
+                  <label for="">HP</label>
+                  <div class="stat-wrapper">
+                    <span id="health">{{currentStats?.health}}</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="">STR</label>
+                  <div class="stat-wrapper">
+                    <span id="strength">{{currentStats?.strength}}</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="">INT</label>
+                  <div class="stat-wrapper">
+                    <span id="intelligence">{{currentStats?.intelligence}}</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="">CON</label>
+                  <div class="stat-wrapper">
+                    <span id="constitution">{{currentStats?.constitution}}</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="">MGR</label>
+                  <div class="stat-wrapper">
+                    <span id="magic-resistance">{{currentStats?.magicResistance}}</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="">DEX</label>
+                  <div class="stat-wrapper">
+                    <span id="dexterity">{{currentStats?.dexterity}}</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="">LUC</label>
+                  <div class="stat-wrapper">
+                    <span id="luck">{{currentStats?.luck}}</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="">EXP</label>
+                  <div class="stat-wrapper">
+                    <span id="exp">{{currentStats?.requiredExp}}</span>
+                  </div>
                 </div>
               </div>
-              <div>
-                <label for="">STR</label>
-                <div class="stat-wrapper">
-                  <span id="strength">{{currentStats?.strength}}</span>
-                </div>
-              </div>
-              <div>
-                <label for="">INT</label>
-                <div class="stat-wrapper">
-                  <span id="intelligence">{{currentStats?.intelligence}}</span>
-                </div>
-              </div>
-              <div>
-                <label for="">CON</label>
-                <div class="stat-wrapper">
-                  <span id="constitution">{{currentStats?.constitution}}</span>
-                </div>
-              </div>
-              <div>
-                <label for="">MGR</label>
-                <div class="stat-wrapper">
-                  <span id="magic-resistance">{{currentStats?.magicResistance}}</span>
-                </div>
-              </div>
-              <div>
-                <label for="">DEX</label>
-                <div class="stat-wrapper">
-                  <span id="dexterity">{{currentStats?.dexterity}}</span>
-                </div>
-              </div>
-              <div>
-                <label for="">LUC</label>
-                <div class="stat-wrapper">
-                  <span id="luck">{{currentStats?.luck}}</span>
-                </div>
-              </div>
-              <div>
-                <label for="">EXP</label>
-                <div class="stat-wrapper">
-                  <span id="exp">{{currentStats?.requiredExp}}</span>
-                </div>
-              </div>
+            </div>
+            <div class="alt-artwork">
+              <img style="height: -webkit-fill-available;" [src]="currentClassData?.artworkUrl" alt="artwork">
             </div>
           </div>
           <div class="n3">
             <!-- <div class="gif-crt"></div> -->
             <div class="class-title">
-              <img id="title-img" [src]="currentClassData?.titleUrl" alt="">
+              <img id="title-img" [src]="currentClassData?.titleUrl" alt="banner">
             </div>
             <div class="position-gif">
               <div class="gif-wrapper">
                 <!-- <div class="gif-crt"></div> -->
-                <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="Character Sprite">
+                <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="animation">
               </div>
             </div>
           </div>
