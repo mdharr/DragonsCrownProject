@@ -634,3 +634,28 @@ html {
   animation-duration: 1s;
   animation-fill-mode: both;
 }
+
+.tooltip {
+  position: absolute;
+  bottom: 100%; /* Make the tooltip appear above the item */
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px); /* Adjust for spacing */
+  display: block;
+  z-index: 100;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+}
+
+li {
+  position: relative; /* Necessary for absolute positioning of the tooltip */
+  list-style-type: none; /* Remove bullet points */
+}
+
+li img {
+  display: block;
+  margin: 0 auto; /* Center image if needed */
+}
+
