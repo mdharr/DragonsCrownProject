@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   playerClassService = inject(PlayerClassService);
 
   ngOnInit() {
+    this.resetWindowPosition();
     this.subscribeToPlayerClassData();
   }
 
@@ -51,6 +52,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         console.error(fail);
       }
     });
+  }
+
+  resetWindowPosition() {
+    history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
   }
 
   resetPortraits() {

@@ -544,4 +544,6 @@ hr {
   margin:0;
 }
 
-
+html {
+  scroll-behavior: auto;
+}
