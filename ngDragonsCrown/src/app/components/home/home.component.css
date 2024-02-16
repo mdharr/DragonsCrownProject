@@ -139,19 +139,19 @@
   color: #fff;
 }
 
-.content button {
-  background-color: #007bff; /* Example button background color */
-  color: white; /* Button text color */
-  padding: 10px 20px; /* Padding inside the button */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Round button corners */
-  cursor: pointer; /* Change mouse cursor on hover */
-  transition: background-color 0.3s; /* Smooth background color change on hover */
-}
+/* .content button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+} */
 
-.content button:hover {
-  background-color: #0056b3; /* Darken button on hover */
-}
+/* .content button:hover {
+  background-color: #0056b3;
+} */
 
 .portraits {
   display: flex;
@@ -331,11 +331,11 @@
 .player-level {
   display: flex;
   margin-bottom: 5px;
-  pointer-events: none;
 }
 
 .player-level input {
   padding-left: 14px;
+  /* pointer-events: none; */
 }
 
 .wrapper-class {
@@ -357,7 +357,7 @@ input {
   -webkit-tap-highlight-color: transparent;
 }
 
-input[type=number] {
+input {
   background: rgb(21 43 56);
 }
 
@@ -365,8 +365,65 @@ label {
   color: tan;
 }
 
+.arrow-buttons {
+  font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    background-color: rgb(21 43 56);
+}
+
+#up-arrow {
+  padding:0;
+  height:24px;
+  border-color: #222;
+  color: #ccc;
+  vertical-align: middle;
+  margin-left:4px;
+  width:30px
+}
+
+#down-arrow {
+  padding:0;
+  height:24px;
+  border-color: #222;
+  color: #ccc;
+  vertical-align: middle;
+  margin-left:4px;
+  width:30px;
+}
+
+#down-arrow:hover,
+#up-arrow:hover {
+  color: tan;
+}
+
+::ng-deep .mat-mdc-icon-button {
+  border-radius:0 !important;
+}
+
+::ng-deep .mat-mdc-icon-button .mat-mdc-button-touch-target {
+  position: absolute;
+  top: 50%;
+  height: 25px !important;
+  left: 50%;
+  width: 30px !important;
+  transform: translate(-50%, -50%);
+  border: 1px solid #555;
+}
+
 .player-level label {
   width: 122px;
+  /* pointer-events:none; */
 }
 
 .player-level input {
@@ -435,9 +492,9 @@ hr {
     /* background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255,255,255),rgb(255,255,255)); */
 }
 
-#level {
+/* #level {
   pointer-events: none;
-}
+} */
 
 .footer {
   color: #fff;
