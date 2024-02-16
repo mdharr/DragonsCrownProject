@@ -78,12 +78,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   loadClassData(classIndex: number): void {
     this.classSelected = true;
-    this.selectedClassIndex = classIndex;
-    this.currentClassData = this.playerClasses[classIndex];
-    // Reset currentStats to the initial state for the newly selected class
-    this.currentStats = { ...this.currentClassData.classStats[0] };
-    console.log(this.currentClassData);
-    this.typeOutText(this.currentClassData.description, 'description-text');
+    if(this.classSelected) {
+      this.selectedClassIndex = classIndex;
+      this.currentClassData = this.playerClasses[classIndex];
+      // Reset currentStats to the initial state for the newly selected class
+      this.currentStats = { ...this.currentClassData.classStats[0] };
+      console.log(this.currentClassData);
+      this.typeOutText(this.currentClassData.description, 'description-text');
+    }
   }
 
   // Modify level change methods to ensure they are updating the view based on the model correctly

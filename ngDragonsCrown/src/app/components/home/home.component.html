@@ -52,7 +52,8 @@
         </div>
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper">
-            <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3);">
+            <!-- <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3); background-image: url({{currentClassData?.backgroundUrl}}); background-repeat:no-repeat;background-color: rgba(0, 0, 0, 0.3); background-size: auto; background-position: top right; background-clip: padding-box;"> -->
+            <div class="col n1 class-background" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
               <div class="player-class">
                 <label style="pointer-events:none;" for="class">Class</label>
                 <div class="wrapper-class">
@@ -131,10 +132,10 @@
               </div>
             </div>
             <div class="alt-artwork">
-              <img style="height: -webkit-fill-available;" [src]="currentClassData?.artworkUrl" alt="artwork">
+              <img [src]="currentClassData?.artworkUrl" alt="artwork">
             </div>
           </div>
-          <hr style="margin: 0;">
+          <hr>
           <div class="n3">
             <!-- <div class="gif-crt"></div> -->
             <div class="class-title">
