@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ScrollToTopButtonComponent
   ],
   imports: [
     BrowserModule,
