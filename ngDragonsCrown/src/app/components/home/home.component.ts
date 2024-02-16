@@ -74,10 +74,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.classSelected = true;
     this.selectedClassIndex = classIndex;
     this.currentClassData = this.playerClasses[classIndex];
-
-    this.currentStats = this.currentClassData.classStats[0];
+    // Reset currentStats to the initial state for the newly selected class
+    this.currentStats = { ...this.currentClassData.classStats[0] };
     console.log(this.currentClassData);
-    console.log(this.currentClassData.animationUrl);
     this.typeOutText(this.currentClassData.description, 'description-text');
   }
 
@@ -102,21 +101,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   updateLevel(newLevel: number): void {
-    // Enforce level constraints with fixed min (1) and max (99) levels
-    const validLevel = Math.max(1, Math.min(newLevel, 2));
-
+    const validLevel = Math.max(1, Math.min(newLevel, 2)); // Ensure level is within bounds
     const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === validLevel);
     if (stats) {
       this.currentStats = { ...stats };
     } else {
       console.error('Stats for level', validLevel, 'not found');
-      // Optionally, revert to a safe default if no stats are found
     }
   }
 
   onLevelChange(): void {
-    // Assuming currentStats.level is updated due to [(ngModel)]
     const enteredLevel = Number(this.currentStats.level);
+    // Call updateLevel with the sanitized, numeric level value
     this.updateLevel(enteredLevel);
   }
 
