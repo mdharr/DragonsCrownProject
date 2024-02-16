@@ -1,6 +1,6 @@
 import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { PlayerClass } from 'src/app/models/player-class';
 import { Subscription } from 'rxjs';
 
@@ -9,11 +9,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // properties
   playerClasses: PlayerClass[] = [];
   currentStats: any;
+
+  // observed elements
+  @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
 
   // booleans
   classSelected: boolean = false;
@@ -39,6 +42,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     if(this.playerClassSubscription) {
       this.playerClassSubscription.unsubscribe();
     }
+  }
+
+  ngAfterViewInit(): void {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fadeIn');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    this.observedElements.forEach(element => {
+      observer.observe(element.nativeElement);
+    });
   }
 
   subscribeToPlayerClassData() {

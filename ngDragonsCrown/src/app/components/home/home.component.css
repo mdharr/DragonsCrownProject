@@ -164,6 +164,8 @@
   justify-content: space-between;
   width: 100%;
   padding: 0;
+  min-height: 71px;
+  border: 1px solid rgb(202, 179, 92);
 }
 
 .portraits ul li img {
@@ -615,4 +617,20 @@ html {
   background-position: top right;
   filter: brightness(50%) opacity(90%);
   z-index: -1; /* This ensures the pseudo-element is behind the content of .portraits */
+}
+
+/* In your component's .css or .scss file */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
