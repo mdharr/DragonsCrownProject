@@ -1,4 +1,5 @@
 import { ClassStats } from "./class-stats";
+import { Recommendation } from "./recommendation";
 
 export class PlayerClass {
 
@@ -13,6 +14,7 @@ export class PlayerClass {
   iconUrl: string;
   streamableUrl: string;
   classStats: ClassStats[];
+  recommendations: Recommendation[];
 
   constructor(
     id: number = 0,
@@ -25,7 +27,8 @@ export class PlayerClass {
     backgroundUrl: string = '',
     iconUrl: string = '',
     streamableUrl: string = '',
-    classStats: ClassStats[] = []
+    classStats: ClassStats[] = [],
+    recommendations: Recommendation[] = []
   ) {
     this.id = id;
     this.name = name;
@@ -38,5 +41,6 @@ export class PlayerClass {
     this.iconUrl = iconUrl;
     this.streamableUrl = streamableUrl;
     this.classStats = classStats;
+    this.recommendations = recommendations;
   }
 }
