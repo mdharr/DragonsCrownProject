@@ -228,7 +228,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border: 1px solid rgb(202, 179, 92);
+  /* border: 1px solid rgb(202, 179, 92); */
 }
 
 .class-title {
@@ -573,21 +573,43 @@ html {
   scroll-behavior: auto;
 }
 
-/* .character-pointer {
-  padding-top: 10px;
-  left: 0;
-  top: 5px;
-  position: relative;
+@keyframes new_blink {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 15px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+#portraits-ul li {
+  position: relative; /* Add this to make the list item a positioning context */
+  /* other styles */
+}
+
+.chara-pointer {
+  position: absolute; /* Absolutely position the pointer within the li */
+  top: -10px; /* Adjust as necessary */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust horizontal position to truly center the pointer */
   z-index: 100;
-  -ms-animation: new_blink 1.5s ease-in-out 0 infinite normal;
-  -moz-animation: new_blink 1.5s ease-in-out 0 infinite normal;
-  -webkit-animation: new_blink 1.5s ease-in-out 0 infinite normal;
-  animation-name: new_blink;
-  animation-duration: 1.5s;
-  animation-direction: normal;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-} */
+  animation: new_blink 1.5s ease-in-out infinite;
+  width: 50px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height */
+  /* Remove padding-top and border as it's not needed */
+}
+
+/* Ensure the image within the pointer container fits the pointer size */
+.chara-pointer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Adjust if the image should maintain its aspect ratio */
+  top: -70px;
+}
+
 
 .class-background {
   position: relative;
@@ -616,12 +638,20 @@ html {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url('https://www.4gamer.net/img/sp_dragonscrown/bg_dc_character_def.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top right;
   filter: brightness(50%) opacity(90%);
-  z-index: -1; /* This ensures the pseudo-element is behind the content of .portraits */
+  z-index: -1;
+  /* background-color: black; */
+}
+
+.class-backdrop {
+  background-image: url('https://www.4gamer.net/img/sp_dragonscrown/bg_dc_character_def.jpg');
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  border: 1px solid rgb(202, 179, 92);
 }
 
 /* In your component's .css or .scss file */
@@ -673,7 +703,7 @@ html {
 }
 
 .selected {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 @keyframes sheen {

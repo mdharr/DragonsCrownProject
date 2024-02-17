@@ -47,10 +47,13 @@
                 [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}"
                 (mouseenter)="showTooltip($event, classData.animationUrl, i)"
                 (mouseleave)="hideTooltip()">
-                <div class="portrait-container" [class.sheen-effect]="selectedClassIndex === i">
+                <div *ngIf="selectedClassIndex === i" class="chara-pointer">
+                  <img src="https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_pointer.png">
+                </div>
+                <div class="portrait-container">
                   <img [src]="classData.portraitUrl" [alt]="classData.name">
                 </div>
-              <div *ngIf="tooltipVisible && tooltipIndex === i" class="custom-tooltip">
+              <div *ngIf="tooltipVisible && tooltipIndex === i && selectedClassIndex !== i" class="custom-tooltip">
                 <div class="media-wrapper">
                   <img [src]="classData.streamableUrl" alt="Media Content" style="width:100%; height: auto; max-height: 100%;">
                 </div>
@@ -59,7 +62,7 @@
           </ul>
         </div>
         <hr style="margin-bottom: 0;">
-        <div class="class-description">
+        <div class="class-description" [ngClass]="{'class-backdrop': selected}">
           <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p>
         </div>
         <div class="planner" *ngIf="classSelected">

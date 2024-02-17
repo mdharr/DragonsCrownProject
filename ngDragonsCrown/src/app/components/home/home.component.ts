@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   classSelected: boolean = false;
   currentClassData: any = null;
   selectedClassIndex: number | null = null;
+  selected: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -105,6 +106,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   loadClassData(classIndex: number): void {
     this.classSelected = true;
     if(this.classSelected) {
+      this.selected = true;
+      const descriptionElement = document.querySelector('.class-description') as HTMLElement;
+      console.log(descriptionElement);
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
       // Reset currentStats to the initial state for the newly selected class
