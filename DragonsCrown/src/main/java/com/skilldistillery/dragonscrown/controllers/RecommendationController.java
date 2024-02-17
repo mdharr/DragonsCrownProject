@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +30,17 @@ public class RecommendationController {
 		}
 		else {
 			return new ResponseEntity<>(recommendations, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("recommendations/{rid}")
+	public ResponseEntity<Recommendation> getRecommendationById(@PathVariable("rid") int recommendationId) {
+		Recommendation recommendation = recommendationService.find(recommendationId);
+		if (recommendation != null) {
+			return new ResponseEntity<>(recommendation, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 }
