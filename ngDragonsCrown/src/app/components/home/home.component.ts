@@ -111,6 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log(descriptionElement);
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
+      console.log(this.currentClassData);
       // Reset currentStats to the initial state for the newly selected class
       this.currentStats = { ...this.currentClassData.classStats[0] };
       console.log(this.currentClassData);

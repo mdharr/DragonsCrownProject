@@ -154,17 +154,25 @@
             </div>
           </div>
           <hr>
-          <div class="n3">
-            <div class="gif-crt"></div>
-            <div class="class-title">
-              <img id="title-img" [src]="currentClassData?.titleUrl" alt="banner">
-            </div>
-            <div class="position-gif">
-              <div class="gif-wrapper">
-                <!-- <div class="gif-crt"></div> -->
-                <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="animation">
+          <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div class="n3">
+              <div class="gif-crt"></div>
+              <div class="class-title">
+                <img id="title-img" [src]="currentClassData?.titleUrl" alt="banner">
+              </div>
+              <div class="position-gif">
+                <div class="gif-wrapper">
+                  <!-- <div class="gif-crt"></div> -->
+                  <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="animation">
+                </div>
               </div>
             </div>
+            <blockquote>
+              <h5>Recommended for these people</h5>
+              <ul *ngFor="let recommendation of currentClassData?.recommendations">
+                <li>{{ recommendation.description}}</li>
+              </ul>
+            </blockquote>
           </div>
           <hr style="margin-top: 0;">
         </div>

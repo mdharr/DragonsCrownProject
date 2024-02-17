@@ -38,6 +38,8 @@ public class PlayerClass {
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
+	@OneToMany(mappedBy = "playerClass")
+	private List<Recommendation> recommendations;
 	
 	public PlayerClass() {
 		super();
@@ -45,8 +47,8 @@ public class PlayerClass {
 	}
 
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
-			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl,
-			List<ClassStats> classStats) {
+			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, List<ClassStats> classStats,
+			List<Recommendation> recommendations) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,6 +61,7 @@ public class PlayerClass {
 		this.iconUrl = iconUrl;
 		this.streamableUrl = streamableUrl;
 		this.classStats = classStats;
+		this.recommendations = recommendations;
 	}
 
 	public int getId() {
@@ -140,6 +143,14 @@ public class PlayerClass {
 		this.classStats = classStats;
 	}
 
+	public List<Recommendation> getRecommendations() {
+		return recommendations;
+	}
+
+	public void setRecommendations(List<Recommendation> recommendations) {
+		this.recommendations = recommendations;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -161,7 +172,7 @@ public class PlayerClass {
 		return "PlayerClass [id=" + id + ", name=" + name + ", description=" + description + ", animationUrl="
 				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
 				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", streamableUrl="
-				+ streamableUrl + ", classStats=" + classStats + "]";
+				+ streamableUrl + ", classStats=" + classStats + ", recommendations=" + recommendations + "]";
 	}
 	
 }

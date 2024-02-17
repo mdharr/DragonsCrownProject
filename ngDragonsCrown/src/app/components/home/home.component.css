@@ -730,3 +730,39 @@ html {
   animation: sheen 0.25s ease-in-out forwards;
   z-index: 1000;
 }
+
+blockquote {
+  font-size: 15px;
+  line-height: 20px;
+  float: left;
+  margin: 0 0 1em;
+  width: 440px;
+  padding: 0;
+  border: none;
+  color: #dddddd;
+  margin: 0;
+  background-image: url(https://dragons-crown.com/resources/img/top/frame.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+}
+
+blockquote ul {
+  list-style-position: inside;
+  list-style-image: url(https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_point_list.png);
+  min-height: 10px;
+  padding: 50px 0 25px 0;
+  margin: -50px 0 0 0;
+  background-image: url(https://www.4gamer.net/img/sp_dragonscrown/bg_dc_chara_point_fairy.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+blockquote h5 {
+  font-family: 'meiryo';
+    font-size: 18px;
+    line-height: 30px;
+    text-indent: 30px;
+    padding-top: 25px;
+    color: #ffff00;
+}
