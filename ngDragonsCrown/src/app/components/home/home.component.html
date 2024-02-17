@@ -169,8 +169,8 @@
             </div>
             <blockquote>
               <h5>Recommended for these people</h5>
-              <ul *ngFor="let recommendation of currentClassData?.recommendations">
-                <li>{{ recommendation.description}}</li>
+              <ul>
+                <li *ngFor="let recommendation of currentClassData?.recommendations">{{ recommendation.description}}</li>
               </ul>
             </blockquote>
           </div>
