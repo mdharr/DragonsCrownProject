@@ -11,6 +11,7 @@ export class PlayerClass {
   portraitUrl: string;
   backgroundUrl: string;
   iconUrl: string;
+  streamableUrl: string;
   classStats: ClassStats[];
 
   constructor(
@@ -23,6 +24,7 @@ export class PlayerClass {
     portraitUrl: string = '',
     backgroundUrl: string = '',
     iconUrl: string = '',
+    streamableUrl: string = '',
     classStats: ClassStats[] = []
   ) {
     this.id = id;
@@ -34,6 +36,7 @@ export class PlayerClass {
     this.portraitUrl = portraitUrl;
     this.backgroundUrl = backgroundUrl;
     this.iconUrl = iconUrl;
+    this.streamableUrl = streamableUrl;
     this.classStats = classStats;
   }
 }

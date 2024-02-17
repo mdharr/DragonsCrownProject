@@ -48,11 +48,12 @@
                 (mouseenter)="showTooltip($event, classData.animationUrl, i)"
                 (mouseleave)="hideTooltip()">
               <img [src]="classData.portraitUrl" [alt]="classData.name">
-              <div *ngIf="tooltipVisible && tooltipIndex === i"
-                style="position: absolute; top: -175px; left: 0px; z-index: 1000;"
-                class="custom-tooltip">
-                <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%"><iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/32591h?autoplay=1&nocontrols=1" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe></div>
-              </div>
+              <div *ngIf="tooltipVisible && tooltipIndex === i" class="custom-tooltip">
+           <div class="media-wrapper">
+             <img [src]="classData.streamableUrl" alt="Media Content" style="width:100%; height: auto; max-height: 100%;">
+           </div>
+         </div>
+
             </li>
           </ul>
         </div>
