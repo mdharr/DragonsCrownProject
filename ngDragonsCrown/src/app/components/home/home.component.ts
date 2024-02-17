@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   tooltipVisible: boolean = false;
   tooltipUrl: string = '';
   tooltipIndex: number | null = null;
-  tooltipTop: number = 0; // Use type number
-  tooltipLeft: number = 0; // Use type number
+  tooltipTop: number = 0;
+  tooltipLeft: number = 0;
   tooltipPosition = { top: 0, left: 0 };
 
   // typewriter

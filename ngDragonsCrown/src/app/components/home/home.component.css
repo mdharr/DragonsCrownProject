@@ -645,7 +645,7 @@ html {
   padding: 5px;
   border-radius: 6px;
   border: 3px solid rgb(202, 179, 92);
-  overflow: hidden;
+  /* overflow: hidden; */
   position: absolute;
   top: -130px;
   left: 0px;
@@ -657,20 +657,43 @@ html {
 .media-wrapper {
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Ensures that the media content does not overflow the tooltip */
+  overflow: hidden;
 }
 
 .media-wrapper img {
-  display: block; /* Removes any extra space below the image */
-  width: 100%; /* Ensures the image covers the full width of its container */
-  height: auto; /* Keeps the image aspect ratio intact */
-  max-height: 100%; /* Ensures the image does not overflow its container's height */
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
 }
-
-
 
 #portraits-ul li {
   position: relative;
-  /* Other styles */
+  /* overflow: hidden; */
 }
 
+.selected {
+  overflow: hidden;
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-100%) skewX(-30deg);
+  }
+  50% {
+    transform: translateX(-50%) skewX(-30deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-30deg);
+  }
+}
+
+.sheen-effect::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateX(-100%) skewX(-30deg);
+  animation: sheen 0.25s ease-in-out forwards;
+  z-index: 1000;
+}
