@@ -171,6 +171,11 @@
 .portraits ul li img {
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+.portraits li {
+  position: relative;
 }
 
 .unselected {
@@ -635,27 +640,20 @@ html {
   animation-fill-mode: both;
 }
 
-.tooltip {
+::ng-deep .custom-tooltip {
   position: absolute;
-  bottom: 100%; /* Make the tooltip appear above the item */
-  left: 50%;
-  transform: translateX(-50%) translateY(-10px); /* Adjust for spacing */
-  display: block;
-  z-index: 100;
-  padding: 8px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+  z-index: 1000; /* Adjust as needed */
+  /* Other styles */
+  width: 250px;
+  background-color: black;
+  padding: 10px;
+  border-radius: 9px;
+  border: 2px solid #d9b359;
 }
 
-li {
-  position: relative; /* Necessary for absolute positioning of the tooltip */
-  list-style-type: none; /* Remove bullet points */
-}
 
-li img {
-  display: block;
-  margin: 0 auto; /* Center image if needed */
+#portraits-ul li {
+  position: relative; /* This is required for the absolute positioning of the tooltip to work correctly */
+  /* Other styles */
 }
 

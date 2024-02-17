@@ -33,6 +33,8 @@ public class PlayerClass {
 	private String backgroundUrl;
 	@Column(name = "icon_url")
 	private String iconUrl;
+	@Column(name = "streamable_url")
+	private String streamableUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -43,7 +45,8 @@ public class PlayerClass {
 	}
 
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
-			String portraitUrl, String backgroundUrl, String iconUrl, List<ClassStats> classStats) {
+			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl,
+			List<ClassStats> classStats) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,6 +57,7 @@ public class PlayerClass {
 		this.portraitUrl = portraitUrl;
 		this.backgroundUrl = backgroundUrl;
 		this.iconUrl = iconUrl;
+		this.streamableUrl = streamableUrl;
 		this.classStats = classStats;
 	}
 
@@ -120,6 +124,14 @@ public class PlayerClass {
 		this.iconUrl = iconUrl;
 	}
 
+	public String getStreamableUrl() {
+		return streamableUrl;
+	}
+
+	public void setStreamableUrl(String streamableUrl) {
+		this.streamableUrl = streamableUrl;
+	}
+
 	public List<ClassStats> getClassStats() {
 		return classStats;
 	}
@@ -148,8 +160,8 @@ public class PlayerClass {
 	public String toString() {
 		return "PlayerClass [id=" + id + ", name=" + name + ", description=" + description + ", animationUrl="
 				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
-				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", classStats="
-				+ classStats + "]";
+				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", streamableUrl="
+				+ streamableUrl + ", classStats=" + classStats + "]";
 	}
 	
 }

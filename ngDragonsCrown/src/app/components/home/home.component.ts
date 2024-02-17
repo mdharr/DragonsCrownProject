@@ -23,6 +23,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentClassData: any = null;
   selectedClassIndex: number | null = null;
 
+  // tooltip
+  tooltipVisible: boolean = false;
+  tooltipUrl: string = '';
+  tooltipIndex: number | null = null;
+  tooltipTop: number = 0; // Use type number
+  tooltipLeft: number = 0; // Use type number
+  tooltipPosition = { top: 0, left: 0 };
+
   // typewriter
   currentTimeoutId: number | null = null;
 
@@ -175,6 +183,23 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // Reset the timeout ID to allow for new typing animations
     this.currentTimeoutId = null;
+  }
+
+  showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
+    const element = event.currentTarget as HTMLElement;
+    const rect = element.getBoundingClientRect();
+
+    this.tooltipVisible = true;
+    this.tooltipUrl = gifUrl;
+    this.tooltipIndex = index;
+    this.tooltipTop = rect.top + window.scrollY - element.offsetHeight; // This should be a number
+    this.tooltipLeft = rect.left + window.scrollX; // This should be a number
+  }
+
+  hideTooltip(): void {
+    this.tooltipVisible = false;
+    this.tooltipUrl = '';
+    this.tooltipIndex = null;
   }
 
 }

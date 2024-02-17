@@ -39,10 +39,20 @@
           I wish you good luck."</p>
           <hr style="margin-bottom:0;">
         <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">Select a class to get started:</p>
+        <!-- In your component template -->
         <div class="portraits">
           <ul id="portraits-ul">
-            <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id" (click)="loadClassData(i)" [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}">
+            <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id"
+                (click)="loadClassData(i)"
+                [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}"
+                (mouseenter)="showTooltip($event, classData.animationUrl, i)"
+                (mouseleave)="hideTooltip()">
               <img [src]="classData.portraitUrl" [alt]="classData.name">
+              <div *ngIf="tooltipVisible && tooltipIndex === i"
+                style="position: absolute; top: -175px; left: 0px; z-index: 1000;"
+                class="custom-tooltip">
+                <div style="position:relative; width:100%; height:0px; padding-bottom:56.250%"><iframe allow="fullscreen;autoplay" allowfullscreen height="100%" src="https://streamable.com/e/32591h?autoplay=1&nocontrols=1" width="100%" style="border:none; width:100%; height:100%; position:absolute; left:0px; top:0px; overflow:hidden;"></iframe></div>
+              </div>
             </li>
           </ul>
         </div>
