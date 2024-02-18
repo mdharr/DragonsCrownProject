@@ -775,3 +775,19 @@ blockquote ul li {
   font-size: 14px;
   text-align: justify;
 }
+
+.scaling-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 46px;
+  border: 1px #555 solid;
+  border-radius: 0;
+  color: #ccc;
+  margin: 0;
+  margin-left: 75px;
+  padding: 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  background-color: rgba(21, 43, 56, 0.2);
+}

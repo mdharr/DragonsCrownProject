@@ -82,6 +82,7 @@
               <div class="mini-captions">
                 <span>Attribute</span>
                 <span>Current</span>
+                <span>Scaling</span>
               </div>
               <div class="player-level">
                 <label for="level">Level</label>
@@ -111,11 +112,17 @@
                   <div class="stat-wrapper">
                     <span id="strength">{{currentStats?.strength}}</span>
                   </div>
+                  <div class="scaling-wrapper">
+                    <span id="strength-scaling">{{ currentClassData?.statScaling?.strength }}</span>
+                  </div>
                 </div>
                 <div>
                   <label for="">INT</label>
                   <div class="stat-wrapper">
                     <span id="intelligence">{{currentStats?.intelligence}}</span>
+                  </div>
+                  <div class="scaling-wrapper">
+                    <span id="intelligence-scaling">{{ currentClassData?.statScaling?.intelligence }}</span>
                   </div>
                 </div>
                 <div>
@@ -123,11 +130,17 @@
                   <div class="stat-wrapper">
                     <span id="constitution">{{currentStats?.constitution}}</span>
                   </div>
+                  <div class="scaling-wrapper">
+                    <span id="constitution-scaling">{{ currentClassData?.statScaling?.constitution }}</span>
+                  </div>
                 </div>
                 <div>
                   <label for="">MGR</label>
                   <div class="stat-wrapper">
                     <span id="magic-resistance">{{currentStats?.magicResistance}}</span>
+                  </div>
+                  <div class="scaling-wrapper">
+                    <span id="magic-resistance-scaling">{{ currentClassData?.statScaling?.magicResistance }}</span>
                   </div>
                 </div>
                 <div>
@@ -135,11 +148,17 @@
                   <div class="stat-wrapper">
                     <span id="dexterity">{{currentStats?.dexterity}}</span>
                   </div>
+                  <div class="scaling-wrapper">
+                    <span id="dexterity-scaling">{{ currentClassData?.statScaling?.dexterity }}</span>
+                  </div>
                 </div>
                 <div>
                   <label for="">LUC</label>
                   <div class="stat-wrapper">
                     <span id="luck">{{currentStats?.luck}}</span>
+                  </div>
+                  <div class="scaling-wrapper">
+                    <span id="luck-scaling">{{ currentClassData?.statScaling?.luck }}</span>
                   </div>
                 </div>
                 <div>
