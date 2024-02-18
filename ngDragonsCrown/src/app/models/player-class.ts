@@ -1,5 +1,6 @@
 import { ClassStats } from "./class-stats";
 import { Recommendation } from "./recommendation";
+import { StatScaling } from "./stat-scaling";
 
 export class PlayerClass {
 
@@ -31,7 +32,8 @@ export class PlayerClass {
     streamableUrl: string = '',
     hqArtworkUrl: string = '',
     classStats: ClassStats[] = [],
-    recommendations: Recommendation[] = []
+    recommendations: Recommendation[] = [],
+    statScaling: StatScaling = new StatScaling()
   ) {
     this.id = id;
     this.name = name;
@@ -46,5 +48,6 @@ export class PlayerClass {
     this.hqArtworkUrl = hqArtworkUrl;
     this.classStats = classStats;
     this.recommendations = recommendations;
+    this.statScaling = statScaling;
   }
 }
