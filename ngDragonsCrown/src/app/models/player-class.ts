@@ -16,6 +16,7 @@ export class PlayerClass {
   hqArtworkUrl: string;
   classStats: ClassStats[];
   recommendations: Recommendation[];
+  statScaling: StatScaling;
 
   constructor(
     id: number = 0,
