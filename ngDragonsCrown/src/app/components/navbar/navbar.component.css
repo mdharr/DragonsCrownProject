@@ -1,0 +1,21 @@
+.navbar {
+  color: #fff;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #d9b359;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-text {
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navbar-text p {
+  margin:0;
+}
