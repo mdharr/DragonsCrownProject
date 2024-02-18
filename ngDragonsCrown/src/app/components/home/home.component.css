@@ -739,7 +739,7 @@ blockquote {
   margin: 0 0 1em;
   width: 440px;
   padding: 45px;
-  /* padding-right: 30px; */
+  padding-bottom: 20px;
   border: none;
   color: #dddddd;
   margin: 0;
@@ -772,7 +772,7 @@ blockquote h5 {
 
 blockquote ul li {
   -webkit-filter: drop-shadow(0px 0px 8px rgba(14, 14, 14, 1.0));
-  font-size: 14px;
+  font-size: 16px;
   text-align: justify;
 }
 
