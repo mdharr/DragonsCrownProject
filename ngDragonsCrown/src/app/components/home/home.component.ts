@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentClassData: any = null;
   selectedClassIndex: number | null = null;
   selected: boolean = false;
+  artworkLoaded: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -117,6 +118,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log(this.currentClassData);
       this.typeOutText(this.currentClassData.description, 'description-text');
     }
+  }
+
+  onArtworkLoad() {
+    console.log('High-quality image loaded');
+    this.artworkLoaded = true;
   }
 
   // Modify level change methods to ensure they are updating the view based on the model correctly

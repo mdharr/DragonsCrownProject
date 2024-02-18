@@ -13,6 +13,7 @@ export class PlayerClass {
   backgroundUrl: string;
   iconUrl: string;
   streamableUrl: string;
+  hqArtworkUrl: string;
   classStats: ClassStats[];
   recommendations: Recommendation[];
 
@@ -27,6 +28,7 @@ export class PlayerClass {
     backgroundUrl: string = '',
     iconUrl: string = '',
     streamableUrl: string = '',
+    hqArtworkUrl: string = '',
     classStats: ClassStats[] = [],
     recommendations: Recommendation[] = []
   ) {
@@ -40,6 +42,7 @@ export class PlayerClass {
     this.backgroundUrl = backgroundUrl;
     this.iconUrl = iconUrl;
     this.streamableUrl = streamableUrl;
+    this.hqArtworkUrl = hqArtworkUrl;
     this.classStats = classStats;
     this.recommendations = recommendations;
   }

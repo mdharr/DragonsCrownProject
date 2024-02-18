@@ -218,6 +218,7 @@
   padding: 8px;
   width: 500px;
   max-width: 500px;
+  max-height: 295px;
   -webkit-filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.3));
   /* background-color: tan; */
   background-color: rgba(0, 0, 0, 0.7);
@@ -738,13 +739,15 @@ blockquote {
   margin: 0 0 1em;
   width: 440px;
   padding: 45px;
+  /* padding-right: 30px; */
   border: none;
   color: #dddddd;
   margin: 0;
   background-image: url(https://dragons-crown.com/resources/img/top/frame.png);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center bottom;
+  background-position: center;
+  min-height: 295px;
 }
 
 blockquote ul {
@@ -763,10 +766,12 @@ blockquote h5 {
   font-size: 18px;
   line-height: 30px;
   /* text-indent: 30px; */
-  padding-top: 25px;
   color: #ffff00;
+  padding:0;
 }
 
 blockquote ul li {
   -webkit-filter: drop-shadow(0px 0px 8px rgba(14, 14, 14, 1.0));
+  font-size: 14px;
+  text-align: justify;
 }

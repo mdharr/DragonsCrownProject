@@ -149,8 +149,15 @@
                 </div>
               </div>
             </div>
-            <div class="alt-artwork">
+            <!-- <div class="alt-artwork">
               <img style="width: 200px;" [src]="currentClassData?.artworkUrl" alt="artwork">
+            </div> -->
+            <div class="alt-artwork">
+              <!-- Always load the high-quality image but initially hide it -->
+              <img [hidden]="!artworkLoaded" style="width: 200px;" [src]="currentClassData?.hqArtworkUrl" (load)="onArtworkLoad()" alt="High-quality artwork">
+
+              <!-- Show a low-quality image placeholder while the high-quality image is loading -->
+              <img *ngIf="!artworkLoaded" style="width: 200px;" [src]="currentClassData?.artworkUrl" alt="Low-quality artwork">
             </div>
           </div>
           <hr>

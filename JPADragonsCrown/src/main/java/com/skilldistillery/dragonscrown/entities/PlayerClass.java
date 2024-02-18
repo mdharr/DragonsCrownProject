@@ -35,6 +35,8 @@ public class PlayerClass {
 	private String iconUrl;
 	@Column(name = "streamable_url")
 	private String streamableUrl;
+	@Column(name = "hq_artwork_url")
+	private String hqArtworkUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -45,10 +47,11 @@ public class PlayerClass {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
-			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, List<ClassStats> classStats,
-			List<Recommendation> recommendations) {
+			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
+			List<ClassStats> classStats, List<Recommendation> recommendations) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -60,9 +63,11 @@ public class PlayerClass {
 		this.backgroundUrl = backgroundUrl;
 		this.iconUrl = iconUrl;
 		this.streamableUrl = streamableUrl;
+		this.hqArtworkUrl = hqArtworkUrl;
 		this.classStats = classStats;
 		this.recommendations = recommendations;
 	}
+
 
 	public int getId() {
 		return id;
@@ -151,6 +156,14 @@ public class PlayerClass {
 		this.recommendations = recommendations;
 	}
 
+	public String getHqArtworkUrl() {
+		return hqArtworkUrl;
+	}
+
+	public void setHqArtworkUrl(String hqArtworkUrl) {
+		this.hqArtworkUrl = hqArtworkUrl;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -172,7 +185,8 @@ public class PlayerClass {
 		return "PlayerClass [id=" + id + ", name=" + name + ", description=" + description + ", animationUrl="
 				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
 				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", streamableUrl="
-				+ streamableUrl + ", classStats=" + classStats + ", recommendations=" + recommendations + "]";
+				+ streamableUrl + ", hqArtworkUrl=" + hqArtworkUrl + ", classStats=" + classStats + ", recommendations="
+				+ recommendations + "]";
 	}
 	
 }
