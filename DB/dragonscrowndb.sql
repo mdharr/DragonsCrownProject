@@ -97,6 +97,30 @@ CREATE TABLE IF NOT EXISTS `recommendation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `stat_scaling`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stat_scaling` ;
+
+CREATE TABLE IF NOT EXISTS `stat_scaling` (
+  `id` INT NOT NULL,
+  `strength` VARCHAR(45) NULL,
+  `constitution` VARCHAR(45) NULL,
+  `intelligence` VARCHAR(45) NULL,
+  `magic_resistance` VARCHAR(45) NULL,
+  `dexterity` VARCHAR(45) NULL,
+  `luck` VARCHAR(45) NULL,
+  `player_class_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_stat_scaling_player_class1_idx` (`player_class_id` ASC),
+  CONSTRAINT `fk_stat_scaling_player_class1`
+    FOREIGN KEY (`player_class_id`)
+    REFERENCES `player_class` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS dragonscrown@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -183,6 +207,21 @@ INSERT INTO `recommendation` (`id`, `description`, `player_class_id`) VALUES (21
 INSERT INTO `recommendation` (`id`, `description`, `player_class_id`) VALUES (22, 'Good at following allies fighting on the front lines.', 6);
 INSERT INTO `recommendation` (`id`, `description`, `player_class_id`) VALUES (23, 'I like wide range attacks that involve many enemies.', 6);
 INSERT INTO `recommendation` (`id`, `description`, `player_class_id`) VALUES (24, 'I find the technical character rewarding.', 6);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `stat_scaling`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `dragonscrowndb`;
+INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (1, 'S', 'A', 'D', 'C', 'B', 'B', 1);
+INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (2, 'A', 'C', 'C', 'C', 'B', 'A', 2);
+INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (3, 'B', 'C', 'B', 'C', 'A', 'A', 3);
+INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (4, 'S', 'S', 'E', 'D', 'C', 'B', 4);
+INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (5, 'E', 'D', 'A', 'S', 'B', 'A', 5);
+INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (6, 'D', 'C', 'S', 'A', 'B', 'D', 6);
 
 COMMIT;
 
