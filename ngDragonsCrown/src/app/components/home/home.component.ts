@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   playerClasses: PlayerClass[] = [];
   currentStats: any;
   currentSpriteUrl: string = '';
+  totalExp: number = 0;
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -117,6 +118,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       // Reset currentStats to the initial state for the newly selected class
       this.currentStats = { ...this.currentClassData.classStats[0] };
       console.log(this.currentClassData);
+      console.log(this.currentStats);
       this.typeOutText(this.currentClassData.description, 'description-text');
     }
   }
@@ -147,13 +149,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateLevel(newLevel: number): void {
-    const validLevel = Math.max(1, Math.min(newLevel, 2)); // Ensure level is within bounds
+    const validLevel = Math.max(1, Math.min(newLevel, 99)); // Ensure level is within bounds
     const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === validLevel);
     if (stats) {
       this.currentStats = { ...stats };
     } else {
       console.error('Stats for level', validLevel, 'not found');
     }
+    this.calculateTotalExperience();
   }
 
   onLevelChange(): void {
@@ -220,6 +223,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       this.currentSpriteUrl = this.currentClassData?.spriteEndUrl;
     }
+  }
+
+  calculateTotalExperience() {
+    const level = this.currentStats.level - 1;
+    let total = 0;
+    // console.log("CURRENT LEVEL:" + level);
+    // console.log(this.currentClassData.classStats[level].requiredExp);
+    for(let i = level; i >= 1; i--) {
+      total += this.currentClassData.classStats[level].requiredExp
+    }
+    this.totalExp = total;
   }
 
 }

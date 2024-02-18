@@ -800,3 +800,20 @@ blockquote ul li {
   /* opacity: 0.7; */
   -webkit-filter: drop-shadow(0px 0px 5px #9e9e30);
 }
+
+.exp-captions {
+  display: flex;
+  justify-content: center;
+  padding-left: 32px;
+}
+
+.exp-wrapper {
+  width: fit-content !important;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  min-width: 80px;
+}
+
+.exp-box {
+  gap: 41px;
+}

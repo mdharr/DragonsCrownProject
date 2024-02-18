@@ -161,10 +161,19 @@
                     <span id="luck-scaling">{{ currentClassData?.statScaling?.luck }}</span>
                   </div>
                 </div>
+                <div class="mini-captions exp-captions">
+                  <span>Level Up</span>
+                  <span>Total</span>
+                </div>
                 <div>
                   <label for="">EXP</label>
-                  <div class="stat-wrapper">
-                    <span id="exp">{{currentStats?.requiredExp}}</span>
+                  <div class="exp-box">
+                    <div class="stat-wrapper exp-wrapper">
+                      <span id="exp">{{currentStats?.requiredExp}}</span>
+                    </div>
+                    <div class="stat-wrapper exp-wrapper">
+                      <span id="exp">{{totalExp}}</span>
+                    </div>
                   </div>
                 </div>
               </div>
