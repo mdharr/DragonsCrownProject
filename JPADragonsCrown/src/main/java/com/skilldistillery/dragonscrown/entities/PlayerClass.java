@@ -3,14 +3,19 @@ package com.skilldistillery.dragonscrown.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "player_class")
@@ -43,7 +48,8 @@ public class PlayerClass {
 	private List<ClassStats> classStats;
 	@OneToMany(mappedBy = "playerClass")
 	private List<Recommendation> recommendations;
-	@OneToOne(mappedBy = "playerClass")
+    
+    @OneToOne(mappedBy = "playerClass", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private StatScaling statScaling;
 	
 	public PlayerClass() {
@@ -51,10 +57,9 @@ public class PlayerClass {
 		// TODO Auto-generated constructor stub
 	}
 	
-
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
-			List<ClassStats> classStats, List<Recommendation> recommendations) {
+			List<ClassStats> classStats, List<Recommendation> recommendations, StatScaling statScaling) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,8 +74,8 @@ public class PlayerClass {
 		this.hqArtworkUrl = hqArtworkUrl;
 		this.classStats = classStats;
 		this.recommendations = recommendations;
+		this.statScaling = statScaling;
 	}
-
 
 	public int getId() {
 		return id;
@@ -167,6 +172,14 @@ public class PlayerClass {
 		this.hqArtworkUrl = hqArtworkUrl;
 	}
 
+	public StatScaling getStatScaling() {
+		return statScaling;
+	}
+
+	public void setStatScaling(StatScaling statScaling) {
+		this.statScaling = statScaling;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -189,7 +202,7 @@ public class PlayerClass {
 				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
 				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", streamableUrl="
 				+ streamableUrl + ", hqArtworkUrl=" + hqArtworkUrl + ", classStats=" + classStats + ", recommendations="
-				+ recommendations + "]";
+				+ recommendations + ", statScaling=" + statScaling + "]";
 	}
-	
+
 }

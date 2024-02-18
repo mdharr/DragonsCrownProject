@@ -1,9 +1,6 @@
 package com.skilldistillery.dragonscrown.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PlayerClassTest {
+class StatScalingTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private PlayerClass playerClass;
+	private StatScaling statScaling;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,31 +31,19 @@ class PlayerClassTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		playerClass = em.find(PlayerClass.class, 1);
+		statScaling = em.find(StatScaling.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		playerClass = null;
+		statScaling = null;
 	}
 
 	@Test
-	void test_PlayerClass_entity_mapping() {
-		assertNotNull(playerClass);
-		assertEquals("Fighter", playerClass.getName());
-	}
-	
-	@Test
-	void test_PlayerClass_ClassStats_one_to_many_mapping() {
-		assertNotNull(playerClass);
-		assertEquals(16, playerClass.getClassStats().get(0).getStrength());
-	}
-	
-	@Test
-	void test_PlayerClass_StatScaling_one_to_one_mapping() {
-		assertNotNull(playerClass);
-		assertEquals("S", playerClass.getStatScaling().getStrength());
+	void test_StatScaling_entity_mapping() {
+		assertNotNull(statScaling);
+		assertEquals("S", statScaling.getStrength());
 	}
 
 }

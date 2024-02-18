@@ -2,14 +2,21 @@ package com.skilldistillery.dragonscrown.entities;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "stat_scaling")
 public class StatScaling {
 
 	@Id
@@ -26,7 +33,9 @@ public class StatScaling {
 	private String dexterity;
 	private String luck;
 	
-	@OneToOne
+	@JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_class_id", referencedColumnName = "id")
 	private PlayerClass playerClass;
 	
 	public StatScaling() {
