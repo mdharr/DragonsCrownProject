@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -42,6 +43,8 @@ public class PlayerClass {
 	private List<ClassStats> classStats;
 	@OneToMany(mappedBy = "playerClass")
 	private List<Recommendation> recommendations;
+	@OneToOne(mappedBy = "playerClass")
+	private StatScaling statScaling;
 	
 	public PlayerClass() {
 		super();
