@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   // properties
   playerClasses: PlayerClass[] = [];
   currentStats: any;
+  currentSpriteUrl: string = '';
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -112,6 +113,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log(descriptionElement);
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
+      this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
       // Reset currentStats to the initial state for the newly selected class
       this.currentStats = { ...this.currentClassData.classStats[0] };
       console.log(this.currentClassData);
@@ -210,6 +212,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.tooltipVisible = false;
     this.tooltipUrl = '';
     this.tooltipIndex = null;
+  }
+
+  changeSpriteTo(type: 'start' | 'end') {
+    if (type === 'start') {
+      this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
+    } else {
+      this.currentSpriteUrl = this.currentClassData?.spriteEndUrl;
+    }
   }
 
 }
