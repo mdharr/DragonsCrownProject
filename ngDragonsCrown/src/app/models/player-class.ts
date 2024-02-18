@@ -15,6 +15,9 @@ export class PlayerClass {
   iconUrl: string;
   streamableUrl: string;
   hqArtworkUrl: string;
+  spriteStartUrl: string;
+  spriteEndUrl: string;
+
   classStats: ClassStats[];
   recommendations: Recommendation[];
   statScaling: StatScaling;
@@ -31,6 +34,8 @@ export class PlayerClass {
     iconUrl: string = '',
     streamableUrl: string = '',
     hqArtworkUrl: string = '',
+    spriteStartUrl: string = '',
+    spriteEndUrl: string = '',
     classStats: ClassStats[] = [],
     recommendations: Recommendation[] = [],
     statScaling: StatScaling = new StatScaling()
@@ -46,6 +51,8 @@ export class PlayerClass {
     this.iconUrl = iconUrl;
     this.streamableUrl = streamableUrl;
     this.hqArtworkUrl = hqArtworkUrl;
+    this.spriteStartUrl = spriteStartUrl;
+    this.spriteEndUrl = spriteEndUrl;
     this.classStats = classStats;
     this.recommendations = recommendations;
     this.statScaling = statScaling;
