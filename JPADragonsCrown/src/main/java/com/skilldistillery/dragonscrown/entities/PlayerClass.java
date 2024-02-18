@@ -43,6 +43,10 @@ public class PlayerClass {
 	private String streamableUrl;
 	@Column(name = "hq_artwork_url")
 	private String hqArtworkUrl;
+	@Column(name = "sprite_start_url")
+	private String spriteStartUrl;
+	@Column(name = "sprite_end_url")
+	private String spriteEndUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -59,7 +63,8 @@ public class PlayerClass {
 	
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
-			List<ClassStats> classStats, List<Recommendation> recommendations, StatScaling statScaling) {
+			String spriteStartUrl, String spriteEndUrl, List<ClassStats> classStats,
+			List<Recommendation> recommendations, StatScaling statScaling) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -72,6 +77,8 @@ public class PlayerClass {
 		this.iconUrl = iconUrl;
 		this.streamableUrl = streamableUrl;
 		this.hqArtworkUrl = hqArtworkUrl;
+		this.spriteStartUrl = spriteStartUrl;
+		this.spriteEndUrl = spriteEndUrl;
 		this.classStats = classStats;
 		this.recommendations = recommendations;
 		this.statScaling = statScaling;
@@ -148,6 +155,22 @@ public class PlayerClass {
 		this.streamableUrl = streamableUrl;
 	}
 
+	public String getSpriteStartUrl() {
+		return spriteStartUrl;
+	}
+
+	public void setSpriteStartUrl(String spriteStartUrl) {
+		this.spriteStartUrl = spriteStartUrl;
+	}
+
+	public String getSpriteEndUrl() {
+		return spriteEndUrl;
+	}
+
+	public void setSpriteEndUrl(String spriteEndUrl) {
+		this.spriteEndUrl = spriteEndUrl;
+	}
+
 	public List<ClassStats> getClassStats() {
 		return classStats;
 	}
@@ -201,7 +224,8 @@ public class PlayerClass {
 		return "PlayerClass [id=" + id + ", name=" + name + ", description=" + description + ", animationUrl="
 				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
 				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", streamableUrl="
-				+ streamableUrl + ", hqArtworkUrl=" + hqArtworkUrl + ", classStats=" + classStats + ", recommendations="
+				+ streamableUrl + ", hqArtworkUrl=" + hqArtworkUrl + ", spriteStartUrl=" + spriteStartUrl
+				+ ", spriteEndUrl=" + spriteEndUrl + ", classStats=" + classStats + ", recommendations="
 				+ recommendations + ", statScaling=" + statScaling + "]";
 	}
 
