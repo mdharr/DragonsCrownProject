@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     HomeComponent,
     ScrollToTopButtonComponent,
     SafeUrlPipe,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
