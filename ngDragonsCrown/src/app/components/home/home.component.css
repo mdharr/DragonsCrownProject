@@ -737,7 +737,7 @@ blockquote {
   float: left;
   margin: 0 0 1em;
   width: 440px;
-  padding: 32px;
+  padding: 45px;
   border: none;
   color: #dddddd;
   margin: 0;
@@ -748,7 +748,7 @@ blockquote {
 }
 
 blockquote ul {
-  list-style-position: inside;
+  list-style-position: outside;
   list-style-image: url(https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_point_list.png);
   min-height: 10px;
   padding: 50px 0 25px 0;
@@ -760,9 +760,13 @@ blockquote ul {
 
 blockquote h5 {
   font-family: 'meiryo';
-    font-size: 18px;
-    line-height: 30px;
-    text-indent: 30px;
-    padding-top: 25px;
-    color: #ffff00;
+  font-size: 18px;
+  line-height: 30px;
+  /* text-indent: 30px; */
+  padding-top: 25px;
+  color: #ffff00;
+}
+
+blockquote ul li {
+  -webkit-filter: drop-shadow(0px 0px 8px rgba(14, 14, 14, 1.0));
 }
