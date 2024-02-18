@@ -318,6 +318,7 @@
   width: 100%;
   border: 1px solid rgb(202, 179, 92);
   margin-top: 8px;
+  height: 435px;
 }
 
 .n1 {
@@ -381,7 +382,7 @@
 
 .player-level {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .player-level input {
@@ -457,8 +458,19 @@ label {
 }
 
 #down-arrow:hover,
-#up-arrow:hover {
+#up-arrow:hover,
+#refresh-btn:hover {
   color: tan;
+}
+
+#refresh-btn {
+  padding: 0;
+  height: 24px;
+  border-color: #222;
+  color: #ccc;
+  vertical-align: middle;
+  margin-left: 4px;
+  width: 30px;
 }
 
 ::ng-deep .mat-mdc-icon-button {
@@ -496,6 +508,7 @@ label {
   border-radius: 0;
   color: #ccc;
   margin: 0;
+  margin-bottom: 5px;
   padding: 0;
   vertical-align: middle;
   -webkit-appearance: none;
@@ -506,7 +519,6 @@ label {
 
 .player-attributes div {
   display: flex;
-  margin-bottom: 5px;
 }
 
 .n1 .mini-captions {
@@ -784,6 +796,7 @@ blockquote ul li {
   border-radius: 0;
   color: #ccc;
   margin: 0;
+  margin-bottom: 5px;
   margin-left: 75px;
   padding: 0;
   vertical-align: middle;
@@ -805,6 +818,12 @@ blockquote ul li {
   display: flex;
   justify-content: center;
   padding-left: 32px;
+  padding-top: 5px;
+  margin-bottom: 0 !important;
+}
+
+.exp-captions span:first-child {
+  padding-left: 1px !important;
 }
 
 .exp-wrapper {

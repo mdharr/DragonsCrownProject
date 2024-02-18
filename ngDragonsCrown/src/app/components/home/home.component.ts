@@ -148,6 +148,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.updateLevel(newLevel);
   }
 
+  resetLevel() {
+    this.updateLevel(1);
+  }
+
   updateLevel(newLevel: number): void {
     const validLevel = Math.max(1, Math.min(newLevel, 99)); // Ensure level is within bounds
     const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === validLevel);
