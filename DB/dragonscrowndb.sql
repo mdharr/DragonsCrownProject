@@ -123,6 +123,32 @@ CREATE TABLE IF NOT EXISTS `stat_scaling` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `skills`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `skills` ;
+
+CREATE TABLE IF NOT EXISTS `skills` (
+  `id` INT NOT NULL,
+  `type` VARCHAR(45) NULL,
+  `name` VARCHAR(100) NULL,
+  `description` TEXT NULL,
+  `required_skill_points` INT NULL,
+  `similar_skill_level` INT NULL,
+  `required_player_level` INT NULL,
+  `card_image_url` TEXT NULL,
+  `demo_image_url` TEXT NULL,
+  `player_class_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_skills_player_class1_idx` (`player_class_id` ASC),
+  CONSTRAINT `fk_skills_player_class1`
+    FOREIGN KEY (`player_class_id`)
+    REFERENCES `player_class` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS dragonscrown@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
