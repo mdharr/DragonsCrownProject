@@ -19,6 +19,18 @@ public class Skill {
 	private String cardImageUrl;
 	@Column(name = "is_common")
 	private boolean isCommon;
+	public Skill() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Skill(int id, String name, String description, String cardImageUrl, boolean isCommon) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.cardImageUrl = cardImageUrl;
+		this.isCommon = isCommon;
+	}
 	
 	
 }
