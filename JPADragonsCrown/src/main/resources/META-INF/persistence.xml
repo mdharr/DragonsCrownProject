@@ -11,6 +11,7 @@
 		<class>com.skilldistillery.dragonscrown.entities.ClassStats</class>
 		<class>com.skilldistillery.dragonscrown.entities.Recommendation</class>
 		<class>com.skilldistillery.dragonscrown.entities.StatScaling</class>
+		<class>com.skilldistillery.dragonscrown.entities.Skill</class>
 
 
 		<!-- end entities -->
