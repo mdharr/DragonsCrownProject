@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.dragonscrown.entities.Skill;
 
-//public interface SkillRepository extends JpaRepository<Skill, Integer> {
-//
-//	Skill findById(int skillId);
-//}
+public interface SkillRepository extends JpaRepository<Skill, Integer> {
+
+	Skill findById(int skillId);
+}
