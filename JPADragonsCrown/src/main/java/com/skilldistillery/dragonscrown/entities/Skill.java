@@ -25,9 +25,6 @@ public class Skill {
 	@Column(name = "is_common")
 	private boolean isCommon;
 	
-	@ManyToMany(mappedBy = "skills", cascade = CascadeType.MERGE)
-	private List<PlayerClass> playerClasses;
-	
 	public Skill() {
 		super();
 		// TODO Auto-generated constructor stub

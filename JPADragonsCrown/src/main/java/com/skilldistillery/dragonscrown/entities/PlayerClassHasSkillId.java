@@ -14,7 +14,7 @@ public class PlayerClassHasSkillId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "player_class_id")
-	private int PlayerClassId;
+	private int playerClassId;
 	
 	@Column(name = "skill_id")
 	private int skillId;
@@ -26,16 +26,16 @@ public class PlayerClassHasSkillId implements Serializable {
 
 	public PlayerClassHasSkillId(int playerClassId, int skillId) {
 		super();
-		PlayerClassId = playerClassId;
+		this.playerClassId = playerClassId;
 		this.skillId = skillId;
 	}
-
+	
 	public int getPlayerClassId() {
-		return PlayerClassId;
+		return playerClassId;
 	}
 
 	public void setPlayerClassId(int playerClassId) {
-		PlayerClassId = playerClassId;
+		this.playerClassId = playerClassId;
 	}
 
 	public int getSkillId() {
@@ -52,7 +52,7 @@ public class PlayerClassHasSkillId implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(PlayerClassId, skillId);
+		return Objects.hash(playerClassId, skillId);
 	}
 
 	@Override
@@ -64,12 +64,12 @@ public class PlayerClassHasSkillId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PlayerClassHasSkillId other = (PlayerClassHasSkillId) obj;
-		return PlayerClassId == other.PlayerClassId && skillId == other.skillId;
+		return playerClassId == other.playerClassId && skillId == other.skillId;
 	}
 
 	@Override
 	public String toString() {
-		return "PlayerClassHasSkillId [PlayerClassId=" + PlayerClassId + ", skillId=" + skillId + "]";
+		return "PlayerClassHasSkillId [playerClassId=" + playerClassId + ", skillId=" + skillId + "]";
 	}
 	
 }

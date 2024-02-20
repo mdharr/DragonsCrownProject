@@ -16,15 +16,15 @@ public class PlayerClassHasSkill {
 	@EmbeddedId
 	private PlayerClassHasSkillId id;
 	
-	@ManyToOne
-	@JoinColumn(name = "player_class_id")
-	@MapsId("playerClassId")
-	private PlayerClass playerClass;
-	
-	@ManyToOne
-	@JoinColumn(name = "skill_id")
-	@MapsId("skillId")
-	private Skill skill;
+    @ManyToOne
+    @MapsId("playerClassId")
+    @JoinColumn(name = "player_class_id")
+    private PlayerClass playerClass;
+
+    @ManyToOne
+    @MapsId("skillId")
+    @JoinColumn(name = "skill_id")
+    private Skill skill;
 
 	public PlayerClassHasSkill() {
 		super();
@@ -33,10 +33,11 @@ public class PlayerClassHasSkill {
 
 	public PlayerClassHasSkill(PlayerClassHasSkillId id, PlayerClass playerClass, Skill skill) {
 		super();
-		this.id = new PlayerClassHasSkillId(playerClass.getId(), skill.getId();
+		this.id = id;
 		this.playerClass = playerClass;
 		this.skill = skill;
 	}
+//	new PlayerClassHasSkillId(playerClass.getId(), skill.getId();
 
 	public PlayerClassHasSkillId getId() {
 		return id;
