@@ -230,9 +230,10 @@
   position: relative;
   padding: 0px 50px 0px 50px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
-  /* border: 1px solid rgb(202, 179, 92); */
+  flex-direction: column;
+  gap: 50px;
 }
 
 .class-title {
@@ -811,7 +812,7 @@ blockquote ul li {
 
 .sprite-container img:hover {
   /* opacity: 0.7; */
-  -webkit-filter: drop-shadow(0px 0px 5px #9e9e30);
+  -webkit-filter: drop-shadow(0px 0px 5px #ffffff);
 }
 
 .exp-captions {
