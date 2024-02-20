@@ -78,6 +78,10 @@ public class Skill {
 		Skill other = (Skill) obj;
 		return id == other.id;
 	}
-	
+	@Override
+	public String toString() {
+		return "Skill [id=" + id + ", name=" + name + ", description=" + description + ", cardImageUrl=" + cardImageUrl
+				+ ", isCommon=" + isCommon + "]";
+	}
 	
 }
