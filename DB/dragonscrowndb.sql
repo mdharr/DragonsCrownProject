@@ -125,26 +125,62 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `skills`
+-- Table `skill`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `skills` ;
+DROP TABLE IF EXISTS `skill` ;
 
-CREATE TABLE IF NOT EXISTS `skills` (
+CREATE TABLE IF NOT EXISTS `skill` (
   `id` INT NOT NULL,
-  `type` VARCHAR(45) NULL,
   `name` VARCHAR(100) NULL,
   `description` TEXT NULL,
+  `card_image_url` TEXT NULL,
+  `is_common` TINYINT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `skill_details`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `skill_details` ;
+
+CREATE TABLE IF NOT EXISTS `skill_details` (
+  `id` INT NOT NULL,
+  `rank` INT NULL,
   `required_skill_points` INT NULL,
   `similar_skill_level` INT NULL,
   `required_player_level` INT NULL,
-  `card_image_url` TEXT NULL,
-  `demo_image_url` TEXT NULL,
-  `player_class_id` INT NOT NULL,
+  `effects` TEXT NULL,
+  `skill_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_skills_player_class1_idx` (`player_class_id` ASC),
-  CONSTRAINT `fk_skills_player_class1`
+  INDEX `fk_skill_details_skill1_idx` (`skill_id` ASC),
+  CONSTRAINT `fk_skill_details_skill1`
+    FOREIGN KEY (`skill_id`)
+    REFERENCES `skill` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `player_class_has_skill`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `player_class_has_skill` ;
+
+CREATE TABLE IF NOT EXISTS `player_class_has_skill` (
+  `player_class_id` INT NOT NULL,
+  `skill_id` INT NOT NULL,
+  PRIMARY KEY (`player_class_id`, `skill_id`),
+  INDEX `fk_player_class_has_skill_skill1_idx` (`skill_id` ASC),
+  INDEX `fk_player_class_has_skill_player_class1_idx` (`player_class_id` ASC),
+  CONSTRAINT `fk_player_class_has_skill_player_class1`
     FOREIGN KEY (`player_class_id`)
     REFERENCES `player_class` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_player_class_has_skill_skill1`
+    FOREIGN KEY (`skill_id`)
+    REFERENCES `skill` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -832,6 +868,81 @@ INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `m
 INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (4, 'S', 'S', 'E', 'D', 'C', 'B', 4);
 INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (5, 'E', 'D', 'A', 'S', 'B', 'A', 5);
 INSERT INTO `stat_scaling` (`id`, `strength`, `constitution`, `intelligence`, `magic_resistance`, `dexterity`, `luck`, `player_class_id`) VALUES (6, 'D', 'C', 'S', 'A', 'B', 'D', 6);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `skill`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `dragonscrowndb`;
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (1, 'Slide Attack', 'Increased chance of taking enemy down\nwhen sliding (Down + Square).', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/003.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (2, 'Wealth to Health', 'Recover HP when picking up coins.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/004.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (3, 'Money is Power', 'Picking up coins adds to your score.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/005.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (4, 'Vitality Boost', 'Increases your max HP.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/006.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (5, 'Nutritionist', 'Increases the healing effectiveness of food.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/007.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (6, 'Maintenance', 'Grants a chance that using a temporary weapon won\'t decrease its number of uses.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/008.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (7, 'Adroit Hands', 'Reduces cooldown time in between using items.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/009.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (8, 'Evasion', 'Increases the number of times you can evade.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/010.jpg', 1);
+INSERT INTO `skill` (`id`, `name`, `description`, `card_image_url`, `is_common`) VALUES (9, 'Deep Pockets', 'Increases the number of slots in Bags.', 'https://www.4gamer.net/games/134/G013480/FC20130711001/TN/011.jpg', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `skill_details`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `dragonscrowndb`;
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (1, 1, 1, 0, 1, 'Power 30, Knockback + 30%', 1);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (2, 2, 1, 0, 10, 'Power 34, Knockback + 40%', 1);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (3, 3, 2, 3, 20, 'Power 40, Knockback + 55%', 1);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (4, 4, 3, 3, 31, 'Power 46, Knockback + 70%', 1);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (5, 5, 4, 6, 40, 'Power 60, Knockback + 100%', 1);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (6, 1, 1, 0, 1, 'HP Recovered Per Coin: 2', 2);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (7, 2, 1, 0, 5, 'HP Recovered Per Coin: 3', 2);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (8, 3, 2, 3, 14, 'HP Recovered Per Coin: 5', 2);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (9, 4, 3, 3, 27, 'HP Recovered Per Coin: 7', 2);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (10, 5, 4, 6, 42, 'HP Recovered Per Coin: 10', 2);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (11, 1, 1, 0, 1, '+10 Per Coin', 3);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (12, 2, 1, 0, 8, '+20 Per Coin', 3);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (13, 3, 2, 3, 17, '+40 Per Coin', 3);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (14, 4, 3, 3, 29, '+60 Per Coin', 3);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (15, 5, 4, 6, 43, '+100 Per Coin', 3);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (16, 1, 1, 0, 1, 'Max HP + 20', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (17, 2, 1, 0, 7, 'Max HP + 35', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (18, 3, 1, 3, 13, 'Max HP + 50', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (19, 4, 2, 3, 19, 'Max HP + 65', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (20, 5, 2, 6, 25, 'Max HP + 80', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (21, 6, 3, 6, 31, 'Max HP + 100', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (22, 7, 3, 9, 38, 'Max HP + 120', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (23, 8, 4, 9, 45, 'Max HP + 145', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (24, 9, 4, 12, 52, 'Max HP + 170', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (25, 10, 6, 12, 59, 'Max HP + 200', 4);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (26, 1, 1, 0, 3, 'Recovery + 20%', 5);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (27, 2, 1, 0, 11, 'Recovery + 25%', 5);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (28, 3, 2, 3, 24, 'Recovery + 30%', 5);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (29, 4, 3, 3, 37, 'Recovery + 35%', 5);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (30, 5, 4, 6, 51, 'Recovery + 50%', 5);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (31, 1, 1, 0, 6, '20% Chance of Not Depleting', 6);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (32, 2, 1, 0, 13, '25% Chance of Not Depleting', 6);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (33, 3, 2, 3, 23, '30% Chance of Not Depleting', 6);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (34, 4, 3, 3, 34, '35% Chance of Not Depleting', 6);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (35, 5, 4, 6, 47, '50% Chance of Not Depleting', 6);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (36, 1, 1, 0, 9, '-10% Cooldown Time', 7);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (37, 2, 1, 0, 16, '-15% Cooldown Time', 7);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (38, 3, 2, 3, 22, '-20% Cooldown Time', 7);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (39, 4, 2, 3, 29, '-25% Cooldown Time', 7);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (40, 5, 3, 6, 36, '-30% Cooldown Time', 7);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (41, 6, 3, 6, 44, '-35% Cooldown Time', 7);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (42, 7, 5, 9, 53, '-50% Cooldown Time', 7);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (43, 1, 2, 0, 12, 'Continous Evade +1', 8);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (44, 2, 3, 3, 32, 'Continous Evade +2', 8);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (45, 3, 4, 6, 52, 'Continous Evade +3', 8);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (46, 1, 2, 0, 15, 'Total Bag Slots = 8', 9);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (47, 2, 4, 3, 30, 'Total Bag Slots = 9', 9);
+INSERT INTO `skill_details` (`id`, `rank`, `required_skill_points`, `similar_skill_level`, `required_player_level`, `effects`, `skill_id`) VALUES (48, 3, 6, 6, 50, 'Total Bag Slots = 10', 9);
 
 COMMIT;
 
