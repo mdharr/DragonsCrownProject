@@ -6,4 +6,5 @@ import com.skilldistillery.dragonscrown.entities.Skill;
 
 public interface SkillRepository extends JpaRepository<Skill, Integer> {
 
+	Skill findById(int skillId);
 }
