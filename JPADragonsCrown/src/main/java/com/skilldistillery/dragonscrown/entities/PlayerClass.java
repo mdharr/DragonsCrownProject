@@ -11,11 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "player_class")
@@ -55,6 +55,14 @@ public class PlayerClass {
     
     @OneToOne(mappedBy = "playerClass", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private StatScaling statScaling;
+    
+    @ManyToMany
+    @JoinTable(
+    		name = "player_class_has_skill",
+    		joinColumns = @JoinColumn(name = "player_class_id"),
+    		inverseJoinColumns = @JoinColumn(name = "skill_id")
+    		)
+    private List<Skill> skills;
 	
 	public PlayerClass() {
 		super();
