@@ -1,5 +1,7 @@
 package com.skilldistillery.dragonscrown.entities;
 
+import java.util.Objects;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -35,6 +37,51 @@ public class PlayerClassHasSkill {
 		this.playerClass = playerClass;
 		this.skill = skill;
 	}
-	
+
+	public PlayerClassHasSkillId getId() {
+		return id;
+	}
+
+	public void setId(PlayerClassHasSkillId id) {
+		this.id = id;
+	}
+
+	public PlayerClass getPlayerClass() {
+		return playerClass;
+	}
+
+	public void setPlayerClass(PlayerClass playerClass) {
+		this.playerClass = playerClass;
+	}
+
+	public Skill getSkill() {
+		return skill;
+	}
+
+	public void setSkill(Skill skill) {
+		this.skill = skill;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PlayerClassHasSkill other = (PlayerClassHasSkill) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerClassHasSkill [id=" + id + ", playerClass=" + playerClass + ", skill=" + skill + "]";
+	}
 	
 }

@@ -56,13 +56,8 @@ public class PlayerClass {
     @OneToOne(mappedBy = "playerClass", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private StatScaling statScaling;
     
-    @ManyToMany
-    @JoinTable(
-    		name = "player_class_has_skill",
-    		joinColumns = @JoinColumn(name = "player_class_id"),
-    		inverseJoinColumns = @JoinColumn(name = "skill_id")
-    		)
-    private List<Skill> skills;
+    @OneToMany(mappedBy = "playerClass")
+    private List<PlayerClassHasSkill> skills;
 	
 	public PlayerClass() {
 		super();
