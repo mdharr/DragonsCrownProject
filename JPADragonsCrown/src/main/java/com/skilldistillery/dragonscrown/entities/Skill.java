@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Skill {
@@ -24,6 +25,9 @@ public class Skill {
 	private String cardImageUrl;
 	@Column(name = "is_common")
 	private boolean isCommon;
+	
+	@OneToMany(mappedBy = "skill")
+	private List<SkillDetails> skillDetails;
 	
 	public Skill() {
 		super();
