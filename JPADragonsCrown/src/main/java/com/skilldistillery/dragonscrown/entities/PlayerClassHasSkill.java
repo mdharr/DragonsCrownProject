@@ -19,5 +19,8 @@ public class PlayerClassHasSkill {
 	@MapsId("playerClassId")
 	private PlayerClass playerClass;
 	
-	
+	@ManyToOne
+	@JoinColumn(name = "skill_id")
+	@MapsId("skillId")
+	private Skill skill;
 }
