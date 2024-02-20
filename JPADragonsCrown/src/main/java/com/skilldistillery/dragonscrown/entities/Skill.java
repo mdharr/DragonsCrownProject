@@ -33,14 +33,18 @@ public class Skill {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Skill(int id, String name, String description, String cardImageUrl, boolean isCommon) {
+	
+	public Skill(int id, String name, String description, String cardImageUrl, boolean isCommon,
+			List<SkillDetails> skillDetails) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.cardImageUrl = cardImageUrl;
 		this.isCommon = isCommon;
+		this.skillDetails = skillDetails;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -71,6 +75,15 @@ public class Skill {
 	public void setCommon(boolean isCommon) {
 		this.isCommon = isCommon;
 	}
+	
+	public List<SkillDetails> getSkillDetails() {
+		return skillDetails;
+	}
+
+	public void setSkillDetails(List<SkillDetails> skillDetails) {
+		this.skillDetails = skillDetails;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

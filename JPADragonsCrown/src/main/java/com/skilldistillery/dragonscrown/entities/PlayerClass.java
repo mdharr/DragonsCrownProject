@@ -63,11 +63,11 @@ public class PlayerClass {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
 			String spriteStartUrl, String spriteEndUrl, List<ClassStats> classStats,
-			List<Recommendation> recommendations, StatScaling statScaling) {
+			List<Recommendation> recommendations, StatScaling statScaling, List<PlayerClassHasSkill> skills) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -85,6 +85,7 @@ public class PlayerClass {
 		this.classStats = classStats;
 		this.recommendations = recommendations;
 		this.statScaling = statScaling;
+		this.skills = skills;
 	}
 
 	public int getId() {
@@ -204,6 +205,14 @@ public class PlayerClass {
 
 	public void setStatScaling(StatScaling statScaling) {
 		this.statScaling = statScaling;
+	}
+	
+	public List<PlayerClassHasSkill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<PlayerClassHasSkill> skills) {
+		this.skills = skills;
 	}
 
 	@Override
