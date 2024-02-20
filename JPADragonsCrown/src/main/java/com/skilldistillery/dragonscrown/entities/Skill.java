@@ -31,6 +31,36 @@ public class Skill {
 		this.cardImageUrl = cardImageUrl;
 		this.isCommon = isCommon;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getCardImageUrl() {
+		return cardImageUrl;
+	}
+	public void setCardImageUrl(String cardImageUrl) {
+		this.cardImageUrl = cardImageUrl;
+	}
+	public boolean isCommon() {
+		return isCommon;
+	}
+	public void setCommon(boolean isCommon) {
+		this.isCommon = isCommon;
+	}
 	
 	
 }
