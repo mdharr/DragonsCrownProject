@@ -14,6 +14,7 @@
 		<class>com.skilldistillery.dragonscrown.entities.Skill</class>
 		<class>com.skilldistillery.dragonscrown.entities.SkillDetails</class>
 		<class>com.skilldistillery.dragonscrown.entities.PlayerClassHasSkill</class>
+		<class>com.skilldistillery.dragonscrown.entities.PlayerClassHasSkillId</class>
 
 
 		<!-- end entities -->
