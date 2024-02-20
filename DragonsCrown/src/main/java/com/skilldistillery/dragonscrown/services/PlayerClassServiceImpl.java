@@ -1,8 +1,6 @@
 package com.skilldistillery.dragonscrown.services;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,6 @@ public class PlayerClassServiceImpl implements PlayerClassService {
 
 	@Autowired
 	private PlayerClassRepository playerClassRepo;
-	
 	
 	@Override
 	public List<PlayerClass> findAll() {

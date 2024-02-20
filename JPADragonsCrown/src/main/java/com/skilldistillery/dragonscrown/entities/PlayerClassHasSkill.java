@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "player_class_has_skill")
 public class PlayerClassHasSkill {
@@ -16,6 +18,7 @@ public class PlayerClassHasSkill {
 	@EmbeddedId
 	private PlayerClassHasSkillId id;
 	
+	@JsonIgnore
     @ManyToOne
     @MapsId("playerClassId")
     @JoinColumn(name = "player_class_id")
