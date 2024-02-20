@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "skill_details")
 public class SkillDetails {
 
 	@Id
@@ -24,8 +26,8 @@ public class SkillDetails {
 	@Column(name = "required_skill_points")
 	private int requiredSkillPoints;
 	
-	@Column(name = "similar_skill_points")
-	private int similarSkillPoints;
+	@Column(name = "similar_skill_level")
+	private int similarSkillLevel;
 	
 	@Column(name = "required_player_level")
 	private int requiredPlayerLevel;
@@ -42,13 +44,13 @@ public class SkillDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SkillDetails(int id, int rank, int requiredSkillPoints, int similarSkillPoints, int requiredPlayerLevel,
+	public SkillDetails(int id, int rank, int requiredSkillPoints, int similarSkillLevel, int requiredPlayerLevel,
 			String effects, Skill skill) {
 		super();
 		this.id = id;
 		this.rank = rank;
 		this.requiredSkillPoints = requiredSkillPoints;
-		this.similarSkillPoints = similarSkillPoints;
+		this.similarSkillLevel = similarSkillLevel;
 		this.requiredPlayerLevel = requiredPlayerLevel;
 		this.effects = effects;
 		this.skill = skill;
@@ -78,12 +80,12 @@ public class SkillDetails {
 		this.requiredSkillPoints = requiredSkillPoints;
 	}
 
-	public int getSimilarSkillPoints() {
-		return similarSkillPoints;
+	public int getSimilarSkillLevel() {
+		return similarSkillLevel;
 	}
 
-	public void setSimilarSkillPoints(int similarSkillPoints) {
-		this.similarSkillPoints = similarSkillPoints;
+	public void setSimilarSkillLevel(int similarSkillLevel) {
+		this.similarSkillLevel = similarSkillLevel;
 	}
 
 	public int getRequiredPlayerLevel() {
@@ -130,8 +132,8 @@ public class SkillDetails {
 	@Override
 	public String toString() {
 		return "SkillDetails [id=" + id + ", rank=" + rank + ", requiredSkillPoints=" + requiredSkillPoints
-				+ ", similarSkillPoints=" + similarSkillPoints + ", requiredPlayerLevel=" + requiredPlayerLevel
+				+ ", similarSkillLevel=" + similarSkillLevel + ", requiredPlayerLevel=" + requiredPlayerLevel
 				+ ", effects=" + effects + ", skill=" + skill + "]";
 	}
-	
+
 }
