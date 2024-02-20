@@ -837,3 +837,8 @@ blockquote ul li {
 .exp-box {
   gap: 41px;
 }
+
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
