@@ -37,7 +37,6 @@ public class PlayerClassHasSkill {
 		this.playerClass = playerClass;
 		this.skill = skill;
 	}
-//	new PlayerClassHasSkillId(playerClass.getId(), skill.getId();
 
 	public PlayerClassHasSkillId getId() {
 		return id;
