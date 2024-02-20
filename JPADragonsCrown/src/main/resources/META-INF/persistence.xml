@@ -13,6 +13,7 @@
 		<class>com.skilldistillery.dragonscrown.entities.StatScaling</class>
 		<class>com.skilldistillery.dragonscrown.entities.Skill</class>
 		<class>com.skilldistillery.dragonscrown.entities.SkillDetails</class>
+		<class>com.skilldistillery.dragonscrown.entities.PlayerClassHasSkill</class>
 
 
 		<!-- end entities -->
