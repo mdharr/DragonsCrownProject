@@ -1,12 +1,15 @@
 package com.skilldistillery.dragonscrown.entities;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Skill {
@@ -21,6 +24,10 @@ public class Skill {
 	private String cardImageUrl;
 	@Column(name = "is_common")
 	private boolean isCommon;
+	
+	@ManyToMany(mappedBy = "skills", cascade = CascadeType.MERGE)
+	private List<PlayerClass> playerClasses;
+	
 	public Skill() {
 		super();
 		// TODO Auto-generated constructor stub
