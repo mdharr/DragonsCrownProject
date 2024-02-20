@@ -23,4 +23,18 @@ public class PlayerClassHasSkill {
 	@JoinColumn(name = "skill_id")
 	@MapsId("skillId")
 	private Skill skill;
+
+	public PlayerClassHasSkill() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PlayerClassHasSkill(PlayerClassHasSkillId id, PlayerClass playerClass, Skill skill) {
+		super();
+		this.id = new PlayerClassHasSkillId(playerClass.getId(), skill.getId();
+		this.playerClass = playerClass;
+		this.skill = skill;
+	}
+	
+	
 }
