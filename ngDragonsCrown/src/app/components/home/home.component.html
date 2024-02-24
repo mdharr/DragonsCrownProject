@@ -231,7 +231,7 @@
         </div>
         <button mat-button (click)="viewCommonSkills()">Common Skills</button>
         <button mat-button (click)="viewUniqueSkills()">Unique Skills</button>
-        <div class="meta-wrapper">
+        <div class="meta-wrapper" *ngIf="classSelected">
           <div class="common-skills" *ngIf="showCommonSkills">
             <div class="skill-box" *ngFor="let commonSkill of commonSkills">
               <img class="skill-cards" src="{{ commonSkill.cardImageUrl }}" alt="Common Skill Card">
