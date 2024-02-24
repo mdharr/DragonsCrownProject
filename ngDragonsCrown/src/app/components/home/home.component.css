@@ -848,6 +848,8 @@ blockquote ul li {
   width: 100%;
   border: 1px solid rgb(202, 179, 92);
   margin-top: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 8px;
 }
 
 .skill-cards {

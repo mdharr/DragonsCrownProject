@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedClassIndex: number | null = null;
   selected: boolean = false;
   artworkLoaded: boolean = false;
-  showCommonSkills: boolean = false;
+  showCommonSkills: boolean = true;
 
   // tooltip
   tooltipVisible: boolean = false;

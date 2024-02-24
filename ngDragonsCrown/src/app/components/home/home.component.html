@@ -229,8 +229,10 @@
           </div>
           <hr style="margin-top: 0;">
         </div>
+        <hr>
         <button mat-button (click)="viewCommonSkills()">Common Skills</button>
         <button mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+        <hr>
         <div class="meta-wrapper" *ngIf="classSelected">
           <div class="common-skills" *ngIf="showCommonSkills">
             <div class="skill-box" *ngFor="let commonSkill of commonSkills">
