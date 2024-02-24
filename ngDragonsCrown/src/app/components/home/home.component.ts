@@ -262,6 +262,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       commonBtn?.classList.add('selected-skills');
     }
   }
+
   viewUniqueSkills() {
     if(this.showCommonSkills === true) {
       this.showCommonSkills = false;
@@ -270,6 +271,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       commonBtn?.classList.remove('selected-skills');
       uniqueBtn?.classList.add('selected-skills');
     }
+  }
+
+  setSelectedSkillButtonStyle() {
+    this.showCommonSkills = true;
+    const commonBtn = document.querySelector('#common-btn');
+    const uniqueBtn = document.querySelector('#unique-btn');
+    uniqueBtn?.classList.remove('selected-skills');
+    commonBtn?.classList.add('selected-skills');
   }
 
 }
