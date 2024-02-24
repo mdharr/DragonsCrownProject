@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentStats: any;
   currentSpriteUrl: string = '';
   totalExp: number = 0;
+  commonSkills: Skill[] = [];
+  uniqueSkills: Skill[] =[];
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -28,8 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedClassIndex: number | null = null;
   selected: boolean = false;
   artworkLoaded: boolean = false;
-  commonSkills: Skill[] = [];
-  uniqueSkills: Skill[] =[];
+  showCommonSkills: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
