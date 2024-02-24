@@ -842,3 +842,8 @@ blockquote ul li {
   display: flex;
   justify-content: flex-end;
 }
+
+.meta-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}

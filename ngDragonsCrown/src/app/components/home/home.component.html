@@ -231,14 +231,16 @@
         </div>
         <div class="meta-wrapper">
           <div class="skills-wrapper">
-            <ul>
-              <li *ngFor="let commonSkill of commonSkills">{{ commonSkill.name }}</li>
-            </ul>
+            <div *ngFor="let commonSkill of commonSkills">
+              <img class="skill-cards" src="{{ commonSkill.cardImageUrl }}" alt="Common Skill Card">
+              <p>{{ commonSkill.name }}</p>
+            </div>
           </div>
-          <div class="stats-wrapper" *ngFor="let uniqueSkill of currentClassData?.skills">
-            <ul>
-
-            </ul>
+          <div class="stats-wrapper">
+            <div *ngFor="let uniqueSkill of uniqueSkills">
+              <img class="skill-cards" src="{{ uniqueSkill.cardImageUrl }}" alt="Unique Skill Card">
+              <p>{{ uniqueSkill.name }}</p>
+            </div>
           </div>
         </div>
         <!-- <div style="position: relative; top:0; right:0; opacity: 0.2;">
