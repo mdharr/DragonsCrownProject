@@ -70,7 +70,7 @@
   margin-top: 95px; /* Adjust as needed */
   margin-bottom: 100px;
   /* padding: 20px; */
-  padding-top: 50px;
+  padding-top: 40px;
   /* padding-top: 0; */
   background: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
   /* border: 1px solid #808080; */
@@ -847,7 +847,6 @@ blockquote ul li {
   display: flex;
   width: 100%;
   border: 1px solid rgb(202, 179, 92);
-  margin-top: 8px;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 8px;
 }
@@ -860,12 +859,20 @@ blockquote ul li {
 .selected-skills {
   border: 1px solid rgb(202, 179, 92) !important;
   background-color: rgba(0, 0, 0, 0.8);
+  /* background-color: rgb(35 7 7 / 86%); */
+  border-bottom: 1px solid rgb(35 7 7 / 86%) !important;
+  margin-bottom: -1px;
+  border-radius: 0;
 }
 
 #common-btn {
   border: 1px solid transparent;
+  margin-bottom: -1px;
+  border-radius: 0;
 }
 
 #unique-btn {
   border: 1px solid transparent;
+  margin-bottom: -1px;
+  border-radius: 0;
 }

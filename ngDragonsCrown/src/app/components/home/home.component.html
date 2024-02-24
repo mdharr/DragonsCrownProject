@@ -65,16 +65,18 @@
             </li>
           </ul>
         </div>
-        <hr style="margin-bottom: 0;">
-        <div class="class-description" [ngClass]="{'class-backdrop': selected}">
-          <div class="sprite-container" *ngIf="classSelected">
-            <img [src]="currentSpriteUrl"
-                 (mouseenter)="changeSpriteTo('end')"
-                 (mouseleave)="changeSpriteTo('start')"
-                 alt="Class Sprite">
+        <ng-container *ngIf="classSelected">
+          <hr style="margin-bottom: 0;">
+          <div class="class-description" [ngClass]="{'class-backdrop': selected}">
+            <div class="sprite-container" *ngIf="classSelected">
+              <img [src]="currentSpriteUrl"
+                   (mouseenter)="changeSpriteTo('end')"
+                   (mouseleave)="changeSpriteTo('start')"
+                   alt="Class Sprite">
+            </div>
+            <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p>
           </div>
-          <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p>
-        </div>
+        </ng-container>
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper">
             <!-- <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3); background-image: url({{currentClassData?.backgroundUrl}}); background-repeat:no-repeat;background-color: rgba(0, 0, 0, 0.3); background-size: auto; background-position: top right; background-clip: padding-box;"> -->
@@ -229,10 +231,11 @@
           </div>
           <hr style="margin-top: 0;">
         </div>
-        <hr>
-        <button id="common-btn" mat-button (click)="viewCommonSkills()">Common Skills</button>
-        <button id="unique-btn" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
-        <hr>
+        <ng-container *ngIf="classSelected">
+          <hr>
+          <button id="common-btn" mat-button (click)="viewCommonSkills()">Common Skills</button>
+          <button id="unique-btn" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+        </ng-container>
         <div class="meta-wrapper" *ngIf="classSelected">
           <div class="common-skills" *ngIf="showCommonSkills">
             <div class="skill-box" *ngFor="let commonSkill of commonSkills">
