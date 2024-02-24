@@ -117,7 +117,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log(descriptionElement);
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
-      this.commonSkills = this.currentClassData?.skills?.map((skill: { isCommon: any; }) => skill.isCommon);
+      this.commonSkills = this.currentClassData.skills
+        .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
+        .map((skillObj: { skill: any; }) => skillObj.skill);
+      console.log(this.commonSkills);
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
       // Reset currentStats to the initial state for the newly selected class
       this.currentStats = { ...this.currentClassData.classStats[0] };

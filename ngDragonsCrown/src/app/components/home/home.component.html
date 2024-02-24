@@ -232,7 +232,7 @@
         <div class="meta-wrapper">
           <div class="skills-wrapper">
             <ul>
-              <li *ngFor="let commonSkill of currentClassData?.skills"></li>
+              <li *ngFor="let commonSkill of commonSkills">{{ commonSkill.name }}</li>
             </ul>
           </div>
           <div class="stats-wrapper" *ngFor="let uniqueSkill of currentClassData?.skills">
