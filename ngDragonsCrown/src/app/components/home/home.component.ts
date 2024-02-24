@@ -253,11 +253,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.totalExp = total;
   }
 
-  showSkills() {
+  viewCommonSkills() {
+    if(this.showCommonSkills === false) {
+      this.showCommonSkills = true;
+    }
+  }
+  viewUniqueSkills() {
     if(this.showCommonSkills === true) {
       this.showCommonSkills = false;
-    } else {
-      this.showCommonSkills = true;
     }
   }
 }
