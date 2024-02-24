@@ -3,6 +3,7 @@ import { AuthService } from './../../services/auth.service';
 import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { PlayerClass } from 'src/app/models/player-class';
 import { Subscription } from 'rxjs';
+import { Skill } from 'src/app/models/skill';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedClassIndex: number | null = null;
   selected: boolean = false;
   artworkLoaded: boolean = false;
+  commonSkills: Skill[] = [];
+  uniqueSkills: Skill[] =[];
 
   // tooltip
   tooltipVisible: boolean = false;
