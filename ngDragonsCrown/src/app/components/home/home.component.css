@@ -845,5 +845,14 @@ blockquote ul li {
 
 .meta-wrapper {
   display: flex;
-  justify-content: space-evenly;
+  width: 100%;
+  border: 1px solid rgb(202, 179, 92);
+  margin-top: 8px;
+  height: 435px;
+  overflow: hidden;
+}
+
+.skill-cards {
+  width: 100px;
+  height: auto;
 }
