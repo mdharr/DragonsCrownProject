@@ -230,13 +230,13 @@
           <hr style="margin-top: 0;">
         </div>
         <div class="meta-wrapper">
-          <div class="common-skills">
+          <div class="common-skills" *ngIf="showCommonSkills">
             <div class="skill-box" *ngFor="let commonSkill of commonSkills">
               <img class="skill-cards" src="{{ commonSkill.cardImageUrl }}" alt="Common Skill Card">
               <p>{{ commonSkill.name }}</p>
             </div>
           </div>
-          <div class="unique-skills">
+          <div class="unique-skills" *ngIf="!showCommonSkills">
             <div class="skill-box" *ngFor="let uniqueSkill of uniqueSkills">
               <img class="skill-cards" src="{{ uniqueSkill.cardImageUrl }}" alt="Unique Skill Card">
               <p>{{ uniqueSkill.name }}</p>
