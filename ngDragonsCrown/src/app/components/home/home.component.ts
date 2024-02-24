@@ -1,3 +1,4 @@
+import { SkillDetails } from './../../models/skill-details';
 import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
 import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
@@ -120,7 +121,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.commonSkills = this.currentClassData.skills
         .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
         .map((skillObj: { skill: any; }) => skillObj.skill);
-      console.log(this.commonSkills);
+
+      this.uniqueSkills = this.currentClassData.skills
+        .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === false)
+        .map((skillObj: { skill: any }) => skillObj.skill);
+
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
       // Reset currentStats to the initial state for the newly selected class
       this.currentStats = { ...this.currentClassData.classStats[0] };
