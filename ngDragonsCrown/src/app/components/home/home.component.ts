@@ -256,6 +256,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   viewCommonSkills() {
     if(this.showCommonSkills === false) {
       this.showCommonSkills = true;
+      const commonBtn = document.querySelector('#common-btn');
+      const uniqueBtn = document.querySelector('#unique-btn');
+      uniqueBtn?.classList.remove('selected-skills');
+      commonBtn?.classList.add('selected-skills');
     }
   }
   viewUniqueSkills() {
@@ -263,4 +267,5 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.showCommonSkills = false;
     }
   }
+
 }

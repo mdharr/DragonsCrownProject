@@ -230,8 +230,8 @@
           <hr style="margin-top: 0;">
         </div>
         <hr>
-        <button mat-button (click)="viewCommonSkills()">Common Skills</button>
-        <button mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+        <button id="common-btn" mat-button (click)="viewCommonSkills()">Common Skills</button>
+        <button id="unique-btn" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
         <hr>
         <div class="meta-wrapper" *ngIf="classSelected">
           <div class="common-skills" *ngIf="showCommonSkills">
