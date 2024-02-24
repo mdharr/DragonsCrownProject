@@ -230,8 +230,16 @@
           <hr style="margin-top: 0;">
         </div>
         <div class="meta-wrapper">
-          <div class="skills-wrapper"></div>
-          <div class="stats-wrapper"></div>
+          <div class="skills-wrapper">
+            <ul>
+              <li *ngFor="let commonSkill of currentClassData?.skills"></li>
+            </ul>
+          </div>
+          <div class="stats-wrapper" *ngFor="let uniqueSkill of currentClassData?.skills">
+            <ul>
+
+            </ul>
+          </div>
         </div>
         <!-- <div style="position: relative; top:0; right:0; opacity: 0.2;">
           <img style="position: relative" src="https://dragons-crown.com/resources/img/top/dragon.png" alt="">
