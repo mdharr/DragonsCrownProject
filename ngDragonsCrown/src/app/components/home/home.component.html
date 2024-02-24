@@ -65,18 +65,15 @@
             </li>
           </ul>
         </div>
-        <ng-container *ngIf="classSelected">
-          <hr style="margin-bottom: 0;">
-          <div class="class-description" [ngClass]="{'class-backdrop': selected}">
-            <div class="sprite-container" *ngIf="classSelected">
-              <img [src]="currentSpriteUrl"
-                   (mouseenter)="changeSpriteTo('end')"
-                   (mouseleave)="changeSpriteTo('start')"
-                   alt="Class Sprite">
-            </div>
-            <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p>
+        <div class="class-description" [ngClass]="{'class-backdrop': selected}">
+          <div class="sprite-container" *ngIf="classSelected">
+            <img [src]="currentSpriteUrl"
+                 (mouseenter)="changeSpriteTo('end')"
+                 (mouseleave)="changeSpriteTo('start')"
+                 alt="Class Sprite">
           </div>
-        </ng-container>
+          <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p>
+        </div>
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper">
             <!-- <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3); background-image: url({{currentClassData?.backgroundUrl}}); background-repeat:no-repeat;background-color: rgba(0, 0, 0, 0.3); background-size: auto; background-position: top right; background-clip: padding-box;"> -->
@@ -233,8 +230,8 @@
         </div>
         <ng-container *ngIf="classSelected">
           <hr>
-          <button id="common-btn" mat-button (click)="viewCommonSkills()">Common Skills</button>
-          <button id="unique-btn" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+          <button id="common-btn" [class.selected-skills]="showCommonSkills" mat-button (click)="viewCommonSkills()">Common Skills</button>
+          <button id="unique-btn" [class.selected-skills]="!showCommonSkills" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
         </ng-container>
         <div class="meta-wrapper" *ngIf="classSelected">
           <div class="common-skills" *ngIf="showCommonSkills">
@@ -250,10 +247,6 @@
             </div>
           </div>
         </div>
-        <!-- <div style="position: relative; top:0; right:0; opacity: 0.2;">
-          <img style="position: relative" src="https://dragons-crown.com/resources/img/top/dragon.png" alt="">
-        </div> -->
-        <!-- <div class="spacer" *ngIf="classSelected"></div> -->
       </div>
       <div class="bdiv">
         <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->

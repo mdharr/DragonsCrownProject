@@ -127,12 +127,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === false)
         .map((skillObj: { skill: any }) => skillObj.skill);
 
-      this.setSelectedSkillButtonStyle();
+      this.showCommonSkills = true;
+
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
       // Reset currentStats to the initial state for the newly selected class
       this.currentStats = { ...this.currentClassData.classStats[0] };
       console.log(this.currentClassData);
       console.log(this.currentStats);
+
       this.typeOutText(this.currentClassData.description, 'description-text');
     }
   }
@@ -272,14 +274,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       commonBtn?.classList.remove('selected-skills');
       uniqueBtn?.classList.add('selected-skills');
     }
-  }
-
-  setSelectedSkillButtonStyle() {
-    this.showCommonSkills = true;
-    const commonBtn = document.querySelector('#common-btn');
-    const uniqueBtn = document.querySelector('#unique-btn');
-    uniqueBtn?.classList.remove('selected-skills');
-    commonBtn?.classList.add('selected-skills');
   }
 
 }
