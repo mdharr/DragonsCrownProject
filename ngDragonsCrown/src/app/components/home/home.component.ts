@@ -127,6 +127,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === false)
         .map((skillObj: { skill: any }) => skillObj.skill);
 
+      this.setSelectedSkillButtonStyle();
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
       // Reset currentStats to the initial state for the newly selected class
       this.currentStats = { ...this.currentClassData.classStats[0] };
