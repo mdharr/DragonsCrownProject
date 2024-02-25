@@ -876,3 +876,30 @@ blockquote ul li {
   margin-bottom: -1px;
   border-radius: 0;
 }
+
+.common-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+}
+
+.unique-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+}
+
+.skill-box {
+  padding: 10px;
+  border: 1px solid;
+}
+
+.skill-box p {
+  margin-bottom: 0;
+}
