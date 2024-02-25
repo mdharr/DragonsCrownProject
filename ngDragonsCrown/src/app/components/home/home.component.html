@@ -223,8 +223,8 @@
         <div class="meta-wrapper class-background" *ngIf="classSelected" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
           <div class="common-skills" *ngIf="showCommonSkills">
             <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
-              <dl (click)="selectSkill(i)">
-                <dt>
+              <dl (click)="selectSkill(i, 'common')">
+                <dt [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'common'}">
                   {{ commonSkill.name }}
                   <span class="btn-base"><mat-icon>close</mat-icon></span>
                 </dt>
@@ -238,8 +238,8 @@
           </div>
           <div class="unique-skills" *ngIf="!showCommonSkills">
             <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
-              <dl (click)="selectSkill(i)">
-                <dt>
+              <dl (click)="selectSkill(i, 'unique')">
+                <dt [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
                   {{ uniqueSkill.name }}
                   <span class="btn-base"><mat-icon>close</mat-icon></span>
                 </dt>

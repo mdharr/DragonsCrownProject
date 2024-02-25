@@ -969,10 +969,13 @@ blockquote ul li {
 .skillListWrap dt {
   padding: 5px 10px;
   border-bottom: 1px solid #fff;
-  /* background: #ccc; */
-  /* background-color: rgba(21, 43, 56, 0.2); */
   background-color: rgb(21 43 56 / 77%);
   position: relative;
+}
+
+.skillListWrap dt:hover {
+  cursor: pointer;
+  background-color: rgb(113 35 35 / 77%);
 }
 
 .skillListWrap ol {
@@ -1192,3 +1195,7 @@ table {
 }
 
 /* TEST ANIMATION END */
+
+.selected-skill {
+  background-color: rgb(113 35 35 / 77%) !important;
+}

@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   uniqueSkills: Skill[] =[];
   currentLevel: number = 1;
   currentSkill: Skill = new Skill();
+  selectedSkillIndex: number | null = null;
+  selectedSkill: { index: number | null, type: 'common' | 'unique' | null } = { index: null, type: null };
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -121,6 +123,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.classSelected = true;
     this.skillSelected = false;
     this.currentSkill = new Skill();
+    this.selectedSkill = { index: null, type: null };
     if(this.classSelected) {
       this.selected = true;
       const descriptionElement = document.querySelector('.class-description') as HTMLElement;
@@ -284,25 +287,37 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  selectSkill(skillIndex: number) {
+  // selectSkill(skillIndex: number) {
+  //   this.selectedSkillIndex = skillIndex;
+  //   this.skillSelected = true;
+  //   if(this.skillSelected) {
+  //     this.toggleGlassEffect();
+  //     if(this.showCommonSkills === true) {
+
+  //       this.currentSkill = this.commonSkills[skillIndex];
+  //     }
+  //     if(this.showCommonSkills === false) {
+
+  //       this.currentSkill = this.uniqueSkills[skillIndex];
+  //     }
+  //   }
+  // }
+
+  selectSkill(skillIndex: number, skillType: 'common' | 'unique') {
+    // Toggle selection off if the same skill is clicked again
+    if (this.selectedSkill.index === skillIndex && this.selectedSkill.type === skillType) {
+      this.selectedSkill = { index: null, type: null };
+    } else {
+      this.selectedSkill = { index: skillIndex, type: skillType };
+    }
+
     this.skillSelected = true;
-    if(this.skillSelected) {
-      this.toggleGlassEffect();
-      if(this.showCommonSkills === true) {
-        const dtElements = document.querySelector('.common-skills') as HTMLElement;
-        if(dtElements != null) {
-          const dt = Array.from(dtElements.childNodes).map(element => {
+    this.toggleGlassEffect();
 
-          });
-        }
-
-        this.currentSkill = this.commonSkills[skillIndex];
-        console.log(this.currentSkill.skillDetails);
-      }
-      if(this.showCommonSkills === false) {
-        const dtElements = document.querySelector('.unique-skills');
-        this.currentSkill = this.uniqueSkills[skillIndex];
-      }
+    if (skillType === 'common') {
+      this.currentSkill = this.commonSkills[skillIndex];
+    } else {
+      this.currentSkill = this.uniqueSkills[skillIndex];
     }
   }
 
