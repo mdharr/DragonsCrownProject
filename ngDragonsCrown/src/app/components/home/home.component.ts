@@ -124,6 +124,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillSelected = false;
     this.currentSkill = new Skill();
     this.selectedSkill = { index: null, type: null };
+
     if(this.classSelected) {
       this.selected = true;
       const descriptionElement = document.querySelector('.class-description') as HTMLElement;
@@ -287,31 +288,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  // selectSkill(skillIndex: number) {
-  //   this.selectedSkillIndex = skillIndex;
-  //   this.skillSelected = true;
-  //   if(this.skillSelected) {
-  //     this.toggleGlassEffect();
-  //     if(this.showCommonSkills === true) {
-
-  //       this.currentSkill = this.commonSkills[skillIndex];
-  //     }
-  //     if(this.showCommonSkills === false) {
-
-  //       this.currentSkill = this.uniqueSkills[skillIndex];
-  //     }
-  //   }
-  // }
-
   selectSkill(skillIndex: number, skillType: 'common' | 'unique') {
-    // Toggle selection off if the same skill is clicked again
-    if (this.selectedSkill.index === skillIndex && this.selectedSkill.type === skillType) {
-      this.selectedSkill = { index: null, type: null };
-    } else {
-      this.selectedSkill = { index: skillIndex, type: skillType };
-    }
-
+    this.selectedSkill = { index: skillIndex, type: skillType };
     this.skillSelected = true;
+
     this.toggleGlassEffect();
 
     if (skillType === 'common') {

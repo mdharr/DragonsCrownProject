@@ -902,24 +902,44 @@ blockquote ul li {
 
 .selected-skills {
   border: 1px solid rgb(202, 179, 92) !important;
-  /* background-color: rgba(0, 0, 0, 0.8); */
-  background-color: rgb(35 7 7);
-  /* background-color: rgb(35 7 7 / 86%); */
+  background-color: rgb(19 7 7) !important;
   border-bottom: 1px solid rgb(35 7 7 / 86%) !important;
   margin-bottom: -1px;
-  border-radius: 6px 6px 0px 0px !important;
+  z-index: 1;
 }
 
 #common-btn {
   border: 1px solid transparent;
   margin-bottom: -1px;
-  border-radius: 0;
+  border-radius: 6px 0 0 0;
+  width: 125px;
+  font-family: Oswald, serif;
+  text-rendering: geometricprecision;
+  letter-spacing: 0.1rem;
+  background-color:rgba(153, 153, 153, 0.088);
+  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+}
+
+#common-btn:hover {
+  background-color:rgba(153, 153, 153, 0.278);
+  border: 1px solid #fff;
 }
 
 #unique-btn {
   border: 1px solid transparent;
   margin-bottom: -1px;
-  border-radius: 0;
+  border-radius: 0 6px 0 0;
+  width: 125px;
+  font-family: Oswald, serif;
+  text-rendering: geometricprecision;
+  letter-spacing: 0.1rem;
+  background-color:rgba(153, 153, 153, 0.088);
+  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+}
+
+#unique-btn:hover {
+  background-color:rgba(153, 153, 153, 0.278);
+  border: 1px solid #fff;
 }
 
 .common-skills {
