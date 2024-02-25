@@ -252,10 +252,35 @@
             </div>
           </div>
           <div class="unique-skills" *ngIf="!showCommonSkills">
-            <div class="skill-box" *ngFor="let uniqueSkill of uniqueSkills">
-              <img class="skill-cards" src="{{ uniqueSkill.cardImageUrl }}" alt="Unique Skill Card">
-              <p>{{ uniqueSkill.name }}</p>
+            <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills">
+              <!-- <img class="skill-cards" src="{{ uniqueSkill.cardImageUrl }}" alt="Unique Skill Card">
+              <p>{{ uniqueSkill.name }}</p> -->
+              <dl>
+                <dt>
+                  {{ uniqueSkill.name }}
+                  <span class="btn-base">x</span>
+                </dt>
+                <dd>
+                  <ol>
+                    <li *ngFor="let rank of uniqueSkill.skillDetails; last as last">{{ last ? "MAX" : "Lv" + rank.rank }}</li>
+                  </ol>
+                </dd>
+              </dl>
             </div>
+          </div>
+          <div>
+            <h3>Skill Details:</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Rank</th>
+                  <th>Req SP</th>
+                  <th>Req PLv</th>
+                  <th>Req SLv</th>
+                </tr>
+                <tr></tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
