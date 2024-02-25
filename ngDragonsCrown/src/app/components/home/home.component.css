@@ -571,7 +571,9 @@ hr {
   display: flex;
   justify-content: center;
   border-top: 2px solid #d9b359;
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  /* background-color: #0081bb38; */
+  background-color: #004f8457;
 }
 
 .footer-text {
@@ -1061,4 +1063,9 @@ table {
   font-size: 14px;
   margin: 5px 10px;
   color: #fff;
+}
+
+.disabled-ranks {
+  pointer-events: none !important;
+  background-color:rgb(88, 88, 88) !important;
 }

@@ -2,4 +2,15 @@
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Almendra+Display&family=Oswald:wght@200..700&display=swap');
 
+/* body {
+  font-family: 'MedievalMystery', sans-serif;
+} */
+
+@font-face {
+  font-family: 'MedievalMystery';
+  src: url('src/assets/fonts/MedievalMystery.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
