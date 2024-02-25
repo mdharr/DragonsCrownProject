@@ -235,9 +235,20 @@
         </ng-container>
         <div class="meta-wrapper" *ngIf="classSelected">
           <div class="common-skills" *ngIf="showCommonSkills">
-            <div class="skill-box" *ngFor="let commonSkill of commonSkills">
-              <img class="skill-cards" src="{{ commonSkill.cardImageUrl }}" alt="Common Skill Card">
-              <p>{{ commonSkill.name }}</p>
+            <div class="skillListWrap" *ngFor="let commonSkill of commonSkills">
+              <!-- <img class="skill-cards" src="{{ commonSkill.cardImageUrl }}" alt="Common Skill Card"> -->
+              <!-- <p>{{ commonSkill.name }}</p> -->
+              <dl>
+                <dt>
+                  {{ commonSkill.name }}
+                  <span class="btn-base">x</span>
+                </dt>
+                <dd>
+                  <ol>
+                    <li *ngFor="let rank of commonSkill.skillDetails; last as last">{{ last ? "MAX" : "Lv" + rank.rank }}</li>
+                  </ol>
+                </dd>
+              </dl>
             </div>
           </div>
           <div class="unique-skills" *ngIf="!showCommonSkills">
