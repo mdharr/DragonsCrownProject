@@ -320,6 +320,10 @@
   border: 1px solid rgb(202, 179, 92);
   margin-top: 8px;
   height: 435px;
+  background-image: url(https://atlus.com/dragonscrown/img/character/character_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
 }
 
 .n1 {
@@ -332,7 +336,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .alt-artwork img {
@@ -644,7 +648,7 @@ html {
   left: 0;
   background-image: var(--backgroundImageUrl);
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: cover;
   background-position: top right;
   filter: brightness(50%) opacity(70%);
   z-index: -1;
@@ -726,25 +730,55 @@ html {
 }
 
 @keyframes sheen {
-  0% {
-    transform: translateX(-100%) skewX(-30deg);
+  0%, 5% { /* Adjust 5% based on how quickly you want the sheen to move */
+    transform: translateX(-150%) skewX(-30deg);
   }
-  50% {
-    transform: translateX(-50%) skewX(-30deg);
+  8% { /* This might be adjusted based on the speed and how it looks visually */
+    transform: translateX(200%) skewX(-30deg);
   }
   100% {
     transform: translateX(200%) skewX(-30deg);
   }
 }
 
-.sheen-effect::after {
+
+/* .sheen-effect::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(255, 255, 255, 0.8);
   transform: translateX(-100%) skewX(-30deg);
-  animation: sheen 0.25s ease-in-out forwards;
+  animation: sheen 5s ease-in-out infinite;
   z-index: 1000;
+} */
+
+@keyframes holographicTilt {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+.holographic-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 0, 255, 0.25),
+    rgba(0, 255, 255, 0.25),
+    rgba(255, 255, 0, 0.25),
+    rgba(255, 255, 255, 0.15) /* Repeating the starting color at the end */
+  );
+  background-size: 200% 200%; /* Adjust as needed */
+  animation: holographicTilt 4s linear infinite;
+  z-index: 1;
 }
 
 blockquote {
@@ -849,13 +883,21 @@ blockquote ul li {
   display: flex;
   width: 100%;
   border: 1px solid rgb(202, 179, 92);
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
 }
 
 .skill-cards {
-  width: 100px;
+  width: 150px;
   height: auto;
+  border: 5px solid #cab35c;
+}
+
+.sheen-box {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  /* overflow: hidden; */
 }
 
 .selected-skills {
@@ -1026,20 +1068,21 @@ dd, ol, table, tbody, th {
   margin-top: 15px;
   margin-left: 25px;
   padding: 5px 10px;
-  /* border: 1px solid #666; */
+  padding-top: 20px;
   border: 1px solid #fff;
-  /* width: 428px; */
   width: 100%;
   min-height: 300px;
-  /* background: #fff; */
   float: left;
   display: block;
   z-index: 100;
   position: relative;
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .skillInfoBoard table {
+  margin-top: 15px;
   margin-bottom: 15px;
   width: 100%;
   font-size: 12px;
@@ -1056,16 +1099,96 @@ table {
   text-align: left;
   /* border: 1px solid #666; */
   border: 1px solid #fff;
+  /* text-align: center; */
 }
+
+.skillInfoBoard table td {
+  padding: 5px 10px;
+  text-align: right;
+  /* border: 1px solid #666; */
+  border: 1px solid #fff;
+}
+
+/* .skillInfoBoard table td:last-child {
+  text-align: left;
+} */
 
 .skillInfoBoard h3 {
   font-weight: bold;
   font-size: 14px;
-  margin: 5px 10px;
+  /* margin: 5px 10px; */
   color: #fff;
+  text-align: center;
+  margin-top: 15px;
 }
 
 .disabled-ranks {
   pointer-events: none !important;
   background-color:rgb(88, 88, 88) !important;
 }
+
+.highlighted-skill {
+  background-color: rgb(179 28 31 / 78%);
+}
+
+.skill-card-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+/* TEST ANIMATION START */
+
+/* .image-wrapper {
+  height: 12rem;
+  width: 12rem;
+  border-radius: 6px;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.image-wrapper img {
+  height: auto;
+  max-width: 100%;
+}
+
+.shine {
+  position: relative;
+  overflow: hidden;
+} */
+
+/* .shine::before {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 100%);
+  content: "";
+  display: block;
+  height: 100%;
+  left: -75%;
+  position: absolute;
+  top: 0;
+  transform: skewX(-25deg);
+  width: 50%;
+  z-index: 2;
+  animation: shine 0.25s linear forwards;
+} */
+
+.tilt {
+  --a: 1deg;
+  width: 150px;
+  aspect-ratio: 0.6;
+  border-radius: 6px;
+  transform: perspective(400px) rotate3d(var(--r,1,-1),0,calc(var(--i,1)*var(--a)));
+  -webkit-mask: linear-gradient(135deg,#000c 40%,#000,#000c 60%) 100% 100%/250% 250%;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.tilt:hover {
+  --i: -1;
+  -webkit-mask-position: 0 0;
+}
+
+/* TEST ANIMATION END */

@@ -1,7 +1,7 @@
 import { SkillDetails } from './../../models/skill-details';
 import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
-import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { PlayerClass } from 'src/app/models/player-class';
 import { Subscription } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
+  @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
 
   // booleans
   classSelected: boolean = false;
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   artworkLoaded: boolean = false;
   showCommonSkills: boolean = true;
   skillSelected: boolean = false;
+  currentSkillEffects: string[] = [];
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -52,6 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   // dependencies
   auth = inject(AuthService);
   playerClassService = inject(PlayerClassService);
+  renderer = inject(Renderer2);
 
   ngOnInit() {
     this.resetWindowPosition();
@@ -116,6 +119,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   loadClassData(classIndex: number): void {
     this.classSelected = true;
+    this.skillSelected = false;
+    this.currentSkill = new Skill();
     if(this.classSelected) {
       this.selected = true;
       const descriptionElement = document.querySelector('.class-description') as HTMLElement;
@@ -282,12 +287,35 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selectSkill(skillIndex: number) {
     this.skillSelected = true;
     if(this.skillSelected) {
+      this.toggleGlassEffect();
       if(this.showCommonSkills === true) {
+        const dtElements = document.querySelector('.common-skills') as HTMLElement;
+        if(dtElements != null) {
+          const dt = Array.from(dtElements.childNodes).map(element => {
+
+          });
+        }
+
         this.currentSkill = this.commonSkills[skillIndex];
+        console.log(this.currentSkill.skillDetails);
       }
       if(this.showCommonSkills === false) {
+        const dtElements = document.querySelector('.unique-skills');
         this.currentSkill = this.uniqueSkills[skillIndex];
       }
     }
   }
+
+  toggleGlassEffect(): void {
+    if (this.sheenBoxRef && this.sheenBoxRef.nativeElement) {
+      const sheenBox = this.sheenBoxRef.nativeElement;
+      if (sheenBox.classList.contains('glass')) {
+        this.renderer.removeClass(sheenBox, 'glass');
+        setTimeout(() => this.renderer.addClass(sheenBox, 'glass'), 10);
+      } else {
+        this.renderer.addClass(sheenBox, 'glass');
+      }
+    }
+  }
+
 }

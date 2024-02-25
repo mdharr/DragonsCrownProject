@@ -76,8 +76,7 @@
         </div>
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper">
-            <!-- <div class="col n1" style="background-color: rgba(0, 0, 0, 0.3); background-image: url({{currentClassData?.backgroundUrl}}); background-repeat:no-repeat;background-color: rgba(0, 0, 0, 0.3); background-size: auto; background-position: top right; background-clip: padding-box;"> -->
-            <div class="col n1 class-background" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+            <div class="col n1 class-background">
               <div class="player-class">
                 <label style="pointer-events:none;" for="class">Class</label>
                 <div class="wrapper-class">
@@ -189,21 +188,10 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="alt-artwork">
-              <img style="width: 200px;" [src]="currentClassData?.artworkUrl" alt="artwork">
-            </div> -->
             <div class="alt-artwork">
               <img [hidden]="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.hqArtworkUrl" (load)="onArtworkLoad()" alt="High-quality artwork">
               <img *ngIf="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.artworkUrl" alt="Low-quality artwork">
             </div>
-            <!-- <div class="alt-artwork">
-              <div class="sprite-container">
-                <img [src]="currentSpriteUrl"
-                     (mouseenter)="changeSpriteTo('end')"
-                     (mouseleave)="changeSpriteTo('start')"
-                     alt="Class Sprite">
-              </div>
-            </div> -->
           </div>
           <hr>
           <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -214,7 +202,6 @@
               </div>
               <div class="position-gif">
                 <div class="gif-wrapper">
-                  <!-- <div class="gif-crt"></div> -->
                   <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="animation">
                 </div>
               </div>
@@ -233,11 +220,9 @@
           <button id="common-btn" [class.selected-skills]="showCommonSkills" mat-button (click)="viewCommonSkills()">Common Skills</button>
           <button id="unique-btn" [class.selected-skills]="!showCommonSkills" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
         </ng-container>
-        <div class="meta-wrapper" *ngIf="classSelected">
+        <div class="meta-wrapper class-background" *ngIf="classSelected" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
           <div class="common-skills" *ngIf="showCommonSkills">
             <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
-              <!-- <img class="skill-cards" src="{{ commonSkill.cardImageUrl }}" alt="Common Skill Card"> -->
-              <!-- <p>{{ commonSkill.name }}</p> -->
               <dl (click)="selectSkill(i)">
                 <dt>
                   {{ commonSkill.name }}
@@ -253,8 +238,6 @@
           </div>
           <div class="unique-skills" *ngIf="!showCommonSkills">
             <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
-              <!-- <img class="skill-cards" src="{{ uniqueSkill.cardImageUrl }}" alt="Unique Skill Card">
-              <p>{{ uniqueSkill.name }}</p> -->
               <dl (click)="selectSkill(i)">
                 <dt>
                   {{ uniqueSkill.name }}
@@ -270,8 +253,12 @@
           </div>
           <ng-container *ngIf="skillSelected">
             <div class="skillInfoBoard">
-              <h3>Skill Details: {{ currentSkill.name }}</h3>
-              <span></span>
+              <div class="skill-card-wrapper">
+                <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;">
+                  <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
+                </div>
+              </div>
+              <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span>: {{ currentSkill.description }}</h3>
               <table>
                 <tbody>
                   <tr>
@@ -282,21 +269,32 @@
                     </th>
                     <th>
                       <font>
-                        <font>Req SP</font>
+                        <font>Required SP</font>
                       </font>
                     </th>
                     <th>
                       <font>
-                        <font>Req PLv</font>
+                        <font>Required Level</font>
                       </font>
                     </th>
                     <th>
                       <font>
-                        <font>Req SLv</font>
+                        <font>Similar SL</font>
+                      </font>
+                    </th>
+                    <th>
+                      <font>
+                        <font>Effects</font>
                       </font>
                     </th>
                   </tr>
-                  <tr></tr>
+                  <tr *ngFor="let detail of currentSkill.skillDetails">
+                    <th>{{ detail.rank }}</th>
+                    <td>{{ detail.requiredSkillPoints }}</td>
+                    <td>{{ detail.requiredPlayerLevel }}</td>
+                    <td>{{ detail.similarSkillLevel }}</td>
+                    <td><span *ngFor="let effect of detail.effects.split(', ')">{{ effect }}<br></span></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
