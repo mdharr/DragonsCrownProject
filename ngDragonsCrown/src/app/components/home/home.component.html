@@ -235,10 +235,10 @@
         </ng-container>
         <div class="meta-wrapper" *ngIf="classSelected">
           <div class="common-skills" *ngIf="showCommonSkills">
-            <div class="skillListWrap" *ngFor="let commonSkill of commonSkills">
+            <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
               <!-- <img class="skill-cards" src="{{ commonSkill.cardImageUrl }}" alt="Common Skill Card"> -->
               <!-- <p>{{ commonSkill.name }}</p> -->
-              <dl>
+              <dl (click)="selectSkill(i)">
                 <dt>
                   {{ commonSkill.name }}
                   <span class="btn-base"><mat-icon>close</mat-icon></span>
@@ -252,10 +252,10 @@
             </div>
           </div>
           <div class="unique-skills" *ngIf="!showCommonSkills">
-            <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills">
+            <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
               <!-- <img class="skill-cards" src="{{ uniqueSkill.cardImageUrl }}" alt="Unique Skill Card">
               <p>{{ uniqueSkill.name }}</p> -->
-              <dl>
+              <dl (click)="selectSkill(i)">
                 <dt>
                   {{ uniqueSkill.name }}
                   <span class="btn-base"><mat-icon>close</mat-icon></span>
@@ -268,37 +268,39 @@
               </dl>
             </div>
           </div>
-          <div class="skillInfoBoard">
-            <h3>Skill Details:</h3>
-            <span></span>
-            <table>
-              <tbody>
-                <tr>
-                  <th>
-                    <font>
-                      <font>Rank</font>
-                    </font>
-                  </th>
-                  <th>
-                    <font>
-                      <font>Req SP</font>
-                    </font>
-                  </th>
-                  <th>
-                    <font>
-                      <font>Req PLv</font>
-                    </font>
-                  </th>
-                  <th>
-                    <font>
-                      <font>Req SLv</font>
-                    </font>
-                  </th>
-                </tr>
-                <tr></tr>
-              </tbody>
-            </table>
-          </div>
+          <ng-container *ngIf="skillSelected">
+            <div class="skillInfoBoard">
+              <h3>Skill Details: {{ currentSkill.name }}</h3>
+              <span></span>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>
+                      <font>
+                        <font>Rank</font>
+                      </font>
+                    </th>
+                    <th>
+                      <font>
+                        <font>Req SP</font>
+                      </font>
+                    </th>
+                    <th>
+                      <font>
+                        <font>Req PLv</font>
+                      </font>
+                    </th>
+                    <th>
+                      <font>
+                        <font>Req SLv</font>
+                      </font>
+                    </th>
+                  </tr>
+                  <tr></tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-container>
         </div>
       </div>
       <div class="bdiv">

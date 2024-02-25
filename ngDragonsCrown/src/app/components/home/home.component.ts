@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   totalExp: number = 0;
   commonSkills: Skill[] = [];
   uniqueSkills: Skill[] =[];
+  currentLevel: number = 1;
+  currentSkill: Skill = new Skill();
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selected: boolean = false;
   artworkLoaded: boolean = false;
   showCommonSkills: boolean = true;
+  skillSelected: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -276,4 +279,15 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  selectSkill(skillIndex: number) {
+    this.skillSelected = true;
+    if(this.skillSelected) {
+      if(this.showCommonSkills === true) {
+        this.currentSkill = this.commonSkills[skillIndex];
+      }
+      if(this.showCommonSkills === false) {
+        this.currentSkill = this.uniqueSkills[skillIndex];
+      }
+    }
+  }
 }
