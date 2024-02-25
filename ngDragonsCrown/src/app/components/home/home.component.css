@@ -848,7 +848,7 @@ blockquote ul li {
   width: 100%;
   border: 1px solid rgb(202, 179, 92);
   background-color: rgba(0, 0, 0, 0.8);
-  padding: 8px;
+  padding: 5px 10px;
 }
 
 .skill-cards {
@@ -882,6 +882,7 @@ blockquote ul li {
   flex-wrap: wrap;
   gap: 15px;
   flex-direction: column;
+  margin-top: 15px;
 }
 
 .unique-skills {
@@ -889,6 +890,7 @@ blockquote ul li {
   flex-wrap: wrap;
   gap: 15px;
   flex-direction: column;
+  margin-top: 15px;
 }
 
 .skill-box {
@@ -987,7 +989,7 @@ ol {
   list-style: none;
 }
 
-dd, ol {
+dd, ol, table, tbody, th {
   margin: 0;
   padding: 0;
   border: 0;
@@ -1017,11 +1019,38 @@ dd, ol {
   margin-left: 25px;
   padding: 5px 10px;
   border: 1px solid #666;
-  width: 428px;
+  /* width: 428px; */
+  width: 100%;
   min-height: 300px;
   background: #fff;
   float: left;
   display: block;
   z-index: 100;
   position: relative;
+  margin-bottom: 15px;
+}
+
+.skillInfoBoard table {
+  margin-bottom: 15px;
+  width: 100%;
+  font-size: 12px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.skillInfoBoard table th {
+  padding: 5px 10px;
+  background: #999;
+  text-align: left;
+  border: 1px solid #666;
+}
+
+.skillInfoBoard h3 {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 5px 10px;
+  color: #333;
 }
