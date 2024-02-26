@@ -254,9 +254,10 @@
           <ng-container *ngIf="skillSelected">
             <div class="skillInfoBoard">
               <div class="skill-card-wrapper">
-                <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;">
+                <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
                   <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
                 </div>
+                <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder>
               </div>
               <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span>: {{ currentSkill.description }}</h3>
               <table>

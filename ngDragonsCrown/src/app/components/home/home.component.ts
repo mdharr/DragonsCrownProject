@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   showCommonSkills: boolean = true;
   skillSelected: boolean = false;
   currentSkillEffects: string[] = [];
+  skillCardLoaded: boolean = false;
+
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -288,16 +290,35 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  selectSkill(skillIndex: number, skillType: 'common' | 'unique') {
-    this.selectedSkill = { index: skillIndex, type: skillType };
-    this.skillSelected = true;
+  // selectSkill(skillIndex: number, skillType: 'common' | 'unique') {
+  //   this.selectedSkill = { index: skillIndex, type: skillType };
+  //   this.skillSelected = true;
+  //   this.skillCardLoaded = false;
 
+  //   this.toggleGlassEffect();
+
+  //   if (skillType === 'common') {
+  //     this.currentSkill = this.commonSkills[skillIndex];
+  //   } else {
+  //     this.currentSkill = this.uniqueSkills[skillIndex];
+  //   }
+  // }
+
+  async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
+    this.skillSelected = true;
+    this.skillCardLoaded = false; // Assume not loaded initially
     this.toggleGlassEffect();
 
-    if (skillType === 'common') {
-      this.currentSkill = this.commonSkills[skillIndex];
-    } else {
-      this.currentSkill = this.uniqueSkills[skillIndex];
+    const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
+    this.currentSkill = skill;
+
+    try {
+      await this.preloadImage(skill.cardImageUrl);
+      this.skillCardLoaded = true; // Image loaded successfully
+      // Perform further actions now that the image is loaded
+    } catch (error) {
+      console.error('Image loading failed', error);
+      // Handle image load failure
     }
   }
 
@@ -313,4 +334,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  preloadImage(url: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
 }
