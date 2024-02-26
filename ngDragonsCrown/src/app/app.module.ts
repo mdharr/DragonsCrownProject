@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { CardPlaceholderComponent } from './components/card-placeholder/card-placeholder.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ScrollToTopButtonComponent,
     SafeUrlPipe,
     NavbarComponent,
+    CardPlaceholderComponent,
   ],
   imports: [
     BrowserModule,
