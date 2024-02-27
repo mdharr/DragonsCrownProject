@@ -186,6 +186,46 @@ CREATE TABLE IF NOT EXISTS `player_class_has_skill` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `quest`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `quest` ;
+
+CREATE TABLE IF NOT EXISTS `quest` (
+  `id` INT NOT NULL,
+  `name` TEXT NULL,
+  `skill_points` INT NULL,
+  `description` TEXT NULL,
+  `location` TEXT NULL,
+  `path` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `player_class_has_quest`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `player_class_has_quest` ;
+
+CREATE TABLE IF NOT EXISTS `player_class_has_quest` (
+  `player_class_id` INT NOT NULL,
+  `quest_id` INT NOT NULL,
+  PRIMARY KEY (`player_class_id`, `quest_id`),
+  INDEX `fk_player_class_has_quests_quests1_idx` (`quest_id` ASC),
+  INDEX `fk_player_class_has_quests_player_class1_idx` (`player_class_id` ASC),
+  CONSTRAINT `fk_player_class_has_quests_player_class1`
+    FOREIGN KEY (`player_class_id`)
+    REFERENCES `player_class` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_player_class_has_quests_quests1`
+    FOREIGN KEY (`quest_id`)
+    REFERENCES `quest` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS dragonscrown@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -1215,6 +1255,374 @@ INSERT INTO `player_class_has_skill` (`player_class_id`, `skill_id`) VALUES (2, 
 INSERT INTO `player_class_has_skill` (`player_class_id`, `skill_id`) VALUES (2, 31);
 INSERT INTO `player_class_has_skill` (`player_class_id`, `skill_id`) VALUES (2, 32);
 INSERT INTO `player_class_has_skill` (`player_class_id`, `skill_id`) VALUES (2, 33);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `quest`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `dragonscrowndb`;
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (1, 'Help the Honey Buzzards', 1, 'At Ancient Temple Ruins, destroy the orcs\' cargo found at the harbor.', 'Ancient Temple Ruins', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (2, 'Beastmaster', 1, 'Kill 10 enemies while riding atop a dragonlisk or sabertooth.', 'Old Capital / Lost Woods', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (3, 'Delicacy Delivery', 1, 'Collect 10 spores from the myconids.', 'Wallace\'s Underground Labyrinth', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (4, 'Reclamation of Honor', 1, 'At Bilbaron Subterranean Fortress, open the treasure chests without waking the sleeping orcs.', 'Bilbaron Subterranean Fortress', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (5, 'Morgan\'s Web', 1, 'Slay giant spiders and gather 5 strands of spider silk.', 'Ancient Temple Ruins / Old Capital / Castle of the Dead: Catacombs', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (6, 'Ship Sleuthing', 1, 'Search for clues aboard the famed Elliot at Ghost Ship Cove.', 'Ghost Ship Cove', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (7, 'Must Love Hellhounds', 1, 'Withstand 5 attacks from a hellhound.', 'Forgotten Sanctuary / Mage\'s Tower', 'A (also B in Forgotten Sanctuary)');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (8, 'Henritta\'s Automatic Doll', 1, 'On the first floor of Mage\'s Tower, deflect magic with a giant shield and look for a doll in the opened room.', 'Mage\'s Tower', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (9, 'Forest Clearing', 1, 'At Lost Woods, destroy 30 wood golems.', 'Lost Woods', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (10, 'The Owlbear Menace', 1, 'Slay 10 owlbears.', 'Ancient Temple Ruins / Lost Woods / Mage\'s Tower', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (11, 'Search and Resurrection', 2, 'Resurrect 30 sets of bones at the Canaan Temple.', 'Canaan Temple', 'N/A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (12, 'Harpy Adoption', 1, 'At the Ancient Temple Ruins, defeat the harpy without destroying the nest.', 'Ancient Temple Ruins', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (13, 'Steal Wyvern Eggs', 1, 'At Old Capital, collect 12 eggs dropped by female wyverns.', 'Old Capital', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (14, 'Doom Cocoons', 1, 'At Wallace\'s Underground Labyrinth, smash 5 doom beetle cocoons.', 'Wallace\'s Underground Labyrinth', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (15, 'Rescue the Children', 1, 'At Bilbaron Subterranean Fortress, defeat the minotaur within two minutes.', 'Bilbaron Subterranean Fortress', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (16, 'Save the Seamstresses', 1, 'At Castle of the Dead: Catacombs, save the girls and protect them from the vampires.', 'Castle of the Dead: Catacombs', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (17, 'Release the Genie', 1, 'At Ghost Ship Cove, use the magic lamp to call the genie 3 times.', 'Ghost Ship Cove', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (18, 'Decipher Golem Runes', 1, 'At Forgotten Sanctuary, destroy the enemy golem without activating the runes.', 'Forgotten Sanctuary', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (19, 'Peer into the Past', 1, 'At Mage\'s Tower, defeat the warlock leader of the underground organization alone.', 'Mage\'s Tower', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (20, 'Soul Gazing', 1, 'At Lost Woods, equip the urn and defeat a gazer alone.', 'Lost Woods\n', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (21, 'Crush Hydeland\'s Enemies', 1, 'Defeat 10 gladiators.', 'Forgotten Sanctuary / Mage\'s Tower / Lost Woods', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (22, 'A Midsummer Day\'s Request', 3, 'Free 10 fairies trapped in cages in various locations.', 'Any', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (23, 'Rite of Passage', 1, 'Wear the Amazons\' ritual armor and slay 50 orcs.', 'Ancient Temple Ruins / Old Capital / Bilbaron Subterranean Fortress', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (24, 'Draconic History', 2, 'Investigate the room behind the wall painting within Ancient Temple Ruins.', 'Ancient Temple Ruins', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (25, 'Kill Killer Fish', 1, 'Slay 10 killer fish.', 'Old Capital / Lost Woods', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (26, 'Reacquire Research', 1, 'In a lab of Wallace\'s Underground Labyrinth, step on the floor switches in the proper order to open the chest.', 'Wallace\'s Underground Labyrinth', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (27, 'Flying Fortress Blueprints', 1, 'Find the treasure chest hidden in Bilbaron Subterranean Fortress that contains the blueprint.', 'Bilbaron Subterranean Fortress', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (28, 'Best of the Dead', 1, 'Defeat 5 dark skeleton swordsmen wights.', 'Ancient Temple Ruins / Old Capital / Wallace\'s Underground Labyrinth / Castle of the Dead: Catacombs / Ghost Ship Cove / Forgotten Sanctuary / Lost Woods', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (29, 'Open Sesame', 2, 'Open the stone entrance somewhere in Ghost Ship Cove with rune magic.', 'Ghost Ship Cove', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (30, 'Harpy Problems', 1, 'Investigate Ancient Temple Ruins alone and defeat the harpy.', 'Ancient Temple Ruins', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (31, 'Mysterious Whispers', 1, 'Investigate the hidden room at Old Capital and obtain treasure.', 'Old Capital', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (32, 'Lima Ray\'s Resurrection', 2, 'Snuff the candles in the room with the magic circle at Wallace\'s Underground Labyrinth and search the statue of the false god.', 'Wallace\'s Underground Labyrinth', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (33, 'Church Cover-up', 1, 'At Castle of the Dead: Catacombs, defeat all vampires within two minutes.', 'Castle of the Dead: Catacombs', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (34, 'Hunt for the Forbidden Text', 1, 'At Mage\'s Tower, search the bookcase of the official and knock to open the hidden library.', 'Mage\'s Tower', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (35, 'Dead Master\'s Party', 1, 'At Castle of the Dead: Catacombs, turn three times clockwise in front of the ghost and dance.', 'Castle of the Dead: Catacombs', 'Any');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (36, 'Crystal Collection', 1, 'Obtain 20 amethysts from the crystal outcropping.', 'Lost Woods', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (37, 'Informer', 1, 'At Forgotten Sanctuary in the room with the blue door, show \"death\" with the runes to obtain information.', 'Forgotten Sanctuary', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (38, 'A Monk\'s Struggle', 1, 'At Forgotten Sanctuary, destroy the false god statue.', 'Forgotten Sanctuary', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (39, 'Magic Carpet Secrets', 1, 'At Mage\'s Tower, look for a tool used in magic carpet construction.', 'Mage\'s Tower', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (40, 'Submerged Memories', 1, 'At Lost Woods, steer a small boat into the vortex.', 'Lost Woods', 'A');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (41, 'Living Fossil', 1, 'Look for a young great sea serpent in the shallow waters of Ghost Ship Cove.', 'Ghost Ship Cove', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (42, 'Looks Can Kill', 1, 'At Ancient Temple Ruins, challenge Medusa alone and defeat her.', 'Ancient Temple Ruins', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (43, 'Cyclops Problems', 1, 'At Wallace\'s Underground Labyrinth, close the door to the cyclopes\' prison alone.', 'Wallace\'s Underground Labyrinth', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (44, 'Breach Gargoyle Gate', 1, 'Go to Gargoyle Gate at Bilbaron Subterranean Fortress alone and destroy it without anyone\'s help.', 'Bilbaron Subterranean Fortress', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (45, 'Family Matters', 1, 'At Castle of the Dead: Catacombs, defeat the wraith within two minutes.', 'Castle of the Dead: Catacombs', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (46, 'A Beast Most Foul', 1, 'Without anyone else\'s assistance, defeat the Killer Rabbit at Lost Woods.', 'Mage\'s Tower', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (47, 'Unnatural Life', 1, 'At Mage\'s Tower, defeat a chimera alone.', 'Mage\'s Tower', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (48, 'Myth Buster', 1, 'Go alone to Ghost Ship Cove and defeat the kraken.', 'Ghost Ship Cove', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (49, 'Contract Renegotiations', 1, 'At Forgotten Sanctuary, defeat the Arch Demon alone.', 'Forgotten Sanctuary', 'B');
+INSERT INTO `quest` (`id`, `name`, `skill_points`, `description`, `location`, `path`) VALUES (50, 'Bear Witness', 1, 'At Old Capital, challenge the red dragon alone and defeat it within the treasure room.', 'Old Capital', 'B');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `player_class_has_quest`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `dragonscrowndb`;
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 1);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 2);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 3);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 4);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 5);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 6);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 7);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 8);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 9);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 10);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 11);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 12);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 13);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 14);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 15);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 16);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 17);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 18);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 19);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 20);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 21);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 22);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 23);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 24);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 25);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 26);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 27);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 28);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 29);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 30);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 31);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 32);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 33);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 34);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 35);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 36);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 37);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 38);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 39);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 40);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 41);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 42);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 43);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 44);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 45);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 46);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 47);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 48);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 49);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (1, 50);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 1);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 2);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 3);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 4);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 5);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 6);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 7);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 8);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 9);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 10);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 11);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 12);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 13);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 14);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 15);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 16);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 17);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 18);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 19);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 20);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 21);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 22);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 23);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 24);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 25);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 26);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 27);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 28);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 29);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 30);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 31);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 32);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 33);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 34);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 35);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 36);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 37);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 38);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 39);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 40);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 41);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 42);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 43);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 44);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 45);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 46);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 47);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 48);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 49);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (2, 50);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 1);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 2);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 3);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 4);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 5);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 6);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 7);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 8);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 9);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 10);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 11);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 12);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 13);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 14);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 15);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 16);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 17);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 18);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 19);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 20);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 21);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 22);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 23);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 24);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 25);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 26);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 27);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 28);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 29);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 30);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 31);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 32);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 33);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 34);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 35);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 36);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 37);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 38);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 39);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 40);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 41);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 42);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 43);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 44);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 45);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 46);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 47);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 48);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 49);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (3, 50);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 1);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 2);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 3);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 4);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 5);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 6);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 7);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 8);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 9);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 10);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 11);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 12);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 13);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 14);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 15);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 16);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 17);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 18);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 19);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 20);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 21);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 22);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 23);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 24);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 25);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 26);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 27);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 28);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 29);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 30);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 31);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 32);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 33);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 34);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 35);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 36);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 37);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 38);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 39);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 40);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 41);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 42);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 43);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 44);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 45);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 46);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 47);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 48);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 49);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (4, 50);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 1);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 2);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 3);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 4);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 5);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 6);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 7);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 8);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 9);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 10);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 11);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 12);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 13);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 14);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 15);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 16);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 17);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 18);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 19);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 20);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 21);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 22);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 23);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 24);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 25);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 26);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 27);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 28);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 29);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 30);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 31);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 32);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 33);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 34);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 35);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 36);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 37);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 38);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 39);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 40);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 41);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 42);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 43);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 44);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 45);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 46);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 47);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 48);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 49);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (5, 50);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 1);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 2);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 3);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 4);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 5);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 6);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 7);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 8);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 9);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 10);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 11);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 12);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 13);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 14);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 15);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 16);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 17);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 18);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 19);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 20);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 21);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 22);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 23);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 24);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 25);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 26);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 27);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 28);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 29);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 30);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 31);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 32);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 33);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 34);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 35);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 36);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 37);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 38);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 39);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 40);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 41);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 42);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 43);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 44);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 45);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 46);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 47);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 48);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 49);
+INSERT INTO `player_class_has_quest` (`player_class_id`, `quest_id`) VALUES (6, 50);
 
 COMMIT;
 
