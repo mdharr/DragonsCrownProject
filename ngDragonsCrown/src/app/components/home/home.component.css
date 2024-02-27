@@ -968,7 +968,6 @@ blockquote ul li {
   flex-wrap: wrap;
   gap: 15px;
   flex-direction: column;
-  margin-top: 15px;
 }
 
 .unique-skills {
@@ -976,7 +975,15 @@ blockquote ul li {
   flex-wrap: wrap;
   gap: 15px;
   flex-direction: column;
-  margin-top: 15px;
+  /* margin-top: 15px; */
+}
+
+.remaining-sp {
+  font-family: Oswald, serif;
+  letter-spacing: 0.05rem;
+  margin-bottom: 5px;
+  padding-top: 0;
+  color: #cab35c;
 }
 
 .skill-box {
@@ -1109,7 +1116,7 @@ dd, ol, table, tbody, th {
   -webkit-box-sizing: border-box;
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
-  margin-top: 15px;
+  margin-top: 29px;
   margin-left: 25px;
   padding: 5px 10px;
   padding-top: 20px;
@@ -1316,12 +1323,15 @@ table {
 .quests-wrapper table {
   width: 100%;
   border-collapse: collapse;
+  border: 1px solid;
+    margin-top: 4px;
 }
 
 .quests-wrapper th, td {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid #ddd; /* Add a light border for each row */
+  font-size: 11px;
 }
 
 .quests-wrapper th {
@@ -1351,10 +1361,19 @@ table {
   background-color: #45a049; /* Darker shade on hover */
 }
 
-.quests-wrapper p {
+.quests-wrapper span {
   /* margin-top: 20px; */
   font-family: Oswald, serif;
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
   padding-top: 0;
+  color: #cab35c;
+}
+
+.quests-wrapper tr th {
+  vertical-align: middle;
+}
+
+.quests-wrapper tr td {
+  vertical-align: middle;
 }
