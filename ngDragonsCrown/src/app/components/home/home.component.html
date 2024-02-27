@@ -42,11 +42,6 @@
           Let us begin your journey...
           I wish you good luck."</p>
         <hr style="margin-bottom:0;">
-        <!-- Button to open modal -->
-        <!-- your-parent.component.html -->
-        <button (click)="showModal()">Select Quests</button>
-        <!-- Inside your home component template -->
-        <app-quest-modal *ngIf="isModalVisible" [quests]="quests" (close)="handleModalClose()"></app-quest-modal>
 
         <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">Select a class to get started:</p>
         <!-- In your component template -->
@@ -181,7 +176,7 @@
                   <span>Level Up</span>
                   <span>Total</span>
                 </div> -->
-                <div>
+                <div style="margin-top: 10px;">
                   <label for="">EXP</label>
                   <div class="exp-box">
                     <div style="display: flex; flex-direction: column; align-items: flex-start;">
@@ -233,10 +228,15 @@
         </div>
         <ng-container *ngIf="classSelected">
           <hr>
-          <button id="common-btn" [class.selected-skills]="showCommonSkills" mat-button (click)="viewCommonSkills()">Common Skills</button>
-          <button id="unique-btn" [class.selected-skills]="!showCommonSkills" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+          <button id="common-btn" [class.selected-skills]="showCommonSkills && !viewQuests" mat-button (click)="viewCommonSkills()">Common Skills</button>
+          <button id="unique-btn" [class.selected-skills]="!showCommonSkills && !viewQuests" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+          <button id="quests-btn" [class.selected-skills]="viewQuests" mat-button (click)="viewQuestList()">View Quests</button>
+          <!-- <span>Available Skill Points: {{ currentQuestSP }}</span>
+          <span (click)="showModal()">Quests</span>
+          <app-quest-modal *ngIf="isModalVisible" [quests]="quests" (close)="handleModalClose()" (totalSkillPointsChange)="updateTotalSkillPoints($event)"></app-quest-modal> -->
         </ng-container>
-        <div class="meta-wrapper class-background" *ngIf="classSelected" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+          <p>Total SP: {{ totalAvailableSP }}</p>
           <div class="common-skills" *ngIf="showCommonSkills">
             <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
               <dl (click)="selectSkill(i, 'common')">
@@ -267,7 +267,7 @@
               </dl>
             </div>
           </div>
-          <ng-container *ngIf="skillSelected">
+          <ng-container *ngIf="skillSelected && !viewQuests">
             <div class="skillInfoBoard">
               <div class="skill-card-wrapper">
                 <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
@@ -317,9 +317,43 @@
             </div>
           </ng-container>
         </div>
+        <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+          <div class="quests-wrapper">
+            <p>Quest Skill Points: {{ calculateTotalSkillPoints() }}</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox"
+                           [checked]="areAllQuestsSelected()"
+                           (change)="toggleAllQuests($event)">
+                  </th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>SP</th>
+                  <th>Location</th>
+                  <th>Path</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let quest of quests">
+                  <td>
+                    <input type="checkbox"
+                           [checked]="quest.selected"
+                           (change)="toggleQuest(quest)">
+                  </td>
+                  <td>{{ quest.name }}</td>
+                  <td>{{ quest.description }}</td>
+                  <td>{{ quest.skillPoints }}</td>
+                  <td>{{ quest.location }}</td>
+                  <td>{{ quest.path }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="bdiv">
-        <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->
         <img src="https://media.discordapp.net/attachments/1080302897599877181/1207690958032871454/gold_bottom_pattern.png?ex=65e090da&is=65ce1bda&hm=a0b04199b6d535a3e5eda1e27729cc80f9f2268c0862fcc9028bc5ef1063ea1a&=&format=webp&quality=lossless&width=1784&height=86" alt="">
       </div>
     </div>
@@ -331,48 +365,4 @@
     </div>
   </div>
 </div>
-
-<!-- <div *ngFor="let quest of quests">
-  <input type="checkbox"
-         [checked]="isQuestSelected(quest)"
-         (change)="toggleQuest(quest)">
-  {{ quest.name }} ({{ quest.skillPoints }} SP)
-</div>
-
-<p>Total Skill Points: {{ calculateTotalSkillPoints() }}</p> -->
-
-
-<!-- <div class="modal" *ngIf="showModal" [class.show]="showModal">
-  <div class="modalInner">
-    <h2>Quest Info <span class="modalClose" (click)="closeQuestsModal()">X</span></h2>
-    <div class="questInfo">
-      <p>Total <span>{{ quests.length }}</span></p>
-    </div>
-    <table class="questListTable">
-      <colgroup>
-        <col width="30px">
-        <col width="200px">
-        <col width="200px">
-        <col width="80px">
-        <col>
-      </colgroup>
-      <tbody>
-        <tr>
-          <th><input type="checkbox" [(ngModel)]="allChecked" (change)="toggleAll($event)"></th>
-          <th>Location</th>
-          <th>Name</th>
-          <th>SP Earned</th>
-          <th>Description</th>
-        </tr>
-        <tr *ngFor="let quest of quests; trackBy: trackByQuestId; let i = index">
-          <td><input type="checkbox" [(ngModel)]="quest.isComplete" (change)="checkQuest(i, $event)"></td>
-          <td>{{ quest.location + " " + quest.path }}</td>
-          <td>{{ quest.name }}</td>
-          <td>{{ quest.skillPoints }}</td>
-          <td>{{ quest.description }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->
 

@@ -15,7 +15,6 @@ import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/sc
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardPlaceholderComponent } from './components/card-placeholder/card-placeholder.component';
-import { QuestModalComponent } from './components/quest-modal/quest-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { QuestModalComponent } from './components/quest-modal/quest-modal.compon
     SafeUrlPipe,
     NavbarComponent,
     CardPlaceholderComponent,
-    QuestModalComponent,
   ],
   imports: [
     BrowserModule,

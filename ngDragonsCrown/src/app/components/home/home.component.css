@@ -403,7 +403,7 @@
   background-color: rgba(21, 43, 56, 0.2);
 }
 
-input {
+.player-level input {
   text-align: center;
   border: 1px #555 solid;
   border-radius: 0;
@@ -415,7 +415,7 @@ input {
   -webkit-tap-highlight-color: transparent;
 }
 
-input {
+.player-level input {
   /* background: rgb(21 43 56); */
   background-color: rgba(21, 43, 56, 0.2);
 }
@@ -513,7 +513,7 @@ label {
   border-radius: 0;
   color: #ccc;
   margin: 0;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   padding: 0;
   vertical-align: middle;
   -webkit-appearance: none;
@@ -634,6 +634,9 @@ html {
   top: -70px;
 }
 
+#class-name {
+  letter-spacing: 0.1rem;
+}
 
 .class-background {
   position: relative;
@@ -929,7 +932,7 @@ blockquote ul li {
 #unique-btn {
   border: 1px solid transparent;
   margin-bottom: -1px;
-  border-radius: 0 6px 0 0;
+  border-radius: 0 0 0 0;
   width: 125px;
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
@@ -939,6 +942,23 @@ blockquote ul li {
 }
 
 #unique-btn:hover {
+  background-color:rgba(153, 153, 153, 0.278);
+  border: 1px solid #fff;
+}
+
+#quests-btn {
+  border: 1px solid transparent;
+  margin-bottom: -1px;
+  border-radius: 0 6px 0 0;
+  width: 125px;
+  font-family: Oswald, serif;
+  text-rendering: geometricprecision;
+  letter-spacing: 0.1rem;
+  background-color:rgba(153, 153, 153, 0.088);
+  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+}
+
+#quests-btn:hover {
   background-color:rgba(153, 153, 153, 0.278);
   border: 1px solid #fff;
 }
@@ -1292,3 +1312,49 @@ table {
 
 
 /* QUESTS MODAL END */
+
+.quests-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.quests-wrapper th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd; /* Add a light border for each row */
+}
+
+.quests-wrapper th {
+  background-color: #333; /* Darker shade for headers */
+  color: #fff;
+}
+
+.quests-wrapper tr:hover {
+  background-color: #666; /* Highlight rows on hover */
+}
+
+.quests-wrapper input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.quests-wrapper button {
+  background-color: #4CAF50; /* Green background for the close button */
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0; /* Space out the button from the table */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.quests-wrapper button:hover {
+  background-color: #45a049; /* Darker shade on hover */
+}
+
+.quests-wrapper p {
+  /* margin-top: 20px; */
+  font-family: Oswald, serif;
+  letter-spacing: 0.05rem;
+  margin-bottom: 5px;
+  padding-top: 0;
+}

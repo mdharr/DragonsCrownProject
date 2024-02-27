@@ -27,6 +27,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedSkill: { index: number | null, type: 'common' | 'unique' | null } = { index: null, type: null };
   quests: Quest[] = [];
   selectedQuests: Quest[] = [];
+  // currentSkillPoints: number = 0;
+  currentQuestSP: number = 0;
+  currentLevelSP: number = 0;
+  totalAvailableSP: number = 0;
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -43,6 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentSkillEffects: string[] = [];
   skillCardLoaded: boolean = false;
   isModalVisible = false;
+  viewQuests: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -93,7 +98,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.playerClassSubscription = this.playerClassService.indexAll().subscribe({
       next: (data) => {
         this.playerClasses = data;
-        // console.log(this.playerClasses);
       },
       error: (fail) => {
         console.error('Error retrieving player classes data');
@@ -129,6 +133,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillSelected = false;
     this.currentSkill = new Skill();
     this.selectedSkill = { index: null, type: null };
+    this.viewQuests = false;
+    this.currentLevelSP = 1;
 
     if(this.classSelected) {
       this.selected = true;
@@ -149,8 +155,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.showCommonSkills = true;
 
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
-      // Reset currentStats to the initial state for the newly selected class
+
       this.currentStats = { ...this.currentClassData.classStats[0] };
+      this.updateSkillPoints();
+
       console.log(this.currentClassData);
       console.log(this.currentStats);
 
@@ -163,13 +171,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.artworkLoaded = true;
   }
 
-  // Modify level change methods to ensure they are updating the view based on the model correctly
   levelUp(): void {
     if (!this.currentStats) {
       console.error('Current stats not defined');
       return;
     }
-    // Ensure newLevel calculation uses a number from currentStats
     const newLevel = Number(this.currentStats.level) + 1;
     this.updateLevel(newLevel);
   }
@@ -195,12 +201,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       console.error('Stats for level', validLevel, 'not found');
     }
+    this.updateSkillPoints();
     this.calculateTotalExperience();
   }
 
   onLevelChange(): void {
     const enteredLevel = Number(this.currentStats.level);
-    // Call updateLevel with the sanitized, numeric level value
     this.updateLevel(enteredLevel);
   }
 
@@ -211,22 +217,18 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         return;
     }
 
-    // Clear existing text content
     element.textContent = '';
 
-    // If there's an ongoing typing animation, clear the timeout
     if (this.currentTimeoutId !== null) {
         clearTimeout(this.currentTimeoutId);
         this.currentTimeoutId = null;
     }
 
     for (let i = 0; i < input.length; i++) {
-        // Check if we should stop the typing animation
         if (this.currentTimeoutId === null && i !== 0) {
             return;
         }
 
-        // Wait for a bit before typing the next character
         await new Promise<void>((resolve) => {
             this.currentTimeoutId = window.setTimeout(() => {
                 element.textContent += input[i];
@@ -235,7 +237,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
 
-    // Reset the timeout ID to allow for new typing animations
     this.currentTimeoutId = null;
   }
 
@@ -246,8 +247,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.tooltipVisible = true;
     this.tooltipUrl = gifUrl;
     this.tooltipIndex = index;
-    this.tooltipTop = rect.top + window.scrollY - element.offsetHeight; // This should be a number
-    this.tooltipLeft = rect.left + window.scrollX; // This should be a number
+    this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
+    this.tooltipLeft = rect.left + window.scrollX;
   }
 
   hideTooltip(): void {
@@ -267,8 +268,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   calculateTotalExperience() {
     const level = this.currentStats.level - 1;
     let total = 0;
-    // console.log("CURRENT LEVEL:" + level);
-    // console.log(this.currentClassData.classStats[level].requiredExp);
     for(let i = level; i >= 1; i--) {
       total += this.currentClassData.classStats[level].requiredExp
     }
@@ -276,7 +275,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   viewCommonSkills() {
-    if(this.showCommonSkills === false) {
+    if(this.showCommonSkills === false || this.showCommonSkills === true) {
+      this.viewQuests = false;
       this.showCommonSkills = true;
       const commonBtn = document.querySelector('#common-btn');
       const uniqueBtn = document.querySelector('#unique-btn');
@@ -286,7 +286,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   viewUniqueSkills() {
-    if(this.showCommonSkills === true) {
+    if(this.showCommonSkills === true || this.showCommonSkills === false) {
+      this.viewQuests = false;
       this.showCommonSkills = false;
       const commonBtn = document.querySelector('#common-btn');
       const uniqueBtn = document.querySelector('#unique-btn');
@@ -295,19 +296,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  // selectSkill(skillIndex: number, skillType: 'common' | 'unique') {
-  //   this.selectedSkill = { index: skillIndex, type: skillType };
-  //   this.skillSelected = true;
-  //   this.skillCardLoaded = false;
-
-  //   this.toggleGlassEffect();
-
-  //   if (skillType === 'common') {
-  //     this.currentSkill = this.commonSkills[skillIndex];
-  //   } else {
-  //     this.currentSkill = this.uniqueSkills[skillIndex];
-  //   }
-  // }
+  viewQuestList() {
+    this.viewQuests = true;
+  }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
     this.selectedSkill = { index: skillIndex, type: skillType };
@@ -349,22 +340,36 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  toggleQuest(selectedQuest: Quest): void {
-    // Find the quest to toggle based on some identifier, like an id
-    const quest = this.quests.find(quest => quest.id === selectedQuest.id);
-    if (quest) {
-      quest.selected = !quest.selected; // Toggle the selected state
-    }
-    // Optionally, perform additional logic here, like updating a service or emitting an event
+  isQuestSelected(quest: Quest): boolean {
+    return false;
   }
 
-  handleModalClose() {
-    this.isModalVisible = false; // Hide modal when closed
+  calculateTotalSkillPoints(): number {
+    return this.quests
+      .filter(quest => quest.selected)
+      .reduce((acc, quest) => acc + quest.skillPoints, 0);
   }
 
-  // Example method to show modal
-  showModal() {
-    this.isModalVisible = true;
+  toggleQuest(quest: Quest): void {
+    quest.selected = !quest.selected;
+    this.calculateTotalSkillPoints();
+    this.updateSkillPoints();
   }
 
+  toggleAllQuests(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const selected = target.checked;
+    this.quests.forEach(quest => {
+      quest.selected = selected;
+    });
+    this.updateSkillPoints();
+  }
+
+  areAllQuestsSelected(): boolean {
+    return this.quests.every(quest => quest.selected);
+  }
+
+  updateSkillPoints() {
+    this.totalAvailableSP = this.currentStats.skillPoints + this.calculateTotalSkillPoints();
+  }
 }
