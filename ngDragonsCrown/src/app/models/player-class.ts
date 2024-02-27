@@ -1,5 +1,7 @@
 import { ClassStats } from "./class-stats";
+import { Quest } from "./quest";
 import { Recommendation } from "./recommendation";
+import { Skill } from "./skill";
 import { StatScaling } from "./stat-scaling";
 
 export class PlayerClass {
@@ -17,10 +19,11 @@ export class PlayerClass {
   hqArtworkUrl: string;
   spriteStartUrl: string;
   spriteEndUrl: string;
-
   classStats: ClassStats[];
   recommendations: Recommendation[];
   statScaling: StatScaling;
+  skills: Skill[];
+  quests: Quest[];
 
   constructor(
     id: number = 0,
@@ -38,7 +41,9 @@ export class PlayerClass {
     spriteEndUrl: string = '',
     classStats: ClassStats[] = [],
     recommendations: Recommendation[] = [],
-    statScaling: StatScaling = new StatScaling()
+    statScaling: StatScaling = new StatScaling(),
+    skills: Skill[] = [],
+    quests: Quest[] = []
   ) {
     this.id = id;
     this.name = name;
@@ -56,5 +61,7 @@ export class PlayerClass {
     this.classStats = classStats;
     this.recommendations = recommendations;
     this.statScaling = statScaling;
+    this.skills = skills;
+    this.quests = quests;
   }
 }
