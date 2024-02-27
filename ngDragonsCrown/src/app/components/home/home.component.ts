@@ -5,6 +5,7 @@ import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, QueryL
 import { PlayerClass } from 'src/app/models/player-class';
 import { Subscription } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
+import { Quest } from 'src/app/models/quest';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentSkill: Skill = new Skill();
   selectedSkillIndex: number | null = null;
   selectedSkill: { index: number | null, type: 'common' | 'unique' | null } = { index: null, type: null };
+  quests: Quest[] = [];
+  selectedQuests: Quest[] = [];
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -39,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillSelected: boolean = false;
   currentSkillEffects: string[] = [];
   skillCardLoaded: boolean = false;
-
+  isModalVisible = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -140,6 +143,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.uniqueSkills = this.currentClassData.skills
         .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === false)
         .map((skillObj: { skill: any }) => skillObj.skill);
+
+      this.quests = this.currentClassData.quests.map((questObj: { quest: any }) => questObj.quest);
 
       this.showCommonSkills = true;
 
@@ -343,4 +348,23 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       img.src = url;
     });
   }
+
+  toggleQuest(selectedQuest: Quest): void {
+    // Find the quest to toggle based on some identifier, like an id
+    const quest = this.quests.find(quest => quest.id === selectedQuest.id);
+    if (quest) {
+      quest.selected = !quest.selected; // Toggle the selected state
+    }
+    // Optionally, perform additional logic here, like updating a service or emitting an event
+  }
+
+  handleModalClose() {
+    this.isModalVisible = false; // Hide modal when closed
+  }
+
+  // Example method to show modal
+  showModal() {
+    this.isModalVisible = true;
+  }
+
 }

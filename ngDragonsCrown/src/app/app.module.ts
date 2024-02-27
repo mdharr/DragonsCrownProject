@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +15,7 @@ import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/sc
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardPlaceholderComponent } from './components/card-placeholder/card-placeholder.component';
-import { QuestsModalComponent } from './components/quests-modal/quests-modal.component';
+import { QuestModalComponent } from './components/quest-modal/quest-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { QuestsModalComponent } from './components/quests-modal/quests-modal.com
     SafeUrlPipe,
     NavbarComponent,
     CardPlaceholderComponent,
-    QuestsModalComponent,
+    QuestModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,9 @@ import { QuestsModalComponent } from './components/quests-modal/quests-modal.com
     NgbModule,
     MatIconModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

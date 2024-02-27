@@ -41,7 +41,13 @@
           No matter how brave you are, it’s not safe to go alone.
           Let us begin your journey...
           I wish you good luck."</p>
-          <hr style="margin-bottom:0;">
+        <hr style="margin-bottom:0;">
+        <!-- Button to open modal -->
+        <!-- your-parent.component.html -->
+        <button (click)="showModal()">Select Quests</button>
+        <!-- Inside your home component template -->
+        <app-quest-modal *ngIf="isModalVisible" [quests]="quests" (close)="handleModalClose()"></app-quest-modal>
+
         <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">Select a class to get started:</p>
         <!-- In your component template -->
         <div class="portraits">
@@ -326,4 +332,47 @@
   </div>
 </div>
 
+<!-- <div *ngFor="let quest of quests">
+  <input type="checkbox"
+         [checked]="isQuestSelected(quest)"
+         (change)="toggleQuest(quest)">
+  {{ quest.name }} ({{ quest.skillPoints }} SP)
+</div>
+
+<p>Total Skill Points: {{ calculateTotalSkillPoints() }}</p> -->
+
+
+<!-- <div class="modal" *ngIf="showModal" [class.show]="showModal">
+  <div class="modalInner">
+    <h2>Quest Info <span class="modalClose" (click)="closeQuestsModal()">X</span></h2>
+    <div class="questInfo">
+      <p>Total <span>{{ quests.length }}</span></p>
+    </div>
+    <table class="questListTable">
+      <colgroup>
+        <col width="30px">
+        <col width="200px">
+        <col width="200px">
+        <col width="80px">
+        <col>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th><input type="checkbox" [(ngModel)]="allChecked" (change)="toggleAll($event)"></th>
+          <th>Location</th>
+          <th>Name</th>
+          <th>SP Earned</th>
+          <th>Description</th>
+        </tr>
+        <tr *ngFor="let quest of quests; trackBy: trackByQuestId; let i = index">
+          <td><input type="checkbox" [(ngModel)]="quest.isComplete" (change)="checkQuest(i, $event)"></td>
+          <td>{{ quest.location + " " + quest.path }}</td>
+          <td>{{ quest.name }}</td>
+          <td>{{ quest.skillPoints }}</td>
+          <td>{{ quest.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
 

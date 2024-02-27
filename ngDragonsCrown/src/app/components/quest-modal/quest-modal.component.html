@@ -1,0 +1,34 @@
+<div class="modal-background">
+  <div class="modal">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox"
+                   [checked]="areAllQuestsSelected()"
+                   (change)="toggleAllQuests($event)">
+          </th>
+          <th>Name</th>
+          <th>SP</th>
+          <th>Description</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let quest of quests">
+          <td>
+            <input type="checkbox"
+                   [checked]="quest.selected"
+                   (change)="toggleQuest(quest)">
+          </td>
+          <td>{{ quest.name }}</td>
+          <td>{{ quest.skillPoints }}</td>
+          <td>{{ quest.description }}</td>
+          <td>{{ quest.location }} {{ quest.path }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Total Skill Points: {{ calculateTotalSkillPoints() }}</p>
+    <button (click)="closeModal()">Close</button>
+  </div>
+</div>
