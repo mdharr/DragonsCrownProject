@@ -35,6 +35,9 @@ public class ClassStats {
 	@Column(name = "required_exp")
 	private int requiredExp;
 	
+	@Column(name = "skill_points")
+	private int skillPoints;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "player_class_id")
