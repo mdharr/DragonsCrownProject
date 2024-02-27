@@ -6,6 +6,7 @@ export class Quest {
   description: string;
   location: string;
   path: string;
+  isComplete: boolean
 
   constructor(
     id: number = 0,
@@ -14,6 +15,7 @@ export class Quest {
     description: string = '',
     location: string = '',
     path: string = '',
+    isComplete: boolean = false
   ) {
     this.id = id;
     this.name = name;
@@ -21,5 +23,6 @@ export class Quest {
     this.description = description;
     this.location = location;
     this.path = path;
+    this.isComplete = isComplete;
   }
 }
