@@ -55,6 +55,9 @@ public class PlayerClass {
     
     @OneToMany(mappedBy = "playerClass")
     private List<PlayerClassHasSkill> skills;
+    
+    @OneToMany(mappedBy = "playerClass")
+    private List<PlayerClassHasQuest> quests;
 	
 	public PlayerClass() {
 		super();
@@ -64,7 +67,8 @@ public class PlayerClass {
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
 			String spriteStartUrl, String spriteEndUrl, List<ClassStats> classStats,
-			List<Recommendation> recommendations, StatScaling statScaling, List<PlayerClassHasSkill> skills) {
+			List<Recommendation> recommendations, StatScaling statScaling, List<PlayerClassHasSkill> skills,
+			List<PlayerClassHasQuest> quests) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -83,6 +87,7 @@ public class PlayerClass {
 		this.recommendations = recommendations;
 		this.statScaling = statScaling;
 		this.skills = skills;
+		this.quests = quests;
 	}
 
 	public int getId() {
@@ -210,6 +215,14 @@ public class PlayerClass {
 
 	public void setSkills(List<PlayerClassHasSkill> skills) {
 		this.skills = skills;
+	}
+
+	public List<PlayerClassHasQuest> getQuests() {
+		return quests;
+	}
+
+	public void setQuests(List<PlayerClassHasQuest> quests) {
+		this.quests = quests;
 	}
 
 	@Override
