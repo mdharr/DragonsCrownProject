@@ -49,7 +49,7 @@ public class ClassStats {
 	}
 
 	public ClassStats(int id, int level, int health, int strength, int intelligence, int constitution,
-			int magicResistance, int dexterity, int luck, int requiredExp, PlayerClass playerClass) {
+			int magicResistance, int dexterity, int luck, int requiredExp, int skillPoints, PlayerClass playerClass) {
 		super();
 		this.id = id;
 		this.level = level;
@@ -61,6 +61,7 @@ public class ClassStats {
 		this.dexterity = dexterity;
 		this.luck = luck;
 		this.requiredExp = requiredExp;
+		this.skillPoints = skillPoints;
 		this.playerClass = playerClass;
 	}
 
