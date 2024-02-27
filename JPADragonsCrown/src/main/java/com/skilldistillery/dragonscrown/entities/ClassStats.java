@@ -145,6 +145,14 @@ public class ClassStats {
 		this.requiredExp = requiredExp;
 	}
 
+	public int getSkillPoints() {
+		return skillPoints;
+	}
+
+	public void setSkillPoints(int skillPoints) {
+		this.skillPoints = skillPoints;
+	}
+
 	public PlayerClass getPlayerClass() {
 		return playerClass;
 	}
