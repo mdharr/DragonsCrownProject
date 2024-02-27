@@ -16,11 +16,15 @@ public class QuestServiceImpl implements QuestService {
 	
 	@Override
 	public List<Quest> findAll() {
-		return null;
+		return questRepo.findAll();
 	}
 
 	@Override
 	public Quest findById(int questId) {
+		Quest quest = questRepo.findById(questId);
+		if (quest != null) {
+			return quest;
+		}
 		return null;
 	}
 
