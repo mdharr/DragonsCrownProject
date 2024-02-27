@@ -305,8 +305,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   // }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
+    this.selectedSkill = { index: skillIndex, type: skillType };
     this.skillSelected = true;
-    this.skillCardLoaded = false; // Assume not loaded initially
+    this.skillCardLoaded = false;
     this.toggleGlassEffect();
 
     const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
@@ -314,11 +315,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     try {
       await this.preloadImage(skill.cardImageUrl);
-      this.skillCardLoaded = true; // Image loaded successfully
-      // Perform further actions now that the image is loaded
+      this.skillCardLoaded = true;
+
     } catch (error) {
       console.error('Image loading failed', error);
-      // Handle image load failure
+
     }
   }
 
