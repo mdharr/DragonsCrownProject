@@ -12,6 +12,7 @@ export class ClassStats {
   dexterity: number;
   luck: number;
   requiredExp: number;
+  skillPoints: number;
   playerClass: PlayerClass;
 
   constructor(
@@ -25,6 +26,7 @@ export class ClassStats {
     dexterity: number = 0,
     luck: number = 0,
     requiredExp: number = 0,
+    skillPoints: number = 0,
     playerClass: PlayerClass = new PlayerClass(),
   ) {
     this.id = id;
@@ -37,6 +39,7 @@ export class ClassStats {
     this.dexterity = dexterity;
     this.luck = luck;
     this.requiredExp = requiredExp;
+    this.skillPoints = skillPoints;
     this.playerClass = playerClass;
   }
 }
