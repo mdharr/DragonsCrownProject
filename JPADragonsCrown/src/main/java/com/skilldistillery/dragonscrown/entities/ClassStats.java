@@ -183,7 +183,7 @@ public class ClassStats {
 		return "ClassStats [id=" + id + ", level=" + level + ", health=" + health + ", strength=" + strength
 				+ ", intelligence=" + intelligence + ", constitution=" + constitution + ", magicResistance="
 				+ magicResistance + ", dexterity=" + dexterity + ", luck=" + luck + ", requiredExp=" + requiredExp
-				+ ", playerClass=" + playerClass + "]";
+				+ ", skillPoints=" + skillPoints + ", playerClass=" + playerClass + "]";
 	}
 
 }
