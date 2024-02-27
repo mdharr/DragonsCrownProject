@@ -524,6 +524,7 @@ label {
 
 .player-attributes div {
   display: flex;
+  align-items: flex-end;
 }
 
 .n1 .mini-captions {
@@ -854,7 +855,7 @@ blockquote ul li {
 .exp-captions {
   display: flex;
   justify-content: center;
-  padding-left: 32px;
+  /* padding-left: 32px; */
   padding-top: 5px;
   margin-bottom: 0 !important;
 }
@@ -871,7 +872,7 @@ blockquote ul li {
 }
 
 .exp-box {
-  gap: 41px;
+  /* gap: 41px; */
 }
 
 .align-right {
