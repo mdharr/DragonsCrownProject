@@ -7,6 +7,20 @@ import { Subscription } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
 import { Quest } from 'src/app/models/quest';
 
+interface CombinedSkill {
+  skillId: number;
+  name: string;
+  description: string;
+  cardImageUrl: string;
+  isCommon: boolean;
+  rankDetailId: number;
+  rank: number;
+  requiredSkillPoints: number;
+  similarSkillLevel: number;
+  requiredPlayerLevel: number;
+  effects: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,6 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentQuestSP: number = 0;
   currentLevelSP: number = 0;
   totalAvailableSP: number = 0;
+  skillsList: CombinedSkill[] = [];
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -372,4 +387,64 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   updateSkillPoints() {
     this.totalAvailableSP = this.currentStats.skillPoints + this.calculateTotalSkillPoints();
   }
+
+  isSkillDetailSelected(skill: Skill, skillDetail: SkillDetails): boolean {
+    return this.skillsList.some(item =>
+      item.skillId === skill.id && item.rank === skillDetail.rank
+    );
+  }
+
+  addToSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
+    // First, remove any existing entries of this skill up to the selected rank to avoid duplicates
+    this.skillsList = this.skillsList.filter(item => item.skillId !== skill.id || item.rank > selectedSkillDetail.rank);
+
+    // Then, add all ranks up to and including the selected rank
+    skill.skillDetails.forEach(skillDetail => {
+      if (skillDetail.rank <= selectedSkillDetail.rank) {
+        this.addSkillDetailToList(skill, skillDetail);
+      }
+    });
+  }
+
+  private addSkillDetailToList(skill: Skill, skillDetail: SkillDetails): void {
+    const skillToAdd: CombinedSkill = {
+      skillId: skill.id,
+      name: skill.name,
+      description: skill.description,
+      cardImageUrl: skill.cardImageUrl,
+      isCommon: skill.isCommon,
+      rankDetailId: skillDetail.id,
+      rank: skillDetail.rank,
+      requiredSkillPoints: skillDetail.requiredSkillPoints,
+      similarSkillLevel: skillDetail.similarSkillLevel,
+      requiredPlayerLevel: skillDetail.requiredPlayerLevel,
+      effects: skillDetail.effects,
+    };
+
+    this.skillsList.push(skillToAdd);
+    console.log(this.skillsList);
+  }
+
+  removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
+    // Filter out the skill and any ranks higher than the selected rank
+    this.skillsList = this.skillsList.filter(item =>
+      item.skillId !== skill.id || item.rank < selectedSkillDetail.rank
+    );
+    console.log(this.skillsList);
+  }
+
+  handleSkillClick(skill: Skill, skillDetail: SkillDetails): void {
+    const isAlreadySelected = this.isRankSelected(skill.id, skillDetail.rank);
+
+    if (isAlreadySelected) {
+      this.removeFromSkillsList(skill, skillDetail);
+    } else {
+      this.addToSkillsList(skill, skillDetail);
+    }
+  }
+
+  isRankSelected(skillId: number, rank: number): boolean {
+    return this.skillsList.some(skill => skill.skillId === skillId && skill.rank === rank);
+  }
+
 }

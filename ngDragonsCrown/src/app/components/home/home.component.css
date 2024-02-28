@@ -1240,6 +1240,9 @@ table {
   background-color: rgb(113 35 35 / 77%) !important;
 }
 
+.selected-rank {
+  background-color: rgb(113 35 35 / 77%) !important;
+}
 
 /* QUESTS MODAL START */
 

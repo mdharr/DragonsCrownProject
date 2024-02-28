@@ -247,7 +247,7 @@
                   </dt>
                   <dd>
                     <ol>
-                      <li *ngFor="let rank of commonSkill.skillDetails; last as last">{{ last ? "MAX" : "Lv" + rank.rank }}</li>
+                      <li *ngFor="let skillDetail of commonSkill.skillDetails; last as last" (click)="handleSkillClick(commonSkill, skillDetail)" [ngClass]="{'selected-rank': isSkillDetailSelected(commonSkill, skillDetail)}">{{ last ? "MAX" : "Lv" + skillDetail.rank }}</li>
                     </ol>
                   </dd>
                 </dl>
@@ -262,7 +262,7 @@
                   </dt>
                   <dd>
                     <ol>
-                      <li *ngFor="let rank of uniqueSkill.skillDetails; last as last">{{ last ? "MAX" : "Lv" + rank.rank }}</li>
+                      <li *ngFor="let skillDetail of uniqueSkill.skillDetails; last as last" (click)="handleSkillClick(uniqueSkill, skillDetail)" [ngClass]="{'selected-rank': isSkillDetailSelected(uniqueSkill, skillDetail)}">{{ last ? "MAX" : "Lv" + skillDetail.rank }}</li>
                     </ol>
                   </dd>
                 </dl>
