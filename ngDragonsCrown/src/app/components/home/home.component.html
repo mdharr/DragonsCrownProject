@@ -228,14 +228,12 @@
         </div>
         <ng-container *ngIf="classSelected">
           <hr>
-          <button id="common-btn" [class.selected-skills]="showCommonSkills && !viewQuests" mat-button (click)="viewCommonSkills()">Common Skills</button>
-          <button id="unique-btn" [class.selected-skills]="!showCommonSkills && !viewQuests" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
-          <button id="quests-btn" [class.selected-skills]="viewQuests" mat-button (click)="viewQuestList()">View Quests</button>
-          <!-- <span>Available Skill Points: {{ currentQuestSP }}</span>
-          <span (click)="showModal()">Quests</span>
-          <app-quest-modal *ngIf="isModalVisible" [quests]="quests" (close)="handleModalClose()" (totalSkillPointsChange)="updateTotalSkillPoints($event)"></app-quest-modal> -->
+          <button id="common-btn" [class.selected-skills]="showCommonSkills && !viewQuests && !viewBuild" mat-button (click)="viewCommonSkills()">Common Skills</button>
+          <button id="unique-btn" [class.selected-skills]="!showCommonSkills && !viewQuests && !viewBuild" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+          <button id="quests-btn" [class.selected-skills]="viewQuests && !viewBuild" mat-button (click)="viewQuestList()">View Quests</button>
+          <button id="build-btn" [class.selected-skills]="viewBuild && !viewQuests" mat-button (click)="viewCurrentBuild()">View Build</button>
         </ng-container>
-        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
             <div class="common-skills" *ngIf="showCommonSkills">
@@ -352,6 +350,13 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+        <div class="meta-wrapper class-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+          <div>
+            <ol>
+              <li *ngFor="let skill of currentBuild">{{ skill.name }}</li>
+            </ol>
           </div>
         </div>
       </div>

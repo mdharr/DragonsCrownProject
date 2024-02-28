@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   initialTotalSP: number = 1;
   totalAvailableSP: number = this.initialTotalSP;
   skillsList: CombinedSkill[] = [];
+  currentBuild: CombinedSkill[] = [];
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillCardLoaded: boolean = false;
   isModalVisible = false;
   viewQuests: boolean = false;
+  viewBuild: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -149,6 +151,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentSkill = new Skill();
     this.selectedSkill = { index: null, type: null };
     this.viewQuests = false;
+    this.viewBuild = false;
     this.currentLevelSP = 1;
 
     if(this.classSelected) {
@@ -210,6 +213,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.updateLevel(1);
     this.currentLevelSP = this.initialTotalSP;
     this.updateTotalAvailableSP();
+    this.updateCurrentBuild();
   }
 
   updateLevel(newLevel: number): void {
@@ -299,6 +303,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   viewCommonSkills() {
     if(this.showCommonSkills === false || this.showCommonSkills === true) {
       this.viewQuests = false;
+      this.viewBuild = false;
       this.showCommonSkills = true;
       const commonBtn = document.querySelector('#common-btn');
       const uniqueBtn = document.querySelector('#unique-btn');
@@ -310,6 +315,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   viewUniqueSkills() {
     if(this.showCommonSkills === true || this.showCommonSkills === false) {
       this.viewQuests = false;
+      this.viewBuild = false;
       this.showCommonSkills = false;
       const commonBtn = document.querySelector('#common-btn');
       const uniqueBtn = document.querySelector('#unique-btn');
@@ -320,6 +326,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   viewQuestList() {
     this.viewQuests = true;
+    this.viewBuild = false;
+  }
+
+  viewCurrentBuild() {
+    this.viewBuild = true;
+    this.viewQuests = false;
   }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
@@ -414,6 +426,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.addSkillDetailToList(skill, skillDetail);
       }
     });
+    this.updateCurrentBuild();
   }
 
   private addSkillDetailToList(skill: Skill, skillDetail: SkillDetails): void {
@@ -432,6 +445,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     };
 
     this.skillsList.push(skillToAdd);
+    this.updateCurrentBuild();
     console.log(this.skillsList);
   }
 
@@ -441,6 +455,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     );
     console.log(this.skillsList);
     this.updateTotalAvailableSP();
+    this.updateCurrentBuild();
   }
 
   handleSkillClick(skill: Skill, skillDetail: SkillDetails): void {
@@ -502,6 +517,28 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // Update totalAvailableSP accordingly
     this.updateTotalAvailableSP();
+    this.updateCurrentBuild();
+  }
+
+  updateCurrentBuild(): void {
+    // Step 1: Identify the highest rank for each skill
+    const highestRanks = new Map<number, number>(); // Using skillId as key for uniqueness
+
+    this.skillsList.forEach(skill => {
+      const currentMaxRank = highestRanks.get(skill.skillId) || 0;
+      if (skill.rank > currentMaxRank) {
+        highestRanks.set(skill.skillId, skill.rank);
+      }
+    });
+
+    // Step 2: Filter the skillsList based on the highest rank for each skill
+    this.currentBuild = this.skillsList.filter(skill => {
+      const highestRank = highestRanks.get(skill.skillId);
+      return skill.rank === highestRank;
+    });
+
+    // Optionally, sort currentBuild by skillId or name if needed
+    this.currentBuild.sort((a, b) => a.skillId - b.skillId);
   }
 
 }
