@@ -243,7 +243,7 @@
                 <dl>
                   <dt (click)="selectSkill(i, 'common')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'common'}">
                     {{ commonSkill.name }}
-                    <span class="btn-base"><mat-icon>close</mat-icon></span>
+                    <span class="btn-base" (click)="removeSkillsByName(commonSkill.name, $event)"><mat-icon>close</mat-icon></span>
                   </dt>
                   <dd>
                     <ol>
@@ -258,7 +258,7 @@
                 <dl>
                   <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
                     {{ uniqueSkill.name }}
-                    <span class="btn-base"><mat-icon>close</mat-icon></span>
+                    <span class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
                   </dt>
                   <dd>
                     <ol>

@@ -494,4 +494,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.skillsList.some(skill => skill.skillId === skillId && skill.rank === rank);
   }
 
+  removeSkillsByName(skillName: string, event: MouseEvent): void {
+    event.stopPropagation(); // Prevent event from triggering parent click events
+
+    // Filter out all skills from skillsList that have the specified name
+    this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
+
+    // Update totalAvailableSP accordingly
+    this.updateTotalAvailableSP();
+  }
+
 }
