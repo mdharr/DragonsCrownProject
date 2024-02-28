@@ -658,6 +658,31 @@ html {
   z-index: -1;
 }
 
+.build-background {
+  position: relative;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  /* box-shadow: inset 0px -50px 30px -20px black; */
+  box-shadow: inset 0 -50px 15px -20px black, /* Bottom shadow */
+  inset 0 10px 15px 20px black, /* Top shadow */
+  inset -10px 0 15px -20px black, /* Left shadow */
+  inset 10px 0 15px -20px black; /* Right shadow */
+}
+
+.build-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: var(--backgroundImageUrl);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top right;
+  filter: brightness(50%) opacity(70%);
+  z-index: -1;
+}
+
 .class-description::before {
   content: '';
   position: absolute; /* Changed from relative to absolute */
@@ -1397,3 +1422,56 @@ table {
 .quests-wrapper tr td {
   vertical-align: middle;
 }
+
+/* skill cards start */
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 10px;
+}
+
+.card {
+  width: 100px;
+  height: 150px;
+  background-size: cover; /* Ensure the image covers the entire card */
+  background-position: center; /* Center the background image */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  position: relative; /* Needed for positioning the overlay */
+  overflow: hidden; /* Ensures the background does not bleed outside the border-radius */
+  justify-content: center;
+}
+
+.card::before {
+  content: ""; /* Needed to generate the pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay to improve image visibility */
+  z-index: 1; /* Ensures the overlay is above the background image */
+}
+
+.card-content {
+  z-index: 2; /* Ensures the text is above the overlay */
+  color: white; /* Set text color */
+  position: relative; /* Position relative to card */
+  text-align: center; /* Center the text */
+  width: 100%; /* Ensure it spans the width of the card */
+  font-size: 12px;
+  background-color: darkslategray;
+}
+
+/* Optional: Add hover effect for cards */
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* skill cards end  */

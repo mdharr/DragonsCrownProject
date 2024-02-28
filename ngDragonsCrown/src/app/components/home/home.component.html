@@ -352,11 +352,36 @@
             </table>
           </div>
         </div>
-        <div class="meta-wrapper class-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
-          <div>
-            <ol>
-              <li *ngFor="let skill of currentBuild">{{ skill.name }}</li>
-            </ol>
+        <div style="padding-bottom: 15px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://media.discordapp.net/attachments/1080302897599877181/1212311187212083200/dragons-crown-treasure-chest.jpg?ex=65f15fc6&is=65deeac6&hm=834e1cfd8b172b2c444a9c798ec3dfc6a9a97bb191ee6a37605ad6fb804555cb&=&format=webp&width=1880&height=1058' + ')'}">
+          <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #d9b359;">
+            <h3>Unlock skills to start planning out your build!</h3>
+          </div>
+          <div class="quests-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
+            <span style="margin-bottom: 5px;">Current Build</span>
+            <div class="cards-wrapper">
+              <div *ngFor="let skill of currentBuild" class="card" style="background-image: url('{{ skill.cardImageUrl }}');">
+                <div class="card-content">{{ skill.name }}</div>
+              </div>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Rank</th>
+                  <th>Effects</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let skill of currentBuild">
+                  <td>{{ skill.name }}</td>
+                  <td>{{ skill.description }}</td>
+                  <td>{{ skill.rank }}</td>
+                  <td>{{ skill.effects }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
