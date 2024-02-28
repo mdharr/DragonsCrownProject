@@ -41,10 +41,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedSkill: { index: number | null, type: 'common' | 'unique' | null } = { index: null, type: null };
   quests: Quest[] = [];
   selectedQuests: Quest[] = [];
-  // currentSkillPoints: number = 0;
   currentQuestSP: number = 0;
   currentLevelSP: number = 0;
-  totalAvailableSP: number = 0;
+  initialTotalSP: number = 1;
+  totalAvailableSP: number = this.initialTotalSP;
   skillsList: CombinedSkill[] = [];
 
   // observed elements
@@ -172,7 +172,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
 
       this.currentStats = { ...this.currentClassData.classStats[0] };
-      this.updateSkillPoints();
+      // this.updateSkillPoints();
+      this.updateTotalAvailableSP();
 
       console.log(this.currentClassData);
       console.log(this.currentStats);
@@ -205,19 +206,25 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   resetLevel() {
+    this.skillsList = [];
     this.updateLevel(1);
+    this.currentLevelSP = this.initialTotalSP;
+    this.updateTotalAvailableSP();
   }
 
   updateLevel(newLevel: number): void {
-    const validLevel = Math.max(1, Math.min(newLevel, 99)); // Ensure level is within bounds
+    const validLevel = Math.max(1, Math.min(newLevel, 99));
     const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === validLevel);
     if (stats) {
-      this.currentStats = { ...stats };
+        this.currentStats = { ...stats };
+        // Assuming stats at each level includes the cumulative skill points up to that level
+        // and you want to track additional skill points gained after level 1
+        this.currentLevelSP = stats.skillPoints;
+        this.updateTotalAvailableSP();
+        this.calculateTotalExperience();
     } else {
-      console.error('Stats for level', validLevel, 'not found');
+        console.error('Stats for level', validLevel, 'not found');
     }
-    this.updateSkillPoints();
-    this.calculateTotalExperience();
   }
 
   onLevelChange(): void {
@@ -368,7 +375,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   toggleQuest(quest: Quest): void {
     quest.selected = !quest.selected;
     this.calculateTotalSkillPoints();
-    this.updateSkillPoints();
+    // this.updateSkillPoints();
+    this.updateTotalAvailableSP();
   }
 
   toggleAllQuests(event: Event): void {
@@ -377,7 +385,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.quests.forEach(quest => {
       quest.selected = selected;
     });
-    this.updateSkillPoints();
+    // this.updateSkillPoints();
+    this.updateTotalAvailableSP();
   }
 
   areAllQuestsSelected(): boolean {
@@ -385,7 +394,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateSkillPoints() {
-    this.totalAvailableSP = this.currentStats.skillPoints + this.calculateTotalSkillPoints();
+    // this.totalAvailableSP = this.currentStats.skillPoints + this.calculateTotalSkillPoints();
+    this.updateTotalAvailableSP();
   }
 
   isSkillDetailSelected(skill: Skill, skillDetail: SkillDetails): boolean {
@@ -426,21 +436,58 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
-    // Filter out the skill and any ranks higher than the selected rank
     this.skillsList = this.skillsList.filter(item =>
       item.skillId !== skill.id || item.rank < selectedSkillDetail.rank
     );
     console.log(this.skillsList);
+    this.updateTotalAvailableSP();
   }
 
   handleSkillClick(skill: Skill, skillDetail: SkillDetails): void {
-    const isAlreadySelected = this.isRankSelected(skill.id, skillDetail.rank);
+    // Check if the selected rank is already selected
+    const isAlreadySelected = this.isSkillDetailSelected(skill, skillDetail);
 
     if (isAlreadySelected) {
-      this.removeFromSkillsList(skill, skillDetail);
+        // If the selected rank is already selected, remove it and all higher ranks
+        this.removeFromSkillsList(skill, skillDetail);
     } else {
-      this.addToSkillsList(skill, skillDetail);
+        // First, find out the total SP required to add this rank and all previous unselected ranks
+        const requiredSPToAdd = skill.skillDetails
+            .filter(detail => detail.rank <= skillDetail.rank && !this.isSkillDetailSelected(skill, detail))
+            .reduce((total, detail) => total + detail.requiredSkillPoints, 0);
+
+        // Check if we have enough SP to add the skill and its unselected previous ranks
+        if (requiredSPToAdd <= this.totalAvailableSP) {
+            // If so, add all ranks up to and including the selected rank that haven't been selected yet
+            skill.skillDetails.forEach(detail => {
+                if (detail.rank <= skillDetail.rank && !this.isSkillDetailSelected(skill, detail)) {
+                    this.addSkillDetailToList(skill, detail);
+                }
+            });
+        } else {
+            alert("Not enough skill points available.");
+            return;
+        }
     }
+
+    // Update total available SP after any changes
+    this.updateTotalAvailableSP();
+  }
+
+  updateTotalAvailableSP(): void {
+    // Skill points gained from quests
+    const questSP = this.calculateTotalSkillPoints();
+
+    // Total skill points spent on unlocking skills
+    const spentSP = this.skillsList.reduce((total, item) => total + item.requiredSkillPoints, 0);
+    console.log("Spent SP: ", spentSP);
+    // Initial skill points at level 1 plus skill points gained from leveling up
+    // Assuming 'currentLevelSP' represents just the additional points gained from leveling up beyond the initial SP
+    const totalSkillPointsFromLevels = this.currentLevelSP;
+    console.log("SP from levels: ", totalSkillPointsFromLevels);
+    // Calculating total available skill points
+    this.totalAvailableSP = totalSkillPointsFromLevels + questSP - spentSP;
+    console.log("Available SP: ", this.totalAvailableSP);
   }
 
   isRankSelected(skillId: number, rank: number): boolean {
