@@ -364,7 +364,9 @@
           </div>
           <div class="quests-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
             <!-- <img src="{{ currentClassData.portraitUrl }}" alt="{{ currentClassData.name }} Portrait"> -->
-            <div style="display: flex; width: 100%;">
+            <div style="display: flex; width: 100%; justify-content: center; align-items: center; background-color: #fff; border: 1px solid;">
+              <img [hidden]="!artworkLoaded" style="height: 150px; width: auto;" [src]="currentClassData?.iconUrl" (load)="onArtworkLoad()" alt="High-quality artwork">
+              <img *ngIf="!artworkLoaded" style="height: 150px; width: auto;" [src]="currentClassData?.iconUrl" alt="Low-quality artwork">
               <div class="class-portrait" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData.portraitUrl + ')'}">
                 <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
               </div>

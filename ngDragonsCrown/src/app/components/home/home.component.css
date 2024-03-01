@@ -364,7 +364,7 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -1104,11 +1104,12 @@ blockquote ul li {
   border-bottom: 1px solid #fff;
   background-color: rgb(21 43 56 / 77%);
   position: relative;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .skillListWrap dt:hover {
   cursor: pointer;
-  background-color: rgb(113 35 35 / 77%);
+  background-color: rgb(113 35 35 / 20%);
 }
 
 .skillListWrap ol {
@@ -1144,6 +1145,10 @@ blockquote ul li {
   border-right: 1px solid #fff;
 }
 
+.skillListWrap li:hover {
+  background-color: gray;
+}
+
 .skillListWrap dt span {
   /* padding: 3px 5px; */
   padding: 0px 0px;
@@ -1169,6 +1174,11 @@ blockquote ul li {
   background: #999;
   color: #fff;
   cursor: pointer;
+}
+
+.btn-base mat-icon:hover {
+  color: #fff;
+  transition: color 0.2s ease-in-out;
 }
 
 ol {
@@ -1326,7 +1336,9 @@ table {
 }
 
 .selected-rank {
-  background-color: rgb(113 35 35 / 77%) !important;
+  /* background-color: rgb(113 35 35 / 77%) !important; */
+  background-color: rgba(232, 185, 0, 0.77) !important;
+  color: #fff !important;
 }
 
 /* QUESTS MODAL START */

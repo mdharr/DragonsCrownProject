@@ -21,6 +21,9 @@ interface CombinedSkill {
   effects: string;
 }
 
+// player class types
+type ClassName = 'amazon' | 'dwarf' | 'elf' | 'fighter' | 'sorceress' | 'wizard';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -47,6 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   totalAvailableSP: number = this.initialTotalSP;
   skillsList: CombinedSkill[] = [];
   currentBuild: CombinedSkill[] = [];
+  previousClassVoice: string = '';
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -76,6 +80,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // typewriter
   currentTimeoutId: number | null = null;
+
+  // audio
+  private audioPaths: Record<ClassName, string> = {
+    amazon: '/assets/audio/amazon_select.mp3',
+    dwarf: '/assets/audio/dwarf_select.mp3',
+    elf: '/assets/audio/elf_select.mp3',
+    fighter: '/assets/audio/fighter_select.mp3',
+    sorceress: '/assets/audio/sorceress_select.mp3',
+    wizard: '/assets/audio/wizard_select.mp3',
+  };
 
   // subscriptions
   private playerClassSubscription: Subscription | undefined;
@@ -183,7 +197,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       console.log(this.currentClassData);
       console.log(this.currentStats);
-
+      this.playClassAudio(this.currentClassData.name.toLowerCase());
       // this.typeOutText(this.currentClassData.description, 'description-text');
     }
   }
@@ -401,6 +415,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.calculateTotalSkillPoints();
     // this.updateSkillPoints();
     this.updateTotalAvailableSP();
+    this.playQuestCompleteAudio();
   }
 
   toggleAllQuests(event: Event): void {
@@ -411,6 +426,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     });
     // this.updateSkillPoints();
     this.updateTotalAvailableSP();
+    this.playQuestCompleteAudio();
   }
 
   areAllQuestsSelected(): boolean {
@@ -553,4 +569,23 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentBuild.sort((a, b) => a.skillId - b.skillId);
   }
 
+  playClassAudio(className: string) {
+    if (this.previousClassVoice !== className) {
+      this.previousClassVoice = className;
+      // Validate that className is a valid key
+      if (className in this.audioPaths) {
+        const audioPath = this.audioPaths[className as ClassName];
+        const audio = new Audio(audioPath);
+        audio.play();
+      } else {
+        console.error('Invalid class name:', className);
+      }
+    }
+  }
+
+  playQuestCompleteAudio() {
+    const audioPath = '/assets/audio/coinbag_1.wav';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
 }
