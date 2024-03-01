@@ -71,9 +71,15 @@
                  (mouseleave)="changeSpriteTo('start')"
                  alt="Class Sprite">
           </div> -->
-          <div class="sprite-container">
+          <!-- <div class="sprite-container">
             <img *ngIf="classSelected" [src]="currentClassData.cardUrl" alt="Class Card">
-          </div>
+          </div> -->
+          <ng-container *ngIf="classSelected">
+            <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative; z-index: 4;" *ngIf="playerCardLoaded">
+              <img class="skill-cards tilt" src="{{ currentClassData.cardUrl }}" alt="Skill Card">
+            </div>
+            <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder>
+          </ng-container>
         </div>
         <!-- <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p> -->
         <div class="planner" *ngIf="classSelected">

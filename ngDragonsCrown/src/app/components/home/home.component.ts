@@ -66,6 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillSelected: boolean = false;
   currentSkillEffects: string[] = [];
   skillCardLoaded: boolean = false;
+  playerCardLoaded: boolean = false;
   isModalVisible = false;
   viewQuests: boolean = false;
   viewBuild: boolean = false;
@@ -159,7 +160,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     element.style.filter = 'filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1)';
   }
 
-  loadClassData(classIndex: number): void {
+  async loadClassData(classIndex: number): Promise<void> {
     this.classSelected = true;
     this.skillSelected = false;
     this.currentSkill = new Skill();
@@ -176,6 +177,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log(this.currentClassData);
       // const backdropElement = document.querySelector('.class-backdrop') as HTMLElement;
       // backdropElement.style.backgroundImage = this.currentClassData.selectImgUrl;
+
+      try {
+        await this.preloadImage(this.currentClassData.cardUrl);
+        this.playerCardLoaded = true;
+      } catch (error) {
+        console.error('Image loading failed', error);
+      }
 
       this.commonSkills = this.currentClassData.skills
         .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
@@ -366,7 +374,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     } catch (error) {
       console.error('Image loading failed', error);
-
     }
   }
 
