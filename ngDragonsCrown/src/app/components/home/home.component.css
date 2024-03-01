@@ -234,6 +234,35 @@
   justify-content: flex-end;
   flex-direction: column;
   gap: 50px;
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+
+.class-backdrop {
+  position: relative;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  border: 1px solid rgb(202, 179, 92);
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+.class-backdrop::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 250px 0 20px -10px rgba(0,0,0,0.7);
+  z-index: 1;
+  background: rgba(255, 255, 255, 0);
 }
 
 .class-title {
@@ -686,33 +715,6 @@ html {
   z-index: -1;
 }
 
-.class-description::before {
-  content: '';
-  position: absolute; /* Changed from relative to absolute */
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top right;
-  filter: brightness(50%) opacity(90%);
-  z-index: -1;
-  /* background-color: black; */
-}
-
-.class-backdrop {
-  background-image: url('https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg');
-  animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  border: 1px solid rgb(202, 179, 92);
-  background-size: contain;
-  background-position: right;
-  background-repeat: no-repeat;
-  background-color: black;
-}
-
 /* Assuming your div has a class name 'class-portrait' for targeting */
 .class-portrait {
   position: relative; /* Needed for absolute positioning of the ::before pseudo-element */
@@ -912,6 +914,8 @@ blockquote ul li {
 
 .sprite-container img {
   transition: filter 0.2s ease-out;
+  z-index:2;
+  position: relative;
 }
 
 .sprite-container img:hover {

@@ -157,9 +157,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.classSelected) {
       this.selected = true;
       const descriptionElement = document.querySelector('.class-description') as HTMLElement;
-      console.log(descriptionElement);
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
+      console.log(this.currentClassData);
+      // const backdropElement = document.querySelector('.class-backdrop') as HTMLElement;
+      // backdropElement.style.backgroundImage = this.currentClassData.selectImgUrl;
+
       this.commonSkills = this.currentClassData.skills
         .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
         .map((skillObj: { skill: any; }) => skillObj.skill);
@@ -181,7 +184,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log(this.currentClassData);
       console.log(this.currentStats);
 
-      this.typeOutText(this.currentClassData.description, 'description-text');
+      // this.typeOutText(this.currentClassData.description, 'description-text');
     }
   }
 
@@ -366,6 +369,15 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   preloadImage(url: string): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
+  preloadBackgroundImage(url: string): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.onload = () => resolve(img);
