@@ -46,6 +46,8 @@ public class PlayerClass {
 	private String spriteEndUrl;
 	@Column(name = "select_img_url")
 	private String selectImgUrl;
+	@Column(name = "card_url")
+	private String cardUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -68,9 +70,9 @@ public class PlayerClass {
 
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
-			String spriteStartUrl, String spriteEndUrl, String selectImgUrl, List<ClassStats> classStats,
-			List<Recommendation> recommendations, StatScaling statScaling, List<PlayerClassHasSkill> skills,
-			List<PlayerClassHasQuest> quests) {
+			String spriteStartUrl, String spriteEndUrl, String selectImgUrl, String cardUrl,
+			List<ClassStats> classStats, List<Recommendation> recommendations, StatScaling statScaling,
+			List<PlayerClassHasSkill> skills, List<PlayerClassHasQuest> quests) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -86,6 +88,7 @@ public class PlayerClass {
 		this.spriteStartUrl = spriteStartUrl;
 		this.spriteEndUrl = spriteEndUrl;
 		this.selectImgUrl = selectImgUrl;
+		this.cardUrl = cardUrl;
 		this.classStats = classStats;
 		this.recommendations = recommendations;
 		this.statScaling = statScaling;
@@ -258,9 +261,9 @@ public class PlayerClass {
 				+ animationUrl + ", artworkUrl=" + artworkUrl + ", titleUrl=" + titleUrl + ", portraitUrl="
 				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", streamableUrl="
 				+ streamableUrl + ", hqArtworkUrl=" + hqArtworkUrl + ", spriteStartUrl=" + spriteStartUrl
-				+ ", spriteEndUrl=" + spriteEndUrl + ", selectImgUrl=" + selectImgUrl + ", classStats=" + classStats
-				+ ", recommendations=" + recommendations + ", statScaling=" + statScaling + ", skills=" + skills
-				+ ", quests=" + quests + "]";
+				+ ", spriteEndUrl=" + spriteEndUrl + ", selectImgUrl=" + selectImgUrl + ", cardUrl=" + cardUrl
+				+ ", classStats=" + classStats + ", recommendations=" + recommendations + ", statScaling=" + statScaling
+				+ ", skills=" + skills + ", quests=" + quests + "]";
 	}
 
 }
