@@ -10,20 +10,19 @@
 
   <!-- Main content area -->
   <div class="main">
-    <!-- <img id="logoImg" src="https://media.discordapp.net/attachments/1080302897599877181/1206948982744424499/Dragon_scrown_logo-Photoroom.png-Photoroom.png?ex=65ddddd5&amp;is=65cb68d5&amp;hm=e7fd6afa4148c0bf8b5f1ffd73986654cd0a8b4507cf6948580e6a0c4f357d20&amp;=&amp;format=webp&amp;quality=lossless&amp;width=2112&amp;height=1058" alt="Logo"> -->
-    <!-- Your main content goes here -->
     <div class="content">
       <div class="gdiv">
         <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->
-        <img src="https://media.discordapp.net/attachments/1080302897599877181/1207690958725062696/gold_top_pattern.png?ex=65e090da&is=65ce1bda&hm=ac5bc0a2420188bf0e13a35ee31169787d4fccf11b93bc05ff872bc3a97c3b9a&=&format=webp&quality=lossless&width=1784&height=86" alt="">
+        <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_top_pattern.png" alt="">
       </div>
       <div class="middle">
 
         <!-- <hr style="margin-top:0;"> -->
         <div class="story-label">
-          <img src="https://atlus.com/dragonscrown/img/common/menu_story.png" alt="">
+          <!-- <img src="https://atlus.com/dragonscrown/img/common/menu_story.png" alt=""> -->
+          <img src="https://gamecloud.net.au/wp-content/uploads/2013/08/Dragons-Crown-Banner2-GameCloud.png" alt="Banner Image">
         </div>
-        <hr style="margin-bottom:0;">
+        <!-- <hr style="margin-bottom:0;">
         <div styl="background-image: url('https://www.4gamer.net/img/sp_dragonscrown/bg_dc_chara_skill.jpg')">
           <p style="background-color: rgba(0, 0, 0, 0.01); text-align: justify; padding-left: 15px; padding-right: 15px;">"You came to Hydeland as an adventurer. Like many of your fellows, you strove to challenge the dangerous labyrinths here. The labyrinths were every bit as perilous as you'd heard. Most were lucky to even have their bones exit the ruins. You don't currently belong to the guild. I recommend registering. You can get jobs there and learn skills."</p>
         </div>
@@ -41,7 +40,7 @@
           No matter how brave you are, it’s not safe to go alone.
           Let us begin your journey...
           I wish you good luck."</p>
-        <hr style="margin-bottom:0;">
+        <hr style="margin-bottom:0;"> -->
 
         <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">Select a class to get started:</p>
         <!-- In your component template -->
@@ -200,12 +199,18 @@
               </div>
             </div>
             <div class="alt-artwork">
-              <img [hidden]="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.hqArtworkUrl" (load)="onArtworkLoad()" alt="High-quality artwork">
-              <img *ngIf="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.artworkUrl" alt="Low-quality artwork">
+              <!-- <img [hidden]="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.hqArtworkUrl" (load)="onArtworkLoad()" alt="High-quality artwork">
+              <img *ngIf="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.artworkUrl" alt="Low-quality artwork"> -->
+              <blockquote>
+                <h5>Recommended for these people</h5>
+                <ul>
+                  <li *ngFor="let recommendation of currentClassData?.recommendations">{{ recommendation.description}}</li>
+                </ul>
+              </blockquote>
             </div>
           </div>
           <hr>
-          <div style="display: flex; flex-direction: row; justify-content: space-between;">
+          <!-- <div style="display: flex; flex-direction: row; justify-content: space-between;">
             <div class="n3">
               <div class="gif-crt"></div>
               <div class="class-title">
@@ -223,8 +228,8 @@
                 <li *ngFor="let recommendation of currentClassData?.recommendations">{{ recommendation.description}}</li>
               </ul>
             </blockquote>
-          </div>
-          <hr style="margin-top: 0;">
+          </div> -->
+          <!-- <hr style="margin-top: 0;"> -->
         </div>
         <ng-container *ngIf="classSelected">
           <hr>
@@ -233,7 +238,8 @@
           <button id="quests-btn" [class.selected-skills]="viewQuests && !viewBuild" mat-button (click)="viewQuestList()">View Quests</button>
           <button id="build-btn" [class.selected-skills]="viewBuild && !viewQuests" mat-button (click)="viewCurrentBuild()">View Build</button>
         </ng-container>
-        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->
+        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl + ')'}">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
             <div class="common-skills" *ngIf="showCommonSkills">
@@ -317,7 +323,8 @@
             </div>
           </ng-container>
         </div>
-        <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}">
+        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->
+        <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl+ ')'}">
           <div class="quests-wrapper">
             <span style="margin-bottom: 5px;">Skill Points from Quests: {{ calculateTotalSkillPoints() }}</span>
             <table>
@@ -353,7 +360,7 @@
           </div>
         </div>
         <div style="padding-bottom: 15px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://media.discordapp.net/attachments/1080302897599877181/1212311187212083200/dragons-crown-treasure-chest.jpg?ex=65f15fc6&is=65deeac6&hm=834e1cfd8b172b2c444a9c798ec3dfc6a9a97bb191ee6a37605ad6fb804555cb&=&format=webp&width=1880&height=1058' + ')'}">
-          <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #d9b359;">
+          <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #d9b359;" class="build-placeholder">
             <h3>Unlock skills to start planning out your build!</h3>
           </div>
           <div class="quests-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
@@ -363,6 +370,13 @@
                 <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
               </div>
             </div>
+            <hr>
+            <div class="cards-wrapper">
+              <div *ngFor="let skill of currentBuild" class="card" style="background-image: url('{{ skill.cardImageUrl }}');">
+                <div class="card-content">{{ skill.name }}</div>
+              </div>
+            </div>
+            <hr>
             <table>
               <thead>
                 <tr>
@@ -381,16 +395,11 @@
                 </tr>
               </tbody>
             </table>
-            <div class="cards-wrapper">
-              <div *ngFor="let skill of currentBuild" class="card" style="background-image: url('{{ skill.cardImageUrl }}');">
-                <div class="card-content">{{ skill.name }}</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
       <div class="bdiv">
-        <img src="https://media.discordapp.net/attachments/1080302897599877181/1207690958032871454/gold_bottom_pattern.png?ex=65e090da&is=65ce1bda&hm=a0b04199b6d535a3e5eda1e27729cc80f9f2268c0862fcc9028bc5ef1063ea1a&=&format=webp&quality=lossless&width=1784&height=86" alt="">
+        <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_bottom_pattern.png" alt="">
       </div>
     </div>
     <app-scroll-to-top-button></app-scroll-to-top-button>

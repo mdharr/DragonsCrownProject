@@ -80,7 +80,7 @@
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
   /* background-image: url(https://atlus.com/dragonscrown/img/system/magicshop_bg1.png); */
-  background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1207689951928524810/bg_pattern.png?ex=65f304ea&is=65e08fea&hm=1d2c8eb09c36c955fe7ecb67d30496e67d9ccf3030091d28d23b878db7d544ff&=&format=webp&quality=lossless&width=584&height=1056);
+  background-image: url(https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/bg_pattern.png);
   background-repeat: repeat;
   background-position: top left;
   background-size: 100%;
@@ -117,7 +117,7 @@
 
 .middle {
   width: 100%;
-  background: url(https://media.discordapp.net/attachments/1080302897599877181/1207690958418870293/gold_middle_pattern.png?ex=65e090da&is=65ce1bda&hm=ffd88fa78367350490fee1af6b3e310b0d0c1733b0c87f6a8c2d2474acc473d1&=&format=webp&quality=lossless&width=1390&height=1058) repeat-y left bottom;
+  background: url(https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_middle_pattern.png) repeat-y left bottom;
   background-size: 100% auto;
   padding-left: 30px;
   padding-right: 30px;
@@ -130,10 +130,10 @@
 }
 
 .content p {
-  line-height: 1.6; /* Increase line-height for readability */
-  margin-bottom: 20px; /* Spacing between paragraphs */
+  line-height: 1.6;
+  margin-bottom: 20px;
   font-family: fantasy;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   -webkit-filter: drop-shadow(0px 0px 8px rgba(14, 14, 14, 1.0));
   /* text-align: justify; */
   color: #fff;
@@ -228,7 +228,7 @@
 .class-description {
   min-height: 400px;
   position: relative;
-  padding: 0px 50px 0px 50px;
+  padding: 0px 50px 20px 50px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
@@ -548,8 +548,9 @@ label {
 .story-label {
   display: flex;
   justify-content: center;
-  /* margin-top: 60px;
-  margin-bottom: 30px; */
+  background-color: black;
+  margin: 5px 0;
+  border: 1px solid #cab35c;
 }
 
 .small-text {
@@ -652,10 +653,12 @@ html {
   left: 0;
   background-image: var(--backgroundImageUrl);
   background-repeat: no-repeat;
-  background-size: cover;
+  /* background-size: cover; */
+  background-size: contain;
   background-position: top right;
   filter: brightness(50%) opacity(70%);
   z-index: -1;
+  background-color: black;
 }
 
 .build-background {
@@ -699,11 +702,15 @@ html {
 }
 
 .class-backdrop {
-  background-image: url('https://www.4gamer.net/img/sp_dragonscrown/bg_dc_character_def.jpg');
+  background-image: url('https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg');
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-fill-mode: both;
   border: 1px solid rgb(202, 179, 92);
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-color: black;
 }
 
 /* Assuming your div has a class name 'class-portrait' for targeting */
@@ -1507,3 +1514,12 @@ table {
 }
 
 /* skill cards end  */
+
+.build-placeholder {
+  min-height: 500px;
+  width: 100%;
+  color: #d9b359;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
