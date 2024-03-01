@@ -80,7 +80,7 @@
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
   /* background-image: url(https://atlus.com/dragonscrown/img/system/magicshop_bg1.png); */
-  background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1207689951928524810/bg_pattern.png?ex=65e08fea&is=65ce1aea&hm=3cab9c5770813158e8b23ce931039d2ca009e0b1aac83518580d17f2e5a6b615&=&format=webp&quality=lossless&width=584&height=1056);
+  background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1207689951928524810/bg_pattern.png?ex=65f304ea&is=65e08fea&hm=1d2c8eb09c36c955fe7ecb67d30496e67d9ccf3030091d28d23b878db7d544ff&=&format=webp&quality=lossless&width=584&height=1056);
   background-repeat: repeat;
   background-position: top left;
   background-size: 100%;
@@ -231,7 +231,7 @@
   padding: 0px 50px 0px 50px;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
   flex-direction: column;
   gap: 50px;
 }
