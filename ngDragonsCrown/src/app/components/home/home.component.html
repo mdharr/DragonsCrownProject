@@ -65,11 +65,14 @@
           </ul>
         </div>
         <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg') + ')'">
-          <div class="sprite-container">
+          <!-- <div class="sprite-container">
             <img *ngIf="classSelected" [src]="currentSpriteUrl"
                  (mouseenter)="changeSpriteTo('end')"
                  (mouseleave)="changeSpriteTo('start')"
                  alt="Class Sprite">
+          </div> -->
+          <div class="sprite-container">
+            <img *ngIf="classSelected" [src]="currentClassData.cardUrl" alt="Class Card">
           </div>
         </div>
         <!-- <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p> -->

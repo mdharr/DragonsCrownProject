@@ -191,6 +191,14 @@ public class PlayerClass {
 		this.selectImgUrl = selectImgUrl;
 	}
 
+	public String getCardUrl() {
+		return cardUrl;
+	}
+
+	public void setCardUrl(String cardUrl) {
+		this.cardUrl = cardUrl;
+	}
+
 	public List<ClassStats> getClassStats() {
 		return classStats;
 	}
