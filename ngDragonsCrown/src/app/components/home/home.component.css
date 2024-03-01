@@ -1539,3 +1539,12 @@ table {
   align-items: center;
   justify-content: center;
 }
+
+hr.custom-hr {
+  border: none; /* Remove default border */
+  height: 5px; /* Set a fixed height */
+  background-image: url('https://www.4gamer.net/image/bg_4gamer.gif'); /* Path to your image */
+  background-size: cover; /* Cover the entire area of the HR */
+  background-repeat: no-repeat; /* Prevent image from repeating */
+  background-position: center; /* Center the background image */
+}
