@@ -48,6 +48,8 @@ public class PlayerClass {
 	private String selectImgUrl;
 	@Column(name = "card_url")
 	private String cardUrl;
+	@Column(name = "spritesheet_url")
+	private String spritesheetUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -70,7 +72,7 @@ public class PlayerClass {
 
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
-			String spriteStartUrl, String spriteEndUrl, String selectImgUrl, String cardUrl,
+			String spriteStartUrl, String spriteEndUrl, String selectImgUrl, String cardUrl, String spritesheetUrl,
 			List<ClassStats> classStats, List<Recommendation> recommendations, StatScaling statScaling,
 			List<PlayerClassHasSkill> skills, List<PlayerClassHasQuest> quests) {
 		super();
@@ -89,6 +91,7 @@ public class PlayerClass {
 		this.spriteEndUrl = spriteEndUrl;
 		this.selectImgUrl = selectImgUrl;
 		this.cardUrl = cardUrl;
+		this.spritesheetUrl = spritesheetUrl;
 		this.classStats = classStats;
 		this.recommendations = recommendations;
 		this.statScaling = statScaling;
@@ -199,6 +202,14 @@ public class PlayerClass {
 		this.cardUrl = cardUrl;
 	}
 
+	public String getSpritesheetUrl() {
+		return spritesheetUrl;
+	}
+
+	public void setSpritesheetUrl(String spritesheetUrl) {
+		this.spritesheetUrl = spritesheetUrl;
+	}
+
 	public List<ClassStats> getClassStats() {
 		return classStats;
 	}
@@ -270,8 +281,8 @@ public class PlayerClass {
 				+ portraitUrl + ", backgroundUrl=" + backgroundUrl + ", iconUrl=" + iconUrl + ", streamableUrl="
 				+ streamableUrl + ", hqArtworkUrl=" + hqArtworkUrl + ", spriteStartUrl=" + spriteStartUrl
 				+ ", spriteEndUrl=" + spriteEndUrl + ", selectImgUrl=" + selectImgUrl + ", cardUrl=" + cardUrl
-				+ ", classStats=" + classStats + ", recommendations=" + recommendations + ", statScaling=" + statScaling
-				+ ", skills=" + skills + ", quests=" + quests + "]";
+				+ ", spritesheetUrl=" + spritesheetUrl + ", classStats=" + classStats + ", recommendations="
+				+ recommendations + ", statScaling=" + statScaling + ", skills=" + skills + ", quests=" + quests + "]";
 	}
 
 }
