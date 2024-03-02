@@ -171,12 +171,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if(this.classSelected) {
       this.selected = true;
-      const descriptionElement = document.querySelector('.class-description') as HTMLElement;
+
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
-      console.log(this.currentClassData);
-      // const backdropElement = document.querySelector('.class-backdrop') as HTMLElement;
-      // backdropElement.style.backgroundImage = this.currentClassData.selectImgUrl;
+
+
+      this.currentStats = { ...this.currentClassData.classStats[0] };
+      console.log("Level: " + this.currentStats.level);
+      // this.updateSkillPoints();
+      // this.currentStats.level = 1;
+      this.updateTotalAvailableSP();
 
       try {
         await this.preloadImage(this.currentClassData.cardUrl);
@@ -199,12 +203,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
 
-      this.currentStats = { ...this.currentClassData.classStats[0] };
-      // this.updateSkillPoints();
-      this.updateTotalAvailableSP();
-
-      console.log(this.currentClassData);
-      console.log(this.currentStats);
       this.playClassAudio(this.currentClassData.name.toLowerCase());
       // this.typeOutText(this.currentClassData.description, 'description-text');
     }
