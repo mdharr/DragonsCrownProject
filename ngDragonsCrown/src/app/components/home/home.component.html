@@ -251,34 +251,55 @@
         <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl + ')'}">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
-            <div class="common-skills" *ngIf="showCommonSkills">
-              <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
-                <dl>
-                  <dt (click)="selectSkill(i, 'common')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'common'}">
-                    {{ commonSkill.name }}
-                    <span class="btn-base" (click)="removeSkillsByName(commonSkill.name, $event)"><mat-icon>close</mat-icon></span>
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li *ngFor="let skillDetail of commonSkill.skillDetails; last as last" (click)="handleSkillClick(commonSkill, skillDetail)" [ngClass]="{'selected-rank': isSkillDetailSelected(commonSkill, skillDetail)}">{{ last ? "MAX" : "Lv" + skillDetail.rank }}</li>
-                    </ol>
-                  </dd>
-                </dl>
+
+            <div class="common-unique-wrapper" style="display: flex; flex-direction: column;">
+
+              <ng-container *ngIf="showCommonSkills">
+                <div class="sheen-box" style="display: flex; justify-content: center; width: 100%; position:relative; z-index: 4;" *ngIf="playerCardLoaded">
+                  <img class="skill-cards tilt" src="https://static.wikia.nocookie.net/dragons-crown/images/9/92/Common_skills.jpg" alt="Skill Card">
+                </div>
+                <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder>
+                <h3><span style="color: #d9b359;">Common Skills</span>: Can be learned by all classes.</h3>
+              </ng-container>
+
+              <ng-container *ngIf="!showCommonSkills">
+                <div class="sheen-box" style="display: flex; justify-content: center; width: 100%; position:relative; z-index: 4;" *ngIf="playerCardLoaded">
+                  <img class="skill-cards tilt" src="{{ currentClassData.cardUrl }}" alt="Skill Card">
+                </div>
+                <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder>
+                <h3><span style="color: #d9b359;">Unique Skills</span>: Can only be learned by one class.</h3>
+              </ng-container>
+              <!-- <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span> -->
+
+              <div class="common-skills" *ngIf="showCommonSkills">
+                <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
+                  <dl>
+                    <dt (click)="selectSkill(i, 'common')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'common'}">
+                      {{ commonSkill.name }}
+                      <span class="btn-base" (click)="removeSkillsByName(commonSkill.name, $event)"><mat-icon>close</mat-icon></span>
+                    </dt>
+                    <dd>
+                      <ol>
+                        <li *ngFor="let skillDetail of commonSkill.skillDetails; last as last" (click)="handleSkillClick(commonSkill, skillDetail)" [ngClass]="{'selected-rank': isSkillDetailSelected(commonSkill, skillDetail)}">{{ last ? "MAX" : "Lv" + skillDetail.rank }}</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
               </div>
-            </div>
-            <div class="unique-skills" *ngIf="!showCommonSkills">
-              <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
-                <dl>
-                  <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
-                    {{ uniqueSkill.name }}
-                    <span class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li *ngFor="let skillDetail of uniqueSkill.skillDetails; last as last" (click)="handleSkillClick(uniqueSkill, skillDetail)" [ngClass]="{'selected-rank': isSkillDetailSelected(uniqueSkill, skillDetail)}">{{ last ? "MAX" : "Lv" + skillDetail.rank }}</li>
-                    </ol>
-                  </dd>
-                </dl>
+              <div class="unique-skills" *ngIf="!showCommonSkills">
+                <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
+                  <dl>
+                    <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
+                      {{ uniqueSkill.name }}
+                      <span class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
+                    </dt>
+                    <dd>
+                      <ol>
+                        <li *ngFor="let skillDetail of uniqueSkill.skillDetails; last as last" (click)="handleSkillClick(uniqueSkill, skillDetail)" [ngClass]="{'selected-rank': isSkillDetailSelected(uniqueSkill, skillDetail)}">{{ last ? "MAX" : "Lv" + skillDetail.rank }}</li>
+                      </ol>
+                    </dd>
+                  </dl>
+                </div>
               </div>
             </div>
           </div>

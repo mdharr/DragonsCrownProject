@@ -962,7 +962,7 @@ blockquote ul li {
 .skill-cards {
   width: 150px;
   height: auto;
-  border: 5px solid #cab35c;
+  /* border: 5px solid #cab35c; */
 }
 
 .sheen-box {
@@ -1051,14 +1051,14 @@ blockquote ul li {
 .common-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 5px;
   flex-direction: column;
 }
 
 .unique-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 5px;
   flex-direction: column;
   /* margin-top: 15px; */
 }
@@ -1228,7 +1228,6 @@ dd, ol, table, tbody, th {
 }
 
 .skillInfoBoard table {
-  margin-top: 15px;
   margin-bottom: 15px;
   width: 100%;
   font-size: 12px;
@@ -1254,10 +1253,11 @@ table {
 
 .skillInfoBoard h3 {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
   color: #fff;
   text-align: center;
   margin-top: 15px;
+  min-height: 33.59px;
 }
 
 .disabled-ranks {
@@ -1547,4 +1547,23 @@ hr.custom-hr {
   background-size: cover; /* Cover the entire area of the HR */
   background-repeat: no-repeat; /* Prevent image from repeating */
   background-position: center; /* Center the background image */
+}
+
+.common-unique-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #fff;
+  /* margin-top: 29px; */
+  padding: 20px 10px 5px;
+  margin-bottom: 15px;
+}
+
+
+.common-unique-wrapper h3 {
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  min-height: 33.59px;
 }
