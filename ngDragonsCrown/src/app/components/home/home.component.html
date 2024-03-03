@@ -420,7 +420,12 @@
                   <td>{{ skill.name }}</td>
                   <td>{{ skill.description }}</td>
                   <td>{{ skill.rank }}</td>
-                  <td>{{ skill.effects }}</td>
+                  <!-- <td>{{ skill.effects }}</td> -->
+                  <td>
+                    <ul class="build-effects">
+                      <li *ngFor="let effect of skill.effects.split(', ')">{{ effect }}</li>
+                    </ul>
+                  </td>
                 </tr>
               </tbody>
             </table>

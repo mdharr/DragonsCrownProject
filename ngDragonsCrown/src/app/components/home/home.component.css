@@ -1577,6 +1577,44 @@ table {
   justify-content: center;
 }
 
+/* .build-effects {
+  list-style-position: outside;
+  list-style-image: url(https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_point_list.png);
+} */
+
+.build-effects {
+  list-style: none; /* Disable default list styling */
+  padding-left: 0; /* Adjust padding as needed */
+}
+
+.build-effects li {
+  position: relative; /* Context for absolute positioning of the pseudo-element */
+  padding-left: 16px; /* Provide space for the custom marker; adjust as needed */
+}
+
+.build-effects li::before {
+  content: "";
+  position: absolute;
+  left: 0; /* Align to the left of the list item */
+  top: 50%; /* Center vertically, but will adjust */
+  width: 14px; /* Width of the custom marker image */
+  height: 12px; /* Height of the custom marker image */
+  background-image: url('https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_point_list.png');
+  background-size: contain; /* Adjust based on your image */
+  transform: translateY(-50%); /* Center align the marker */
+}
+
+/* .build-effects li::marker {
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
+  text-transform: none;
+  text-indent: 0px !important;
+  text-align: start !important;
+  text-align-last: start !important;
+  display: flex;
+  align-items: center;
+} */
+
 hr.custom-hr {
   border: none; /* Remove default border */
   height: 5px; /* Set a fixed height */

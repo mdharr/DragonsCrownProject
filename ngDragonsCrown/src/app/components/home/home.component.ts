@@ -204,7 +204,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.showCommonSkills = true;
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
 
-      // this.playClassAudio(this.currentClassData.name.toLowerCase());
+      this.playClassAudio(this.currentClassData.name.toLowerCase());
 
       // this.typeOutText(this.currentClassData.description, 'description-text');
     }

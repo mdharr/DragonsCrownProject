@@ -285,6 +285,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     this.isStageReady = true; // Indicate that the stage is now ready
 
     this.tickerListener = (event: any) => this.stage.update(event);
+    createjs.Ticker.reset();
     createjs.Ticker.framerate = 30;
     createjs.Ticker.on("tick", this.tickerListener);
     console.log('Ticker listener added.');
