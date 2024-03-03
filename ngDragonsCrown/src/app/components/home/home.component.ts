@@ -178,9 +178,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.currentStats = { ...this.currentClassData.classStats[0] };
       console.log("Level: " + this.currentStats.level);
-      // this.updateSkillPoints();
-      // this.currentStats.level = 1;
-      this.updateTotalAvailableSP();
+      this.resetLevel();
 
       try {
         await this.preloadImage(this.currentClassData.cardUrl);
@@ -188,6 +186,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       } catch (error) {
         console.error('Image loading failed', error);
       }
+
+      // Reset quests and skill points from quests
+      this.resetQuestsAndSkillPoints();
 
       this.commonSkills = this.currentClassData.skills
         .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
@@ -198,9 +199,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         .map((skillObj: { skill: any }) => skillObj.skill);
 
       this.quests = this.currentClassData.quests.map((questObj: { quest: any }) => questObj.quest);
+      console.log("Quests", this.quests);
 
       this.showCommonSkills = true;
-
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
 
       this.playClassAudio(this.currentClassData.name.toLowerCase());
@@ -244,8 +245,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === validLevel);
     if (stats) {
         this.currentStats = { ...stats };
-        // Assuming stats at each level includes the cumulative skill points up to that level
-        // and you want to track additional skill points gained after level 1
         this.currentLevelSP = stats.skillPoints;
         this.updateTotalAvailableSP();
         this.calculateTotalExperience();
@@ -443,6 +442,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.updateTotalAvailableSP();
   }
 
+  // Method to reset quests and their skill points
+  resetQuestsAndSkillPoints(): void {
+    this.quests.forEach(quest => quest.selected = false);
+    // Recalculate total available SP since quests skill points should now be reset
+    this.updateTotalAvailableSP();
+  }
+
   isSkillDetailSelected(skill: Skill, skillDetail: SkillDetails): boolean {
     return this.skillsList.some(item =>
       item.skillId === skill.id && item.rank === skillDetail.rank
@@ -523,7 +529,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateTotalAvailableSP(): void {
-    // Skill points gained from quests
     const questSP = this.calculateTotalSkillPoints();
 
     // Total skill points spent on unlocking skills
