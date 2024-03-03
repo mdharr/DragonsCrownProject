@@ -14,11 +14,21 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 
   private stage: any;
   private spriteSheet: any;
-  private spriteSheetMap: any;
+  spriteSheetMap: any;
   private tickerListener: Function | null = null;
   private animation: any;
 
-  private isStageReady: boolean = false;
+  isStageReady: boolean = false;
+  showLoader: boolean = false;
+
+  // The frames array within your fighterSpriteSheetData contains a series of arrays, each representing a single frame of the sprite sheet. Each inner array specifies details about how a particular image (or part of an image) should be rendered. Here's what each index in these inner arrays represents:
+  // X Position: The horizontal position of the frame's top-left corner within the sprite sheet image. This tells the renderer where to start cutting the frame from the sprite sheet.
+  // Y Position: The vertical position of the frame's top-left corner within the sprite sheet image. Along with the X position, this defines the starting point for the frame.
+  // Width: The width of the frame. This determines how wide the cut from the sprite sheet will be.
+  // Height: The height of the frame. This determines the height of the cut from the sprite sheet.
+  // Image Index (optional): In sprite sheets that contain multiple images, this index refers to the specific image in the images array. If your sprite sheet consists of a single image, this value is typically 0 or omitted.
+  // RegX (Registration Point X): The X coordinate of the frame's registration point. This is often used to offset the drawing of the frame. For example, if you want the frame to be drawn centered around a particular point, you might set RegX to half the frame's width.
+  // RegY (Registration Point Y): The Y coordinate of the frame's registration point, similar to RegX but for the vertical axis.
 
   // Raw JSON data for the fighter spritesheet
   private fighterSpriteSheetData = {
@@ -64,9 +74,12 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
       [1101,3274,368,534,0,-34,-88]
     ],
     "animations": {
+      // [starting frame index, ending frame index, looping: true/false, speed multiplier]
       "do": [0, 38, true, 1.2]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/fighter1.png"]
+    // spritesheet url
+    "images": ["https://dragons-crown.com/resources/sprite/character/fighter1.png"],
+    "loader": ["https://dragons-crown.com/resources/img/character/c1_loader.png"]
   };
 
   // Raw JSON data for the amazon spritesheet
@@ -100,7 +113,8 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 23, true, 0.45]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/amazon1.png"]
+    "images": ["https://dragons-crown.com/resources/sprite/character/amazon1.png"],
+    "loader": ["https://dragons-crown.com/resources/img/character/c2_loader.png"]
   };
 
   // Raw JSON data for the elf spritesheet
@@ -131,7 +145,8 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 20, true, 0.3]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/elf1.png"]
+    "images": ["https://dragons-crown.com/resources/sprite/character/elf1.png"],
+    "loader": ["https://dragons-crown.com/resources/img/character/c4_loader.png"]
   };
 
   // Raw JSON data for the dwarf spritesheet
@@ -157,7 +172,8 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 15, true, 0.45]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/dwarf1.png"]
+    "images": ["https://dragons-crown.com/resources/sprite/character/dwarf1.png"],
+    "loader": ["https://dragons-crown.com/resources/img/character/c5_loader.png"]
   };
 
   // Raw JSON data for the sorceress spritesheet
@@ -199,7 +215,8 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 31, true, 0.45]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/sorceress1.png"]
+    "images": ["https://dragons-crown.com/resources/sprite/character/sorceress1.png"],
+    "loader": ["https://dragons-crown.com/resources/img/character/c6_loader.png"]
   };
 
   // Raw JSON data for the wizard spritesheet
@@ -239,7 +256,8 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 29, true, 0.3]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/wizard1.png"]
+    "images": ["https://dragons-crown.com/resources/sprite/character/wizard1.png"],
+    "loader": ["https://dragons-crown.com/resources/img/character/c3_loader.png"]
   };
 
   ngOnInit() {
@@ -254,7 +272,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 
     this.initCanvas();
     // Add the ticker listener once
-    createjs.Ticker.on("tick", this.tickerListener);
+    // createjs.Ticker.on("tick", this.tickerListener);
   }
 
   ngOnDestroy() {
@@ -266,10 +284,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges) {
     console.log("OnChanges Triggered");
-    if (this.tickerListener) {
-      createjs.Ticker.off("tick", this.tickerListener);
-      createjs.Ticker.reset();
-    }
+    this.showLoader = true;
     if (changes['className'] && changes['className'].currentValue) {
       this.loadSpriteSheet(changes['className'].currentValue);
     }
@@ -283,7 +298,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 
     this.stage = new createjs.Stage(this.canvasRef.nativeElement);
     this.isStageReady = true; // Indicate that the stage is now ready
-
+    this.showLoader = true;
     this.tickerListener = (event: any) => this.stage.update(event);
     createjs.Ticker.reset();
     createjs.Ticker.framerate = 30;
@@ -352,6 +367,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     animation.y = centerY;
 
     this.stage.addChild(animation);
+    this.showLoader = false;
     animation.play();
 
     // Explicitly update the stage after adding the sprite and starting the animation

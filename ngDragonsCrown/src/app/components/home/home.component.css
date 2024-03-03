@@ -1585,6 +1585,7 @@ table {
 .build-effects {
   list-style: none; /* Disable default list styling */
   padding-left: 0; /* Adjust padding as needed */
+  margin: 0;
 }
 
 .build-effects li {

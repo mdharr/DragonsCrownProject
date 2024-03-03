@@ -406,7 +406,7 @@
             </div>
             <hr>
             <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
-            <table>
+            <table class="build-table">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -421,7 +421,7 @@
                   <td>{{ skill.description }}</td>
                   <td>{{ skill.rank }}</td>
                   <!-- <td>{{ skill.effects }}</td> -->
-                  <td>
+                  <td class="build-effects-wrapper">
                     <ul class="build-effects">
                       <li *ngFor="let effect of skill.effects.split(', ')">{{ effect }}</li>
                     </ul>

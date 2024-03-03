@@ -1,6 +1,7 @@
 <div class="outer">
   <div class="inner">
-    <canvas #canvas width="241" height="320"></canvas>
+    <img [hidden]="!showLoader" [src]="this.spriteSheetMap[className]?.loader[0]" alt="loading image">
+    <canvas [hidden]="showLoader" #canvas width="241" height="320"></canvas>
     <div class="gif-crt"></div>
   </div>
 </div>

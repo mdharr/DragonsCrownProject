@@ -1,40 +1,3 @@
-/* .outer {
-  position: relative;
-  z-index: 7;
-}
-
-.inner {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-  width: fit-content;
-  height: fit-content;
-}
-
-canvas {
-  top: -315px;
-  left: -33px;
-  display: block;
-  position: absolute;
-}
-
-.gif-crt {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 5;
-  background-image: url("https://dragons-crown.com/resources/img/top/overlay.png");
-  background-repeat: repeat;
-  pointer-events: none;
-  opacity: 0.2;
-} */
-
 .outer {
   position: relative;
   z-index: 1; /* Ensure this is the starting layer context */
@@ -50,6 +13,11 @@ canvas {
   font: inherit;
   font-size: 100%;
   vertical-align: baseline;
+  width: 241px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 canvas {
@@ -69,4 +37,9 @@ canvas {
   background-repeat: repeat;
   pointer-events: none;
   opacity: 0.1;
+}
+
+img {
+  display: block;
+  image-rendering: pixelated;
 }

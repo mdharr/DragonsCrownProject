@@ -599,4 +599,5 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     const audio = new Audio(audioPath);
     audio.play();
   }
+
 }
