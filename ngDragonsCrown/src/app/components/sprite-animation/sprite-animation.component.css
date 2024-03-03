@@ -53,7 +53,8 @@ canvas {
 }
 
 canvas {
-  display: block; /* Adjust positioning as necessary, but it's now relative to .inner */
+  display: block;
+  image-rendering: pixelated;
 }
 
 .gif-crt {
