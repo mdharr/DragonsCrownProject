@@ -228,7 +228,8 @@
 .class-description {
   min-height: 400px;
   position: relative;
-  padding: 0px 50px 20px 50px;
+  /* padding: 0px 50px 20px 50px; */
+  padding: 0px 0px 20px 10px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
@@ -315,7 +316,6 @@
   background-repeat: repeat;
   pointer-events: none; /* Allows click events to pass through */
   opacity: 0.2;
-  /* border-radius: 15px; */
 }
 
 .gif-animation {
@@ -356,8 +356,8 @@
 }
 
 .n1 {
-  background-color: rgba(0, 0, 0, 0.3);
-    flex: 1;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  flex: 1;
 }
 
 .alt-artwork {
@@ -706,7 +706,7 @@ html {
 
 .class-background {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.3);
+  /* background-color: rgba(0, 0, 0, 0.3); */
 }
 
 .class-background::before {

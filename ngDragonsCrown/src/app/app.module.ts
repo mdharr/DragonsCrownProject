@@ -15,6 +15,7 @@ import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/sc
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardPlaceholderComponent } from './components/card-placeholder/card-placeholder.component';
+import { SpriteAnimationComponent } from './components/sprite-animation/sprite-animation.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CardPlaceholderComponent } from './components/card-placeholder/card-pla
     SafeUrlPipe,
     NavbarComponent,
     CardPlaceholderComponent,
+    SpriteAnimationComponent,
   ],
   imports: [
     BrowserModule,
