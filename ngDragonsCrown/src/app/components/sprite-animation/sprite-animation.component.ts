@@ -283,7 +283,6 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("OnChanges Triggered");
     this.showLoader = true;
     if (changes['className'] && changes['className'].currentValue) {
       this.loadSpriteSheet(changes['className'].currentValue);
@@ -303,7 +302,6 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     createjs.Ticker.reset();
     createjs.Ticker.framerate = 30;
     createjs.Ticker.on("tick", this.tickerListener);
-    console.log('Ticker listener added.');
 
     // If a class name has already been set, attempt to load its sprite sheet
     if (this.className) {

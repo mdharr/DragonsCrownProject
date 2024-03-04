@@ -16,6 +16,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardPlaceholderComponent } from './components/card-placeholder/card-placeholder.component';
 import { SpriteAnimationComponent } from './components/sprite-animation/sprite-animation.component';
+import { CalculateTotalSPPipe } from './pipes/calculate-total-s-p.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SpriteAnimationComponent } from './components/sprite-animation/sprite-a
     NavbarComponent,
     CardPlaceholderComponent,
     SpriteAnimationComponent,
+    CalculateTotalSPPipe,
   ],
   imports: [
     BrowserModule,

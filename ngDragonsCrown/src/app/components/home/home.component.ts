@@ -174,10 +174,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
-
+      console.log("CURRENT CLASS DATA: ", this.currentClassData);
 
       this.currentStats = { ...this.currentClassData.classStats[0] };
-      console.log("Level: " + this.currentStats.level);
       this.resetLevel();
 
       try {
@@ -199,7 +198,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         .map((skillObj: { skill: any }) => skillObj.skill);
 
       this.quests = this.currentClassData.quests.map((questObj: { quest: any }) => questObj.quest);
-      console.log("Quests", this.quests);
 
       this.showCommonSkills = true;
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
@@ -486,14 +484,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.skillsList.push(skillToAdd);
     this.updateCurrentBuild();
-    console.log(this.skillsList);
   }
 
   removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
     this.skillsList = this.skillsList.filter(item =>
       item.skillId !== skill.id || item.rank < selectedSkillDetail.rank
     );
-    console.log(this.skillsList);
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
   }
@@ -532,16 +528,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   updateTotalAvailableSP(): void {
     const questSP = this.calculateTotalSkillPoints();
 
-    // Total skill points spent on unlocking skills
     const spentSP = this.skillsList.reduce((total, item) => total + item.requiredSkillPoints, 0);
-    console.log("Spent SP: ", spentSP);
-    // Initial skill points at level 1 plus skill points gained from leveling up
-    // Assuming 'currentLevelSP' represents just the additional points gained from leveling up beyond the initial SP
+
     const totalSkillPointsFromLevels = this.currentLevelSP;
-    console.log("SP from levels: ", totalSkillPointsFromLevels);
-    // Calculating total available skill points
+
     this.totalAvailableSP = totalSkillPointsFromLevels + questSP - spentSP;
-    console.log("Available SP: ", this.totalAvailableSP);
   }
 
   isRankSelected(skillId: number, rank: number): boolean {
@@ -600,4 +591,15 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     audio.play();
   }
 
+  calculateTotalSPReqForSkill(skillName: string) {
+    const skills = this.currentClassData.skills.filter((skillObj: any) => skillObj.skill.name === skillName);
+    console.log("SKILLS: ", skills);
+    // return skills.reduce((acc: number, current: Skill) => {
+    //   const skillDetailsTotalSP = current.skillDetails.reduce((accDetail: number, currentDetail: SkillDetails) => {
+    //     return accDetail + currentDetail.requiredSkillPoints;
+    //   }, 0)
+
+    //   return acc + skillDetailsTotalSP;
+    // }, 0)
+  }
 }
