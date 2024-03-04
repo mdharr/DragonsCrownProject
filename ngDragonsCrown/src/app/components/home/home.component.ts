@@ -590,4 +590,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     audio.play();
   }
 
+  getRequiredExpForNextLevel(): number {
+    const nextLevel = this.currentStats.level + 1;
+    const nextLevelStats = this.currentClassData.classStats.find((stat: { level: any; }) => stat.level === nextLevel);
+    return nextLevelStats ? nextLevelStats.requiredExp : 0;
+  }
+
 }
