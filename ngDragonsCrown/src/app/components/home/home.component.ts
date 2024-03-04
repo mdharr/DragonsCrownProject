@@ -566,7 +566,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const highestRank = highestRanks.get(skill.skillId);
       return skill.rank === highestRank;
     });
-    console.log(this.currentBuild);
     // Optionally, sort currentBuild by skillId or name if needed
     this.currentBuild.sort((a, b) => a.skillId - b.skillId);
   }
