@@ -66,6 +66,7 @@
 .content {
   position: relative; /* This makes it the reference point for absolute positioning inside */
   max-width: 1000px; /* Limit content width for readability */
+  width: 1000px;
   margin: 0 auto; /* Center content horizontally */
   margin-top: 95px; /* Adjust as needed */
   margin-bottom: 100px;
@@ -417,7 +418,7 @@
   left: 0;
   right:0;
   bottom:0;
-  background-image: url(https://dragons-crown.com/resources/img/top/dragon.png);
+  /* background-image: url(https://dragons-crown.com/resources/img/top/dragon.png); */
   background-repeat: no-repeat;
   background-position: right top;
   /* background-size: 100%; */
