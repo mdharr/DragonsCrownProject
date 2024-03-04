@@ -1,26 +1,35 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Skill } from '../models/skill';
 
+interface CombinedSkill {
+  skillId: number;
+  name: string;
+  description: string;
+  cardImageUrl: string;
+  isCommon: boolean;
+  rankDetailId: number;
+  rank: number;
+  requiredSkillPoints: number;
+  similarSkillLevel: number;
+  requiredPlayerLevel: number;
+  effects: string;
+}
+
 @Pipe({
   name: 'calculateTotalSP'
 })
 export class CalculateTotalSPPipe implements PipeTransform {
 
-  transform(skillName: string, skills: any[]): number {
-    // Filter skills to match the provided skill name
-    const matchingSkills = skills.filter(skill => skill.skill.name === skillName);
+  transform(combinedSkill: CombinedSkill, allSkills: any[]): number {
+    const fullSkill = allSkills.find(skill => skill.skill.name === combinedSkill.name);
+    if (!fullSkill) {
+      return 0;
+    }
 
-    // Sum the requiredSkillPoints for each matching skill
-    const totalRequiredSP = matchingSkills.reduce((total, skill) => {
-      // Sum the requiredSkillPoints for each skillDetail of the current matching skill
-      const skillDetailsTotalSP = skill.skill.skillDetails.reduce((detailTotal: any, skillDetail: { requiredSkillPoints: any; }) => {
-        return detailTotal + skillDetail.requiredSkillPoints;
-      }, 0);
+    const skillPointsUpToRank = fullSkill.skill.skillDetails
+      .filter((detail: { rank: number; }) => detail.rank <= combinedSkill.rank)
+      .reduce((acc: any, detail: { requiredSkillPoints: any; }) => acc + detail.requiredSkillPoints, 0);
 
-      // Add the current skill's total to the overall total
-      return total + skillDetailsTotalSP;
-    }, 0);
-
-    return totalRequiredSP;
+    return skillPointsUpToRank;
   }
 }

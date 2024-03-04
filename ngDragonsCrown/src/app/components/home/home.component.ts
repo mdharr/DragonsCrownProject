@@ -566,7 +566,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const highestRank = highestRanks.get(skill.skillId);
       return skill.rank === highestRank;
     });
-
+    console.log(this.currentBuild);
     // Optionally, sort currentBuild by skillId or name if needed
     this.currentBuild.sort((a, b) => a.skillId - b.skillId);
   }
@@ -591,15 +591,4 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     audio.play();
   }
 
-  calculateTotalSPReqForSkill(skillName: string) {
-    const skills = this.currentClassData.skills.filter((skillObj: any) => skillObj.skill.name === skillName);
-    console.log("SKILLS: ", skills);
-    // return skills.reduce((acc: number, current: Skill) => {
-    //   const skillDetailsTotalSP = current.skillDetails.reduce((accDetail: number, currentDetail: SkillDetails) => {
-    //     return accDetail + currentDetail.requiredSkillPoints;
-    //   }, 0)
-
-    //   return acc + skillDetailsTotalSP;
-    // }, 0)
-  }
 }
