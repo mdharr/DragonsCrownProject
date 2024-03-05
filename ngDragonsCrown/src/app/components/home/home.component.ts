@@ -416,9 +416,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   toggleQuest(quest: Quest): void {
     quest.selected = !quest.selected;
     this.calculateTotalSkillPoints();
-    // this.updateSkillPoints();
     this.updateTotalAvailableSP();
     this.playQuestCompleteAudio();
+    if (this.totalAvailableSP < 0) {
+      this.resetSkills();
+    }
   }
 
   toggleAllQuests(event: Event): void {
@@ -430,6 +432,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // this.updateSkillPoints();
     this.updateTotalAvailableSP();
     this.playQuestCompleteAudio();
+    if (this.totalAvailableSP < 0) {
+      this.resetSkills();
+    }
   }
 
   areAllQuestsSelected(): boolean {
@@ -607,5 +612,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       .reduce((acc: any, detail: { requiredSkillPoints: any; }) => acc + detail.requiredSkillPoints, 0);
 
     return skillPointsUpToRank;
+  }
+
+  resetSkills() {
+    while(this.totalAvailableSP < 0) {
+      this.skillsList.pop();
+      this.updateTotalAvailableSP();
+    }
+    this.updateCurrentBuild();
   }
 }
