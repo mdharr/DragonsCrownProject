@@ -424,8 +424,8 @@
                 <tr *ngFor="let skill of currentBuild">
                   <td>{{ skill.name }}</td>
                   <td>{{ skill.description }}</td>
-                  <!-- <td>{{ skill.name | calculateTotalSP:currentClassData.skills }}</td> -->
                   <td>{{ skill | calculateTotalSP:currentClassData.skills }}</td>
+                  <!-- <td>{{ this.calculateSP(skill, currentClassData.skills) }}</td> -->
                   <td>{{ skill.rank }}</td>
                   <td class="build-effects-wrapper">
                     <ul class="build-effects">
