@@ -247,6 +247,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.currentLevelSP = stats.skillPoints;
         this.updateTotalAvailableSP();
         this.calculateTotalExperience();
+        if (this.totalAvailableSP < 0) {
+          this.resetSkills();
+        }
     } else {
         console.error('Stats for level', validLevel, 'not found');
     }
