@@ -413,9 +413,11 @@
               <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
               <span style="cursor: pointer;" [matMenuTriggerFor]="menu">Options</span>
               <mat-menu #menu="matMenu">
-                <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item (click)="toggleDisplayOption('all')">Show All <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button>
+                <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item (click)="toggleDisplayOption('all')">Show By Insert Order <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showByNameAsc}" mat-menu-item (click)="toggleDisplayOption('name_asc')">Show By Name Asc <mat-icon *ngIf="showByNameAsc">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showByNameDesc}" mat-menu-item (click)="toggleDisplayOption('name_desc')">Show By Name Desc <mat-icon *ngIf="showByNameDesc">check</mat-icon></button>
+                <button class="custom-button" [ngClass]="{'with-icon': showBySPAsc}" mat-menu-item (click)="toggleDisplayOption('sp_asc')">Show By SP Asc <mat-icon *ngIf="showBySPAsc">check</mat-icon></button>
+                <button class="custom-button" [ngClass]="{'with-icon': showBySPDesc}" mat-menu-item (click)="toggleDisplayOption('sp_desc')">Show By SP Desc <mat-icon *ngIf="showBySPDesc">check</mat-icon></button>
               </mat-menu>
             </div>
             <table class="build-table">

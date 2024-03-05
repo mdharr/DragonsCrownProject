@@ -54,6 +54,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   previousClassVoice: string = '';
   skillsNameAsc: CombinedSkill[] = [];
   skillsNameDesc: CombinedSkill[] = [];
+  skillsBySPAsc: CombinedSkill[] = [];
+  skillsBySPDesc: CombinedSkill[] = [];
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -76,6 +78,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   showAll: boolean = false;
   showByNameAsc: boolean = false;
   showByNameDesc: boolean = false;
+  showBySPAsc: boolean = false;
+  showBySPDesc: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -584,6 +588,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.originalBuild = this.currentBuild;
     this.skillsNameAsc = this.sortByNameAsc(this.currentBuild);
     this.skillsNameDesc = this.sortByNameDesc(this.currentBuild);
+    this.skillsBySPAsc = this.sortBySPAsc(this.currentBuild, this.currentClassData.skills);
+    this.skillsBySPDesc = this.sortBySPDesc(this.currentBuild, this.currentClassData.skills);
     console.log("SKILLS ASC", this.skillsNameAsc);
     console.log("SKILLS DESC", this.skillsNameDesc);
 
@@ -638,12 +644,30 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sortByNameAsc(skills: any) {
-    console.log("SKILLS SORTED: ", skills);
     return [...skills].sort((a, b) => a.name.localeCompare(b.name));
   }
 
   sortByNameDesc(skills: any) {
     return [...skills].sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  sortBySPAsc(skills: CombinedSkill[], allSkills: Skill[]): CombinedSkill[] {
+    const sorted = skills.sort((a, b) => {
+      const spA = this.calculateSP(a, allSkills);
+      const spB = this.calculateSP(b, allSkills);
+      return spA - spB;
+    });
+    return [...sorted]; // Create a new array
+  }
+
+
+  sortBySPDesc(skills: CombinedSkill[], allSkills: Skill[]): CombinedSkill[] {
+    const sorted = skills.sort((a, b) => {
+      const spA = this.calculateSP(a, allSkills);
+      const spB = this.calculateSP(b, allSkills);
+      return spB - spA;
+    });
+    return [...sorted]; // Create a new array
   }
 
   toggleShowAll() {
@@ -660,6 +684,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.showAll = false;
     this.showByNameAsc = false;
     this.showByNameDesc = false;
+    this.showBySPAsc = false;
+    this.showBySPDesc = false;
 
     // Set the selected option to true
     switch (selectedOption) {
@@ -675,6 +701,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showByNameDesc = true;
         this.currentBuild = this.skillsNameDesc;
         break;
+      case 'sp_asc':
+        this.showBySPAsc = true;
+        this.currentBuild = this.skillsBySPAsc;
+        break;
+      case 'sp_desc':
+        this.showBySPDesc = true;
+        this.currentBuild = this.skillsBySPDesc;
+        break;
       default:
         this.showAll = true;
         break;
@@ -685,6 +719,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       'showAll': this.showAll,
       'showByNameAsc': this.showByNameAsc,
       'showByNameDesc': this.showByNameDesc,
+      'showBySPAsc': this.showBySPAsc,
+      'showBySPDesc': this.showBySPDesc,
     });
   }
 }
