@@ -50,7 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   totalAvailableSP: number = this.initialTotalSP;
   skillsList: CombinedSkill[] = [];
   currentBuild: CombinedSkill[] = [];
+  originalBuild: CombinedSkill[] = [];
   previousClassVoice: string = '';
+  skillsNameAsc: CombinedSkill[] = [];
+  skillsNameDesc: CombinedSkill[] = [];
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
@@ -70,6 +73,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   isModalVisible = false;
   viewQuests: boolean = false;
   viewBuild: boolean = false;
+  showAll: boolean = false;
+  showByNameAsc: boolean = false;
+  showByNameDesc: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -574,8 +580,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const highestRank = highestRanks.get(skill.skillId);
       return skill.rank === highestRank;
     });
-    // Optionally, sort currentBuild by skillId or name if needed
-    this.currentBuild.sort((a, b) => a.skillId - b.skillId);
+
+    this.originalBuild = this.currentBuild;
+    this.skillsNameAsc = this.sortByNameAsc(this.currentBuild);
+    this.skillsNameDesc = this.sortByNameDesc(this.currentBuild);
+    console.log("SKILLS ASC", this.skillsNameAsc);
+    console.log("SKILLS DESC", this.skillsNameDesc);
+
+    // this.currentBuild.sort((a, b) => a.skillId - b.skillId);
   }
 
   playClassAudio(className: string) {
@@ -623,5 +635,56 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateTotalAvailableSP();
     }
     this.updateCurrentBuild();
+  }
+
+  sortByNameAsc(skills: any) {
+    console.log("SKILLS SORTED: ", skills);
+    return [...skills].sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  sortByNameDesc(skills: any) {
+    return [...skills].sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  toggleShowAll() {
+    if(this.showAll) {
+      this.showAll = false;
+    }
+    else {
+      this.showAll = true;
+    }
+  }
+
+  toggleDisplayOption(selectedOption: string) {
+    // Reset all options to false
+    this.showAll = false;
+    this.showByNameAsc = false;
+    this.showByNameDesc = false;
+
+    // Set the selected option to true
+    switch (selectedOption) {
+      case 'all':
+        this.showAll = true;
+        this.currentBuild = this.originalBuild;
+        break;
+      case 'name_asc':
+        this.showByNameAsc = true;
+        this.currentBuild = this.skillsNameAsc;
+        break;
+      case 'name_desc':
+        this.showByNameDesc = true;
+        this.currentBuild = this.skillsNameDesc;
+        break;
+      default:
+        this.showAll = true;
+        break;
+    }
+
+    // Log the current state for debugging
+    console.log({
+      'showAll': this.showAll,
+      'showByNameAsc': this.showByNameAsc,
+      'showByNameDesc': this.showByNameDesc,
+    });
   }
 }
