@@ -6,6 +6,7 @@ import { PlayerClass } from 'src/app/models/player-class';
 import { Subscription } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
 import { Quest } from 'src/app/models/quest';
+import { ImageEntity } from 'src/app/models/image-entity';
 
 interface CombinedSkill {
   skillId: number;
@@ -56,6 +57,33 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsNameDesc: CombinedSkill[] = [];
   skillsBySPAsc: CombinedSkill[] = [];
   skillsBySPDesc: CombinedSkill[] = [];
+
+  images: ImageEntity[] = [
+    {
+      name: 'red_bg',
+      minUrl: 'https://live.staticflickr.com/65535/53569475467_2d136f39b1_k.jpg',
+      maxUrl: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/bg_pattern.png',
+      isLoaded: false,
+    },
+    {
+      name: 'build_bg',
+      minUrl: 'https://live.staticflickr.com/65535/53570332721_44285efc00_k.jpg',
+      maxUrl: 'https://live.staticflickr.com/65535/53563097050_a0995f3742_k.jpg',
+      isLoaded: false,
+    },
+    {
+      name: 'castle_bg',
+      minUrl: 'https://live.staticflickr.com/65535/53570769145_4230a9f7f7_k.jpg',
+      maxUrl: 'https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1590653347/dragonscrown_environment_castle_town.png',
+      isLoaded: false,
+    },
+    {
+      name: 'character_bg',
+      minUrl: 'https://live.staticflickr.com/65535/53570769120_a9e153d0c8_k.jpg',
+      maxUrl: 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg',
+      isLoaded: false,
+    },
+  ];
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
