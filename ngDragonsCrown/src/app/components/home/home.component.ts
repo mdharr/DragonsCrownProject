@@ -76,7 +76,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       name: 'castle_bg',
       minUrl: 'https://live.staticflickr.com/65535/53570769145_4230a9f7f7_k.jpg',
-      maxUrl: 'https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1590653347/dragonscrown_environment_castle_town.png',
+      // maxUrl: 'https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1590653347/dragonscrown_environment_castle_town.png',
+      maxUrl: 'https://live.staticflickr.com/65535/53570755564_eb3a3d67b6_k.jpg',
       isLoaded: false,
     },
     {

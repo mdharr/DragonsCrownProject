@@ -19,6 +19,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardPlaceholderComponent } from './components/card-placeholder/card-placeholder.component';
 import { SpriteAnimationComponent } from './components/sprite-animation/sprite-animation.component';
 import { CalculateTotalSPPipe } from './pipes/calculate-total-s-p.pipe';
+import { ParticlesComponent } from './components/particles/particles.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CalculateTotalSPPipe } from './pipes/calculate-total-s-p.pipe';
     CardPlaceholderComponent,
     SpriteAnimationComponent,
     CalculateTotalSPPipe,
+    ParticlesComponent,
   ],
   imports: [
     BrowserModule,
