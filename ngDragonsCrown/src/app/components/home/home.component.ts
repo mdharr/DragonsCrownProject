@@ -122,6 +122,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // typewriter
   currentTimeoutId: number | null = null;
+  introText: string = "Embark on an epic journey across Hydeland, a land steeped in mystery and danger, in pursuit of the legendary Dragon's Crown. With this arcane tool at your disposal, you have the power to meticulously craft your adventurer, choosing your path with care and strategy. Fine-tune your character's stats, carefully plan out your skills, and share your hero's build with companions and fellow seekers of the crown.";
 
   // audio
   private audioPaths: Record<ClassName, string> = {
@@ -146,6 +147,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.resetWindowPosition();
     this.subscribeToPlayerClassData();
     this.preloadImageEntities();
+    this.typeOutText(this.introText, 'introduction-text');
   }
 
   ngOnDestroy() {
