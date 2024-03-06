@@ -144,6 +144,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     this.resetWindowPosition();
     this.subscribeToPlayerClassData();
+    this.preloadImageEntities();
   }
 
   ngOnDestroy() {
@@ -182,6 +183,25 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   resetWindowPosition() {
     history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
+  }
+
+  preloadImageEntities() {
+    this.images.forEach((image) => {
+      this.preloadService.preloadImage(image.maxUrl).subscribe({
+        next: (url) => {
+          if (url === image.maxUrl) {
+            image.isLoaded = true;
+            // Update the UI or trigger changes as needed
+          }
+        },
+        error: (error) => console.error(`Failed to load image ${image.name}:`, error),
+      });
+    });
+  }
+
+  getImageUrl(name: string): string {
+    const image = this.images.find(img => img.name === name);
+    return image?.isLoaded ? image.maxUrl : image!.minUrl;
   }
 
   resetPortraits() {
@@ -753,4 +773,5 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       'showBySPDesc': this.showBySPDesc,
     });
   }
+
 }
