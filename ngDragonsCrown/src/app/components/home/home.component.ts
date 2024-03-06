@@ -657,9 +657,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const spB = this.calculateSP(b, allSkills);
       return spA - spB;
     });
-    return [...sorted]; // Create a new array
+    return [...sorted];
   }
-
 
   sortBySPDesc(skills: CombinedSkill[], allSkills: Skill[]): CombinedSkill[] {
     const sorted = skills.sort((a, b) => {
