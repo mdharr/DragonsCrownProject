@@ -10,7 +10,7 @@
 
   <!-- Main content area -->
   <div class="main">
-    <div class="content">
+    <div class="content" [ngStyle]="{'--red_bg': 'url(' + getImageUrl('red_bg') + ')'}">
       <div class="gdiv">
         <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->
         <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_top_pattern.png" alt="">
@@ -46,7 +46,8 @@
           </ul>
         </div>
         <hr>
-        <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg') + ')'">
+        <!-- <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg') + ')'"> -->
+        <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'">
           <ng-container *ngIf="classSelected">
             <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation>
           </ng-container>
@@ -227,7 +228,8 @@
           <button id="build-btn" [class.selected-skills]="viewBuild && !viewQuests" mat-button (click)="viewCurrentBuild()">View Build</button>
         </ng-container>
         <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->
-        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1590653347/dragonscrown_environment_castle_town.png' + ')'}">
+        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1590653347/dragonscrown_environment_castle_town.png' + ')'}"> -->
+        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('castle_bg') + ')'}">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
 
@@ -368,19 +370,13 @@
             </table>
           </div>
         </div>
-        <div style="padding-bottom: 15px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://live.staticflickr.com/65535/53563097050_a0995f3742_k.jpg' + ')'}">
+        <!-- <div style="padding-bottom: 15px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://live.staticflickr.com/65535/53563097050_a0995f3742_k.jpg' + ')'}"> -->
+        <div style="padding-bottom: 15px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('build_bg') + ')'}">
           <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #ffffff;" class="build-placeholder">
             <h3>Unlock skills to start planning out your build!</h3>
           </div>
           <div class="quests-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
-            <!-- <img src="{{ currentClassData.portraitUrl }}" alt="{{ currentClassData.name }} Portrait"> -->
             <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
-              <!-- <img [hidden]="!artworkLoaded" style="height: 150px; width: auto;" [src]="currentClassData?.iconUrl" (load)="onArtworkLoad()" alt="High-quality artwork">
-              <img *ngIf="!artworkLoaded" style="height: 150px; width: auto;" [src]="currentClassData?.iconUrl" alt="Low-quality artwork"> -->
-              <!-- <div class="class-portrait" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData.portraitUrl + ')'}"> -->
-              <!-- <div class="class-portrait" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://static.wikia.nocookie.net/dragons-crown/images/0/0f/Phantom-Knight.gif' + ')'}">
-                <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
-              </div> -->
             </div>
             <hr>
             <div class="cards-wrapper">

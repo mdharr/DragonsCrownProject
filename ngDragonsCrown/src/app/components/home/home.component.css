@@ -81,7 +81,8 @@
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
   /* background-image: url(https://atlus.com/dragonscrown/img/system/magicshop_bg1.png); */
-  background-image: url(https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/bg_pattern.png);
+  /* background-image: url(https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/bg_pattern.png); */
+  background-image: var(--red_bg);
   background-repeat: repeat;
   background-position: top left;
   background-size: 100%;
@@ -751,6 +752,7 @@ html {
   background-position: top right;
   /* filter: brightness(50%) opacity(70%); */
   z-index: -1;
+  background-color: black;
 }
 
 /* Assuming your div has a class name 'class-portrait' for targeting */
