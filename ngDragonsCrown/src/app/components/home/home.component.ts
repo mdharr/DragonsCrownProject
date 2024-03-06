@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
 import { Quest } from 'src/app/models/quest';
 import { ImageEntity } from 'src/app/models/image-entity';
+import { PreloadService } from 'src/app/services/preload.service';
 
 interface CombinedSkill {
   skillId: number;
@@ -58,6 +59,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsBySPAsc: CombinedSkill[] = [];
   skillsBySPDesc: CombinedSkill[] = [];
 
+  // image assets to preload
   images: ImageEntity[] = [
     {
       name: 'red_bg',
@@ -137,6 +139,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   auth = inject(AuthService);
   playerClassService = inject(PlayerClassService);
   renderer = inject(Renderer2);
+  preloadService = inject(PreloadService);
 
   ngOnInit() {
     this.resetWindowPosition();
