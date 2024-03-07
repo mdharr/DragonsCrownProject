@@ -315,7 +315,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setLevelToOne() {
-    if (this.skillsList.length > 0 || this.currentClassData.level > 1) {
+    if (this.skillsList.length > 0 || this.currentStats.level > 1) {
       this.skillsList = [];
       this.updateLevel(1);
       this.currentLevelSP = this.initialTotalSP;
