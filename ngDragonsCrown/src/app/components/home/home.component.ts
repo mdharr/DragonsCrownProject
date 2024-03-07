@@ -659,10 +659,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   removeSkillsByName(skillName: string, event: MouseEvent): void {
     event.stopPropagation(); // Prevent event from triggering parent click events
 
+    if (this.skillsList.some(skill => skill.name === skillName)) {
+      this.playScratchAudio();
+    }
+
     this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
-    this.playScratchAudio();
   }
 
   updateCurrentBuild(): void {
