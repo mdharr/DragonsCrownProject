@@ -153,7 +153,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.resetWindowPosition();
     this.subscribeToPlayerClassData();
     this.preloadImageEntities();
-    this.typeOutText(this.introText, 'introduction-text');
+    // this.typeOutText(this.introText, 'introduction-text');
   }
 
   ngOnDestroy() {
@@ -241,7 +241,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if(this.classSelected) {
       this.selected = true;
-
+      this.playAcceptAudio();
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
       console.log("CURRENT CLASS DATA: ", this.currentClassData);
@@ -272,9 +272,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.showCommonSkills = true;
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
 
-      this.playClassAudio(this.currentClassData.name.toLowerCase());
+      setTimeout(() => {
+        this.playClassAudio(this.currentClassData.name.toLowerCase());
+      }, 200);
 
-      // this.typeOutText(this.currentClassData.description, 'description-text');
     }
   }
 
@@ -290,6 +291,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     const newLevel = Number(this.currentStats.level) + 1;
     this.updateLevel(newLevel);
+    this.playConfirmAudio();
   }
 
   levelDown(): void {
@@ -299,6 +301,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     const newLevel = Number(this.currentStats.level) - 1;
     this.updateLevel(newLevel);
+    this.playConfirmAudio();
   }
 
   resetLevel() {
@@ -307,6 +310,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLevelSP = this.initialTotalSP;
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
+    this.playEraseAudio();
   }
 
   updateLevel(newLevel: number): void {
@@ -325,40 +329,57 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  // onLevelChange(): void {
+  //   const enteredLevel = Number(this.currentStats.level);
+  //   this.updateLevel(enteredLevel);
+  //   this.playConfirmAudio();
+  // }
+
+  onEnterPress(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      // Trigger the blur event manually
+      let element = event.target as HTMLElement;
+      element.blur();
+    }
+  }
+
   onLevelChange(): void {
+    // The logic here will now be triggered by the blur event, which can be
+    // manually triggered by the onEnterPress method above.
     const enteredLevel = Number(this.currentStats.level);
     this.updateLevel(enteredLevel);
+    this.playConfirmAudio();
   }
 
-  async typeOutText(input: string, elementId: string): Promise<void> {
-    const element = document.getElementById(elementId) as HTMLParagraphElement;
-    if (!element) {
-        console.error('Element not found');
-        return;
-    }
+  // async typeOutText(input: string, elementId: string): Promise<void> {
+  //   const element = document.getElementById(elementId) as HTMLParagraphElement;
+  //   if (!element) {
+  //       console.error('Element not found');
+  //       return;
+  //   }
 
-    element.textContent = '';
+  //   element.textContent = '';
 
-    if (this.currentTimeoutId !== null) {
-        clearTimeout(this.currentTimeoutId);
-        this.currentTimeoutId = null;
-    }
+  //   if (this.currentTimeoutId !== null) {
+  //       clearTimeout(this.currentTimeoutId);
+  //       this.currentTimeoutId = null;
+  //   }
 
-    for (let i = 0; i < input.length; i++) {
-        if (this.currentTimeoutId === null && i !== 0) {
-            return;
-        }
+  //   for (let i = 0; i < input.length; i++) {
+  //       if (this.currentTimeoutId === null && i !== 0) {
+  //           return;
+  //       }
 
-        await new Promise<void>((resolve) => {
-            this.currentTimeoutId = window.setTimeout(() => {
-                element.textContent += input[i];
-                resolve();
-            }, 10);
-        });
-    }
+  //       await new Promise<void>((resolve) => {
+  //           this.currentTimeoutId = window.setTimeout(() => {
+  //               element.textContent += input[i];
+  //               resolve();
+  //           }, 10);
+  //       });
+  //   }
 
-    this.currentTimeoutId = null;
-  }
+  //   this.currentTimeoutId = null;
+  // }
 
   showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
     const element = event.currentTarget as HTMLElement;
@@ -403,6 +424,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const uniqueBtn = document.querySelector('#unique-btn');
       uniqueBtn?.classList.remove('selected-skills');
       commonBtn?.classList.add('selected-skills');
+      this.playAcceptAudio();
     }
   }
 
@@ -415,17 +437,20 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const uniqueBtn = document.querySelector('#unique-btn');
       commonBtn?.classList.remove('selected-skills');
       uniqueBtn?.classList.add('selected-skills');
+      this.playAcceptAudio();
     }
   }
 
   viewQuestList() {
     this.viewQuests = true;
     this.viewBuild = false;
+    this.playAcceptAudio();
   }
 
   viewCurrentBuild() {
     this.viewBuild = true;
     this.viewQuests = false;
+    this.playAcceptAudio();
   }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
@@ -436,6 +461,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
     this.currentSkill = skill;
+    this.playAcceptAudio();
 
     try {
       await this.preloadImage(skill.cardImageUrl);
@@ -598,7 +624,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             return;
         }
     }
-
+    this.playConfirmAudio();
     // Update total available SP after any changes
     this.updateTotalAvailableSP();
   }
@@ -622,7 +648,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // Filter out all skills from skillsList that have the specified name
     this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
-
+    this.playEraseAudio();
     // Update totalAvailableSP accordingly
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
@@ -672,6 +698,24 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   playQuestCompleteAudio() {
     const audioPath = '/assets/audio/coinbag_1.wav';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playAcceptAudio() {
+    const audioPath = '/assets/audio/dc_accept_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playConfirmAudio() {
+    const audioPath = '/assets/audio/dc_confirm_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playEraseAudio() {
+    const audioPath = '/assets/audio/dc_erase_se.mp3';
     const audio = new Audio(audioPath);
     audio.play();
   }

@@ -86,9 +86,8 @@
               </div>
               <div class="player-level">
                 <label for="level">Level</label>
-                <input id="level" type="text" [(ngModel)]="currentStats.level"
-                       (blur)="onLevelChange()"
-                       (keyup.enter)="onLevelChange()">
+                <!-- <input id="level" type="text" [(ngModel)]="currentStats.level" (blur)="onLevelChange()" (keyup.enter)="onLevelChange()"> -->
+                <input id="level" type="text" [(ngModel)]="currentStats.level" (blur)="onLevelChange()" (keyup)="onEnterPress($event)">
                 <!-- Material button with an icon -->
                 <button mat-icon-button class="arrow-buttons" id="down-arrow" (click)="levelDown()">
                   <mat-icon>keyboard_arrow_down</mat-icon>
@@ -388,7 +387,7 @@
           <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #ffffff;" class="build-placeholder">
             <h3>Unlock skills to start planning out your build!</h3>
           </div>
-          <div class="quests-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
+          <div class="build-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
             <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
             </div>
             <hr>
