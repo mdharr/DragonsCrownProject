@@ -466,21 +466,25 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
-    this.selectedSkill = { index: skillIndex, type: skillType };
-    this.skillSelected = true;
-    this.skillCardLoaded = false;
-    this.toggleGlassEffect();
+    if (this.selectedSkill && this.selectedSkill.index === skillIndex && this.selectedSkill.type === skillType) {
+      // console.log("This skill is already selected.");
+    } else {
+      this.selectedSkill = { index: skillIndex, type: skillType };
+      console.log(this.selectedSkill);
+      this.skillSelected = true;
+      this.skillCardLoaded = false;
+      this.toggleGlassEffect();
+      this.playAcceptAudio();
 
-    const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
-    this.currentSkill = skill;
-    this.playAcceptAudio();
+      const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
+      this.currentSkill = skill;
 
-    try {
-      await this.preloadImage(skill.cardImageUrl);
-      this.skillCardLoaded = true;
-
-    } catch (error) {
-      console.error('Image loading failed', error);
+      try {
+        await this.preloadImage(skill.cardImageUrl);
+        this.skillCardLoaded = true;
+      } catch (error) {
+        console.error('Image loading failed', error);
+      }
     }
   }
 
