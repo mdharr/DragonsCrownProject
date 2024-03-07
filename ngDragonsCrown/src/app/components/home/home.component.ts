@@ -604,7 +604,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
     this.skillsList = this.skillsList.filter(item =>
-      !(item.skillId === skill.id || item.rank > selectedSkillDetail.rank)
+      !(item.skillId === skill.id && item.rank >= selectedSkillDetail.rank)
     );
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
