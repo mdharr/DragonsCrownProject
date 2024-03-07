@@ -75,8 +75,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // },
     {
       name: 'build_bg',
-      minUrl: 'https://live.staticflickr.com/65535/53571190681_81718003df_k.jpg',
-      maxUrl: 'https://live.staticflickr.com/65535/53571190681_81718003df_k.jpg',
+      minUrl: 'https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg',
+      maxUrl: 'https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg',
       isLoaded: false,
     },
     {
