@@ -28,6 +28,9 @@
           <div style="height: 100%; width: 185px;">
             <img style="height: -webkit-fill-available; width: auto;" src="https://atlus.com/dragonscrown/img/story/dragon.png" alt="">
           </div> -->
+          <app-particles style="overflow: hidden;"></app-particles>
+          <!-- <div style="height:100%; z-index: 10;">
+          </div> -->
         </div>
         <hr>
         <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">Select a class to get started:</p>
@@ -69,7 +72,7 @@
         <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder> -->
         <!-- <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p> -->
         <div class="planner" *ngIf="classSelected">
-          <div class="n1-wrapper">
+          <div class="n1-wrapper" [ngStyle]="{'--plannerBackgroundUrl': 'url(' + currentClassData?.paperUrl + ')'}">
             <div class="col n1 class-background">
               <div class="player-class">
                 <label style="pointer-events:none;" for="class">Class</label>
@@ -104,8 +107,8 @@
               <div class="player-attributes">
                 <div>
                   <label for="">HP</label>
-                  <div class="stat-wrapper">
-                    <span id="health">{{currentStats?.health}}</span>
+                  <div class="stat-wrapper" style="margin-left: 100px;">
+                    <span id="health" style="width: 46px; text-align: center;">{{currentStats?.health}}</span>
                   </div>
                   <div class="mini-captions" style="margin-left: 75px;">
                     <span>Scaling</span>
@@ -381,7 +384,6 @@
             </table>
           </div>
         </div>
-        <!-- <div style="padding-bottom: 15px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://live.staticflickr.com/65535/53563097050_a0995f3742_k.jpg' + ')'}"> -->
         <div style="padding-bottom: 15px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('build_bg') + ')'}">
           <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #ffffff;" class="build-placeholder">
             <h3>Unlock skills to start planning out your build!</h3>

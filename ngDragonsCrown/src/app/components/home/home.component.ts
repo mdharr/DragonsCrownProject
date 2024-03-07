@@ -67,10 +67,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       maxUrl: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/bg_pattern.png',
       isLoaded: false,
     },
+    // {
+    //   name: 'build_bg',
+    //   minUrl: 'https://live.staticflickr.com/65535/53570332721_44285efc00_k.jpg',
+    //   maxUrl: 'https://live.staticflickr.com/65535/53563097050_a0995f3742_k.jpg',
+    //   isLoaded: false,
+    // },
     {
       name: 'build_bg',
-      minUrl: 'https://live.staticflickr.com/65535/53570332721_44285efc00_k.jpg',
-      maxUrl: 'https://live.staticflickr.com/65535/53563097050_a0995f3742_k.jpg',
+      minUrl: 'https://live.staticflickr.com/65535/53571190681_81718003df_k.jpg',
+      maxUrl: 'https://live.staticflickr.com/65535/53571190681_81718003df_k.jpg',
       isLoaded: false,
     },
     {

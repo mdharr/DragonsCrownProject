@@ -344,15 +344,30 @@
   /* margin-top: 30px; */
 }
 
-.n1-wrapper {
+/* .n1-wrapper {
   display: flex;
-  /* padding: 15px; */
+  padding: 15px;
   justify-content: space-evenly;
   width: 100%;
   border: 1px solid rgb(202, 179, 92);
   margin-top: 8px;
   height: 435px;
   background-image: url(https://atlus.com/dragonscrown/img/character/character_bg.jpg);
+  background-image: var(--plannerBackgroundUrl);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+} */
+
+.n1-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  width: 100%;
+  border: 1px solid rgb(202, 179, 92);
+  margin-top: 8px;
+  height: 435px;
+  background-image: var(--plannerBackgroundUrl);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -369,8 +384,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  /* background-color: rgba(0, 0, 0, 0.3); */
   padding-top: 20px;
+  background-color: rgb(21 43 56 / 80%);
+  border: 1px solid #fff;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .alt-artwork img {
@@ -437,10 +456,12 @@
   /* border: 1px solid #555; */
   padding: 8px;
   padding-left: 25px;
-  width: 320px;
+  width: 460px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: rgb(21 43 56 / 80%);
+  border: 1px solid #fff;
   /* max-width: 320px; */
 }
 
@@ -467,8 +488,7 @@
   width: 150px;
   border: 1px #555 solid;
   padding-left: 5px;
-  /* background-color:rgb(21 43 56); */
-  background-color: rgba(21, 43, 56, 0.2);
+  background-color: rgb(21 43 56 / 50%);
 }
 
 .player-level input {
@@ -485,7 +505,7 @@
 
 .player-level input {
   /* background: rgb(21 43 56); */
-  background-color: rgba(21, 43, 56, 0.2);
+  background-color: rgb(21 43 56 / 50%);
 }
 
 label {
@@ -506,8 +526,7 @@ label {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-    /* background-color: rgb(21 43 56); */
-    background-color: rgba(21, 43, 56, 0.2);
+    background-color: rgb(21 43 56 / 50%);
 }
 
 #up-arrow {
@@ -581,13 +600,11 @@ label {
   border-radius: 0;
   color: #ccc;
   margin: 0;
-  /* margin-bottom: 5px; */
   padding: 0;
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  /* background-color: rgb(21 43 56); */
-  background-color: rgba(21, 43, 56, 0.2);
+  background-color: rgb(21 43 56 / 50%);
 }
 
 .player-attributes div {
@@ -624,16 +641,16 @@ label {
 
 .story-label {
   display: flex;
-  background-image: url(https://live.staticflickr.com/65535/53571190681_81718003df_k.jpg);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position-y: 20%;
+  background-position: center;
   justify-content: center;
-  background-color: #542a16;
+  background-color: #160001;
   margin: 5px 0;
   border: 1px solid #cab35c;
   height: 200px;
-  box-shadow: inset 0 0 30px #000000;
+  box-shadow: inset 0 0 5px #000000;
+  background-image: url(https://atlus.com/dragonscrown/img/common/menu_homelogo.png);
 }
 
 .small-text {
@@ -724,7 +741,7 @@ html {
 
 .class-background {
   position: relative;
-  /* background-color: rgba(0, 0, 0, 0.3); */
+  padding: 60px;
 }
 
 .class-background::before {
@@ -738,11 +755,23 @@ html {
   background-repeat: no-repeat;
   /* background-size: cover; */
   background-size: cover;
-  background-position: top right;
+  background-position: center;
   /* filter: brightness(50%) opacity(70%); */
   z-index: -1;
+  /* background-color: black; */
+  /* filter: drop-shadow(2px 4px 6px black); */
+}
+
+.meta-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-position: center;
   background-color: black;
-  filter: drop-shadow(2px 4px 6px black);
 }
 
 .build-background {
@@ -973,7 +1002,8 @@ blockquote ul li {
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: rgba(21, 43, 56, 0.2);
+  /* background-color: rgba(21, 43, 56, 0.2); */
+  background-color: rgb(21 43 56 / 50%);
 }
 
 .sprite-container img {
@@ -1008,6 +1038,7 @@ blockquote ul li {
 
 .exp-box {
   /* gap: 41px; */
+  margin-left: 93px;
 }
 
 .align-right {
