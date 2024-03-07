@@ -15,6 +15,7 @@ export class ScrollToTopButtonComponent {
     // Add a small delay (e.g., 100 milliseconds) before scrolling
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'auto' });
+      this.playCoinflipAudio();
     }, 100);
   }
 
@@ -24,5 +25,11 @@ export class ScrollToTopButtonComponent {
       button.style.display = window.scrollY > 300 ? 'flex' : 'none';
       button.style.alignItems = window.scrollY > 300 ? 'center' : 'none';
     }
+  }
+
+  playCoinflipAudio() {
+    const audioPath = '/assets/audio/dc_coinflip_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
   }
 }

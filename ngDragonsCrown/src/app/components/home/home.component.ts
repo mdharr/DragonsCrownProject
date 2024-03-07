@@ -241,7 +241,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if(this.classSelected) {
       this.selected = true;
-      this.playAcceptAudio();
+      if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
+        this.playAcceptAudio();
+        setTimeout(() => {
+          this.playClassAudio(this.currentClassData.name.toLowerCase());
+        }, 200);
+      }
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
       console.log("CURRENT CLASS DATA: ", this.currentClassData);
@@ -271,10 +276,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.showCommonSkills = true;
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
-
-      setTimeout(() => {
-        this.playClassAudio(this.currentClassData.name.toLowerCase());
-      }, 200);
 
     }
   }
@@ -310,7 +311,18 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLevelSP = this.initialTotalSP;
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
-    this.playEraseAudio();
+    // this.playEraseAudio();
+  }
+
+  setLevelToOne() {
+    if (this.skillsList.length > 0 || this.currentClassData.level > 1) {
+      this.skillsList = [];
+      this.updateLevel(1);
+      this.currentLevelSP = this.initialTotalSP;
+      this.updateTotalAvailableSP();
+      this.updateCurrentBuild();
+      this.playEraseAudio();
+    }
   }
 
   updateLevel(newLevel: number): void {
@@ -516,7 +528,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     quest.selected = !quest.selected;
     this.calculateTotalSkillPoints();
     this.updateTotalAvailableSP();
-    this.playCoinflipAudio();
+    this.playQuestCompleteAudio();
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
