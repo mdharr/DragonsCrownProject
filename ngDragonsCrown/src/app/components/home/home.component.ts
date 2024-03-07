@@ -516,7 +516,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     quest.selected = !quest.selected;
     this.calculateTotalSkillPoints();
     this.updateTotalAvailableSP();
-    this.playQuestCompleteAudio();
+    this.playCoinflipAudio();
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
@@ -592,10 +592,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
     this.skillsList = this.skillsList.filter(item =>
-      item.skillId !== skill.id || item.rank < selectedSkillDetail.rank
+      !(item.skillId === skill.id || item.rank > selectedSkillDetail.rank)
     );
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
+    this.playEraseAudio();
   }
 
   handleSkillClick(skill: Skill, skillDetail: SkillDetails): void {
@@ -623,8 +624,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             alert("Not enough skill points available.");
             return;
         }
+        this.playConfirmAudio();
     }
-    this.playConfirmAudio();
     // Update total available SP after any changes
     this.updateTotalAvailableSP();
   }
@@ -646,12 +647,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   removeSkillsByName(skillName: string, event: MouseEvent): void {
     event.stopPropagation(); // Prevent event from triggering parent click events
 
-    // Filter out all skills from skillsList that have the specified name
     this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
-    this.playEraseAudio();
-    // Update totalAvailableSP accordingly
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
+    this.playScratchAudio();
   }
 
   updateCurrentBuild(): void {
@@ -710,6 +709,42 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   playConfirmAudio() {
     const audioPath = '/assets/audio/dc_confirm_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playRuneAudio() {
+    const audioPath = '/assets/audio/dc_rune_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playUnlockAudio() {
+    const audioPath = '/assets/audio/dc_unlock_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playTickAudio() {
+    const audioPath = '/assets/audio/dc_tick_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playTicksAudio() {
+    const audioPath = '/assets/audio/dc_ticks_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playCoinflipAudio() {
+    const audioPath = '/assets/audio/dc_coinflip_se.mp3';
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+
+  playScratchAudio() {
+    const audioPath = '/assets/audio/dc_scratch_se.mp3';
     const audio = new Audio(audioPath);
     audio.play();
   }
@@ -816,7 +851,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showAll = true;
         break;
     }
-
+    this.playConfirmAudio();
     // Log the current state for debugging
     console.log({
       'showAll': this.showAll,

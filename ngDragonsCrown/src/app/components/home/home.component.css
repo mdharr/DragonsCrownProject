@@ -169,6 +169,7 @@
   padding: 0;
   min-height: 71px;
   border: 1px solid rgb(202, 179, 92);
+  background-color: black;
 }
 
 .portraits ul li img {
@@ -1069,13 +1070,13 @@ blockquote ul li {
 }
 
 .selected-skills {
-  border: 1px solid rgb(202, 179, 92) !important;
-  /* background-color: rgb(19 7 7) !important; */
-  /* border-bottom: 1px solid rgb(35 7 7 / 86%) !important; */
+  /* border: 1px solid rgb(202, 179, 92) !important; */
+  border: 1px solid rgb(255 0 0) !important;
   border-bottom: 1px solid transparent !important;
   margin-bottom: -1px;
   z-index: 1;
-  background-color: rgba(21, 43, 56, 0.9) !important;
+  background-color: rgb(255 255 255) !important;
+  color: black !important;
 }
 
 #common-btn {
