@@ -249,7 +249,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
-      console.log("CURRENT CLASS DATA: ", this.currentClassData);
+      // console.log("CURRENT CLASS DATA: ", this.currentClassData);
 
       this.currentStats = { ...this.currentClassData.classStats[0] };
       this.resetLevel();
@@ -281,12 +281,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onArtworkLoad() {
-    console.log('High-quality image loaded');
+    // console.log('High-quality image loaded');
     this.artworkLoaded = true;
   }
 
   levelUp(): void {
-    if (!this.currentStats) {
+    if (!this.currentStats || this.currentStats.level >= 99) {
       console.error('Current stats not defined');
       return;
     }
@@ -470,7 +470,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       // console.log("This skill is already selected.");
     } else {
       this.selectedSkill = { index: skillIndex, type: skillType };
-      console.log(this.selectedSkill);
+      // console.log(this.selectedSkill);
       this.skillSelected = true;
       this.skillCardLoaded = false;
       this.toggleGlassEffect();
@@ -673,8 +673,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateCurrentBuild(): void {
-    // Step 1: Identify the highest rank for each skill
-    const highestRanks = new Map<number, number>(); // Using skillId as key for uniqueness
+    const highestRanks = new Map<number, number>();
 
     this.skillsList.forEach(skill => {
       const currentMaxRank = highestRanks.get(skill.skillId) || 0;
@@ -683,7 +682,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     });
 
-    // Step 2: Filter the skillsList based on the highest rank for each skill
     this.currentBuild = this.skillsList.filter(skill => {
       const highestRank = highestRanks.get(skill.skillId);
       return skill.rank === highestRank;
@@ -694,10 +692,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillsNameDesc = this.sortByNameDesc(this.currentBuild);
     this.skillsBySPAsc = this.sortBySPAsc(this.currentBuild, this.currentClassData.skills);
     this.skillsBySPDesc = this.sortBySPDesc(this.currentBuild, this.currentClassData.skills);
-    console.log("SKILLS ASC", this.skillsNameAsc);
-    console.log("SKILLS DESC", this.skillsNameDesc);
-
-    // this.currentBuild.sort((a, b) => a.skillId - b.skillId);
   }
 
   playClassAudio(className: string) {
@@ -810,21 +804,21 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   sortBySPAsc(skills: CombinedSkill[], allSkills: Skill[]): CombinedSkill[] {
-    const sorted = skills.sort((a, b) => {
+    const sorted = [...skills].sort((a, b) => {
       const spA = this.calculateSP(a, allSkills);
       const spB = this.calculateSP(b, allSkills);
       return spA - spB;
     });
-    return [...sorted];
+    return sorted;
   }
 
   sortBySPDesc(skills: CombinedSkill[], allSkills: Skill[]): CombinedSkill[] {
-    const sorted = skills.sort((a, b) => {
+    const sorted = [...skills].sort((a, b) => {
       const spA = this.calculateSP(a, allSkills);
       const spB = this.calculateSP(b, allSkills);
       return spB - spA;
     });
-    return [...sorted]; // Create a new array
+    return sorted;
   }
 
   toggleShowAll() {
@@ -872,13 +866,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     this.playConfirmAudio();
     // Log the current state for debugging
-    console.log({
-      'showAll': this.showAll,
-      'showByNameAsc': this.showByNameAsc,
-      'showByNameDesc': this.showByNameDesc,
-      'showBySPAsc': this.showBySPAsc,
-      'showBySPDesc': this.showBySPDesc,
-    });
+    // console.log({
+    //   'showAll': this.showAll,
+    //   'showByNameAsc': this.showByNameAsc,
+    //   'showByNameDesc': this.showByNameDesc,
+    //   'showBySPAsc': this.showBySPAsc,
+    //   'showBySPDesc': this.showBySPDesc,
+    // });
   }
 
 }

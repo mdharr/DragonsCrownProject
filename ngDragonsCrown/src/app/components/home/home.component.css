@@ -392,6 +392,7 @@
   border: 1px solid #fff;
   padding-left: 15px;
   padding-right: 15px;
+  border-right: none;
 }
 
 .alt-artwork img {
@@ -462,7 +463,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(21 43 56 / 80%);
+  background-color: rgb(21 43 56 / 65%);
   border: 1px solid #fff;
   /* max-width: 320px; */
 }
@@ -743,7 +744,7 @@ html {
 
 .class-background {
   position: relative;
-  padding: 60px;
+  padding: 50px;
 }
 
 .class-background::before {
@@ -995,7 +996,7 @@ blockquote ul li {
   color: #ccc;
   margin: 0;
   margin-bottom: 5px;
-  margin-left: 75px;
+  margin-left: 72px;
   padding: 0;
   vertical-align: middle;
   -webkit-appearance: none;
@@ -1035,8 +1036,7 @@ blockquote ul li {
 }
 
 .exp-box {
-  /* gap: 41px; */
-  margin-left: 93px;
+  margin-left: 0px;
 }
 
 .align-right {

@@ -107,10 +107,10 @@
               <div class="player-attributes">
                 <div>
                   <label for="">HP</label>
-                  <div class="stat-wrapper" style="margin-left: 100px;">
+                  <div class="stat-wrapper">
                     <span id="health" style="width: 46px; text-align: center;">{{currentStats?.health}}</span>
                   </div>
-                  <div class="mini-captions" style="margin-left: 75px;">
+                  <div class="mini-captions" style="margin-left: 71px;">
                     <span>Scaling</span>
                   </div>
                 </div>
@@ -176,7 +176,7 @@
                   <label for="">EXP</label>
                   <div class="exp-box">
                     <div style="display: flex; flex-direction: column; align-items: flex-start;">
-                      <div class="mini-captions exp-captions">
+                      <div class="mini-captions exp-captions" style="width: 110px;">
                         <!-- <span>Level Up</span> -->
                         <span>Next Level</span>
                       </div>
@@ -185,7 +185,7 @@
                         <span id="exp">{{ this.getRequiredExpForNextLevel()}}</span>
                       </div>
                     </div>
-                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                    <div style="display: flex; flex-direction: column; align-items: flex-start; margin-left: 7px;">
                       <div class="mini-captions exp-captions">
                         <span>Total</span>
                       </div>
