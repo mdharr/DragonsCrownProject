@@ -94,6 +94,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     },
   ];
 
+  // soundEffect:
+
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
   @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
