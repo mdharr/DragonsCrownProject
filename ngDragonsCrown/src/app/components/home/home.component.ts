@@ -1,3 +1,4 @@
+import { AudioEntity } from './../../models/audio-entity';
 import { SkillDetails } from './../../models/skill-details';
 import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
@@ -94,7 +95,24 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     },
   ];
 
-  // soundEffect:
+  sounds: AudioEntity[] = [
+    { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
+    { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
+    { name: 'elf', path: '/assets/audio/elf_select.mp3' },
+    { name: 'dwarf', path: '/assets/audio/dwarf_select.mp3' },
+    { name: 'sorceress', path: '/assets/audio/sorceress_select.mp3' },
+    { name: 'wizard', path: '/assets/audio/wizard_select.mp3' },
+    { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
+    { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
+    { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
+    { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
+    { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
+    { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
+    { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
+    { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
+    { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
+    { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
+  ]
 
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
