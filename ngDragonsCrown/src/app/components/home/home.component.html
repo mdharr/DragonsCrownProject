@@ -400,7 +400,8 @@
             <hr>
             <div style="display: flex; width: 100%; justify-content: space-between;">
               <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
-              <span style="cursor: pointer;" [matMenuTriggerFor]="menu" (click)="playConfirmAudio();">Options</span>
+              <!-- <span style="cursor: pointer;" [matMenuTriggerFor]="menu" (click)="playConfirmAudio();">Options</span> -->
+              <span style="cursor: pointer;" [matMenuTriggerFor]="menu" (click)="playSound('confirm')">Options</span>
               <mat-menu #menu="matMenu">
                 <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item (click)="toggleDisplayOption('all')">Show By Insert Order <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showByNameAsc}" mat-menu-item (click)="toggleDisplayOption('name_asc')">Show By Name Asc <mat-icon *ngIf="showByNameAsc">check</mat-icon></button>

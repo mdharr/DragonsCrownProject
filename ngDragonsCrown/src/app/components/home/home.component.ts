@@ -88,19 +88,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     },
   ];
 
-  sounds: AudioEntity[] = [
-    { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
-    { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
-    { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
-    { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
-    { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
-    { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
-    { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
-    { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
-    { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
-    { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
-  ]
-
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
   @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
@@ -146,6 +133,25 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     sorceress: '/assets/audio/sorceress_select.mp3',
     wizard: '/assets/audio/wizard_select.mp3',
   };
+
+  sounds: AudioEntity[] = [
+    { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
+    { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
+    { name: 'elf', path: '/assets/audio/elf_select.mp3' },
+    { name: 'dwarf', path: '/assets/audio/dwarf_select.mp3' },
+    { name: 'sorceress', path: '/assets/audio/sorceress_select.mp3' },
+    { name: 'wizard', path: '/assets/audio/wizard_select.mp3' },
+    { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
+    { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
+    { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
+    { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
+    { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
+    { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
+    { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
+    { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
+    { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
+    { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
+  ]
 
   // subscriptions
   private playerClassSubscription: Subscription | undefined;
@@ -249,7 +255,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.classSelected) {
       this.selected = true;
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
-        this.playAcceptAudio();
+        this.playSound('accept');
         setTimeout(() => {
           this.playClassAudio(this.currentClassData.name.toLowerCase());
         }, 200);
@@ -299,7 +305,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     const newLevel = Number(this.currentStats.level) + 1;
     this.updateLevel(newLevel);
-    this.playConfirmAudio();
+    this.playSound('confirm');
   }
 
   levelDown(): void {
@@ -309,7 +315,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     const newLevel = Number(this.currentStats.level) - 1;
     this.updateLevel(newLevel);
-    this.playConfirmAudio();
+    this.playSound('confirm');
   }
 
   resetLevel() {
@@ -318,7 +324,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLevelSP = this.initialTotalSP;
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
-    // this.playEraseAudio();
   }
 
   setLevelToOne() {
@@ -328,7 +333,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentLevelSP = this.initialTotalSP;
       this.updateTotalAvailableSP();
       this.updateCurrentBuild();
-      this.playEraseAudio();
+      this.playSound('erase');
     }
   }
 
@@ -348,12 +353,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  // onLevelChange(): void {
-  //   const enteredLevel = Number(this.currentStats.level);
-  //   this.updateLevel(enteredLevel);
-  //   this.playConfirmAudio();
-  // }
-
   onEnterPress(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       // Trigger the blur event manually
@@ -363,11 +362,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onLevelChange(): void {
-    // The logic here will now be triggered by the blur event, which can be
-    // manually triggered by the onEnterPress method above.
     const enteredLevel = Number(this.currentStats.level);
     this.updateLevel(enteredLevel);
-    this.playConfirmAudio();
+    this.playSound('confirm');
   }
 
   // async typeOutText(input: string, elementId: string): Promise<void> {
@@ -443,7 +440,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const uniqueBtn = document.querySelector('#unique-btn');
       uniqueBtn?.classList.remove('selected-skills');
       commonBtn?.classList.add('selected-skills');
-      this.playAcceptAudio();
+      this.playSound('accept');
     }
   }
 
@@ -456,20 +453,20 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const uniqueBtn = document.querySelector('#unique-btn');
       commonBtn?.classList.remove('selected-skills');
       uniqueBtn?.classList.add('selected-skills');
-      this.playAcceptAudio();
+      this.playSound('accept');
     }
   }
 
   viewQuestList() {
     this.viewQuests = true;
     this.viewBuild = false;
-    this.playAcceptAudio();
+    this.playSound('accept');
   }
 
   viewCurrentBuild() {
     this.viewBuild = true;
     this.viewQuests = false;
-    this.playAcceptAudio();
+    this.playSound('accept');
   }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
@@ -481,7 +478,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.skillSelected = true;
       this.skillCardLoaded = false;
       this.toggleGlassEffect();
-      this.playAcceptAudio();
+      this.playSound('accept');
 
       const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
       this.currentSkill = skill;
@@ -539,7 +536,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     quest.selected = !quest.selected;
     this.calculateTotalSkillPoints();
     this.updateTotalAvailableSP();
-    this.playQuestCompleteAudio();
+    this.playSound('coinbag');
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
@@ -548,12 +545,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   toggleAllQuests(event: Event): void {
     const target = event.target as HTMLInputElement;
     const selected = target.checked;
+
     this.quests.forEach(quest => {
       quest.selected = selected;
     });
-    // this.updateSkillPoints();
+
     this.updateTotalAvailableSP();
-    this.playQuestCompleteAudio();
+    this.playSound('coinbag');
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
@@ -619,7 +617,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     );
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
-    this.playEraseAudio();
+    this.playSound('erase');
   }
 
   handleSkillClick(skill: Skill, skillDetail: SkillDetails): void {
@@ -647,7 +645,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             alert("Not enough skill points available.");
             return;
         }
-        this.playConfirmAudio();
+        this.playSound('confirm');
     }
     // Update total available SP after any changes
     this.updateTotalAvailableSP();
@@ -671,7 +669,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     event.stopPropagation(); // Prevent event from triggering parent click events
 
     if (this.skillsList.some(skill => skill.name === skillName)) {
-      this.playScratchAudio();
+      this.playSound('scratch');
     }
 
     this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
@@ -701,78 +699,31 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillsBySPDesc = this.sortBySPDesc(this.currentBuild, this.currentClassData.skills);
   }
 
+  // playClassAudio(className: string) {
+  //   if (this.previousClassVoice !== className) {
+  //     this.previousClassVoice = className;
+  //     // Validate that className is a valid key
+  //     if (className in this.audioPaths) {
+  //       const audioPath = this.audioPaths[className as ClassName];
+  //       const audio = new Audio(audioPath);
+  //       audio.play();
+  //     } else {
+  //       console.error('Invalid class name:', className);
+  //     }
+  //   }
+  // }
+
   playClassAudio(className: string) {
     if (this.previousClassVoice !== className) {
       this.previousClassVoice = className;
-      // Validate that className is a valid key
-      if (className in this.audioPaths) {
-        const audioPath = this.audioPaths[className as ClassName];
-        const audio = new Audio(audioPath);
-        audio.play();
+
+      const targetClass = this.sounds.find(sound => sound.name === className);
+      if (targetClass) {
+        this.playSound(targetClass.name);
       } else {
         console.error('Invalid class name:', className);
       }
     }
-  }
-
-  playQuestCompleteAudio() {
-    const audioPath = '/assets/audio/coinbag_1.wav';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playAcceptAudio() {
-    const audioPath = '/assets/audio/dc_accept_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playConfirmAudio() {
-    const audioPath = '/assets/audio/dc_confirm_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playRuneAudio() {
-    const audioPath = '/assets/audio/dc_rune_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playUnlockAudio() {
-    const audioPath = '/assets/audio/dc_unlock_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playTickAudio() {
-    const audioPath = '/assets/audio/dc_tick_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playTicksAudio() {
-    const audioPath = '/assets/audio/dc_ticks_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playCoinflipAudio() {
-    const audioPath = '/assets/audio/dc_coinflip_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playScratchAudio() {
-    const audioPath = '/assets/audio/dc_scratch_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
-  }
-
-  playEraseAudio() {
-    const audioPath = '/assets/audio/dc_erase_se.mp3';
-    const audio = new Audio(audioPath);
-    audio.play();
   }
 
   playSound(soundName: string) {
@@ -878,7 +829,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showAll = true;
         break;
     }
-    this.playConfirmAudio();
+    this.playSound('confirm');
     // Log the current state for debugging
     // console.log({
     //   'showAll': this.showAll,
