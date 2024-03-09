@@ -11,6 +11,7 @@ import { ImageEntity } from 'src/app/models/image-entity';
 import { PreloadService } from 'src/app/services/preload.service';
 import { CombinedSkill } from 'src/app/models/combined-skill';
 import { ClassName } from 'src/app/types/class-name.type';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-home',
@@ -829,4 +830,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // });
   }
 
+  captureAndDownloadScreenshot() {
+    const element = document.querySelector('.meta-wrapper.build-background') as HTMLElement;
+    if (element) {
+      html2canvas(element).then(canvas => {
+        const link = document.createElement('a');
+        // link.download = 'build-screenshot.png';
+        link.download = `level-${this.currentLevel}-${this.currentClassData.name.toLowerCase()}-build.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+  }
 }

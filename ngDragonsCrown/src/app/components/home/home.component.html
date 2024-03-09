@@ -391,13 +391,13 @@
           <div class="build-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
             <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
             </div>
-            <hr>
+            <!-- <hr>
             <div class="cards-wrapper">
               <div *ngFor="let skill of currentBuild" class="card" style="background-image: url('{{ skill.cardImageUrl }}');">
                 <div class="card-content">{{ skill.name }}</div>
               </div>
             </div>
-            <hr>
+            <hr> -->
             <div style="display: flex; width: 100%; justify-content: space-between;">
               <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
               <!-- <span style="cursor: pointer;" [matMenuTriggerFor]="menu" (click)="playConfirmAudio();">Options</span> -->
@@ -408,6 +408,7 @@
                 <button class="custom-button" [ngClass]="{'with-icon': showByNameDesc}" mat-menu-item (click)="toggleDisplayOption('name_desc')">Show By Name Desc <mat-icon *ngIf="showByNameDesc">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showBySPAsc}" mat-menu-item (click)="toggleDisplayOption('sp_asc')">Show By SP Asc <mat-icon *ngIf="showBySPAsc">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showBySPDesc}" mat-menu-item (click)="toggleDisplayOption('sp_desc')">Show By SP Desc <mat-icon *ngIf="showBySPDesc">check</mat-icon></button>
+                <button class="custom-button" mat-menu-item (click)="captureAndDownloadScreenshot()">Export Build</button>
               </mat-menu>
             </div>
             <table class="build-table">
