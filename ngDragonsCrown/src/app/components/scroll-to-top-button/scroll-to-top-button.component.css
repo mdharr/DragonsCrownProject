@@ -13,32 +13,52 @@
   background-color: transparent;
   width: 125px;
   height: 125px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
-.scroll-to-top-button img {
+.scroll-to-top-button .fairy {
   transition: filter 0.2s ease;
   filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.5)) brightness(0.8);
 }
 
-.scroll-to-top-button:hover img {
+.scroll-to-top-button:hover .fairy {
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
 }
 
-img {
+.fairy {
   width: 125px;
   height: 125px;
-  animation: pendulum ease-in-out 2s infinite alternate;
+  /* transition: transform 3s ease-in-out; */
+  animation: fairy 1s ease-in-out infinite;
+  will-change: animation;
 }
 
-/* animation: pendulum ease-in-out 2s infinite alternate; */
-@keyframes pendulum {
+@keyframes fairy {
   0% {
-    -webkit-transform: rotate(5deg);
-    transform: rotate(5deg);
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+  50% {
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
   }
   100% {
-    -webkit-transform: rotate(-5deg);
-    transform: rotate(-5deg);
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
   }
 }
+
+/* @keyframes floatFairy {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(10px, -10px) scale(1.05);
+  }
+  50% {
+    transform: translate(20px, 0) scale(1.1);
+  }
+  75% {
+    transform: translate(10px, 10px) scale(1.05);
+  }
+} */

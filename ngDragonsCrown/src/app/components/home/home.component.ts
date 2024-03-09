@@ -862,6 +862,46 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  async captureAndDownloadScreenshotOfTemp() {
+    // Create a temporary container for the screenshot
+    const tempContainer = document.createElement('div');
+    // Ensure the temporary container is not visible on the screen
+    tempContainer.style.position = 'absolute';
+    tempContainer.style.left = '-9999px';
+    tempContainer.style.backgroundColor = '#000';
+    document.body.appendChild(tempContainer);
+
+    // Select the elements you want to capture
+    const element1 = document.querySelector('div.col.n1.class-background') as HTMLElement;
+    const element2 = document.querySelector('.meta-wrapper.build-background') as HTMLElement;
+
+    // Style elements
+    if(element1) element1.style.color = '#fff';
+    if(element1) element1.style.width = '100%';
+    // console.log(element1.style)
+    const styles = window.getComputedStyle(element1);
+    console.log(styles);
+    if(element2) element2.style.color = '#fff';
+
+    // Clone the elements and append them to the temporary container
+    if(element1) tempContainer.appendChild(element1.cloneNode(true));
+    if(element2) tempContainer.appendChild(element2.cloneNode(true));
+
+    // Use html2canvas to capture the temporary container
+    const canvas = await html2canvas(tempContainer);
+
+    // Create a link to download the captured image
+    const link = document.createElement('a');
+    link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+    this.playSound('treasure');
+
+    // Clean up: remove the temporary container
+    document.body.removeChild(tempContainer);
+  }
+
+
   generateBuildDataAsText(): string {
     const buildText = this.currentBuild.map(skill =>
       `Name: ${skill.name}, Description: ${skill.description}, SP Spent: ${this.calculateSP(skill, this.currentClassData.skills)}, Rank: ${skill.rank}, Effects: ${skill.effects}`

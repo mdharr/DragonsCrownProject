@@ -410,7 +410,8 @@
                 <button class="custom-button" [ngClass]="{'with-icon': showByNameDesc}" mat-menu-item (click)="toggleDisplayOption('name_desc')">Show By Name Desc <mat-icon *ngIf="showByNameDesc">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showBySPAsc}" mat-menu-item (click)="toggleDisplayOption('sp_asc')">Show By SP Asc <mat-icon *ngIf="showBySPAsc">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showBySPDesc}" mat-menu-item (click)="toggleDisplayOption('sp_desc')">Show By SP Desc <mat-icon *ngIf="showBySPDesc">check</mat-icon></button>
-                <button class="custom-button" mat-menu-item (click)="captureAndDownloadScreenshot()">Export Build</button>
+                <!-- <button class="custom-button" mat-menu-item (click)="captureAndDownloadScreenshot()">Export Build</button> -->
+                <button class="custom-button" mat-menu-item (click)="captureAndDownloadScreenshotOfTemp()">Export Build</button>
               </mat-menu>
             </div>
             <table class="build-table">
