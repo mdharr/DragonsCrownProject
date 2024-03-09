@@ -2,7 +2,7 @@ import { AudioEntity } from './../../models/audio-entity';
 import { SkillDetails } from './../../models/skill-details';
 import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
-import { AfterViewInit, Component, ElementRef, HostListener, inject, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, NgZone, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { PlayerClass } from 'src/app/models/player-class';
 import { Subscription } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
@@ -98,6 +98,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   showByNameDesc: boolean = false;
   showBySPAsc: boolean = false;
   showBySPDesc: boolean = false;
+  isSkillInfoVisible: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -150,6 +151,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   playerClassService = inject(PlayerClassService);
   renderer = inject(Renderer2);
   preloadService = inject(PreloadService);
+  ngZone = inject(NgZone);
 
   ngOnInit() {
     this.resetWindowPosition();
@@ -465,6 +467,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       // console.log(this.selectedSkill);
       this.skillSelected = true;
       this.skillCardLoaded = false;
+      this.isSkillInfoVisible = false;
       this.toggleGlassEffect();
       this.playSound('pageflip');
 
@@ -474,10 +477,22 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       try {
         await this.preloadImage(skill.cardImageUrl);
         this.skillCardLoaded = true;
+
+        this.ngZone.runOutsideAngular(() => {
+          setTimeout(() => {
+            this.ngZone.run(() => {
+              // Now that the image is loaded, show the skill info
+              this.isSkillInfoVisible = true;
+              // Use requestAnimationFrame to ensure the DOM has updated
+              requestAnimationFrame(() => {
+                this.adjustChildrenPosition(window.scrollY);
+              });
+            });
+          }, 100);
+        });
       } catch (error) {
         console.error('Image loading failed', error);
       }
-      this.adjustChildrenPosition(window.scrollY);
     }
   }
 
