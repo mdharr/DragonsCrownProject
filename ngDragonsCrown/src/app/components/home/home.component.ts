@@ -151,6 +151,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
     { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
     { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
+    { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
   ]
 
   // subscriptions
@@ -294,7 +295,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onArtworkLoad() {
-    // console.log('High-quality image loaded');
     this.artworkLoaded = true;
   }
 
@@ -478,7 +478,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.skillSelected = true;
       this.skillCardLoaded = false;
       this.toggleGlassEffect();
-      this.playSound('accept');
+      this.playSound('pageflip');
 
       const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
       this.currentSkill = skill;
@@ -562,11 +562,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   updateSkillPoints() {
-    // this.totalAvailableSP = this.currentStats.skillPoints + this.calculateTotalSkillPoints();
     this.updateTotalAvailableSP();
   }
 
-  // Method to reset quests and their skill points
   resetQuestsAndSkillPoints(): void {
     this.quests.forEach(quest => quest.selected = false);
     // Recalculate total available SP since quests skill points should now be reset
@@ -577,6 +575,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.skillsList.some(item =>
       item.skillId === skill.id && item.rank === skillDetail.rank
     );
+  }
+
+  isSkillDetailHighestRank(skill: Skill, skillDetail: SkillDetails): boolean {
+    return skillDetail.rank === Math.max(...this.skillsList
+      .filter(item => item.name === skill.name)
+      .map(item => item.rank));
   }
 
   addToSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {

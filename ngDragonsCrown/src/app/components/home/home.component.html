@@ -336,7 +336,7 @@
                       </font>
                     </th>
                   </tr>
-                  <tr *ngFor="let detail of currentSkill.skillDetails">
+                  <tr *ngFor="let detail of currentSkill.skillDetails;" [ngClass]="{ 'highlighted-row': this.isSkillDetailSelected(currentSkill, detail), 'highest-selected-rank': this.isSkillDetailHighestRank(currentSkill, detail) }">
                     <th>{{ detail.rank }}</th>
                     <td>{{ detail.requiredSkillPoints }}</td>
                     <td>{{ detail.requiredPlayerLevel }}</td>

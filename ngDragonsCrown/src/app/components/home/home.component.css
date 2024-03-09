@@ -1771,3 +1771,29 @@ hr.custom-hr {
 .mat-mdc-button:not(:disabled) {
   color: #fff;
 }
+
+.highlighted-row {
+  background-color: rgba(177 45 47 / 40%);
+}
+
+.highest-selected-rank {
+  background-color: rgba(177 45 47 / 40%);
+  color: #fff;
+  animation: pulseAnimation 2s infinite;
+}
+
+.highest-selected-rank th {
+  background-color: rgb(21 43 56 / 100%) !important;
+  color: #fff !important;
+}
+
+@keyframes pulseAnimation {
+  0%, 100% {
+    background-color: rgba(177 45 47 / 40%);
+    color: #fff;
+  }
+  50% {
+    background-color: rgba(177 45 47 / 80%);
+    color: #fff;
+  }
+}
