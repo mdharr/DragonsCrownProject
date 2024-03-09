@@ -835,8 +835,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if (element) {
       html2canvas(element).then(canvas => {
         const link = document.createElement('a');
-        // link.download = 'build-screenshot.png';
-        link.download = `level-${this.currentLevel}-${this.currentClassData.name.toLowerCase()}-build.png`;
+        link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
         link.href = canvas.toDataURL();
         link.click();
       });
@@ -844,24 +843,21 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   generateBuildDataAsText(): string {
-    // Assuming currentBuild is available in your component
-    // and each item in currentBuild is of type CombinedSkill as previously defined
-    const buildDataText = this.currentBuild.map(skill => {
-      // Assuming calculateSP method or calculateTotalSP pipe can be used here to calculate SP spent
-      // If calculateTotalSP is a pipe, you might need to adjust this part to use the method instead
-      const spSpent = this.calculateSP(skill, this.currentClassData.skills); // Adjust this according to your actual method to calculate SP
+    const buildText = this.currentBuild.map(skill =>
+      `Name: ${skill.name}, Description: ${skill.description}, SP Spent: ${this.calculateSP(skill, this.currentClassData.skills)}, Rank: ${skill.rank}, Effects: ${skill.effects}`
+    ).join('\n\n');
 
-      return `Name: ${skill.name}\nDescription: ${skill.description}\nSP Spent: ${spSpent}\nRank: ${skill.rank}\nEffects: ${skill.effects}`;
-    }).join('\n\n');
-
-    return buildDataText;
+    return buildText;
   }
 
-  copyBuildToClipboard(): void {
-    const textarea = document.querySelector('textarea');
-    if (textarea) {
-      textarea.select();
-      document.execCommand('copy');
+  async copyBuildToClipboard(): Promise<void> {
+    try {
+      const buildData = this.generateBuildDataAsText();
+      await navigator.clipboard.writeText(buildData);
+      this.playSound('rune');
+      console.log('Build data copied to clipboard.');
+    } catch (err) {
+      console.error('Failed to copy build data: ', err);
     }
   }
 
@@ -869,10 +865,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     const buildData = this.generateBuildDataAsText();
     const blob = new Blob([buildData], { type: 'text/plain' });
     const link = document.createElement('a');
-    link.download = 'build.txt';
+    link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.txt`;
     link.href = URL.createObjectURL(blob);
     link.click();
   }
-
 
 }

@@ -438,11 +438,11 @@
             </table>
           </div>
         </div>
-        <div>
-          <textarea readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
+        <div style="padding-top: 15px;" *ngIf="classSelected && viewBuild && this.currentBuild.length > 0">
+          <textarea style="width: 100%; background-color: rgb(21 43 56); color: #fff; padding: 10px; border-color: #cab35c;" readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
+          <button (click)="copyBuildToClipboard()">Copy Build Data</button>
+          <button (click)="exportBuildAsTextFile()">Export as Text File</button>
         </div>
-        <button (click)="copyBuildToClipboard()">Copy Build Data</button>
-        <button (click)="exportBuildAsTextFile()">Export as Text File</button>
       </div>
       <div class="bdiv">
         <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_bottom_pattern.png" alt="">
