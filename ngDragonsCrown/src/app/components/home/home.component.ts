@@ -9,20 +9,7 @@ import { Skill } from 'src/app/models/skill';
 import { Quest } from 'src/app/models/quest';
 import { ImageEntity } from 'src/app/models/image-entity';
 import { PreloadService } from 'src/app/services/preload.service';
-
-interface CombinedSkill {
-  skillId: number;
-  name: string;
-  description: string;
-  cardImageUrl: string;
-  isCommon: boolean;
-  rankDetailId: number;
-  rank: number;
-  requiredSkillPoints: number;
-  similarSkillLevel: number;
-  requiredPlayerLevel: number;
-  effects: string;
-}
+import { CombinedSkill } from 'src/app/models/combined-skill';
 
 // player class types
 type ClassName = 'amazon' | 'dwarf' | 'elf' | 'fighter' | 'sorceress' | 'wizard';
