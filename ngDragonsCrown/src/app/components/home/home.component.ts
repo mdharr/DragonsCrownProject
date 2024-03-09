@@ -10,9 +10,7 @@ import { Quest } from 'src/app/models/quest';
 import { ImageEntity } from 'src/app/models/image-entity';
 import { PreloadService } from 'src/app/services/preload.service';
 import { CombinedSkill } from 'src/app/models/combined-skill';
-
-// player class types
-type ClassName = 'amazon' | 'dwarf' | 'elf' | 'fighter' | 'sorceress' | 'wizard';
+import { ClassName } from 'src/app/types/class-name.type';
 
 @Component({
   selector: 'app-home',
