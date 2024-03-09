@@ -865,4 +865,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  exportBuildAsTextFile(): void {
+    const buildData = this.generateBuildDataAsText();
+    const blob = new Blob([buildData], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.download = 'build.txt';
+    link.href = URL.createObjectURL(blob);
+    link.click();
+  }
+
+
 }
