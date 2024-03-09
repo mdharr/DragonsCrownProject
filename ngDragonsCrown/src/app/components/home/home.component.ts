@@ -475,9 +475,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentSkill = skill;
 
       try {
-        await this.preloadImage(skill.cardImageUrl);
-        this.skillCardLoaded = true;
-
         this.ngZone.runOutsideAngular(() => {
           setTimeout(() => {
             this.ngZone.run(() => {
@@ -490,6 +487,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             });
           }, 100);
         });
+
+        await this.preloadImage(skill.cardImageUrl);
+        this.skillCardLoaded = true;
+
       } catch (error) {
         console.error('Image loading failed', error);
       }
