@@ -839,6 +839,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
         link.href = canvas.toDataURL();
         link.click();
+        this.playSound('treasure');
       });
     }
   }
@@ -869,6 +870,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.txt`;
     link.href = URL.createObjectURL(blob);
     link.click();
+    this.playSound('treasure');
   }
 
 }
