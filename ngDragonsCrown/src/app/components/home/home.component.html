@@ -299,53 +299,55 @@
             </div>
           </div>
           <ng-container *ngIf="skillSelected && !viewQuests">
-            <div class="skillInfoBoard">
-              <div class="skill-card-wrapper">
-                <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
-                  <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
+            <div class="skillInfoBoard" #skillInfoBoard>
+              <div>
+                <div class="skill-card-wrapper">
+                  <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
+                    <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
+                  </div>
+                  <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder>
                 </div>
-                <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder>
+                <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span>: {{ currentSkill.description }}</h3>
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <font>
+                          <font>Rank</font>
+                        </font>
+                      </th>
+                      <th>
+                        <font>
+                          <font>Required SP</font>
+                        </font>
+                      </th>
+                      <th>
+                        <font>
+                          <font>Required Level</font>
+                        </font>
+                      </th>
+                      <th>
+                        <font>
+                          <font>Similar SL</font>
+                        </font>
+                      </th>
+                      <th>
+                        <font>
+                          <font>Effects</font>
+                        </font>
+                      </th>
+                    </tr>
+                    <tr *ngFor="let detail of currentSkill.skillDetails;" [ngClass]="{ 'highlighted-row': this.isSkillDetailSelected(currentSkill, detail), 'highest-selected-rank': this.isSkillDetailHighestRank(currentSkill, detail) }">
+                      <th>{{ detail.rank }}</th>
+                      <td>{{ detail.requiredSkillPoints }}</td>
+                      <td>{{ detail.requiredPlayerLevel }}</td>
+                      <td>{{ detail.similarSkillLevel }}</td>
+                      <td><span *ngFor="let effect of detail.effects.split(', ')">{{ effect }}<br></span></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span>: {{ currentSkill.description }}</h3>
-              <table>
-                <tbody>
-                  <tr>
-                    <th>
-                      <font>
-                        <font>Rank</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font>
-                        <font>Required SP</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font>
-                        <font>Required Level</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font>
-                        <font>Similar SL</font>
-                      </font>
-                    </th>
-                    <th>
-                      <font>
-                        <font>Effects</font>
-                      </font>
-                    </th>
-                  </tr>
-                  <tr *ngFor="let detail of currentSkill.skillDetails;" [ngClass]="{ 'highlighted-row': this.isSkillDetailSelected(currentSkill, detail), 'highest-selected-rank': this.isSkillDetailHighestRank(currentSkill, detail) }">
-                    <th>{{ detail.rank }}</th>
-                    <td>{{ detail.requiredSkillPoints }}</td>
-                    <td>{{ detail.requiredPlayerLevel }}</td>
-                    <td>{{ detail.similarSkillLevel }}</td>
-                    <td><span *ngFor="let effect of detail.effects.split(', ')">{{ effect }}<br></span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+              </div>
           </ng-container>
         </div>
         <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->

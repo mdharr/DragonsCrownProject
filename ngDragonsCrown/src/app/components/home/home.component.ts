@@ -2,7 +2,7 @@ import { AudioEntity } from './../../models/audio-entity';
 import { SkillDetails } from './../../models/skill-details';
 import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
-import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { PlayerClass } from 'src/app/models/player-class';
 import { Subscription } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
@@ -77,6 +77,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
   @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
+  @ViewChild('skillInfoBoard', { static: false }) skillInfoBoard!: ElementRef<HTMLDivElement>;
 
   // booleans
   classSelected: boolean = false;
@@ -476,6 +477,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       } catch (error) {
         console.error('Image loading failed', error);
       }
+      this.adjustChildrenPosition(window.scrollY);
     }
   }
 
@@ -871,6 +873,35 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     link.href = URL.createObjectURL(blob);
     link.click();
     this.playSound('treasure');
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  handleScroll() {
+    const windowScroll = window.scrollY;
+    if (this.skillInfoBoard) {
+      this.adjustChildrenPosition(windowScroll);
+    }
+  }
+
+  adjustChildrenPosition(windowScroll: number) {
+    const boardRect = this.skillInfoBoard.nativeElement.getBoundingClientRect();
+    const boardTop = windowScroll + boardRect.top;
+    const boardBottom = boardTop + this.skillInfoBoard.nativeElement.offsetHeight - 27;
+
+    Array.from(this.skillInfoBoard.nativeElement.children).forEach((child: Element) => {
+        const childElement = child as HTMLElement;
+        let newPosition = windowScroll - boardTop + this.skillInfoBoard.nativeElement.clientTop; // Initial position based on top of skillInfoBoard
+
+        // Ensure newPosition does not allow child to move beyond skillInfoBoard bottom
+        const childBottomPosition = boardTop + newPosition + childElement.offsetHeight; // Position of the bottom of the child
+        if (childBottomPosition > boardBottom) {
+            newPosition -= (childBottomPosition - boardBottom); // Adjust position to keep child within skillInfoBoard
+        }
+
+        newPosition = Math.max(0, newPosition); // Ensure newPosition does not go above skillInfoBoard top
+
+        childElement.style.transform = `translateY(${newPosition}px)`;
+    });
   }
 
 }
