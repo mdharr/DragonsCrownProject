@@ -857,4 +857,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     return buildDataText;
   }
 
+  copyBuildToClipboard(): void {
+    const textarea = document.querySelector('textarea');
+    if (textarea) {
+      textarea.select();
+      document.execCommand('copy');
+    }
+  }
+
 }
