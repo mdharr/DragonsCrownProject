@@ -842,4 +842,19 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     }
   }
+
+  generateBuildDataAsText(): string {
+    // Assuming currentBuild is available in your component
+    // and each item in currentBuild is of type CombinedSkill as previously defined
+    const buildDataText = this.currentBuild.map(skill => {
+      // Assuming calculateSP method or calculateTotalSP pipe can be used here to calculate SP spent
+      // If calculateTotalSP is a pipe, you might need to adjust this part to use the method instead
+      const spSpent = this.calculateSP(skill, this.currentClassData.skills); // Adjust this according to your actual method to calculate SP
+
+      return `Name: ${skill.name}\nDescription: ${skill.description}\nSP Spent: ${spSpent}\nRank: ${skill.rank}\nEffects: ${skill.effects}`;
+    }).join('\n\n');
+
+    return buildDataText;
+  }
+
 }
