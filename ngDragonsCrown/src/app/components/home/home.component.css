@@ -1070,13 +1070,12 @@ blockquote ul li {
 }
 
 .selected-skills {
-  /* border: 1px solid rgb(202, 179, 92) !important; */
-  border: 1px solid rgb(255 0 0) !important;
+  border: 1px solid rgb(202 179 92) !important;
   border-bottom: 1px solid transparent !important;
   margin-bottom: -1px;
   z-index: 1;
-  background-color: rgb(255 255 255) !important;
-  color: black !important;
+  background-color: rgb(0 0 0) !important;
+  color: white !important;
 }
 
 #common-btn {
