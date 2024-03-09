@@ -29,16 +29,33 @@
   pointer-events: none; /* Disables interaction */
 }
 
-.bg-overlay {
-  position: fixed; /* Use fixed to cover the entire viewport like the video */
+/* .bg-overlay {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-  z-index: -1; /* On top of the video but below everything else */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
   background-image: url("https://dragons-crown.com/resources/img/top/overlay.png");
   background-repeat: repeat;
+} */
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  background-repeat: repeat;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-image: url(https://en.dragon-ball-official.com/assets/img/news/comment/bg_dots.png);
+  position: absolute;
+  background-size: 5px;
 }
 
 .main {

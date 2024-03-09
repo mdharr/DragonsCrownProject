@@ -26,17 +26,15 @@ canvas {
 }
 
 .gif-crt {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Cover the entire .inner container */
+  content: "";
+  width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 2; /* Higher than canvas to overlay it */
-  background-image: url("https://dragons-crown.com/resources/img/top/overlay.png");
-  background-repeat: repeat;
-  pointer-events: none;
-  opacity: 0.1;
+  background-image: url(https://en.dragon-ball-official.com/assets/img/news/comment/bg_dots.png);
+  position: absolute;
+  background-size: 2px;
 }
 
 img {
