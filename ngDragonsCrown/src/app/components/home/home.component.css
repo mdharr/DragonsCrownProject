@@ -1076,7 +1076,7 @@ blockquote ul li {
 }
 
 .meta-wrapper.build-background {
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .skill-cards {
