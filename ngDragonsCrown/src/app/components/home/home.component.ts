@@ -12,7 +12,6 @@ import { PreloadService } from 'src/app/services/preload.service';
 import { CombinedSkill } from 'src/app/models/combined-skill';
 import { ClassName } from 'src/app/types/class-name.type';
 import html2canvas from 'html2canvas';
-import { ImageProxyService } from 'src/app/services/image-proxy.service';
 
 @Component({
   selector: 'app-home',
@@ -153,7 +152,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   renderer = inject(Renderer2);
   preloadService = inject(PreloadService);
   ngZone = inject(NgZone);
-  imageProxyService = inject(ImageProxyService);
 
   ngOnInit() {
     this.resetWindowPosition();
@@ -851,71 +849,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // });
   }
 
-  // Assuming this method is part of your component class
-  async captureAndDownloadScreenshot() {
-    const elementToCapture = document.querySelector('.meta-wrapper.build-background') as HTMLElement;
-    if (!elementToCapture) return;
-
-    // Clone the element
-    const clonedElement = elementToCapture.cloneNode(true) as HTMLElement;
-
-    // Optionally append the cloned element to the DOM if necessary for html2canvas to access it
-    clonedElement.style.position = 'absolute';
-    clonedElement.style.left = '-9999px';
-    clonedElement.style.color = '#fff';
-    document.body.appendChild(clonedElement);
-
-    // Modify the src attributes of <img> tags within the cloned element
-    await this.modifyImageSourcesForProxy(clonedElement);
-
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    // Use html2canvas to capture the cloned element
-    html2canvas(clonedElement, {
-      useCORS: true,
-      onclone: (document) => {
-
-      }
-    }).then(canvas => {
-      const link = document.createElement('a');
-      link.download = `build-screenshot.png`;
-      link.href = canvas.toDataURL();
-      link.click(); // Trigger download
-
-      // Clean up: Remove the cloned element from the DOM
-      document.body.removeChild(clonedElement);
-    });
-  }
-
-  // Adjust this method to work with the cloned element
-  async modifyImageSourcesForProxy(clonedElement: HTMLElement) {
-    // const images = Array.from(clonedElement.querySelectorAll<HTMLImageElement>('img'));
-    const image = clonedElement.querySelector<HTMLImageElement>('img');
-
-    if (image) {
-      const dataUrl = await this.imageProxyService.fetchImageAsDataURL(image.src);
-      console.log(dataUrl);
-      image.src = dataUrl;
-      console.log(image.src);
-      await this.ensureImageLoaded(image);
+  captureAndDownloadScreenshot() {
+    const element = document.querySelector('.meta-wrapper.build-background') as HTMLElement;
+    if (element) {
+      html2canvas(element).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+        this.playSound('treasure');
+      });
     }
-
-    // for (const img of images) {
-    //   const dataUrl = await this.imageProxyService.fetchImageAsDataURL(img.src);
-    //   console.log(dataUrl);
-    //   img.src = dataUrl;
-    //   console.log(img.src);
-    //   await Promise.all(images.map(img => this.ensureImageLoaded(img)));
-    // }
-  }
-
-  async ensureImageLoaded(image: HTMLImageElement): Promise<void> {
-    if (image.complete && image.naturalHeight !== 0) {
-      return Promise.resolve();
-    }
-    return new Promise((resolve, reject) => {
-      image.onload = () => resolve();
-      image.onerror = reject;
-    });
   }
 
   async captureAndDownloadScreenshotOfTemp() {
