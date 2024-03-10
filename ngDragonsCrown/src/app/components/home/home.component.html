@@ -300,7 +300,7 @@
           </div>
           <ng-container *ngIf="skillSelected && !viewQuests">
             <div class="skillInfoBoard" #skillInfoBoard>
-              <div *ngIf="isSkillInfoVisible">
+              <div *ngIf="isSkillInfoVisible" class="skill-info-board-child">
                 <div class="skill-card-wrapper">
                   <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
                     <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">

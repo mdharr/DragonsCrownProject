@@ -1393,6 +1393,9 @@ table {
   width: 100%;
 }
 
+.skill-info-board-child {
+  transition: transform 0.1s ease-out;
+}
 
 /* TEST ANIMATION START */
 
