@@ -849,9 +849,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // });
   }
 
-  captureAndDownloadScreenshot() {
+  async captureAndDownloadScreenshot() {
     const element = document.querySelector('.meta-wrapper.build-background') as HTMLElement;
+    const imageUrl = 'https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg';
+    const imageDataUrl = await this.fetchImageAsDataURL(imageUrl);
+    const imageElement = element.querySelector('img') as HTMLImageElement;
+
     if (element) {
+      imageElement.src = `${imageDataUrl}`;
       html2canvas(element).then(canvas => {
         const link = document.createElement('a');
         link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
@@ -860,6 +865,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.playSound('treasure');
       });
     }
+  }
+
+  async fetchImageAsDataURL(url: string) {
+    const response = await fetch(url, { mode: 'cors' });
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
   }
 
   async captureAndDownloadScreenshotOfTemp() {
@@ -900,7 +916,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // Clean up: remove the temporary container
     document.body.removeChild(tempContainer);
   }
-
 
   generateBuildDataAsText(): string {
     const buildText = this.currentBuild.map(skill =>

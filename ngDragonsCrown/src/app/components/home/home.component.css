@@ -786,20 +786,26 @@ html {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  z-index: -2;
   background-position: center;
   background-color: black;
 }
 
 .build-background {
-  position: relative;
-  /* box-shadow: inset 0 -50px 15px -20px black,
-  inset 0 10px 15px 20px black,
-  inset -10px 0 15px -20px black,
-  inset 10px 0 15px -20px black; */
+  position: relative; /* Ensures the positioning context for the absolute-positioned <img> */
 }
 
-.build-background::before {
+.build-background img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensures the image stays behind the content */
+}
+
+/* .build-background::before {
   content: '';
   position: absolute;
   top: 0;
@@ -810,10 +816,9 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top right;
-  /* filter: brightness(50%) opacity(70%); */
   z-index: -1;
   background-color: black;
-}
+} */
 
 /* Assuming your div has a class name 'class-portrait' for targeting */
 .class-portrait {
