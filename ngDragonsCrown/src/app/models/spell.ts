@@ -4,6 +4,6 @@ export interface Spell {
   id: number;
   name: string;
   description: string;
-  combination: string;
+  abbreviation: string;
   runes: Rune[];
 }

@@ -20,6 +20,7 @@ import { CardPlaceholderComponent } from './components/card-placeholder/card-pla
 import { SpriteAnimationComponent } from './components/sprite-animation/sprite-animation.component';
 import { CalculateTotalSPPipe } from './pipes/calculate-total-s-p.pipe';
 import { ParticlesComponent } from './components/particles/particles.component';
+import { RuneMatcherComponent } from './components/rune-matcher/rune-matcher.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ParticlesComponent } from './components/particles/particles.component';
     SpriteAnimationComponent,
     CalculateTotalSPPipe,
     ParticlesComponent,
+    RuneMatcherComponent,
   ],
   imports: [
     BrowserModule,
