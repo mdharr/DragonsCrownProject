@@ -1227,7 +1227,8 @@ blockquote ul li {
 
 .skillListWrap dt:hover {
   cursor: pointer;
-  background-color: rgb(113 35 35 / 20%);
+  /* background-color: rgb(113 35 35 / 20%); */
+  background-color: rgb(113 35 35 / 40%);
 }
 
 .skillListWrap ol {
@@ -1453,7 +1454,8 @@ table {
 /* TEST ANIMATION END */
 
 .selected-skill {
-  background-color: rgb(113 35 35 / 77%) !important;
+  /* background-color: rgb(113 35 35 / 77%) !important; */
+  background-color: rgb(177 45 47 / 80%) !important;
 }
 
 .selected-rank {
@@ -1818,4 +1820,20 @@ hr.custom-hr {
     background-color: rgba(177 45 47 / 80%);
     color: #fff;
   }
+}
+
+.build-buttons {
+  border: 1px solid transparent;
+  font-family: Oswald, serif;
+  letter-spacing: 0.05rem;
+  font-size: 16px;
+  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+}
+
+.build-buttons:hover {
+  background-color:rgba(153, 153, 153, 0.278);
+  border: 1px solid #fff;
+  font-family: Oswald, serif;
+  letter-spacing: 0.05rem;
+  font-size: 16px;
 }
