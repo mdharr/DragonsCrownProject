@@ -469,7 +469,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   viewRunesMatcher() {
-    console.log(this.showCommonSkills);
     this.viewRunes = true;
     this.viewBuild = false;
     this.viewQuests = false;

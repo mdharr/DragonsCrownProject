@@ -19,11 +19,13 @@ export class RuneMatcherComponent implements OnInit {
 
   async fetchData() {
     const response = await fetch('/assets/runes.json');
-    const runesData = await response.json();
-    this.carriedRunes = runesData.runes.filter((rune: Rune) => rune.isCarried);
-    this.carvedRunes = runesData.runes.filter((rune: Rune) => !rune.isCarried);
+    const data = await response.json();
+    this.carriedRunes = data.runes.filter((rune: Rune) => rune.isCarried);
+    this.carvedRunes = data.runes.filter((rune: Rune) => !rune.isCarried);
+    this.spells = data.spells;
     console.log(this.carriedRunes);
     console.log(this.carvedRunes);
+    console.log(this.spells);
   }
 
 }

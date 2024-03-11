@@ -1166,7 +1166,7 @@ blockquote ul li {
 #build-btn {
   border: 1px solid transparent;
   margin-bottom: -1px;
-  /* border-radius: 0 6px 0 0; */
+  border-radius: 0;
   width: 125px;
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
