@@ -1,0 +1,32 @@
+{
+  "runes": [
+    {
+      "id": 1,
+      "imageUrl": "url_to_image_of_rune_D",
+      "letter": "D",
+      "isCarried": true
+    },
+    {
+      "id": 2,
+      "imageUrl": "url_to_image_of_rune_S",
+      "letter": "S",
+      "isCarried": false
+    },
+    {
+      "id": 3,
+      "imageUrl": "url_to_image_of_rune_B",
+      "letter": "B",
+      "isCarried": true
+    }
+
+  ],
+  "spells": [
+    {
+      "id": 1,
+      "name": "Double Score Bonus",
+      "description": "Doubles all points earned",
+      "abbreviation": "D-S-B",
+      "runes": [1, 2, 3]
+    }
+  ]
+}
