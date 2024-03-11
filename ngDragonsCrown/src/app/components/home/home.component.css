@@ -671,7 +671,8 @@ label {
   border: 1px solid #cab35c;
   height: 200px;
   box-shadow: inset 0 0 5px #000000;
-  background-image: url(https://atlus.com/dragonscrown/img/common/menu_homelogo.png);
+  /* background-image: url(https://atlus.com/dragonscrown/img/common/menu_homelogo.png); */
+  background-image: url(/assets/graphics/splash.png);
 }
 
 .small-text {
