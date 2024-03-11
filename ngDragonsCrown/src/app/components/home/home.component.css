@@ -1,12 +1,10 @@
-/* scroll button: https://dragons-crown.com/resources/img/common/btn_to_top.png */
-
 .wrapper {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* Set minimum content height to fill the screen */
+  min-height: 100vh;
   z-index: 1;
   overflow-x: hidden;
-  overflow-y: auto; /* Allow vertical scrolling */
+  overflow-y: auto;
 }
 
 #video-background-container {
@@ -15,7 +13,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; /* Behind everything else */
+  z-index: -2;
   overflow: hidden;
 }
 
@@ -26,20 +24,8 @@
   left: -10%;
   top: -10%;
   object-fit: cover;
-  pointer-events: none; /* Disables interaction */
+  pointer-events: none;
 }
-
-/* .bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-  background-image: url("https://dragons-crown.com/resources/img/top/overlay.png");
-  background-repeat: repeat;
-} */
 
 .bg-overlay {
   position: fixed;
@@ -81,26 +67,22 @@
 }
 
 .content {
-  position: relative; /* This makes it the reference point for absolute positioning inside */
-  max-width: 1000px; /* Limit content width for readability */
+  position: relative;
+  max-width: 1000px;
   width: 1000px;
   min-height: 812.859px;
-  margin: 0 auto; /* Center content horizontally */
-  margin-top: 95px; /* Adjust as needed */
+  margin: 0 auto;
+  margin-top: 95px;
   margin-bottom: 100px;
-  /* padding: 20px; */
   padding-top: 40px;
-  /* padding-top: 0; */
-  background: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
-  /* border: 1px solid #808080; */
-  /* border-radius: 8px; */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow for depth */
-  background-color: rgba(21, 43, 56, 0.9);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  /* background-color: rgba(21, 43, 56, 0.9); */
+  background-color: rgb(0 35 51);
+  background-color: rgb(3 68 89);
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
-  /* background-image: url(https://atlus.com/dragonscrown/img/system/magicshop_bg1.png); */
-  /* background-image: url(https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/bg_pattern.png); */
-  background-image: var(--red_bg);
+  /* background-image: var(--red_bg); */
   background-repeat: repeat;
   background-position: top left;
   background-size: 100%;
@@ -208,7 +190,8 @@
 }
 
 .unselected:hover {
-  box-shadow: rgba(3, 102, 214, 1) 0px 0px 0px 2px;
+  /* box-shadow: rgba(3, 102, 214, 1) 0px 0px 0px 2px; */
+  box-shadow: #ffd602 0px 0px 0px 2px;
   cursor: pointer;
   opacity: 1;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2);
@@ -268,7 +251,8 @@
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-fill-mode: both;
-  border: 1px solid rgb(202, 179, 92);
+  /* border: 1px solid rgb(202, 179, 92); */
+  border: 1px solid #ffd602;
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
@@ -362,27 +346,13 @@
   /* margin-top: 30px; */
 }
 
-/* .n1-wrapper {
-  display: flex;
-  padding: 15px;
-  justify-content: space-evenly;
-  width: 100%;
-  border: 1px solid rgb(202, 179, 92);
-  margin-top: 8px;
-  height: 435px;
-  background-image: url(https://atlus.com/dragonscrown/img/character/character_bg.jpg);
-  background-image: var(--plannerBackgroundUrl);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
-} */
-
 .n1-wrapper {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   width: 100%;
-  border: 1px solid rgb(202, 179, 92);
+  /* border: 1px solid rgb(202, 179, 92); */
+  border: 1px solid #ffd602;
   margin-top: 8px;
   height: 435px;
   background-image: var(--plannerBackgroundUrl);
@@ -406,8 +376,9 @@
   /* background-color: rgba(0, 0, 0, 0.3); */
   padding-top: 20px;
   /* background-color: rgb(21 43 56 / 80%); */
-  background-color: rgb(21 43 56 / 65%);
-  border: 1px solid #fff;
+  /* background-color: rgb(21 43 56 / 65%); */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* border: 1px solid #fff; */
   padding-left: 15px;
   padding-right: 15px;
   border-right: none;
@@ -481,8 +452,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(21 43 56 / 65%);
-  border: 1px solid #fff;
+  /* background-color: rgb(21 43 56 / 65%); */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* border: 1px solid #fff; */
   /* max-width: 320px; */
 }
 
@@ -509,7 +481,8 @@
   width: 150px;
   border: 1px #555 solid;
   padding-left: 5px;
-  background-color: rgb(21 43 56 / 50%);
+  /* background-color: rgb(21 43 56 / 50%); */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .player-level input {
@@ -526,7 +499,8 @@
 
 .player-level input {
   /* background: rgb(21 43 56); */
-  background-color: rgb(21 43 56 / 50%);
+  /* background-color: rgb(21 43 56 / 50%); */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 label {
@@ -547,7 +521,8 @@ label {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-    background-color: rgb(21 43 56 / 50%);
+    /* background-color: rgb(21 43 56 / 50%); */
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 #up-arrow {
@@ -625,7 +600,8 @@ label {
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: rgb(21 43 56 / 50%);
+  /* background-color: rgb(21 43 56 / 50%); */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .player-attributes div {
@@ -668,7 +644,8 @@ label {
   justify-content: center;
   background-color: #160001;
   margin: 5px 0;
-  border: 1px solid #cab35c;
+  /* border: 1px solid #cab35c; */
+  border: 1px solid #ffd602;
   height: 200px;
   box-shadow: inset 0 0 5px #000000;
   /* background-image: url(https://atlus.com/dragonscrown/img/common/menu_homelogo.png); */
@@ -735,6 +712,38 @@ html {
 #portraits-ul li {
   position: relative; /* Add this to make the list item a positioning context */
   /* other styles */
+}
+
+.selected-portrait {
+  position: relative;
+  overflow: hidden;
+}
+
+.selected-portrait::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  animation: shining 10s infinite; /* Updated to reflect total cycle time */
+  animation-timing-function: cubic-bezier(0.5, 0, 1, 1); /* Controls the animation speed */
+  animation-fill-mode: forwards; /* Ensures the end state is maintained until the next cycle */
+}
+
+@keyframes shining {
+  0% {
+    left: -75%;
+  }
+  /* Adjust the percentage to control the speed of the animation */
+  5% { /* 2s of animation within a 5s interval -> 2/5 = 40% */
+    left: 125%;
+  }
+  100% {
+    left: 125%; /* Remain at the end position for the rest of the cycle */
+  }
 }
 
 .chara-pointer {
@@ -880,7 +889,8 @@ html {
   background-color: black;
   padding: 5px;
   border-radius: 6px;
-  border: 3px solid rgb(202, 179, 92);
+  /* border: 3px solid rgb(202, 179, 92); */
+  border: 3px solid #ffd602;
   /* overflow: hidden; */
   position: absolute;
   top: -130px;
@@ -1023,7 +1033,8 @@ blockquote ul li {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   /* background-color: rgba(21, 43, 56, 0.2); */
-  background-color: rgb(21 43 56 / 50%);
+  /* background-color: rgb(21 43 56 / 50%); */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .sprite-container img {
@@ -1068,7 +1079,8 @@ blockquote ul li {
 .meta-wrapper {
   display: flex;
   width: 100%;
-  border: 1px solid rgb(202, 179, 92);
+  /* border: 1px solid rgb(202, 179, 92); */
+  border: 1px solid #ffd602;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
 }
@@ -1091,7 +1103,8 @@ blockquote ul li {
 }
 
 .selected-skills {
-  border: 1px solid rgb(202 179 92) !important;
+  /* border: 1px solid rgb(202 179 92) !important; */
+  border: 1px solid #ffd602 !important;
   border-bottom: 1px solid transparent !important;
   margin-bottom: -1px;
   z-index: 1;
@@ -1153,7 +1166,7 @@ blockquote ul li {
 #build-btn {
   border: 1px solid transparent;
   margin-bottom: -1px;
-  border-radius: 0 6px 0 0;
+  /* border-radius: 0 6px 0 0; */
   width: 125px;
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
@@ -1163,6 +1176,23 @@ blockquote ul li {
 }
 
 #build-btn:hover {
+  background-color:rgba(153, 153, 153, 0.278);
+  border: 1px solid #fff;
+}
+
+#rune-matcher-btn {
+  border: 1px solid transparent;
+  margin-bottom: -1px;
+  border-radius: 0 6px 0 0;
+  width: 125px;
+  font-family: Oswald, serif;
+  text-rendering: geometricprecision;
+  letter-spacing: 0.1rem;
+  background-color:rgba(153, 153, 153, 0.088);
+  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+}
+
+#rune-matcher-btn:hover {
   background-color:rgba(153, 153, 153, 0.278);
   border: 1px solid #fff;
 }
@@ -1492,20 +1522,17 @@ table {
   display: block;
 }
 
-
-/* Modal Content */
 .modal-content {
   position: fixed;
   bottom: 0;
   background-color: #fefefe;
-  width: 100%; /* Could be more or less, depending on screen size */
+  width: 100%;
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
   animation-duration: 0.4s
 }
 
-/* The Close Button */
 .close {
   color: white;
   float: right;

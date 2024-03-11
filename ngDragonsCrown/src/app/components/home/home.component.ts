@@ -86,6 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   selected: boolean = false;
   artworkLoaded: boolean = false;
   showCommonSkills: boolean = true;
+  showUniqueSkills: boolean = false;
   skillSelected: boolean = false;
   currentSkillEffects: string[] = [];
   skillCardLoaded: boolean = false;
@@ -93,6 +94,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   isModalVisible = false;
   viewQuests: boolean = false;
   viewBuild: boolean = false;
+  viewRunes: boolean = false;
   showAll: boolean = false;
   showByNameAsc: boolean = false;
   showByNameDesc: boolean = false;
@@ -241,6 +243,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.selectedSkill = { index: null, type: null };
     this.viewQuests = false;
     this.viewBuild = false;
+    this.viewRunes = false;
     this.currentLevelSP = 1;
 
     if(this.classSelected) {
@@ -422,40 +425,56 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   viewCommonSkills() {
-    if(this.showCommonSkills === false || this.showCommonSkills === true) {
-      this.viewQuests = false;
-      this.viewBuild = false;
-      this.showCommonSkills = true;
-      const commonBtn = document.querySelector('#common-btn');
-      const uniqueBtn = document.querySelector('#unique-btn');
-      uniqueBtn?.classList.remove('selected-skills');
-      commonBtn?.classList.add('selected-skills');
-      this.playSound('accept');
-    }
+    this.showCommonSkills = true;
+    this.viewQuests = false;
+    this.viewBuild = false;
+    this.viewRunes = false;
+    this.showUniqueSkills = false;
+    // const commonBtn = document.querySelector('#common-btn');
+    // const uniqueBtn = document.querySelector('#unique-btn');
+    // uniqueBtn?.classList.remove('selected-skills');
+    // commonBtn?.classList.add('selected-skills');
+    this.playSound('accept');
   }
 
   viewUniqueSkills() {
-    if(this.showCommonSkills === true || this.showCommonSkills === false) {
-      this.viewQuests = false;
-      this.viewBuild = false;
-      this.showCommonSkills = false;
-      const commonBtn = document.querySelector('#common-btn');
-      const uniqueBtn = document.querySelector('#unique-btn');
-      commonBtn?.classList.remove('selected-skills');
-      uniqueBtn?.classList.add('selected-skills');
-      this.playSound('accept');
-    }
+    this.showUniqueSkills = true;
+    this.viewQuests = false;
+    this.viewBuild = false;
+    this.viewRunes = false;
+    this.showCommonSkills = false;
+    // const commonBtn = document.querySelector('#common-btn');
+    // const uniqueBtn = document.querySelector('#unique-btn');
+    // commonBtn?.classList.remove('selected-skills');
+    // uniqueBtn?.classList.add('selected-skills');
+    this.playSound('accept');
   }
 
   viewQuestList() {
     this.viewQuests = true;
     this.viewBuild = false;
+    this.viewRunes = false;
+    this.showCommonSkills = false;
+    this.showUniqueSkills = false;
     this.playSound('accept');
   }
 
   viewCurrentBuild() {
     this.viewBuild = true;
     this.viewQuests = false;
+    this.viewRunes = false;
+    this.showCommonSkills = false;
+    this.showUniqueSkills = false;
+    this.playSound('accept');
+  }
+
+  viewRunesMatcher() {
+    console.log(this.showCommonSkills);
+    this.viewRunes = true;
+    this.viewBuild = false;
+    this.viewQuests = false;
+    this.showCommonSkills = false;
+    this.showUniqueSkills = false;
     this.playSound('accept');
   }
 

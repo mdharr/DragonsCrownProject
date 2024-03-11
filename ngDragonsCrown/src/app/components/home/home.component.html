@@ -4,37 +4,22 @@
   <div id="video-background-container">
     <iframe id="video-background-player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" title="Background Video" src="https://www.youtube-nocookie.com/embed/dfyrRsYAAdo?controls=0&showinfo=0&modestbranding=1&wmode=transparent&vq=large&rel=0&loop=1&playlist=dfyrRsYAAdo&enablejsapi=1&autoplay=1&mute=1"></iframe>
   </div>
-  <!-- <div style="height:100%;">
-    <app-particles></app-particles>
-  </div> -->
   <!-- Overlay -->
   <div class="bg-overlay"></div>
 
   <!-- Main content area -->
   <div class="main">
-    <div class="content" [ngStyle]="{'--red_bg': 'url(' + getImageUrl('red_bg') + ')'}">
+    <!-- <div class="content" [ngStyle]="{'--red_bg': 'url(' + getImageUrl('red_bg') + ')'}"> -->
+    <div class="content">
       <div class="gdiv">
-        <!-- <img src="https://atlus.com/dragonscrown/img/home/gargoylediv.png" alt=""> -->
         <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_top_pattern.png" alt="">
       </div>
       <div class="middle">
         <div class="story-label" style="display: flex;">
-          <!-- <div class="banner-wrapper">
-            <img src="https://gamecloud.net.au/wp-content/uploads/2013/08/Dragons-Crown-Banner2-GameCloud.png" alt="Banner Image">
-          </div> -->
-          <!-- <div style="height: 100%; width: 300px;">
-            <img style="height: -webkit-fill-available; width: auto;" src="https://c0.klipartz.com/pngpicture/327/764/gratis-png-dragon-s-crown-playstation-4-odin-esfera-princesa-crown-muramasa-demonio-blade-caballero-thumbnail.png" alt="">
-          </div>
-          <div style="height: 100%; width: 185px;">
-            <img style="height: -webkit-fill-available; width: auto;" src="https://atlus.com/dragonscrown/img/story/dragon.png" alt="">
-          </div> -->
           <app-particles style="overflow: hidden;"></app-particles>
-          <!-- <div style="height:100%; z-index: 10;">
-          </div> -->
         </div>
         <hr>
         <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">Select a class to get started:</p>
-        <!-- In your component template -->
         <div class="portraits">
           <ul id="portraits-ul" style="margin-bottom: 0;">
             <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id"
@@ -45,7 +30,7 @@
                 <div *ngIf="selectedClassIndex === i" class="chara-pointer">
                   <img src="https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_pointer.png">
                 </div>
-                <div class="portrait-container">
+                <div class="portrait-container" [ngClass]="{'selected-portrait': selectedClassIndex === i}">
                   <img [src]="classData.portraitUrl" [alt]="classData.name">
                 </div>
               <div *ngIf="tooltipVisible && tooltipIndex === i && selectedClassIndex !== i" class="custom-tooltip">
@@ -57,20 +42,11 @@
           </ul>
         </div>
         <hr>
-        <!-- <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg') + ')'"> -->
         <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'">
-          <!-- <div style="height:100%; z-index: 10;">
-            <app-particles></app-particles>
-          </div> -->
           <ng-container *ngIf="classSelected">
             <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation>
           </ng-container>
         </div>
-        <!-- <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative; z-index: 4;" *ngIf="playerCardLoaded">
-          <img style="width: 140px;" src="{{ currentClassData?.iconUrl }}" alt="Skill Card">
-        </div>
-        <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder> -->
-        <!-- <p style="background-color: rgba(0, 0, 0, 0.01); margin: 0; padding: 0; min-height: 80px;" id="description-text"></p> -->
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper" [ngStyle]="{'--plannerBackgroundUrl': 'url(' + currentClassData?.paperUrl + ')'}">
             <div class="col n1 class-background">
@@ -236,20 +212,21 @@
         </div>
         <ng-container *ngIf="classSelected">
           <hr>
-          <button id="common-btn" [class.selected-skills]="showCommonSkills && !viewQuests && !viewBuild" mat-button (click)="viewCommonSkills()">Common Skills</button>
-          <button id="unique-btn" [class.selected-skills]="!showCommonSkills && !viewQuests && !viewBuild" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
-          <button id="quests-btn" [class.selected-skills]="viewQuests && !viewBuild" mat-button (click)="viewQuestList()">View Quests</button>
-          <button id="build-btn" [class.selected-skills]="viewBuild && !viewQuests" mat-button (click)="viewCurrentBuild()">View Build</button>
+          <button id="common-btn" [class.selected-skills]="showCommonSkills && !showUniqueSkills && !viewQuests && !viewBuild && !viewRunes" mat-button (click)="viewCommonSkills()">Common Skills</button>
+          <button id="unique-btn" [class.selected-skills]="showUniqueSkills && !showCommonSkills && !viewQuests && !viewBuild && !viewRunes" mat-button (click)="viewUniqueSkills()">Unique Skills</button>
+          <button id="quests-btn" [class.selected-skills]="!showCommonSkills && !showUniqueSkills && viewQuests && !viewBuild && !viewRunes" mat-button (click)="viewQuestList()">View Quests</button>
+          <button id="build-btn" [class.selected-skills]="!showCommonSkills && !showUniqueSkills && viewBuild && !viewQuests && !viewRunes" mat-button (click)="viewCurrentBuild()">View Build</button>
+          <button id="rune-matcher-btn" [class.selected-skills]="!showCommonSkills && !showUniqueSkills && !viewQuests && !viewBuild && viewRunes" mat-button (click)="viewRunesMatcher()">View Runes</button>
         </ng-container>
         <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->
         <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1590653347/dragonscrown_environment_castle_town.png' + ')'}"> -->
-        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('castle_bg') + ')'}">
+        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('castle_bg') + ')'}">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
 
             <div class="common-unique-wrapper" style="display: flex; flex-direction: column;">
 
-              <ng-container *ngIf="showCommonSkills">
+              <ng-container *ngIf="showCommonSkills && !showUniqueSkills">
                 <div class="sheen-box" style="display: flex; justify-content: center; width: 100%; position:relative; z-index: 4;" *ngIf="playerCardLoaded">
                   <img class="skill-cards tilt" src="https://static.wikia.nocookie.net/dragons-crown/images/9/92/Common_skills.jpg" alt="Skill Card">
                 </div>
@@ -257,7 +234,7 @@
                 <h3><span style="color: #d9b359;">Common Skills</span>: Can be learned by all classes.</h3>
               </ng-container>
 
-              <ng-container *ngIf="!showCommonSkills">
+              <ng-container *ngIf="!showCommonSkills && showUniqueSkills">
                 <div class="sheen-box" style="display: flex; justify-content: center; width: 100%; position:relative; z-index: 4;" *ngIf="playerCardLoaded">
                   <img class="skill-cards tilt" src="{{ currentClassData.cardUrl }}" alt="Skill Card">
                 </div>
@@ -266,7 +243,7 @@
               </ng-container>
               <!-- <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span> -->
 
-              <div class="common-skills" *ngIf="showCommonSkills">
+              <div class="common-skills" *ngIf="showCommonSkills && !showUniqueSkills">
                 <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
                   <dl>
                     <dt (click)="selectSkill(i, 'common')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'common'}">
@@ -281,7 +258,7 @@
                   </dl>
                 </div>
               </div>
-              <div class="unique-skills" *ngIf="!showCommonSkills">
+              <div class="unique-skills" *ngIf="!showCommonSkills && showUniqueSkills">
                 <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
                   <dl>
                     <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
@@ -298,7 +275,7 @@
               </div>
             </div>
           </div>
-          <ng-container *ngIf="skillSelected && !viewQuests">
+          <ng-container *ngIf="skillSelected && !viewQuests && !viewBuild && !viewRunes">
             <div class="skillInfoBoard" #skillInfoBoard>
               <div *ngIf="isSkillInfoVisible" class="skill-info-board-child">
                 <div class="skill-card-wrapper">
@@ -351,7 +328,7 @@
           </ng-container>
         </div>
         <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->
-        <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl+ ')'}">
+        <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl+ ')'}">
           <div class="quests-wrapper">
             <span style="margin-bottom: 5px;">Skill Points from Quests: {{ calculateTotalSkillPoints() }}</span>
             <table>
@@ -446,6 +423,9 @@
           <button class="build-buttons" style="margin-right: 10px;" mat-button (click)="copyBuildToClipboard()">Copy Build Data</button>
           <button class="build-buttons" mat-button (click)="exportBuildAsTextFile()">Export as Text File</button>
         </div>
+        <div class="meta-wrapper class-background" style="padding-bottom: 15px;" *ngIf="classSelected && viewRunes">
+          <app-rune-matcher></app-rune-matcher>
+        </div>
       </div>
       <div class="bdiv">
         <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_bottom_pattern.png" alt="">
@@ -454,7 +434,7 @@
     <app-scroll-to-top-button></app-scroll-to-top-button>
     <div class="footer">
       <div class="footer-text">
-        <p>2024 Dragon's Crown Planner | MDHARR</p>
+        <p>2024 Dragon's Crown Planner | mdharr</p>
       </div>
     </div>
   </div>
