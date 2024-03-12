@@ -43,12 +43,19 @@ export class RuneMatcherComponent implements OnInit {
     { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
     { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
     { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
+    { name: 'cast', path: '/assets/audio/dc_cast_se.mp3' },
+    { name: 'click', path: '/assets/audio/dc_click_se.mp3' },
+    { name: 'open', path: '/assets/audio/dc_open_se.mp3' },
+    { name: 'reveal', path: '/assets/audio/dc_reveal_se.mp3' },
+    { name: 'unveil', path: '/assets/audio/dc_unveilt_se.mp3' },
+    { name: 'unveil_alt', path: '/assets/audio/dc_unveil_se_alt.mp3' },
   ]
 
   // booleans
   noSpellsRemaining: boolean = false;
   hasCurrentSpell: boolean = false;
   canEvaluate: boolean = false;
+  revealSpell: boolean = false;
 
   ngOnInit() {
     this.fetchData();
@@ -79,6 +86,9 @@ export class RuneMatcherComponent implements OnInit {
     if (this.userRunes.length) {
       this.userRunes = [];
     }
+    if (this.revealSpell) {
+      this.revealSpell = false;
+    }
     if (this.spells.length > 0) {
       try {
         const random = Math.floor(Math.random() * this.spells.length);
@@ -105,6 +115,9 @@ export class RuneMatcherComponent implements OnInit {
 
   restart() {
     this.fetchData();
+    if (this.revealSpell) {
+      this.revealSpell = false;
+    }
     if (this.selectedRunes) {
       this.selectedRunes = [];
     }
@@ -149,6 +162,11 @@ export class RuneMatcherComponent implements OnInit {
     }
   }
 
+  isSelectionComplete() {
+    // console.log(this.userRunes.length, this.currentCarvedRunes.length, this.userRunes.length + this.currentCarvedRunes.length === 3);
+    return this.userRunes.length === 3;
+  }
+
   isSelected(runeId: number): boolean {
     return this.selectedRunes.some(r => r.id === runeId);
   }
@@ -161,11 +179,19 @@ export class RuneMatcherComponent implements OnInit {
       }
     });
     if (counter === spellRunes.length) {
+      this.playSound('click');
       console.log('Correct');
       this.currentScore++;
+      this.revealSpell = true;
+      setTimeout(() => {
+        this.playSound('reveal');
+      }, 100)
+      const evaluateButton = document.querySelector('#evaluate-button') as HTMLElement;
+      evaluateButton.setAttribute('disabled', 'true');
     } else {
       const divElement = document.querySelector('.current-spell-wrapper') as HTMLElement;
       divElement?.classList.add('shake-animation');
+      this.playSound('open');
       console.log('Incorrect');
       setTimeout(() => {
         divElement?.classList.remove('shake-animation');

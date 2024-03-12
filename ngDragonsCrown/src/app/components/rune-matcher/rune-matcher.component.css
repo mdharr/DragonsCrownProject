@@ -71,6 +71,13 @@
   border: 1px solid #fff;
 }
 
+button.option-buttons:disabled {
+  background-color: gray;
+  color: #fff; /* Change text color if needed */
+  cursor: not-allowed;
+  /* Add more styling as needed */
+}
+
 .selected {
   border-radius: 25px;
   animation: none !important;
@@ -108,4 +115,38 @@
   animation: none !important;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important;
   opacity: 1 !important;
+}
+
+.spell-result {
+  display: flex;
+  opacity: 0;
+  animation: reveal 2s ease forwards;
+  width: 400px;
+  height: 100px;
+  background-color: #000000;
+  justify-content: space-between;
+  border-radius: 3px;
+  border: 1px solid #fff;
+  position: absolute;
+  top: 40%;
+  padding: 5px;
+  gap: 20px;
+  letter-spacing: 0.05em;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.spell-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex: 1;
+  text-align: center;
 }
