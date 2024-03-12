@@ -20,6 +20,8 @@ export class RuneMatcherComponent implements OnInit {
   currentSpell: Spell = new Spell();
   currentRunes: Rune[] = [];
   currentCarvedRunes: Rune[] = [];
+  userRunes: Rune[] = [];
+  currentScore: number = 0;
 
   // sounds
   sounds: AudioEntity[] = [
@@ -46,6 +48,7 @@ export class RuneMatcherComponent implements OnInit {
   // booleans
   noSpellsRemaining: boolean = false;
   hasCurrentSpell: boolean = false;
+  canEvaluate: boolean = false;
 
   ngOnInit() {
     this.fetchData();
@@ -73,6 +76,9 @@ export class RuneMatcherComponent implements OnInit {
     if (this.currentRunes.length) {
       this.currentRunes = [];
     }
+    if (this.userRunes.length) {
+      this.userRunes = [];
+    }
     if (this.spells.length > 0) {
       try {
         const random = Math.floor(Math.random() * this.spells.length);
@@ -85,6 +91,7 @@ export class RuneMatcherComponent implements OnInit {
           }
         });
         this.currentCarvedRunes = this.currentRunes.filter(r => !r.isCarried);
+        this.userRunes = this.userRunes.concat(this.currentCarvedRunes);
         console.log("Current Carved Runes: ", this.currentCarvedRunes);
         this.playSound('pageflip');
       } catch (error) {
@@ -128,12 +135,14 @@ export class RuneMatcherComponent implements OnInit {
       const selectedRune = this.runeKey.find(r => r.id === runeId);
       if (selectedRune && this.selectedRunes.includes(selectedRune)) {
         this.selectedRunes = this.selectedRunes.filter(r => r.id !== runeId);
-        console.log("Selected Runes: ", this.selectedRunes);
+        this.userRunes = this.userRunes.filter(r => r.id !== runeId);
+        // console.log("Selected Runes: ", this.selectedRunes);
         this.playSound('scratch');
       } else {
         if (selectedRune && this.selectedRunes.length < (3 - this.currentCarvedRunes.length)) {
           this.selectedRunes.push(selectedRune);
-          console.log("Selected Runes: ", this.selectedRunes);
+          this.userRunes.push(selectedRune);
+          // console.log("Selected Runes: ", this.selectedRunes);
           this.playSound('rune');
         }
       }
@@ -151,6 +160,17 @@ export class RuneMatcherComponent implements OnInit {
         counter++;
       }
     });
+    if (counter === spellRunes.length) {
+      console.log('Correct');
+      this.currentScore++;
+    } else {
+      const divElement = document.querySelector('.current-spell-wrapper') as HTMLElement;
+      divElement?.classList.add('shake-animation');
+      console.log('Incorrect');
+      setTimeout(() => {
+        divElement?.classList.remove('shake-animation');
+      }, 300)
+    }
     return counter === spellRunes.length;
   }
 }

@@ -1,8 +1,12 @@
 <div class="wrapper">
-  <div *ngIf="hasCurrentSpell" class="spell-counter" style="position: absolute; top: 0; left: 0; width: 165px; height: 40px; display: flex; justify-content: center; align-items: center; text-align: justify;">
+  <div *ngIf="hasCurrentSpell" class="spell-counter" style="position: absolute; top: 0; left: 0; width: 165px; height: 40px; display: flex; flex-direction: column; justify-content: center; text-align: justify;">
     <h6 style="margin: 0;">Rune Spells: {{ spellKey.length - spells.length }} / {{ spellKey.length }}</h6>
+    <h6 style="margin: 0;">Score: {{ currentScore }}</h6>
   </div>
-  <div *ngIf="hasCurrentSpell" style="width: 240px; height: 135px; background-color: #000000; display: flex; justify-content: center; border-radius: 3px; border: 1px solid #fff; position: absolute; top: 0;">
+  <div *ngIf="hasCurrentSpell" class="spell-counter" style="position: absolute; top: 0; right: 0;display: flex; justify-content: center; align-items: center;">
+    <button class="option-buttons" (click)="restart()">Restart</button>
+  </div>
+  <div class="current-spell-wrapper" *ngIf="hasCurrentSpell" style="width: 240px; height: 135px; background-color: #000000; display: flex; justify-content: center; border-radius: 3px; border: 1px solid #fff; position: absolute; top: 0;">
     <div *ngIf="!noSpellsRemaining" style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
       <label for="spellRunes">{{ currentSpell.name }}</label>
       <div style="display: flex; gap: 15px;">
@@ -22,7 +26,7 @@
       </div>
       <div style="display: flex; justify-content: space-between;">
         <button class="option-buttons" (click)="getSpell()">{{ hasCurrentSpell ? 'Next' : 'Begin' }}</button>
-        <button class="option-buttons" (click)="restart()">Restart</button>
+        <button class="option-buttons" (click)="evaluateCombination(this.currentRunes, this.userRunes)">Evaluate</button>
       </div>
     </div>
   </div>
