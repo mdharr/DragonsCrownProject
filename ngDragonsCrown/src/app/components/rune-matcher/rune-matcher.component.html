@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div *ngIf="!noSpellsRemaining">
     <label for="spellRunes">{{ this.currentSpell.name }}</label>
-    <div style="display: flex;">
+    <div style="display: flex; gap: 15px;">
       <img *ngFor="let runeId of this.currentSpell.runes;" style="width: 50px; height: 50px; border: 1px solid #fff;" [src]="getRuneImageUrl(runeId)" alt="rune.png">
     </div>
   </div>

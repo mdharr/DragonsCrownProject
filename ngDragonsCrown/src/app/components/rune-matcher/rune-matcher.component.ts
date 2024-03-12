@@ -56,7 +56,7 @@ export class RuneMatcherComponent implements OnInit {
 
   getRuneImageUrl(runeId: number) {
     const rune = this.runeKey.find(r => r.id === runeId);
-    return rune ? rune.imageUrl : '/assets/graphics/runes/Unknown.png';
+    return rune && !rune.isCarried ? rune.imageUrl : '/assets/graphics/runes/Unknown.png';
   }
 
   logRuneLetter(runeId: number) {
