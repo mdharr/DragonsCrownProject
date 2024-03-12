@@ -63,6 +63,9 @@ export class RuneMatcherComponent implements OnInit {
   }
 
   getSpell() {
+    if (this.selectedRunes) {
+      this.selectedRunes = [];
+    }
     if (this.currentRunes.length) {
       this.currentRunes = [];
     }
