@@ -1,4 +1,10 @@
 <div class="wrapper">
-  <label for="runes">Enter Rune Letter(s)</label>
-  <input type="text">
+  <button (click)="getSpell()">Choose Spell</button>
+  <button (click)="restart()">Restart</button>
+  <div *ngIf="!noSpellsRemaining">
+    <p>{{ this.currentSpell.name }}</p>
+  </div>
+  <div *ngIf="noSpellsRemaining">
+    <p>No spells remaining.</p>
+  </div>
 </div>
