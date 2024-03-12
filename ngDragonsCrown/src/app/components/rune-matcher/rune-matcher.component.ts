@@ -64,6 +64,7 @@ export class RuneMatcherComponent implements OnInit {
       try {
         const random = Math.floor(Math.random() * this.spells.length);
         this.currentSpell = this.spells.splice(random, 1)[0];
+        this.playSound('confirm');
       } catch (error) {
         console.error('Error choosing spell.');
       }
@@ -75,6 +76,7 @@ export class RuneMatcherComponent implements OnInit {
 
   restart() {
     this.fetchData();
+    this.playSound('erase');
   }
 
   getRuneImageUrl(runeId: number) {
@@ -93,6 +95,10 @@ export class RuneMatcherComponent implements OnInit {
     const audioPath = audioObj?.path;
     const audio = new Audio(audioPath);
     audio.play();
+  }
+
+  getDelay(index: number): number {
+    return index * 0.3; // Adjust the multiplier to control wave speed
   }
 
 }

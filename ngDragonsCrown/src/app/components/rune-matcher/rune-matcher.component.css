@@ -5,3 +5,40 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.carried-runes img {
+  animation: float 2s ease-in-out infinite;
+  will-change: animation;
+  animation-delay: var(--wave-delay, 0s); /* Default to 0s if not set */
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px); /* Adjusted for more visible wave effect */
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.option-buttons {
+  border: 1px solid transparent;
+  margin-bottom: -1px;
+  border-radius: 0 0 0 0;
+  width: 125px;
+  font-family: Oswald, serif;
+  text-rendering: geometricprecision;
+  letter-spacing: 0.1rem;
+  background-color:rgba(153, 153, 153, 0.088);
+  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  color: #fff;
+}
+
+.option-buttons:hover {
+  background-color:rgba(153, 153, 153, 0.278);
+  border: 1px solid #fff;
+}
+

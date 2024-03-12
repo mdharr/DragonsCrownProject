@@ -10,12 +10,14 @@
   </div>
   <div style="display: flex; flex-direction: column; gap: 10px;">
     <div style="display: flex; flex-direction: column;">
-      <label for="carriedRunes">Carried Runes</label>
-      <div style="display: flex; gap: 10px;">
-        <img *ngFor="let carriedRune of this.carriedRunes;" style="width: 50px; height: 50px; border: 1px solid #fff;" src="{{ carriedRune.imageUrl }}" alt="" (click)="logRuneLetter(carriedRune.id)">
+      <!-- <label for="carriedRunes">Carried Runes</label> -->
+      <div class="carried-runes" style="display: flex; gap: 10px;">
+        <img *ngFor="let carriedRune of this.carriedRunes; let i = index;" style="width: 50px; height: 50px; border: 1px solid #fff; cursor: pointer;" src="{{ carriedRune.imageUrl }}" alt="" (click)="logRuneLetter(carriedRune.id)" [style.--wave-delay]="getDelay(i) + 's'">
       </div>
     </div>
-    <button (click)="getSpell()">Choose Spell</button>
-    <button (click)="restart()">Restart</button>
+    <div style="display: flex; justify-content: space-between;">
+      <button class="option-buttons" (click)="getSpell()">Choose Spell</button>
+      <button class="option-buttons" (click)="restart()">Restart</button>
+    </div>
   </div>
 </div>
