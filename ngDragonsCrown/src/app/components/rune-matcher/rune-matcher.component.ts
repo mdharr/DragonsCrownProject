@@ -12,6 +12,8 @@ export class RuneMatcherComponent implements OnInit {
   // properties
   carriedRunes: Rune[] = [];
   carvedRunes: Rune[] = [];
+  runeKey: Rune[] = [];
+  spellKey: Spell[] = [];
   spells: Spell[] = [];
   currentSpell: Spell = new Spell();
 
@@ -25,14 +27,13 @@ export class RuneMatcherComponent implements OnInit {
   async fetchData() {
     const response = await fetch('/assets/runes.json');
     const data = await response.json();
+    this.runeKey = data.runes;
+    this.spellKey = data.spells;
     this.carriedRunes = data.runes.filter((rune: Rune) => rune.isCarried);
     this.carvedRunes = data.runes.filter((rune: Rune) => !rune.isCarried);
     this.spells = data.spells;
     this.currentSpell = new Spell();
     this.noSpellsRemaining = false;
-    console.log(this.carriedRunes);
-    console.log(this.carvedRunes);
-    console.log(this.spells);
   }
 
   getSpell() {
@@ -40,8 +41,6 @@ export class RuneMatcherComponent implements OnInit {
       try {
         const random = Math.floor(Math.random() * this.spells.length);
         this.currentSpell = this.spells.splice(random, 1)[0];
-        console.log("Chosen Spell: ", this.currentSpell);
-        console.log("Spells: ", this.spells);
       } catch (error) {
         console.error('Error choosing spell.');
       }
@@ -53,6 +52,16 @@ export class RuneMatcherComponent implements OnInit {
 
   restart() {
     this.fetchData();
+  }
+
+  getRuneImageUrl(runeId: number) {
+    const rune = this.runeKey.find(r => r.id === runeId);
+    return rune ? rune.imageUrl : '/assets/graphics/runes/Unknown.png';
+  }
+
+  logRuneLetter(runeId: number) {
+    const rune = this.runeKey.find(r => r.id === runeId);
+    console.log(rune?.letter);
   }
 
 }

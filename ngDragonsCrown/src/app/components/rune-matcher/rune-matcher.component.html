@@ -3,8 +3,17 @@
   <button (click)="restart()">Restart</button>
   <div *ngIf="!noSpellsRemaining">
     <p>{{ this.currentSpell.name }}</p>
+    <div style="display: flex;">
+      <img *ngFor="let runeId of this.currentSpell.runes;" style="width: 50px; height: 50px; border: 1px solid #fff;" [src]="getRuneImageUrl(runeId)" alt="rune.png">
+    </div>
   </div>
   <div *ngIf="noSpellsRemaining">
     <p>No spells remaining.</p>
+  </div>
+  <div style="display: flex; flex-direction: column;">
+    <label for="carriedRunes">Carried Runes</label>
+    <div style="display: flex; gap: 10px;">
+      <img *ngFor="let carriedRune of this.carriedRunes;" style="width: 50px; height: 50px; border: 1px solid #fff;" src="{{ carriedRune.imageUrl }}" alt="" (click)="logRuneLetter(carriedRune.id)">
+    </div>
   </div>
 </div>

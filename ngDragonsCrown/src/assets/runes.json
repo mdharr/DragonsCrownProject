@@ -2,127 +2,127 @@
   "runes": [
     {
       "id": 1,
-      "imageUrl": "src/assets/graphics/runes/D.png",
+      "imageUrl": "/assets/graphics/runes/D.png",
       "letter": "D",
       "isCarried": true
     },
     {
       "id": 2,
-      "imageUrl": "src/assets/graphics/runes/E.png",
+      "imageUrl": "/assets/graphics/runes/E.png",
       "letter": "E",
       "isCarried": true
     },
     {
       "id": 3,
-      "imageUrl": "src/assets/graphics/runes/S.png",
+      "imageUrl": "/assets/graphics/runes/S.png",
       "letter": "S",
       "isCarried": true
     },
     {
       "id": 4,
-      "imageUrl": "src/assets/graphics/runes/T.png",
+      "imageUrl": "/assets/graphics/runes/T.png",
       "letter": "T",
       "isCarried": true
     },
     {
       "id": 5,
-      "imageUrl": "src/assets/graphics/runes/A.png",
+      "imageUrl": "/assets/graphics/runes/A.png",
       "letter": "A",
       "isCarried": false
     },
     {
       "id": 6,
-      "imageUrl": "src/assets/graphics/runes/B.png",
+      "imageUrl": "/assets/graphics/runes/B.png",
       "letter": "B",
       "isCarried": false
     },
     {
       "id": 7,
-      "imageUrl": "src/assets/graphics/runes/C.png",
+      "imageUrl": "/assets/graphics/runes/C.png",
       "letter": "C",
       "isCarried": false
     },
     {
       "id": 8,
-      "imageUrl": "src/assets/graphics/runes/F.png",
+      "imageUrl": "/assets/graphics/runes/F.png",
       "letter": "F",
       "isCarried": false
     },
     {
       "id": 9,
-      "imageUrl": "src/assets/graphics/runes/G.png",
+      "imageUrl": "/assets/graphics/runes/G.png",
       "letter": "G",
       "isCarried": false
     },
     {
       "id": 10,
-      "imageUrl": "src/assets/graphics/runes/H.png",
+      "imageUrl": "/assets/graphics/runes/H.png",
       "letter": "H",
       "isCarried": false
     },
     {
       "id": 11,
-      "imageUrl": "src/assets/graphics/runes/I.png",
+      "imageUrl": "/assets/graphics/runes/I.png",
       "letter": "I",
       "isCarried": false
     },
     {
       "id": 12,
-      "imageUrl": "src/assets/graphics/runes/K.png",
+      "imageUrl": "/assets/graphics/runes/K.png",
       "letter": "K",
       "isCarried": false
     },
     {
       "id": 13,
-      "imageUrl": "src/assets/graphics/runes/L.png",
+      "imageUrl": "/assets/graphics/runes/L.png",
       "letter": "L",
       "isCarried": false
     },
     {
       "id": 14,
-      "imageUrl": "src/assets/graphics/runes/M.png",
+      "imageUrl": "/assets/graphics/runes/M.png",
       "letter": "M",
       "isCarried": true
     },
     {
       "id": 15,
-      "imageUrl": "src/assets/graphics/runes/O.png",
+      "imageUrl": "/assets/graphics/runes/O.png",
       "letter": "O",
       "isCarried": false
     },
     {
       "id": 16,
-      "imageUrl": "src/assets/graphics/runes/P.png",
+      "imageUrl": "/assets/graphics/runes/P.png",
       "letter": "P",
       "isCarried": false
     },
     {
       "id": 17,
-      "imageUrl": "src/assets/graphics/runes/R.png",
+      "imageUrl": "/assets/graphics/runes/R.png",
       "letter": "R",
       "isCarried": true
     },
     {
       "id": 18,
-      "imageUrl": "src/assets/graphics/runes/S2.png",
+      "imageUrl": "/assets/graphics/runes/S2.png",
       "letter": "S",
       "isCarried": false
     },
     {
       "id": 19,
-      "imageUrl": "src/assets/graphics/runes/T2.png",
+      "imageUrl": "/assets/graphics/runes/T2.png",
       "letter": "T",
       "isCarried": false
     },
     {
       "id": 20,
-      "imageUrl": "src/assets/graphics/runes/W.png",
+      "imageUrl": "/assets/graphics/runes/W.png",
       "letter": "W",
       "isCarried": false
     },
     {
       "id": 21,
-      "imageUrl": "src/assets/graphics/runes/Z.png",
+      "imageUrl": "/assets/graphics/runes/Z.png",
       "letter": "Z",
       "isCarried": false
     }

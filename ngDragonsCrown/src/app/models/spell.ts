@@ -5,14 +5,14 @@ export class Spell {
   name: string;
   description: string;
   abbreviation: string;
-  runes: Rune[];
+  runes: number[];
 
   constructor(
     id: number = 0,
     name: string = '',
     description: string = '',
     abbreviation: string = '',
-    runes: Rune[] = []
+    runes: number[] = []
   ) {
     this.id = id;
     this.name = name;
