@@ -12,6 +12,7 @@ export class RuneMatcherComponent implements OnInit {
   carriedRunes: Rune[] = [];
   carvedRunes: Rune[] = [];
   spells: Spell[] = [];
+  currentSpell: Spell | undefined;
 
   ngOnInit() {
     this.fetchData();
@@ -26,6 +27,12 @@ export class RuneMatcherComponent implements OnInit {
     console.log(this.carriedRunes);
     console.log(this.carvedRunes);
     console.log(this.spells);
+    this.chooseSpell();
+  }
+
+  chooseSpell() {
+    const random = Math.floor(Math.random() * this.spells.length);
+    this.currentSpell = this.spells.slice(random, random+1);
   }
 
 }

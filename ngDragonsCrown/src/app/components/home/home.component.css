@@ -789,6 +789,19 @@ html {
   z-index: -1;
 }
 
+.meta-wrapper {
+  display: flex;
+  width: 100%;
+  /* border: 1px solid rgb(202, 179, 92); */
+  border: 1px solid #ffd602;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+}
+
+.meta-wrapper.build-background {
+  background-color: transparent;
+}
+
 .meta-wrapper::before {
   content: '';
   position: absolute;
@@ -810,7 +823,6 @@ html {
   /* Any other styles previously applied to ::before */
 }
 
-
 .build-background::before {
   content: '';
   position: absolute;
@@ -824,6 +836,27 @@ html {
   background-position: top right;
   /* filter: brightness(50%) opacity(70%); */
   z-index: -1;
+  background-color: black;
+}
+
+.rune-wrapper {
+  display: flex;
+  width: 100%;
+  /* border: 1px solid rgb(202, 179, 92); */
+  border: 1px solid #ffd602;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+}
+
+.rune-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background-position: center;
   background-color: black;
 }
 
@@ -1074,19 +1107,6 @@ blockquote ul li {
 .align-right {
   display: flex;
   justify-content: flex-end;
-}
-
-.meta-wrapper {
-  display: flex;
-  width: 100%;
-  /* border: 1px solid rgb(202, 179, 92); */
-  border: 1px solid #ffd602;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 5px 10px;
-}
-
-.meta-wrapper.build-background {
-  background-color: transparent;
 }
 
 .skill-cards {

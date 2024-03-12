@@ -423,7 +423,7 @@
           <button class="build-buttons" style="margin-right: 10px;" mat-button (click)="copyBuildToClipboard()">Copy Build Data</button>
           <button class="build-buttons" mat-button (click)="exportBuildAsTextFile()">Export as Text File</button>
         </div>
-        <div class="meta-wrapper class-background" style="padding-bottom: 15px;" *ngIf="classSelected && viewRunes">
+        <div class="rune-wrapper" style="padding-bottom: 15px;" *ngIf="classSelected && viewRunes">
           <app-rune-matcher></app-rune-matcher>
         </div>
       </div>
