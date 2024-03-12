@@ -13,10 +13,13 @@ export class RuneMatcherComponent implements OnInit {
   // properties
   carriedRunes: Rune[] = [];
   carvedRunes: Rune[] = [];
+  selectedRunes: Rune[] = [];
   runeKey: Rune[] = [];
   spellKey: Spell[] = [];
   spells: Spell[] = [];
   currentSpell: Spell = new Spell();
+  currentRunes: Rune[] = [];
+  currentCarvedRunes: Rune[] = [];
 
   // sounds
   sounds: AudioEntity[] = [
@@ -42,6 +45,7 @@ export class RuneMatcherComponent implements OnInit {
 
   // booleans
   noSpellsRemaining: boolean = false;
+  hasCurrentSpell: boolean = false;
 
   ngOnInit() {
     this.fetchData();
@@ -55,15 +59,26 @@ export class RuneMatcherComponent implements OnInit {
     this.carriedRunes = data.runes.filter((rune: Rune) => rune.isCarried);
     this.carvedRunes = data.runes.filter((rune: Rune) => !rune.isCarried);
     this.spells = data.spells;
-    this.currentSpell = new Spell();
     this.noSpellsRemaining = false;
   }
 
   getSpell() {
+    if (this.currentRunes.length) {
+      this.currentRunes = [];
+    }
     if (this.spells.length > 0) {
       try {
         const random = Math.floor(Math.random() * this.spells.length);
         this.currentSpell = this.spells.splice(random, 1)[0];
+        this.hasCurrentSpell = true;
+        this.currentSpell.runes.forEach(r => {
+          const rune = this.runeKey.find(rune => rune.id === r);
+          if (rune) {
+            this.currentRunes.push(rune);
+          }
+        });
+        this.currentCarvedRunes = this.currentRunes.filter(r => !r.isCarried);
+        console.log("Current Carved Runes: ", this.currentCarvedRunes);
         this.playSound('confirm');
       } catch (error) {
         console.error('Error choosing spell.');
@@ -76,18 +91,13 @@ export class RuneMatcherComponent implements OnInit {
 
   restart() {
     this.fetchData();
+    this.hasCurrentSpell = false;
     this.playSound('erase');
   }
 
   getRuneImageUrl(runeId: number) {
     const rune = this.runeKey.find(r => r.id === runeId);
     return rune && !rune.isCarried ? rune.imageUrl : '/assets/graphics/runes/Unknown.png';
-  }
-
-  logRuneLetter(runeId: number) {
-    const rune = this.runeKey.find(r => r.id === runeId);
-    console.log(rune?.letter);
-    this.playSound('rune');
   }
 
   playSound(soundName: string) {
@@ -101,4 +111,20 @@ export class RuneMatcherComponent implements OnInit {
     return index * 0.3; // Adjust the multiplier to control wave speed
   }
 
+  selectRune(runeId: number) {
+    if (this.hasCurrentSpell) {
+      const selectedRune = this.runeKey.find(r => r.id === runeId);
+      if (selectedRune && this.selectedRunes.includes(selectedRune)) {
+        this.selectedRunes = this.selectedRunes.filter(r => r.id !== runeId);
+        console.log("Selected Runes: ", this.selectedRunes);
+        this.playSound('scratch');
+      } else {
+        if (selectedRune && this.selectedRunes.length < (3 - this.currentCarvedRunes.length)) {
+          this.selectedRunes.push(selectedRune);
+          console.log("Selected Runes: ", this.selectedRunes);
+          this.playSound('rune');
+        }
+      }
+    }
+  }
 }
