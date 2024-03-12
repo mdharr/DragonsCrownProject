@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AudioEntity } from 'src/app/models/audio-entity';
 import { Rune } from 'src/app/models/rune';
 import { Spell } from 'src/app/models/spell';
 
@@ -16,6 +17,28 @@ export class RuneMatcherComponent implements OnInit {
   spellKey: Spell[] = [];
   spells: Spell[] = [];
   currentSpell: Spell = new Spell();
+
+  // sounds
+  sounds: AudioEntity[] = [
+    { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
+    { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
+    { name: 'elf', path: '/assets/audio/elf_select.mp3' },
+    { name: 'dwarf', path: '/assets/audio/dwarf_select.mp3' },
+    { name: 'sorceress', path: '/assets/audio/sorceress_select.mp3' },
+    { name: 'wizard', path: '/assets/audio/wizard_select.mp3' },
+    { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
+    { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
+    { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
+    { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
+    { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
+    { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
+    { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
+    { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
+    { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
+    { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
+    { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
+    { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
+  ]
 
   // booleans
   noSpellsRemaining: boolean = false;
@@ -62,6 +85,14 @@ export class RuneMatcherComponent implements OnInit {
   logRuneLetter(runeId: number) {
     const rune = this.runeKey.find(r => r.id === runeId);
     console.log(rune?.letter);
+    this.playSound('rune');
+  }
+
+  playSound(soundName: string) {
+    const audioObj = this.sounds.find(sound => sound.name === soundName);
+    const audioPath = audioObj?.path;
+    const audio = new Audio(audioPath);
+    audio.play();
   }
 
 }
