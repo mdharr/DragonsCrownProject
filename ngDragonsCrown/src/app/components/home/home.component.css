@@ -842,7 +842,6 @@ html {
 .rune-wrapper {
   display: flex;
   width: 100%;
-  /* border: 1px solid rgb(202, 179, 92); */
   border: 1px solid #ffd602;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
@@ -850,7 +849,7 @@ html {
   background-image: url(https://live.staticflickr.com/65535/53582582661_9249e7a6dc_k.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
+  padding-top: 15px;
 }
 
 .rune-wrapper::before {

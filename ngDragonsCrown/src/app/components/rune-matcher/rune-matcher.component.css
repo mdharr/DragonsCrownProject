@@ -4,12 +4,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .carried-runes img {
+  opacity: 0.7;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
+  transition: filter 0.6s, opacity 0.3s, transform 0.3s ease-in-out;
   animation: float 2s ease-in-out infinite;
   will-change: animation;
-  animation-delay: var(--wave-delay, 0s); /* Default to 0s if not set */
+  animation-delay: var(--wave-delay, 0s);
+}
+
+.carried-runes img:hover {
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important;
+  opacity: 1 !important;
+  cursor: pointer;
+  /* transform: translateY(-5px) scale(1.1);
+  animation: none; */
 }
 
 @keyframes float {
@@ -24,15 +36,32 @@
   }
 }
 
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+.shake-animation {
+  animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
 .option-buttons {
-  border: 1px solid transparent;
+  border: 1px solid #ffd602;
   margin-bottom: -1px;
   border-radius: 0 0 0 0;
   width: 125px;
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
   letter-spacing: 0.1rem;
-  background-color:rgba(153, 153, 153, 0.088);
+  /* background-color:rgba(153, 153, 153, 0.088); */
+  background-color: rgb(3 68 89);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
   color: #fff;
 }
@@ -42,3 +71,41 @@
   border: 1px solid #fff;
 }
 
+.selected {
+  border-radius: 25px;
+  animation: none !important;
+  box-shadow: rgb(244 67 54) 0px 0px 0px 3px;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important;
+  opacity: 1 !important;
+}
+
+@keyframes pulseBorder {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 230, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 10px 10px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+  }
+}
+
+@keyframes shining {
+  0% {
+    left: -75%;
+  }
+  /* Adjust the percentage to control the speed of the animation */
+  5% { /* 2s of animation within a 5s interval -> 2/5 = 40% */
+    left: 125%;
+  }
+  100% {
+    left: 125%; /* Remain at the end position for the rest of the cycle */
+  }
+}
+
+.no-animation {
+  animation: none !important;
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important;
+  opacity: 1 !important;
+}

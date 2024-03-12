@@ -1,23 +1,30 @@
 <div class="wrapper">
-  <div *ngIf="hasCurrentSpell" style="position: absolute; top: 0; display: flex; flex-direction: column; align-items: center; padding-top: 25px;">
-    <label for="spellRunes">{{ this.currentSpell.name }}</label>
-    <div style="display: flex; gap: 15px;">
-      <img *ngFor="let runeId of this.currentSpell.runes;" style="width: 50px; height: 50px; border: 1px solid #fff;" [src]="getRuneImageUrl(runeId)" alt="rune.png">
-    </div>
+  <div *ngIf="hasCurrentSpell" class="spell-counter" style="position: absolute; top: 0; left: 0; width: 165px; height: 40px; display: flex; justify-content: center; align-items: center; text-align: justify;">
+    <h6 style="margin: 0;">Rune Spells: {{ spellKey.length - spells.length }} / {{ spellKey.length }}</h6>
   </div>
-  <div *ngIf="noSpellsRemaining">
-    <p>No spells remaining.</p>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 10px; position: absolute; bottom: 0; padding-bottom: 25px;">
-    <div style="display: flex; flex-direction: column;">
-      <!-- <label for="carriedRunes">Carried Runes</label> -->
-      <div class="carried-runes" style="display: flex; gap: 10px;">
-        <img *ngFor="let carriedRune of this.carriedRunes; let i = index;" style="width: 50px; height: 50px; border: 1px solid #fff; cursor: pointer;" src="{{ carriedRune.imageUrl }}" alt="" (click)="selectRune(carriedRune.id)" [style.--wave-delay]="getDelay(i) + 's'">
+  <div *ngIf="hasCurrentSpell" style="width: 240px; height: 135px; background-color: #000000; display: flex; justify-content: center; border-radius: 3px; border: 1px solid #fff; position: absolute; top: 0;">
+    <div *ngIf="!noSpellsRemaining" style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
+      <label for="spellRunes">{{ currentSpell.name }}</label>
+      <div style="display: flex; gap: 15px;">
+        <img *ngFor="let runeId of this.currentSpell.runes;" style="width: 50px; height: 50px;" [src]="getRuneImageUrl(runeId)" alt="rune.png">
       </div>
     </div>
-    <div style="display: flex; justify-content: space-between;">
-      <button class="option-buttons" (click)="getSpell()">Choose Spell</button>
-      <button class="option-buttons" (click)="restart()">Restart</button>
+    <div *ngIf="noSpellsRemaining" style="display: flex; align-items: center; justify-content: center;">
+      <h6 style="margin: 0;">No spells remaining.</h6>
+    </div>
+  </div>
+  <div style="width: 400px; height: 135px; background-color: #000000; display: flex; justify-content: center; align-items: flex-end; border-radius: 3px; border: 1px solid #fff; position: absolute; bottom: 0;">
+    <div style="display: flex; flex-direction: column; gap: 20px; padding-bottom: 15px;">
+      <div style="display: flex; flex-direction: column;">
+        <div class="carried-runes" style="display: flex; gap: 10px;">
+          <img class="no-animation" *ngFor="let carriedRune of this.carriedRunes; let i = index;" style="width: 50px; height: 50px; cursor: pointer;" src="{{ carriedRune.imageUrl }}" alt="" (click)="selectRune(carriedRune.id)" [style.--wave-delay]="getDelay(i) + 's'" [class.selected]="isSelected(carriedRune.id)">
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+        <button class="option-buttons" (click)="getSpell()">{{ hasCurrentSpell ? 'Next' : 'Begin' }}</button>
+        <button class="option-buttons" (click)="restart()">Restart</button>
+      </div>
     </div>
   </div>
 </div>
+<!-- #0344598a; -->

@@ -55,7 +55,7 @@ export class RuneMatcherComponent implements OnInit {
     const response = await fetch('/assets/runes.json');
     const data = await response.json();
     this.runeKey = data.runes;
-    this.spellKey = data.spells;
+    this.spellKey = [...data.spells];
     this.carriedRunes = data.runes.filter((rune: Rune) => rune.isCarried);
     this.carvedRunes = data.runes.filter((rune: Rune) => !rune.isCarried);
     this.spells = data.spells;
@@ -63,6 +63,10 @@ export class RuneMatcherComponent implements OnInit {
   }
 
   getSpell() {
+    console.log("Spell Key: ", this.spellKey.length);
+    const imageElements = document.querySelectorAll('.carried-runes img');
+    imageElements.forEach(element => element.classList.remove('no-animation'));
+    console.log(imageElements);
     if (this.selectedRunes) {
       this.selectedRunes = [];
     }
@@ -82,7 +86,7 @@ export class RuneMatcherComponent implements OnInit {
         });
         this.currentCarvedRunes = this.currentRunes.filter(r => !r.isCarried);
         console.log("Current Carved Runes: ", this.currentCarvedRunes);
-        this.playSound('confirm');
+        this.playSound('pageflip');
       } catch (error) {
         console.error('Error choosing spell.');
       }
@@ -94,6 +98,11 @@ export class RuneMatcherComponent implements OnInit {
 
   restart() {
     this.fetchData();
+    if (this.selectedRunes) {
+      this.selectedRunes = [];
+    }
+    const imageElements = document.querySelectorAll('.carried-runes img');
+    imageElements.forEach(element => element.classList.add('no-animation'));
     this.hasCurrentSpell = false;
     this.playSound('erase');
   }
@@ -129,5 +138,19 @@ export class RuneMatcherComponent implements OnInit {
         }
       }
     }
+  }
+
+  isSelected(runeId: number): boolean {
+    return this.selectedRunes.some(r => r.id === runeId);
+  }
+
+  evaluateCombination(spellRunes: Rune[], userRunes: Rune[]): boolean {
+    let counter = 0;
+    spellRunes.forEach(spellRune => {
+      if (userRunes.some(userRune => userRune.id === spellRune.id)) {
+        counter++;
+      }
+    });
+    return counter === spellRunes.length;
   }
 }
