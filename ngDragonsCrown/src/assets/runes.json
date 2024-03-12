@@ -131,147 +131,147 @@
     {
       "id": 1,
       "name": "Life From Stone",
-      "description": "",
+      "description": "Brings statues to life (mission related spell)",
       "abbreviation": "L-F-S",
       "runes": [13,8,3]
     },
     {
       "id": 2,
       "name": "Solomon's Flying Carpet",
-      "description": "",
+      "description": "Spawns a flying carpet (mission related spell)",
       "abbreviation": "S-F-C",
       "runes": [3,8,7]
     },
     {
       "id": 3,
       "name": "The Skeleton Key",
-      "description": "",
+      "description": "Opens hidden doors",
       "abbreviation": "T-S-K",
       "runes": [4,3,12]
     },
     {
       "id": 4,
       "name": "Dead Be Gone",
-      "description": "",
+      "description": "Kills undead enemies",
       "abbreviation": "D-B-G",
       "runes": [1,6,9]
     },
     {
       "id": 5,
       "name": "Treasure Hunter's Friend",
-      "description": "",
+      "description": "Uncovers hidden Treasure",
       "abbreviation": "T-H-F",
       "runes": [4,10,8]
     },
     {
       "id": 6,
       "name": "Double Score Bonus",
-      "description": "",
+      "description": "Doubles all points earned",
       "abbreviation": "D-S-B",
       "runes": [1,3,6]
     },
     {
       "id": 7,
       "name": "Potency And Durability",
-      "description": "",
+      "description": "Buffs attack and defense",
       "abbreviation": "P-A-D",
       "runes": [16,5,1]
     },
     {
       "id": 8,
       "name": "The Phoenix Incantation",
-      "description": "",
+      "description": "Grants all players an extra life point",
       "abbreviation": "T-P-I",
       "runes": [4,16,11]
     },
     {
       "id": 9,
       "name": "Sigil Of Death",
-      "description": "",
+      "description": "Casts a spell with a high chance of killing all enemies in range",
       "abbreviation": "S-O-D",
       "runes": [3,15,1]
     },
     {
       "id": 10,
       "name": "Tri-Elemental Blast",
-      "description": "",
+      "description": "Casts a Fire, Ice and Lightning AoE spell",
       "abbreviation": "T-E-B",
       "runes": [4,2,6]
     },
     {
       "id": 11,
       "name": "Enchanted Coin Geyser",
-      "description": "",
+      "description": "Spawns a random amount of money",
       "abbreviation": "E-C-G",
       "runes": [2,7,9]
     },
     {
       "id": 12,
       "name": "Extra Item Stock",
-      "description": "",
+      "description": "Grants one additional use to all consumable items",
       "abbreviation": "E-I-S",
       "runes": [2,11,3]
     },
     {
       "id": 13,
       "name": "The True Fist",
-      "description": "",
+      "description": "Buffs the damage done by bare handed attacks",
       "abbreviation": "T-T-F",
       "runes": [19,4,8]
     },
     {
       "id": 14,
       "name": "Call Sylphide's Wind",
-      "description": "",
+      "description": "Casts a spell which shields all players in wind",
       "abbreviation": "C-S-W",
       "runes": [7,3,20]
     },
     {
       "id": 15,
       "name": "Strength Beyond Strength",
-      "description": "",
+      "description": "Grants invulnerability",
       "abbreviation": "S-B-S",
       "runes": [18,6,3]
     },
     {
       "id": 16,
       "name": "Petrify The Flesh",
-      "description": "",
+      "description": "Petrify enemies",
       "abbreviation": "P-T-F",
       "runes": [16,4,8]
     },
     {
       "id": 17,
       "name": "Open The Sesame",
-      "description": "",
+      "description": "Opens hidden doors",
       "abbreviation": "O-T-S",
       "runes": [15,4,3]
     },
     {
       "id": 18,
       "name": "D I E",
-      "description": "",
+      "description": "Where all living things go (mission related)",
       "abbreviation": "D-I-E",
       "runes": [1,11,2]
     },
     {
       "id": 19,
       "name": "Salve Of Life",
-      "description": "",
+      "description": "Casts a healing circle on the ground",
       "abbreviation": "S-O-L",
       "runes": [3,15,13]
     },
     {
       "id": 20,
       "name": "Generate Weapon Stash",
-      "description": "",
+      "description": "Spawns a crate of temporary weapons",
       "abbreviation": "G-W-S",
       "runes": [9,20,3]
     },
     {
       "id": 21,
       "name": "Reveal Mystery Zone",
-      "description": "",
+      "description": "Used to gain access to the Illusionary Lands (mission related)",
       "abbreviation": "R-M-Z",
       "runes": [17,14,21]
     }
