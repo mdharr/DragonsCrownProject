@@ -9,19 +9,17 @@
 
 .carried-runes img {
   opacity: 0.7;
-  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
-  transition: filter 0.6s, opacity 0.3s, transform 0.3s ease-in-out;
+  transition: filter 0.2s, opacity 0.2s, transform 0.2s ease-in;
   animation: float 2s ease-in-out infinite;
   will-change: animation;
   animation-delay: var(--wave-delay, 0s);
 }
 
 .carried-runes img:hover {
-  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important;
+  filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.5)) brightness(1.2) saturate(1.2) !important;
   opacity: 1 !important;
   cursor: pointer;
-  /* transform: translateY(-5px) scale(1.1);
-  animation: none; */
+  transition: filter 0.2s ease-in-out;
 }
 
 @keyframes float {
@@ -73,9 +71,8 @@
 
 button.option-buttons:disabled {
   background-color: gray;
-  color: #fff; /* Change text color if needed */
+  color: #fff;
   cursor: not-allowed;
-  /* Add more styling as needed */
 }
 
 .selected {
@@ -113,8 +110,9 @@ button.option-buttons:disabled {
 
 .no-animation {
   animation: none !important;
-  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important;
+  filter: brightness(1.2) !important;
   opacity: 1 !important;
+  filter: drop-shadow(4px 7px 3px black) !important;
 }
 
 .spell-result {

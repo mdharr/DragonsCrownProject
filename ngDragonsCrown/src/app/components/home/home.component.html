@@ -419,7 +419,7 @@
           </div>
         </div>
         <div style="padding-top: 15px;" *ngIf="classSelected && viewBuild && this.currentBuild.length > 0">
-          <textarea style="width: 100%; background-color: rgb(21 43 56); color: #fff; padding: 10px; border-color: #cab35c;" readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
+          <textarea style="width: 100%; background-color: #282828; color: #fff; padding: 10px; border-color: #cab35c;" readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
           <button class="build-buttons" style="margin-right: 10px;" mat-button (click)="copyBuildToClipboard()">Copy Build Data</button>
           <button class="build-buttons" mat-button (click)="exportBuildAsTextFile()">Export as Text File</button>
         </div>

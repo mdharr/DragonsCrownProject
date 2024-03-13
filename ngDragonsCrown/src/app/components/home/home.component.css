@@ -399,6 +399,7 @@
   align-items: flex-end;
   justify-content: flex-start;
   border: 1px solid;
+  padding-left: 10px;
 }
 
 .class-contract::before {
@@ -418,10 +419,9 @@
   z-index: 5;
   font-family: Oswald, serif;
   letter-spacing: 0.05rem;
-  margin-bottom: 5px;
-  padding-top: 0;
-  color: #cab35c;
-  padding-left: 10px;
+  color: #ffffff;
+  background-color: #00000091;
+  padding: 2px;
 }
 
 .content::before {

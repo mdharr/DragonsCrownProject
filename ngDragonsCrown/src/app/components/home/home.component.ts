@@ -249,7 +249,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.classSelected) {
       this.selected = true;
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
-        this.playSound('accept');
+        this.playSound('accept', 0.5);
         setTimeout(() => {
           this.playClassAudio(this.currentClassData.name.toLowerCase());
         }, 200);
@@ -434,7 +434,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // const uniqueBtn = document.querySelector('#unique-btn');
     // uniqueBtn?.classList.remove('selected-skills');
     // commonBtn?.classList.add('selected-skills');
-    this.playSound('accept');
+    this.playSound('accept', 0.5);
   }
 
   viewUniqueSkills() {
@@ -447,7 +447,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // const uniqueBtn = document.querySelector('#unique-btn');
     // commonBtn?.classList.remove('selected-skills');
     // uniqueBtn?.classList.add('selected-skills');
-    this.playSound('accept');
+    this.playSound('accept', 0.5);
   }
 
   viewQuestList() {
@@ -456,7 +456,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewRunes = false;
     this.showCommonSkills = false;
     this.showUniqueSkills = false;
-    this.playSound('accept');
+    this.playSound('accept', 0.5);
   }
 
   viewCurrentBuild() {
@@ -465,7 +465,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewRunes = false;
     this.showCommonSkills = false;
     this.showUniqueSkills = false;
-    this.playSound('accept');
+    this.playSound('accept', 0.5);
   }
 
   viewRunesMatcher() {
@@ -474,7 +474,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewQuests = false;
     this.showCommonSkills = false;
     this.showUniqueSkills = false;
-    this.playSound('accept');
+    this.playSound('accept', 0.5);
   }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
@@ -559,7 +559,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     quest.selected = !quest.selected;
     this.calculateTotalSkillPoints();
     this.updateTotalAvailableSP();
-    this.playSound('coinbag');
+    this.playSound('coinbag', 0.5);
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
@@ -574,7 +574,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.updateTotalAvailableSP();
-    this.playSound('coinbag');
+    this.playSound('coinbag', 0.5);
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
@@ -753,11 +753,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  playSound(soundName: string) {
+  playSound(soundName: string, volume: number = 1.0) {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
     const audioPath = audioObj?.path;
-    const audio = new Audio(audioPath);
-    audio.play();
+    if (audioPath) {
+      const audio = new Audio(audioPath);
+      audio.volume = volume;
+      audio.play();
+    }
   }
 
   getRequiredExpForNextLevel(): number {
@@ -875,7 +878,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
         link.href = canvas.toDataURL();
         link.click();
-        this.playSound('treasure');
+        this.playSound('treasure', 0.5);
       });
     }
   }
@@ -913,7 +916,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
     link.href = canvas.toDataURL();
     link.click();
-    this.playSound('treasure');
+    this.playSound('treasure', 0.5);
 
     // Clean up: remove the temporary container
     document.body.removeChild(tempContainer);
@@ -945,7 +948,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.txt`;
     link.href = URL.createObjectURL(blob);
     link.click();
-    this.playSound('treasure');
+    this.playSound('treasure', 0.5);
   }
 
   @HostListener('window:scroll', ['$event'])
