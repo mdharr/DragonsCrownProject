@@ -116,6 +116,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // audio
   currentAudio: HTMLAudioElement | null = null;
+  currentClassAudio: HTMLAudioElement | null = null;
   private audioPaths: Record<ClassName, string> = {
     amazon: '/assets/audio/amazon_select.mp3',
     dwarf: '/assets/audio/dwarf_select.mp3',
@@ -252,6 +253,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
         this.playSound('accept', 0.5);
         setTimeout(() => {
+          this.stopCurrentClassSound();
           this.playClassAudio(this.currentClassData.name.toLowerCase());
         }, 200);
       }
@@ -750,7 +752,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       const targetClass = this.sounds.find(sound => sound.name === className);
       if (targetClass) {
-        this.playSound(targetClass.name, 0.3);
+        this.currentClassAudio = this.playSound(targetClass.name, 0.3);
       } else {
         console.error('Invalid class name:', className);
       }
@@ -775,6 +777,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentAudio.pause();
       this.currentAudio.currentTime = 0;
       this.currentAudio = null;
+    }
+  }
+
+  stopCurrentClassSound() {
+    if (this.currentClassAudio) {
+      this.currentClassAudio.pause();
+      this.currentClassAudio.currentTime = 0;
+      this.currentClassAudio = null;
     }
   }
 
