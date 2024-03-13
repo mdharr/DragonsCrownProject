@@ -22,6 +22,7 @@ export class RuneMatcherComponent implements OnInit {
   currentCarvedRunes: Rune[] = [];
   userRunes: Rune[] = [];
   currentScore: number = 0;
+  nextCounter: number = 0;
 
   // sounds
   sounds: AudioEntity[] = [
@@ -56,6 +57,7 @@ export class RuneMatcherComponent implements OnInit {
   hasCurrentSpell: boolean = false;
   canEvaluate: boolean = false;
   revealSpell: boolean = false;
+  enableNext: boolean = false;
 
   ngOnInit() {
     this.fetchData();
@@ -93,6 +95,7 @@ export class RuneMatcherComponent implements OnInit {
       try {
         const random = Math.floor(Math.random() * this.spells.length);
         this.currentSpell = this.spells.splice(random, 1)[0];
+        this.nextCounter++;
         this.hasCurrentSpell = true;
         this.currentSpell.runes.forEach(r => {
           const rune = this.runeKey.find(rune => rune.id === r);
@@ -124,6 +127,7 @@ export class RuneMatcherComponent implements OnInit {
     const imageElements = document.querySelectorAll('.carried-runes img');
     imageElements.forEach(element => element.classList.add('no-animation'));
     this.hasCurrentSpell = false;
+    this.nextCounter = 0;
     this.playSound('erase');
   }
 
@@ -163,12 +167,15 @@ export class RuneMatcherComponent implements OnInit {
   }
 
   isSelectionComplete() {
-    // console.log(this.userRunes.length, this.currentCarvedRunes.length, this.userRunes.length + this.currentCarvedRunes.length === 3);
     return this.userRunes.length === 3;
   }
 
   isSelected(runeId: number): boolean {
     return this.selectedRunes.some(r => r.id === runeId);
+  }
+
+  isNextAvailable() {
+    return this.nextCounter % 2 === 0;
   }
 
   evaluateCombination(spellRunes: Rune[], userRunes: Rune[]): boolean {
@@ -197,6 +204,11 @@ export class RuneMatcherComponent implements OnInit {
         divElement?.classList.remove('shake-animation');
       }, 300)
     }
-    return counter === spellRunes.length;
+    if (counter === spellRunes.length) {
+      this.nextCounter++;
+      return true;
+    } else {
+      return false;
+    }
   }
 }

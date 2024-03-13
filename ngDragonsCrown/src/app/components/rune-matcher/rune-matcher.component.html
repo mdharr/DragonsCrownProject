@@ -34,7 +34,7 @@
         </div>
       </div>
       <div style="display: flex; justify-content: space-between;">
-        <button class="option-buttons" (click)="getSpell()">{{ hasCurrentSpell ? 'Next' : 'Begin' }}</button>
+        <button class="option-buttons" (click)="getSpell()" [disabled]="isNextAvailable() === false">{{ hasCurrentSpell ? 'Next' : 'Begin' }}</button>
         <button id="evaluate-button" class="option-buttons" (click)="evaluateCombination(this.currentRunes, this.userRunes)" [disabled]="isSelectionComplete() === false">Evaluate</button>
       </div>
     </div>
