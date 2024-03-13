@@ -753,14 +753,21 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  playSound(soundName: string, volume: number = 1.0) {
+  playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
     const audioPath = audioObj?.path;
     if (audioPath) {
       const audio = new Audio(audioPath);
       audio.volume = volume;
       audio.play();
+      return audio;
     }
+    return null;
+  }
+
+  stopSound(audio: HTMLAudioElement) {
+    audio.pause();
+    audio.currentTime = 0;
   }
 
   getRequiredExpForNextLevel(): number {
