@@ -488,6 +488,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.skillCardLoaded = false;
       this.isSkillInfoVisible = false;
       this.toggleGlassEffect();
+      this.stopCurrentSound();
       this.currentAudio = this.playSound('pageflip');
 
       const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
@@ -560,6 +561,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     quest.selected = !quest.selected;
     this.calculateTotalSkillPoints();
     this.updateTotalAvailableSP();
+    this.stopCurrentSound();
     this.currentAudio = this.playSound('coinbag', 0.5);
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
@@ -575,6 +577,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.updateTotalAvailableSP();
+    this.stopCurrentSound();
     this.currentAudio = this.playSound('coinbag', 0.5);
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
@@ -767,7 +770,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     return null;
   }
 
-  stopSound() {
+  stopCurrentSound() {
     if (this.currentAudio) {
       this.currentAudio.pause();
       this.currentAudio.currentTime = 0;
