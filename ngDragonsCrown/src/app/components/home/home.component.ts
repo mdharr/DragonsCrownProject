@@ -115,6 +115,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   introText: string = "Embark on an epic journey across Hydeland, a land steeped in mystery and danger, in pursuit of the legendary Dragon's Crown. With this arcane tool at your disposal, you have the power to meticulously craft your adventurer, choosing your path with care and strategy. Fine-tune your character's stats, carefully plan out your skills, and share your hero's build with companions and fellow seekers of the crown.";
 
   // audio
+  currentAudio: HTMLAudioElement | null = null;
   private audioPaths: Record<ClassName, string> = {
     amazon: '/assets/audio/amazon_select.mp3',
     dwarf: '/assets/audio/dwarf_select.mp3',
@@ -249,7 +250,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.classSelected) {
       this.selected = true;
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
-        this.playSound('accept', 0.5);
+        const acceptAudioObj = this.playSound('accept', 0.5);
         setTimeout(() => {
           this.playClassAudio(this.currentClassData.name.toLowerCase());
         }, 200);
