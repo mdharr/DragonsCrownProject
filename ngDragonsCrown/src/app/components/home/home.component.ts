@@ -888,12 +888,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   captureAndDownloadScreenshot() {
     const element = document.querySelector('.meta-wrapper.build-background') as HTMLElement;
     if (element) {
+      this.currentAudio = this.playSound('confirm');
       html2canvas(element).then(canvas => {
         const link = document.createElement('a');
         link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
         link.href = canvas.toDataURL();
         link.click();
-        this.currentAudio = this.playSound('treasure', 0.5);
+        setTimeout(() => {
+          this.stopCurrentSound();
+          this.currentAudio = this.playSound('treasure', 0.5);
+        }, 100);
       });
     }
   }
