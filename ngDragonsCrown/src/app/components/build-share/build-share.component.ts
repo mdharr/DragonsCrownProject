@@ -19,24 +19,30 @@ export class BuildShareComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription | undefined;
 
   ngOnInit() {
-    window.scrollTo(0, 0);
-    this.getRouteParams();
+    window.scrollTo(0, 0)
+    this.getRouteParams()
   }
 
   ngOnDestroy() {
     if(this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
+      this.paramsSubscription.unsubscribe()
     }
   }
 
   getRouteParams = () => {
     this.paramsSubscription = this.activatedRoute.paramMap.subscribe(
       (params: ParamMap) => {
-        let idString = params.get('encodedBuild');
+        let idString = params.get('encodedBuild')
         if (idString) {
-          console.log(idString);
+          console.log(idString)
+          this.build = this.decodeBuild(idString);
         }
       }
-    );
-  };
+    )
+  }
+
+  decodeBuild(encodedBuild: string): any {
+    const decodedJsonBuild = decodeURIComponent(encodedBuild)
+    return JSON.parse(decodedJsonBuild)
+  }
 }

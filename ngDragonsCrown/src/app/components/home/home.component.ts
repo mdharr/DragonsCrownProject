@@ -736,9 +736,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillsBySPDesc = this.sortBySPDesc(this.currentBuild, this.currentClassData.skills);
   }
 
-  encodeAppState(appState: any): string {
-    const jsonAppState = JSON.stringify(appState);
-    return encodeURIComponent(jsonAppState);
+  encodeBuild(buildData: any): string {
+    const jsonBuild = JSON.stringify(buildData);
+    return encodeURIComponent(jsonBuild);
   }
 
   playClassAudio(className: string) {
