@@ -650,6 +650,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     );
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
+    this.stopCurrentSound();
     this.playSound('erase');
   }
 
@@ -678,6 +679,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             alert("Not enough skill points available.");
             return;
         }
+        this.stopCurrentSound();
         this.playSound('confirm');
     }
     // Update total available SP after any changes
