@@ -46,6 +46,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsBySPAsc: CombinedSkill[] = [];
   skillsBySPDesc: CombinedSkill[] = [];
 
+  // app state
+
   // image assets to preload
   images: ImageEntity[] = [
     {
@@ -733,20 +735,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillsBySPAsc = this.sortBySPAsc(this.currentBuild, this.currentClassData.skills);
     this.skillsBySPDesc = this.sortBySPDesc(this.currentBuild, this.currentClassData.skills);
   }
-
-  // playClassAudio(className: string) {
-  //   if (this.previousClassVoice !== className) {
-  //     this.previousClassVoice = className;
-  //     // Validate that className is a valid key
-  //     if (className in this.audioPaths) {
-  //       const audioPath = this.audioPaths[className as ClassName];
-  //       const audio = new Audio(audioPath);
-  //       audio.play();
-  //     } else {
-  //       console.error('Invalid class name:', className);
-  //     }
-  //   }
-  // }
 
   playClassAudio(className: string) {
     if (this.previousClassVoice !== className) {
