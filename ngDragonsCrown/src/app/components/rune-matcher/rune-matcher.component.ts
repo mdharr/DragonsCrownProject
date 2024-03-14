@@ -25,6 +25,7 @@ export class RuneMatcherComponent implements OnInit {
   nextCounter: number = 0;
 
   // sounds
+  currentAudio: HTMLAudioElement | null = null;
   sounds: AudioEntity[] = [
     { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
     { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
@@ -141,13 +142,24 @@ export class RuneMatcherComponent implements OnInit {
     return rune && !rune.isCarried ? rune.imageUrl : '/assets/graphics/runes/Unknown.png';
   }
 
-  playSound(soundName: string, volume: number = 1.0) {
+  playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
     const audioPath = audioObj?.path;
     if (audioPath) {
       const audio = new Audio(audioPath);
       audio.volume = volume;
       audio.play();
+      this.currentAudio = audio;
+      return audio;
+    }
+    return null;
+  }
+
+  stopCurrentSound() {
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio.currentTime = 0;
+      this.currentAudio = null;
     }
   }
 
