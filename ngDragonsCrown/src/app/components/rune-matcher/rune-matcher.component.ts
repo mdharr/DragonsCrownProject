@@ -108,6 +108,7 @@ export class RuneMatcherComponent implements OnInit {
         this.currentCarvedRunes = this.currentRunes.filter(r => !r.isCarried);
         this.userRunes = this.userRunes.concat(this.currentCarvedRunes);
         console.log("Current Carved Runes: ", this.currentCarvedRunes);
+        this.stopCurrentSound();
         this.playSound('pageflip', 0.5);
       } catch (error) {
         console.error('Error choosing spell.');
@@ -115,6 +116,7 @@ export class RuneMatcherComponent implements OnInit {
     } else {
       console.log('No spells remaining.');
       this.noSpellsRemaining = true;
+      this.stopCurrentSound();
       this.playSound('ending', 0.5);
       setTimeout(() => {
         this.restart();
@@ -211,6 +213,7 @@ export class RuneMatcherComponent implements OnInit {
       this.currentScore++;
       this.revealSpell = true;
       setTimeout(() => {
+        this.stopCurrentSound();
         this.playSound('reveal', 0.3);
       }, 100)
       const evaluateButton = document.querySelector('#evaluate-button') as HTMLElement;
@@ -218,6 +221,7 @@ export class RuneMatcherComponent implements OnInit {
     } else {
       const divElement = document.querySelector('.current-spell-wrapper') as HTMLElement;
       divElement?.classList.add('shake-animation');
+      this.stopCurrentSound();
       this.playSound('open', 0.5);
       console.log('Incorrect');
       setTimeout(() => {
