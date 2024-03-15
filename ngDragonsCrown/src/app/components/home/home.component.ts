@@ -46,9 +46,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsNameDesc: CombinedSkill[] = [];
   skillsBySPAsc: CombinedSkill[] = [];
   skillsBySPDesc: CombinedSkill[] = [];
-  buildToShare: any;
 
   // app state
+  buildToShare: any;
   encodedData: any;
 
   // image assets to preload
@@ -744,9 +744,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             description: skill.description,
             rank: skill.rank
         };
+        console.log(this.buildToShare);
     });
-    // this.encodeBuild(this.buildToShare);
-    // console.log(this.encodeBuild(this.buildToShare));
+
     this.skillsNameAsc = this.sortByNameAsc(this.currentBuild);
     this.skillsNameDesc = this.sortByNameDesc(this.currentBuild);
     this.skillsBySPAsc = this.sortBySPAsc(this.currentBuild, this.currentClassData.skills);
@@ -756,6 +756,34 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   encodeBuild(buildData: any): string {
     const jsonBuild = JSON.stringify(buildData);
     return encodeURIComponent(jsonBuild);
+  }
+
+  generateShareLinkAsText(): string {
+    if (this.encodedData === null) {
+      return ''; // Return empty string if data is not encoded
+    }
+    return `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
+  }
+
+  async copyShareLinkToClipboard(): Promise<void> {
+    const shareLink = this.generateShareLinkAsText();
+    if (shareLink === '') {
+      console.error('Share link is not generated.');
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareLink);
+      console.log('Share link copied to clipboard:', shareLink);
+    } catch (err) {
+      console.error('Failed to copy share link: ', err);
+    }
+  }
+
+  generateAndCopyShareLink(): void {
+    this.playSound('rune', 0.5);
+    this.encodedData = this.encodeBuild(this.buildToShare);
+    this.copyShareLinkToClipboard();
   }
 
   playClassAudio(className: string) {
@@ -982,6 +1010,22 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  // generateShareLinkAsText(): string {
+  //   const shareLink = `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
+  //   return shareLink;
+  // }
+
+  // async copyShareLinkToClipboard(): Promise<void> {
+  //   try {
+  //     const shareLink = this.generateShareLinkAsText();
+  //     await navigator.clipboard.writeText(shareLink);
+  //     this.playSound('rune');
+  //     console.log('Share link copied to clipboard:', shareLink);
+  //   } catch (err) {
+  //     console.error('Failed to copy share link: ', err);
+  //   }
+  // }
+
   exportBuildAsTextFile(): void {
     const buildData = this.generateBuildDataAsText();
     const blob = new Blob([buildData], { type: 'text/plain' });
@@ -1019,11 +1063,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
         childElement.style.transform = `translateY(${newPosition}px)`;
     });
-  }
-
-  routeToBuild() {
-    const encodedBuild = this.encodeBuild(this.buildToShare);
-    this.router.navigate(['/build', encodedBuild]);
   }
 
 }

@@ -30,20 +30,12 @@ export class BuildShareComponent implements OnInit, OnDestroy {
   }
 
   getRouteParams() {
-    // this.paramsSubscription = this.activatedRoute.params.subscribe(params => {
-    //   let encodedBuild = params['encodedBuild'];
-    //   console.log(encodedBuild);
-    //   if (encodedBuild) {
-    //     this.build = this.decodeBuild(encodedBuild);
-    //     console.log(this.build);
-    //   }
-    // });
-    this.activatedRoute.params.subscribe(params => {
-      let encodedBuild = params['encodedBuild'];
+    this.paramsSubscription = this.activatedRoute.queryParams.subscribe(params => {
+      const encodedBuild = params['encodedBuild'];
       if (encodedBuild) {
         const decodedJsonBuild = decodeURIComponent(encodedBuild);
         const buildObject = JSON.parse(decodedJsonBuild);
-        this.buildArray = Object.values(buildObject); // Convert object to array
+        this.buildArray = Object.values(buildObject);
       }
     });
   }
