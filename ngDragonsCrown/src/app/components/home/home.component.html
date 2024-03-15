@@ -415,6 +415,11 @@
                 </tr>
               </tbody>
             </table>
+            <!-- <button [routerLink]="['/build']" [queryParams]="{ encodedBuild: encodeBuild(this.buildToShare) }">Build Share</button> -->
+            <!-- <button [routerLink]="['/build', encodedData]">Build Share</button> -->
+            <!-- <button [routerLink]="['/build', { encodedBuild: encodeBuild(buildToShare) }]">Build Share</button> -->
+            <button [routerLink]="['/build']">Build Share</button>
+
           </div>
         </div>
         <div style="padding-top: 15px;" *ngIf="classSelected && viewBuild && this.currentBuild.length > 0">

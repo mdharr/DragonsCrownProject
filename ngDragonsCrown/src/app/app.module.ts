@@ -22,6 +22,7 @@ import { CalculateTotalSPPipe } from './pipes/calculate-total-s-p.pipe';
 import { ParticlesComponent } from './components/particles/particles.component';
 import { RuneMatcherComponent } from './components/rune-matcher/rune-matcher.component';
 import { BuildShareComponent } from './components/build-share/build-share.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { BuildShareComponent } from './components/build-share/build-share.compon
     ParticlesComponent,
     RuneMatcherComponent,
     BuildShareComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

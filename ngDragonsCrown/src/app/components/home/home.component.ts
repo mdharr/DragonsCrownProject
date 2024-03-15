@@ -12,6 +12,7 @@ import { PreloadService } from 'src/app/services/preload.service';
 import { CombinedSkill } from 'src/app/models/combined-skill';
 import { ClassName } from 'src/app/types/class-name.type';
 import html2canvas from 'html2canvas';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -45,8 +46,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsNameDesc: CombinedSkill[] = [];
   skillsBySPAsc: CombinedSkill[] = [];
   skillsBySPDesc: CombinedSkill[] = [];
+  buildToShare: any;
 
   // app state
+  encodedData: any;
 
   // image assets to preload
   images: ImageEntity[] = [
@@ -158,6 +161,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   renderer = inject(Renderer2);
   preloadService = inject(PreloadService);
   ngZone = inject(NgZone);
+  router = inject(Router);
 
   ngOnInit() {
     this.resetWindowPosition();
@@ -730,6 +734,19 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.originalBuild = this.currentBuild;
+    this.buildToShare = {};
+
+    // Iterate over each skill in this.originalBuild
+    this.originalBuild.forEach(skill => {
+        // Copy over the required properties to this.buildToShare
+        this.buildToShare[skill.skillId] = {
+            name: skill.name,
+            description: skill.description,
+            rank: skill.rank
+        };
+    });
+    // this.encodeBuild(this.buildToShare);
+    // console.log(this.encodeBuild(this.buildToShare));
     this.skillsNameAsc = this.sortByNameAsc(this.currentBuild);
     this.skillsNameDesc = this.sortByNameDesc(this.currentBuild);
     this.skillsBySPAsc = this.sortBySPAsc(this.currentBuild, this.currentClassData.skills);
@@ -1002,6 +1019,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
         childElement.style.transform = `translateY(${newPosition}px)`;
     });
+  }
+
+  routeToBuild() {
+    const encodedBuild = encodeURIComponent(this.encodeBuild(this.buildToShare));
+    this.router.navigate(['/build', encodedBuild]); // Use slashes instead of semicolons
   }
 
 }
