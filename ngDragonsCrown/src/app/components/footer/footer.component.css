@@ -1,0 +1,23 @@
+.footer {
+  color: #fff;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #d9b359;
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  /* background-color: #0081bb38; */
+  background-color: #004f8457;
+}
+
+.footer-text {
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-text p {
+  margin:0;
+}
