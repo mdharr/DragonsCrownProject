@@ -1,5 +1,5 @@
 <div class="wrapper" #observedElement>
-  <app-navbar></app-navbar>
+  <!-- <app-navbar></app-navbar> -->
   <!-- Background video container -->
   <div id="video-background-container">
     <iframe id="video-background-player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" title="Background Video" src="https://www.youtube-nocookie.com/embed/dfyrRsYAAdo?controls=0&showinfo=0&modestbranding=1&wmode=transparent&vq=large&rel=0&loop=1&playlist=dfyrRsYAAdo&enablejsapi=1&autoplay=1&mute=1"></iframe>
@@ -416,9 +416,10 @@
               </tbody>
             </table>
             <!-- <button [routerLink]="['/build']" [queryParams]="{ encodedBuild: encodeBuild(this.buildToShare) }">Build Share</button> -->
+            <button (click)="routeToBuild()">Build Share</button>
             <!-- <button [routerLink]="['/build', encodedData]">Build Share</button> -->
             <!-- <button [routerLink]="['/build', { encodedBuild: encodeBuild(buildToShare) }]">Build Share</button> -->
-            <button [routerLink]="['/build']">Build Share</button>
+            <!-- <button [routerLink]="['/build', { encodedBuild: encodeBuild(buildToShare) }]">Build Share</button> -->
 
           </div>
         </div>
@@ -435,12 +436,12 @@
         <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_bottom_pattern.png" alt="">
       </div>
     </div>
-    <app-scroll-to-top-button></app-scroll-to-top-button>
-    <div class="footer">
+    <!-- <app-scroll-to-top-button></app-scroll-to-top-button> -->
+    <!-- <div class="footer">
       <div class="footer-text">
         <p>2024 Dragon's Crown Planner | mdharr</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 

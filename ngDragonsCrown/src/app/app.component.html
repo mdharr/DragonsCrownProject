@@ -1,9 +1,10 @@
-<div>
+<!-- <div>
   <app-home></app-home>
-</div>
+</div> -->
 
 <div>
-  <app-navbar></app-navbar>
+  <app-navbar style="z-index: 2; position: sticky;"></app-navbar>
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <app-footer style="z-index: 2; position: sticky;"></app-footer>
 </div>
+<app-scroll-to-top-button></app-scroll-to-top-button>

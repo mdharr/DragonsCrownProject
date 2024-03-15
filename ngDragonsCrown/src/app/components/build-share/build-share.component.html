@@ -1,31 +1,22 @@
-<!-- <div style="padding-bottom: 15px;" class="meta-wrapper build-background" [style.backgroundImage]="'url(https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg)'">
-  <div style="min-height: 500px; color: #ffffff;" class="build-placeholder">
-    <h3>Unlock skills to start planning out your build!</h3>
+<div class="wrapper">
+  <div style="padding-bottom: 15px; min-height: 100vh;" class="meta-wrapper build-background" [style.backgroundImage]="'url(https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg)'">
+    <div class="build-wrapper" style="width: 100%;">
+      <table class="build-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let skill of buildArray">
+            <td>{{ skill.name }}</td>
+            <td>{{ skill.description }}</td>
+            <td>{{ skill.rank }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="build-wrapper" style="width: 100%;">
-    <table class="build-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Rank</th>
-          <th>Effects</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let skill of build">
-          <td>{{ skill.name }}</td>
-          <td>{{ skill.description }}</td>
-          <td>{{ skill.rank }}</td>
-          <td class="build-effects-wrapper">
-            <ul class="build-effects">
-              <li *ngFor="let effect of skill.effects.split(', ')">{{ effect }}</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->
-
-<p>build-share-works</p>
+</div>

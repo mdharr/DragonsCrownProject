@@ -11,45 +11,46 @@ export class BuildShareComponent implements OnInit, OnDestroy {
 
   // properties
   build: any;
+  buildArray: any[] = [];
 
   // subscriptions
   private paramsSubscription: Subscription | undefined;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
-  // ngOnInit() {
-  //   window.scrollTo(0, 0);
-  //   this.getRouteParams();
-  // }
-
   ngOnInit() {
-    // this.activatedRoute.params.subscribe(params => {
+    window.scrollTo(0, 0);
+    this.getRouteParams();
+  }
+
+  ngOnDestroy() {
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
+  }
+
+  getRouteParams() {
+    // this.paramsSubscription = this.activatedRoute.params.subscribe(params => {
     //   let encodedBuild = params['encodedBuild'];
+    //   console.log(encodedBuild);
     //   if (encodedBuild) {
     //     this.build = this.decodeBuild(encodedBuild);
     //     console.log(this.build);
     //   }
     // });
+    this.activatedRoute.params.subscribe(params => {
+      let encodedBuild = params['encodedBuild'];
+      if (encodedBuild) {
+        const decodedJsonBuild = decodeURIComponent(encodedBuild);
+        const buildObject = JSON.parse(decodedJsonBuild);
+        this.buildArray = Object.values(buildObject); // Convert object to array
+      }
+    });
   }
-
-  ngOnDestroy() {
-    // if (this.paramsSubscription) {
-    //   this.paramsSubscription.unsubscribe();
-    // }
-  }
-
-  // getRouteParams() {
-  //   this.paramsSubscription = this.activatedRoute.queryParams.subscribe(params => {
-  //     let encodedBuild = params['encodedBuild'];
-  //     if (encodedBuild) {
-  //       this.build = this.decodeBuild(encodedBuild);
-  //       console.log(this.build);
-  //     }
-  //   });
-  // }
 
   decodeBuild(encodedBuild: string): any {
     const decodedJsonBuild = decodeURIComponent(encodedBuild);
     return JSON.parse(decodedJsonBuild);
   }
+
 }

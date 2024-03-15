@@ -1022,8 +1022,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   routeToBuild() {
-    const encodedBuild = encodeURIComponent(this.encodeBuild(this.buildToShare));
-    this.router.navigate(['/build', encodedBuild]); // Use slashes instead of semicolons
+    const encodedBuild = this.encodeBuild(this.buildToShare);
+    this.router.navigate(['/build', encodedBuild]);
   }
 
 }
