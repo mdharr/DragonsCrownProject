@@ -142,7 +142,7 @@ button.option-buttons:disabled {
 }
 
 .rune-container {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .rune-container img {
