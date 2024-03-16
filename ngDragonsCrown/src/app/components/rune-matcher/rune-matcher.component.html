@@ -9,8 +9,12 @@
   <div *ngIf="hasCurrentSpell" class="current-spell-wrapper">
     <div *ngIf="!noSpellsRemaining" class="spell-content">
       <label for="spellRunes">{{ currentSpell.name }}</label>
-      <div class="rune-container">
-        <img *ngFor="let runeId of currentSpell.runes; let i = index;" class="rune-image" [src]="getRuneImageUrl(runeId)" alt="rune.png">
+      <div class="rune-container" (drop)="dropRune($event)" (dragover)="allowDrop($event)">
+        <img *ngFor="let runeId of currentSpell.runes; let i = index;"
+        class="rune-image"
+        [src]="getRuneImageUrl(runeId)"
+        alt="rune.png"
+        [draggable]="false">
       </div>
     </div>
     <div *ngIf="noSpellsRemaining" class="no-spells">
@@ -29,7 +33,15 @@
   <div class="footer-container">
     <div class="button-and-runes-container">
       <div class="carried-runes">
-        <img *ngFor="let carriedRune of carriedRunes; let i = index;" class="rune" [src]="carriedRune.imageUrl" alt="" (click)="selectRune(carriedRune.id)" [style.--wave-delay]="getDelay(i) + 's'" [ngClass]="{'selected': isSelected(carriedRune.id), 'no-animation': !hasCurrentSpell}">
+        <img *ngFor="let carriedRune of carriedRunes; let i = index;"
+        class="rune"
+        [src]="carriedRune.imageUrl"
+        alt=""
+        (click)="selectRune(carriedRune.id)"
+        [style.--wave-delay]="getDelay(i) + 's'"
+        [ngClass]="{'selected': isSelected(carriedRune.id), 'no-animation': !hasCurrentSpell}"
+        [draggable]="true"
+        (dragstart)="dragStart($event, carriedRune.id)">
       </div>
       <div class="option-buttons-container">
         <button class="option-buttons" (click)="getSpell()" [disabled]="!isNextAvailable()">{{ spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Begin' }}</button>

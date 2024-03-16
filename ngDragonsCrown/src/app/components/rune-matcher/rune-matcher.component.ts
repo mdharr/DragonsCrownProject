@@ -141,8 +141,24 @@ export class RuneMatcherComponent implements OnInit {
 
   getRuneImageUrl(runeId: number) {
     const rune = this.runeKey.find(r => r.id === runeId);
-    return rune && !rune.isCarried ? rune.imageUrl : '/assets/graphics/runes/Unknown.png';
+    const selectedRunes = this.selectedRunes;
+    const carriedRunes = this.currentSpell.runes
+      .map(runeId => this.runeKey.find(r => r.id === runeId))
+      .filter(rune => rune && rune.isCarried);
+
+    if (rune && !rune.isCarried) {
+      return rune?.imageUrl;
+    } else if (carriedRunes.length > 0) {
+      const imageUrlMap = new Map<number, string>();
+      for (let i = 0; i < carriedRunes.length && i < selectedRunes.length; i++) {
+        imageUrlMap.set(carriedRunes[i]!.id, selectedRunes[i]?.imageUrl || '');
+      }
+      return imageUrlMap.get(runeId) || '/assets/graphics/runes/Unknown.png';
+    } else {
+      return '/assets/graphics/runes/Unknown.png';
+    }
   }
+
 
   playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
@@ -166,7 +182,7 @@ export class RuneMatcherComponent implements OnInit {
   }
 
   getDelay(index: number): number {
-    return index * 0.3; // Adjust the multiplier to control wave speed
+    return index * 0.3;
   }
 
   selectRune(runeId: number) {
@@ -175,13 +191,13 @@ export class RuneMatcherComponent implements OnInit {
       if (selectedRune && this.selectedRunes.includes(selectedRune)) {
         this.selectedRunes = this.selectedRunes.filter(r => r.id !== runeId);
         this.userRunes = this.userRunes.filter(r => r.id !== runeId);
-        // console.log("Selected Runes: ", this.selectedRunes);
+
         this.playSound('scratch', 0.5);
       } else {
         if (selectedRune && this.selectedRunes.length < (3 - this.currentCarvedRunes.length)) {
           this.selectedRunes.push(selectedRune);
           this.userRunes.push(selectedRune);
-          // console.log("Selected Runes: ", this.selectedRunes);
+
           this.playSound('rune', 0.5);
         }
       }
