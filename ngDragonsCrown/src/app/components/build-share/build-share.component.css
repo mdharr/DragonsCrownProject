@@ -1,35 +1,27 @@
-.meta-wrapper {
+.wrapper {
   display: flex;
-  width: 1000px;
-  /* border: 1px solid rgb(202, 179, 92); */
-  border: 1px solid #ffd602;
+  justify-content: center;
+  padding: 30px 0;
+  min-height: 100vh;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), url(https://dragons-crown.com/resources/img/top/key.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.meta-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 5px 10px;
-}
-
-.meta-wrapper.build-background {
-  background-color: transparent;
-}
-
-.meta-wrapper::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  background-position: center;
-  background-color: black;
+  border: 1px solid #ffd602;
+  margin: auto;
 }
 
 .build-background {
-  position: relative; /* Adjust as necessary */
-  background-repeat: no-repeat;
+  /* background: url('https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg') no-repeat top right; */
+  background-color: rgba(0, 0, 0, 0.187);
   background-size: cover;
-  background-position: top right;
-  background-color: black;
-  /* Any other styles previously applied to ::before */
+  z-index: 0;
 }
 
 .build-background::before {
@@ -39,80 +31,60 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: var(--backgroundImageUrl);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top right;
-  /* filter: brightness(50%) opacity(70%); */
+  background: inherit;
+  filter: brightness(50%) opacity(70%);
   z-index: -1;
-  background-color: black;
 }
 
 .build-wrapper table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid;
-  margin-top: 4px;
+  /* margin-top: 4px; */
 }
 
-.build-wrapper th, td {
+.build-wrapper th, .build-wrapper td {
   text-align: left;
-  padding: 8px;
-  border-bottom: 1px solid #ddd; /* Add a light border for each row */
-  font-size: 11px;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #fff;
 }
 
 .build-wrapper th {
-  background-color: #333; /* Darker shade for headers */
-  color: #fff;
+  background-color: #333;
 }
 
-.build-wrapper tr:hover {
-  background-color: #666; /* Highlight rows on hover */
-}
-
-.build-wrapper input[type="checkbox"] {
-  margin-right: 10px;
+.build-wrapper tbody tr:hover {
+  background-color: #666;
 }
 
 .build-wrapper button {
-  background-color: #4CAF50; /* Green background for the close button */
+  background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
-  margin: 10px 0; /* Space out the button from the table */
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s;
 }
 
 .build-wrapper button:hover {
-  background-color: #45a049; /* Darker shade on hover */
+  background-color: #45a049;
 }
 
-.build-wrapper span {
-  /* margin-top: 20px; */
-  font-family: Oswald, serif;
-  letter-spacing: 0.05rem;
-  margin-bottom: 5px;
-  padding-top: 0;
-  color: #cab35c;
-  width: 1000px;
+.build-table {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.build-wrapper tr th {
-  vertical-align: middle;
+@media (max-width: 1024px) {
+  .meta-wrapper {
+    width: 95%;
+  }
 }
 
-.build-wrapper tr td {
-  vertical-align: middle;
-  color: #fff;
-}
-
-.wrapper {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+@media (max-width: 768px) {
+  .build-wrapper th, .build-wrapper td {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
 }
