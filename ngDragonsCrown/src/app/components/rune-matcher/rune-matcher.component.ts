@@ -60,6 +60,7 @@ export class RuneMatcherComponent implements OnInit {
   canEvaluate: boolean = false;
   revealSpell: boolean = false;
   enableNext: boolean = false;
+  showRuneLetters: boolean = false;
 
   ngOnInit() {
     this.fetchData();
@@ -80,6 +81,11 @@ export class RuneMatcherComponent implements OnInit {
     console.log("Spell Key: ", this.spellKey.length);
     const imageElements = document.querySelectorAll('.carried-runes img');
     imageElements.forEach(element => element.classList.remove('no-animation'));
+    const divElement = document.querySelector('.current-spell-wrapper') as HTMLElement;
+    divElement?.classList.add('reveal');
+    setTimeout(() => {
+      divElement?.classList.remove('reveal');
+    }, 500);
     console.log(imageElements);
     if (this.selectedRunes) {
       this.selectedRunes = [];
@@ -120,7 +126,7 @@ export class RuneMatcherComponent implements OnInit {
       this.playSound('ending', 0.5);
       setTimeout(() => {
         this.restart();
-      }, 3500);
+      }, 5500);
     }
   }
 
@@ -158,7 +164,6 @@ export class RuneMatcherComponent implements OnInit {
       return '/assets/graphics/runes/Unknown.png';
     }
   }
-
 
   playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
@@ -242,7 +247,7 @@ export class RuneMatcherComponent implements OnInit {
       console.log('Incorrect');
       setTimeout(() => {
         divElement?.classList.remove('shake-animation');
-      }, 300)
+      }, 300);
     }
     if (counter === spellRunes.length) {
       this.nextCounter++;
@@ -272,6 +277,15 @@ export class RuneMatcherComponent implements OnInit {
         this.playSound('rune', 0.5);
       }
     }
+  }
+
+  getProgressWidth(): string {
+    const progress = (this.spellKey.length - this.spells.length) / this.spellKey.length;
+    return `${progress * 100}%`;
+  }
+
+  viewRuneLetters() {
+    this.showRuneLetters = !this.showRuneLetters;
   }
 
 }

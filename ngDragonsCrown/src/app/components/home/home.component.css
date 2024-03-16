@@ -956,10 +956,6 @@ html {
   /* overflow: hidden; */
 }
 
-.selected {
-  /* overflow: hidden; */
-}
-
 @keyframes sheen {
   0%, 5% { /* Adjust 5% based on how quickly you want the sheen to move */
     transform: translateX(-150%) skewX(-30deg);
