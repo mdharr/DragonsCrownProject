@@ -182,7 +182,7 @@ button.option-buttons:disabled {
 }
 
 .current-spell-wrapper {
-  width: 240px;
+  width: 280px;
   height: 135px;
   background-color: #00000094;
   display: flex;
@@ -198,11 +198,14 @@ button.option-buttons:disabled {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  width: 100%;
 }
 
 .rune-container {
   display: flex;
   gap: 15px;
+  width: 100%;
+  justify-content: space-evenly;
 }
 
 .rune-container img {

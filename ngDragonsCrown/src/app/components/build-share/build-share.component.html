@@ -1,23 +1,40 @@
 <div class="wrapper">
-  <app-particles style="position: absolute;"></app-particles>
-  <div class="meta-wrapper build-background">
-    <div class="build-wrapper">
-      <table class="build-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Rank</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let skill of buildArray">
-            <td>{{ skill.name }}</td>
-            <td>{{ skill.description }}</td>
-            <td>{{ skill.rank }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div id="video-background-container">
+    <iframe id="video-background-player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" title="Background Video" src="https://www.youtube-nocookie.com/embed/dfyrRsYAAdo?controls=0&showinfo=0&modestbranding=1&wmode=transparent&vq=large&rel=0&loop=1&playlist=dfyrRsYAAdo&enablejsapi=1&autoplay=1&mute=1"></iframe>
+  </div>
+  <!-- Overlay -->
+  <div class="bg-overlay"></div>
+  <div class="content">
+    <div class="gdiv">
+      <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_top_pattern.png" alt="">
+    </div>
+    <div class="middle">
+      <div class="story-label" style="display: flex;">
+        <app-particles style="overflow: hidden;"></app-particles>
+      </div>
+      <div class="meta-wrapper build-background">
+        <div class="build-wrapper">
+          <table class="build-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Rank</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let skill of buildArray">
+                <td>{{ skill.name }}</td>
+                <td>{{ skill.description }}</td>
+                <td>{{ skill.rank }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="bdiv">
+      <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_bottom_pattern.png" alt="">
     </div>
   </div>
 </div>
