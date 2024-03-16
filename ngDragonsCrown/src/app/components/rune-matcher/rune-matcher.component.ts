@@ -235,4 +235,27 @@ export class RuneMatcherComponent implements OnInit {
       return false;
     }
   }
+
+  dragStart(event: DragEvent, runeId: number) {
+    event.dataTransfer?.setData('text/plain', runeId.toString());
+  }
+
+  allowDrop(event: DragEvent) {
+    event.preventDefault();
+  }
+
+  dropRune(event: DragEvent) {
+    event.preventDefault();
+    const runeIdStr = event.dataTransfer?.getData('text/plain');
+    if (runeIdStr) {
+      const runeId = parseInt(runeIdStr, 10);
+      const selectedRune = this.runeKey.find(r => r.id === runeId);
+      if (selectedRune && this.selectedRunes.length < (3 - this.currentCarvedRunes.length)) {
+        this.selectedRunes.push(selectedRune);
+        this.userRunes.push(selectedRune);
+        this.playSound('rune', 0.5);
+      }
+    }
+  }
+
 }
