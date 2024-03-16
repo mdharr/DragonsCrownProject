@@ -1,43 +1,40 @@
 <div class="wrapper">
-  <div *ngIf="hasCurrentSpell" class="spell-counter" style="position: absolute; top: 0; left: 0; width: 165px; height: 40px; display: flex; flex-direction: column; justify-content: center; text-align: justify;">
-    <h6 style="margin: 0;">Rune Spells: {{ spellKey.length - spells.length }} / {{ spellKey.length }}</h6>
-    <h6 style="margin: 0;">Score: {{ currentScore }}</h6>
+  <div *ngIf="hasCurrentSpell" class="spell-counter spell-counter-top-left">
+    <h6>Rune Spells: {{ spellKey.length - spells.length }} / {{ spellKey.length }}</h6>
+    <h6>Score: {{ currentScore }}</h6>
   </div>
-  <div *ngIf="hasCurrentSpell" class="spell-counter" style="position: absolute; top: 0; right: 0;display: flex; justify-content: center; align-items: center;">
+  <div *ngIf="hasCurrentSpell" class="spell-counter spell-counter-top-right">
     <button class="option-buttons" (click)="restart()">Restart</button>
   </div>
-  <div class="current-spell-wrapper" *ngIf="hasCurrentSpell" style="width: 240px; height: 135px; background-color: #00000094; display: flex; justify-content: center; border-radius: 3px; border: 1px solid #fff; position: absolute; top: 0;">
-    <div *ngIf="!noSpellsRemaining" style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
+  <div *ngIf="hasCurrentSpell" class="current-spell-wrapper">
+    <div *ngIf="!noSpellsRemaining" class="spell-content">
       <label for="spellRunes">{{ currentSpell.name }}</label>
-      <div style="display: flex; gap: 15px;">
-        <img *ngFor="let runeId of this.currentSpell.runes;" style="width: 50px; height: 50px;" [src]="getRuneImageUrl(runeId)" alt="rune.png">
+      <div class="rune-container">
+        <img *ngFor="let runeId of currentSpell.runes; let i = index;" class="rune-image" [src]="getRuneImageUrl(runeId)" alt="rune.png">
       </div>
     </div>
-    <div *ngIf="noSpellsRemaining" style="display: flex; align-items: center; justify-content: center;">
-      <h6 style="margin: 0;">No spells remaining.</h6>
+    <div *ngIf="noSpellsRemaining" class="no-spells">
+      <h6>No spells remaining.</h6>
     </div>
   </div>
-  <div class="spell-result" *ngIf="revealSpell" style="width: 400px; height: 100px; background-color: #000000; display: flex; justify-content: space-between; border-radius: 3px; border: 1px solid #fff; position: absolute; top: 40%; padding: 5px;">
+  <div class="spell-result" *ngIf="revealSpell">
     <div class="icon-wrapper">
-      <img style="width: 80px;" src="https://atlus.com/dragonscrown/img/system/arch.png" alt="">
+      <img class="icon-image" src="https://atlus.com/dragonscrown/img/system/arch.png" alt="">
     </div>
     <div class="spell-details">
-      <h5 style="margin: 0;">{{ this.currentSpell.name }}</h5>
-      <p style="margin: 0;">{{ this.currentSpell.description }}</p>
+      <h5>{{ currentSpell.name }}</h5>
+      <p>{{ currentSpell.description }}</p>
     </div>
   </div>
-  <div style="width: 600px; height: 150px; background-color: #00000094; display: flex; justify-content: center; align-items: flex-end; border-radius: 3px; border: 1px solid #fff; position: absolute; bottom: 0;">
-    <div style="display: flex; flex-direction: column; gap: 25px; padding-bottom: 15px;">
-      <div style="display: flex; flex-direction: column;">
-        <div class="carried-runes" style="display: flex; gap: 10px;">
-          <img class="no-animation" *ngFor="let carriedRune of this.carriedRunes; let i = index;" style="width: 70px; height: 70px; cursor: pointer; filter: drop-shadow(4px 7px 3px black);" src="{{ carriedRune.imageUrl }}" alt="" (click)="selectRune(carriedRune.id)" [style.--wave-delay]="getDelay(i) + 's'" [class.selected]="isSelected(carriedRune.id)">
-        </div>
+  <div class="footer-container">
+    <div class="button-and-runes-container">
+      <div class="carried-runes">
+        <img *ngFor="let carriedRune of carriedRunes; let i = index;" class="rune" [src]="carriedRune.imageUrl" alt="" (click)="selectRune(carriedRune.id)" [style.--wave-delay]="getDelay(i) + 's'" [ngClass]="{'selected': isSelected(carriedRune.id), 'no-animation': !hasCurrentSpell}">
       </div>
-      <div style="display: flex; justify-content: space-between;">
-        <button class="option-buttons" (click)="getSpell()" [disabled]="isNextAvailable() === false">{{ this.spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Begin' }}</button>
-        <button id="evaluate-button" class="option-buttons" (click)="evaluateCombination(this.currentRunes, this.userRunes)" [disabled]="isSelectionComplete() === false">Evaluate</button>
+      <div class="option-buttons-container">
+        <button class="option-buttons" (click)="getSpell()" [disabled]="!isNextAvailable()">{{ spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Begin' }}</button>
+        <button id="evaluate-button" class="option-buttons" (click)="evaluateCombination(currentRunes, userRunes)" [disabled]="!isSelectionComplete()">Evaluate</button>
       </div>
     </div>
   </div>
 </div>
-<!-- #0344598a; -->

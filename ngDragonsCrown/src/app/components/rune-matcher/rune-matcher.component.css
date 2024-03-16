@@ -7,12 +7,20 @@
   position: relative;
 }
 
+.carried-runes {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
 .carried-runes img {
   opacity: 0.7;
   transition: filter 0.2s, opacity 0.2s, transform 0.2s ease-in;
   animation: float 2s ease-in-out infinite;
   will-change: animation;
   animation-delay: var(--wave-delay, 0s);
+  width: 70px;
+  height: 70px;
 }
 
 .carried-runes img:hover {
@@ -147,4 +155,92 @@ button.option-buttons:disabled {
   justify-content: space-evenly;
   flex: 1;
   text-align: center;
+}
+
+.spell-counter {
+  width: 165px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
+}
+
+.spell-counter-top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.spell-counter-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.current-spell-wrapper {
+  width: 240px;
+  height: 135px;
+  background-color: #00000094;
+  display: flex;
+  justify-content: center;
+  border-radius: 3px;
+  border: 1px solid #fff;
+  position: absolute;
+  top: 0;
+}
+
+.spell-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.rune-container {
+  display: flex;
+  gap: 15px;
+}
+
+.rune-container img {
+  width: 70px;
+  height: 70px;
+}
+
+.no-spells {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-container {
+  width: 600px;
+  height: 150px;
+  background-color: #00000094;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 3px;
+  border: 1px solid #fff;
+  position: absolute;
+  bottom: 0;
+}
+
+.button-and-runes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-bottom: 15px;
+}
+
+.option-buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-image {
+  height: 100%;
 }
