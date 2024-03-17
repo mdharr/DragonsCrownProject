@@ -25,9 +25,11 @@
 
 .carried-runes .rune:hover {
   filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.5)) brightness(1.2) saturate(1.2) !important;
+  /* filter: drop-shadow(0px 0px 5px crimson) brightness(110%) contrast(120%) saturate(120%) !important; */
   opacity: 1 !important;
   cursor: pointer;
-  transition: filter 0.2s ease-in-out;
+  transform: scale(1.1);
+  transition: filter 0.2s ease-in-out, transform 0.2s ease-in;
 }
 
 @keyframes float {
@@ -86,10 +88,10 @@ button.option-buttons:disabled {
 .selected {
   border-radius: 35px;
   animation: none !important;
-  /* box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px; */
-  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important;
+  /* filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2) !important; */
+  filter: drop-shadow(0px 0px 5px crimson) brightness(110%) contrast(120%) saturate(120%) !important;
+  transform: scale(1.1);
   opacity: 1 !important;
-  /* background-color: #ffffff21; */
 }
 
 @keyframes pulseBorder {
@@ -139,15 +141,6 @@ button.option-buttons:disabled {
   padding: 5px;
   gap: 20px;
   letter-spacing: 0.05em;
-}
-
-.rune-container {
-  /* overflow: hidden; */
-}
-
-.rune-container img {
-  opacity: 0;
-  animation: subtleReveal 1s ease forwards;
 }
 
 .reveal {
@@ -218,6 +211,18 @@ button.option-buttons:disabled {
   left: 0;
 }
 
+.hint-top-center {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 3px;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
 .spell-counter-top-right {
   position: absolute;
   top: 0;
@@ -228,15 +233,13 @@ button.option-buttons:disabled {
 }
 
 .current-spell-wrapper {
-  width: 280px;
-  height: 135px;
-  background-color: #00000094;
+  width: 100%;
+  height: 285px;
   display: flex;
   justify-content: center;
   border-radius: 3px;
-  border: 1px solid #fff;
   position: absolute;
-  top: 0;
+  top: 10%;
 }
 
 .spell-content {
@@ -247,16 +250,48 @@ button.option-buttons:disabled {
   width: 100%;
 }
 
-.rune-container {
+.carried-rune-container {
   display: flex;
   gap: 15px;
   width: 100%;
   justify-content: space-evenly;
 }
 
-.rune-container img {
+
+.carried-rune-container img {
   width: 70px;
   height: 70px;
+}
+
+.rune-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.rune-container img {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  filter: drop-shadow(1px 6px 10px black) brightness(110%) contrast(120%) saturate(120%);
+  animation-name: subtleReveal, sizePulse;
+  animation-duration: 1s, 1s;
+  animation-timing-function: ease, ease;
+  animation-fill-mode: forwards, none;
+  animation-iteration-count: 1, infinite;
+}
+
+@keyframes sizePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .no-spells {
@@ -302,6 +337,7 @@ button.option-buttons:disabled {
   background-color: transparent;
   position: relative;
   overflow: hidden;
+  box-shadow: 0px 0px 3px black;
 }
 
 .progress-bar {
@@ -318,7 +354,8 @@ button.option-buttons:disabled {
 
 .progress-text {
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  /* text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); */
+  text-shadow: 1px 1px black;
 }
 
 .rune-letter {

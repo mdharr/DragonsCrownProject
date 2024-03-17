@@ -857,7 +857,8 @@ html {
   display: flex;
   width: 100%;
   border: 1px solid #ffd602;
-  background-color: rgba(0, 0, 0, 0.6);
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  background-color: black;
   padding: 5px 10px;
   justify-content: center;
   background-image: url(https://live.staticflickr.com/65535/53582582661_9249e7a6dc_k.jpg);

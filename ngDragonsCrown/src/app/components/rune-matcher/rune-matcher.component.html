@@ -5,18 +5,21 @@
       </div>
     </div>
     <div style="display: flex; justify-content: space-between;">
-      <span>Score: {{ currentScore }}</span>
+      <span style="text-shadow: 1px 1px black;">Score: {{ currentScore }}</span>
       <span class="progress-text">{{ spellKey.length - spells.length }} / {{ spellKey.length }}</span>
     </div>
+  </div>
+  <div class="hint-top-center reveal" *ngIf="hasCurrentSpell && showRuneLetters">
+    <label style="text-shadow: 1px 1px black;" for="spellRunes">{{ currentSpell.name }}</label>
   </div>
   <div *ngIf="hasCurrentSpell" class="spell-counter spell-counter-top-right reveal">
     <button class="option-buttons" (click)="restart()">Restart</button>
   </div>
   <div *ngIf="hasCurrentSpell" class="current-spell-wrapper">
     <div *ngIf="!noSpellsRemaining" class="spell-content">
-      <label for="spellRunes">{{ currentSpell.name }}</label>
-      <div class="rune-container" (drop)="dropRune($event)" (dragover)="allowDrop($event)">
+      <div #runeContainer *ngIf="hasCurrentSpell && !noSpellsRemaining" class="rune-container" (drop)="dropRune($event)" (dragover)="allowDrop($event)">
         <img *ngFor="let runeId of currentSpell.runes; let i = index;"
+        [ngStyle]="{'left': runePositions[i].left, 'top': runePositions[i].top, 'position': 'absolute'}"
         class="rune-image"
         [src]="getRuneImageUrl(runeId)"
         alt="rune.png"
@@ -39,8 +42,8 @@
   <div class="footer-container reveal">
     <div class="button-and-runes-container">
       <div class="carried-runes">
-        <div *ngFor="let carriedRune of carriedRunes; let i = index" class="rune-container">
-          <span class="rune-letter" [ngClass]="{'reveal-letters': showRuneLetters, 'hide-letters': !showRuneLetters}">{{ carriedRune.letter }}</span>
+        <div *ngFor="let carriedRune of carriedRunes; let i = index" class="carried-rune-container">
+          <span class="rune-letter" style="text-shadow: 1px 1px black;" [ngClass]="{'reveal-letters': showRuneLetters, 'hide-letters': !showRuneLetters}">{{ carriedRune.letter }}</span>
           <img class="rune"
                [src]="carriedRune.imageUrl"
                alt=""
@@ -53,8 +56,8 @@
       </div>
       <div class="option-buttons-container">
         <button class="option-buttons" (click)="getSpell()" [disabled]="!isNextAvailable()">{{ spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Begin' }}</button>
-        <button class="option-buttons" (click)="viewRuneLetters()">{{ showRuneLetters ? 'Hide Hint' : 'Show Hint' }}</button>
         <button id="evaluate-button" class="option-buttons" (click)="evaluateCombination(currentRunes, userRunes)" [disabled]="!isSelectionComplete()">Evaluate</button>
+        <button class="option-buttons" (click)="viewRuneLetters()">{{ showRuneLetters ? 'Hide Hint' : 'Show Hint' }}</button>
       </div>
     </div>
   </div>

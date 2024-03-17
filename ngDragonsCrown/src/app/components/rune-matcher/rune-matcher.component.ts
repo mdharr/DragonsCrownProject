@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AudioEntity } from 'src/app/models/audio-entity';
 import { Rune } from 'src/app/models/rune';
 import { Spell } from 'src/app/models/spell';
@@ -23,6 +23,8 @@ export class RuneMatcherComponent implements OnInit {
   userRunes: Rune[] = [];
   currentScore: number = 0;
   nextCounter: number = 0;
+  runeContainerWidth: number = 0;
+  runeContainerHeight: number = 0;
 
   // sounds
   currentAudio: HTMLAudioElement | null = null;
@@ -61,6 +63,9 @@ export class RuneMatcherComponent implements OnInit {
   revealSpell: boolean = false;
   enableNext: boolean = false;
   showRuneLetters: boolean = false;
+
+  @ViewChild('runeContainer') runeContainerRef!: ElementRef;
+  runePositions: Array<{ left: string, top: string }> = [];
 
   ngOnInit() {
     this.fetchData();
@@ -111,6 +116,7 @@ export class RuneMatcherComponent implements OnInit {
             this.currentRunes.push(rune);
           }
         });
+        this.calculateRunePositions();
         this.currentCarvedRunes = this.currentRunes.filter(r => !r.isCarried);
         this.userRunes = this.userRunes.concat(this.currentCarvedRunes);
         console.log("Current Carved Runes: ", this.currentCarvedRunes);
@@ -288,4 +294,45 @@ export class RuneMatcherComponent implements OnInit {
     this.showRuneLetters = !this.showRuneLetters;
   }
 
+  getRandomLeft(index: number): string {
+    const maxLeft = 100;
+    const left = Math.random() * maxLeft;
+    return `${left}%`;
+  }
+
+  getRandomTop(index: number): string {
+    const maxTop = 100;
+    const top = Math.random() * maxTop;
+    return `${top}%`;
+  }
+
+  calculateRunePositions() {
+    const runeSize = 100; // The size of the rune image
+    const containerWidth = 898; // Assuming the container width
+    const containerHeight = 261; // Assuming the container height
+    const positions = [];
+
+    for (let i = 0; i < this.currentSpell.runes.length; i++) {
+      let left, top, overlap;
+      do {
+        overlap = false;
+        left = Math.random() * (containerWidth - runeSize);
+        top = Math.random() * (containerHeight - runeSize);
+
+        // Check for overlap with existing runes
+        for (const pos of positions) {
+          const existingLeft = parseFloat(pos.left);
+          const existingTop = parseFloat(pos.top);
+          if (Math.abs(left - existingLeft) < runeSize && Math.abs(top - existingTop) < runeSize) {
+            overlap = true;
+            break;
+          }
+        }
+      } while (overlap);
+
+      positions.push({ left: `${left}px`, top: `${top}px` });
+    }
+
+    this.runePositions = positions;
+  }
 }
