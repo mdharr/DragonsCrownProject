@@ -1,14 +1,12 @@
 <div class="wrapper" #observedElement>
-  <!-- <app-navbar></app-navbar> -->
-  <!-- Background video container -->
+
   <div id="video-background-container">
     <iframe id="video-background-player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" title="Background Video" src="https://www.youtube-nocookie.com/embed/dfyrRsYAAdo?controls=0&showinfo=0&modestbranding=1&wmode=transparent&vq=large&rel=0&loop=1&playlist=dfyrRsYAAdo&enablejsapi=1&autoplay=1&mute=1"></iframe>
   </div>
-  <!-- Overlay -->
+
   <div class="bg-overlay"></div>
 
   <div class="main">
-    <!-- <div class="content" [ngStyle]="{'--red_bg': 'url(' + getImageUrl('red_bg') + ')'}"> -->
     <div class="content">
       <div class="gdiv">
         <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_top_pattern.png" alt="">
@@ -41,7 +39,8 @@
           </ul>
         </div>
         <hr>
-        <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'">
+        <!-- <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'"> -->
+        <div class="class-description class-backdrop" [style.--backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'">
           <ng-container *ngIf="classSelected">
             <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation>
           </ng-container>
@@ -55,41 +54,37 @@
                   <span id="class-name">{{currentClassData?.name}}</span>
                 </div>
               </div>
-              <div class="mini-captions">
+              <div style="margin-bottom: 4px;" class="mini-captions">
                 <span>Attribute</span>
                 <span>Current</span>
               </div>
               <div class="player-level">
                 <label for="level">Level</label>
-                <!-- <input id="level" type="text" [(ngModel)]="currentStats.level" (blur)="onLevelChange()" (keyup.enter)="onLevelChange()"> -->
                 <input id="level" type="text" [(ngModel)]="currentStats.level" (blur)="onLevelChange()" (keyup)="onEnterPress($event)">
-                <!-- Material button with an icon -->
                 <button mat-icon-button class="arrow-buttons" id="down-arrow" (click)="levelDown()">
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
 
-                <!-- Material icon button -->
                 <button mat-icon-button class="arrow-buttons" id="up-arrow" (click)="levelUp()">
                   <mat-icon>keyboard_arrow_up</mat-icon>
                 </button>
 
-                <!-- <button mat-icon-button class="arrow-buttons" id="refresh-btn" (click)="resetLevel()"> -->
                 <button mat-icon-button class="arrow-buttons" id="refresh-btn" (click)="setLevelToOne()">
                   <mat-icon>refresh</mat-icon>
                 </button>
               </div>
 
               <div class="player-attributes">
-                <div>
-                  <label style="margin-right: 100px;" for="">HP</label>
+                <div class="attribute-rows">
+                  <label for="">HP</label>
                   <div class="stat-wrapper">
                     <span id="health" style="width: 46px; text-align: center;">{{currentStats?.health}}</span>
                   </div>
-                  <div class="mini-captions" style="margin-left: 71px;">
+                  <div class="mini-captions" style="margin-left: 72px;">
                     <span>Scaling</span>
                   </div>
                 </div>
-                <div>
+                <div class="attribute-rows">
                   <label for="">STR</label>
                   <div class="stat-wrapper">
                     <span id="strength">{{currentStats?.strength}}</span>
@@ -98,7 +93,7 @@
                     <span id="strength-scaling">{{ currentClassData?.statScaling?.strength }}</span>
                   </div>
                 </div>
-                <div>
+                <div class="attribute-rows">
                   <label for="">INT</label>
                   <div class="stat-wrapper">
                     <span id="intelligence">{{currentStats?.intelligence}}</span>
@@ -107,7 +102,7 @@
                     <span id="intelligence-scaling">{{ currentClassData?.statScaling?.intelligence }}</span>
                   </div>
                 </div>
-                <div>
+                <div class="attribute-rows">
                   <label for="">CON</label>
                   <div class="stat-wrapper">
                     <span id="constitution">{{currentStats?.constitution}}</span>
@@ -116,7 +111,7 @@
                     <span id="constitution-scaling">{{ currentClassData?.statScaling?.constitution }}</span>
                   </div>
                 </div>
-                <div>
+                <div class="attribute-rows">
                   <label for="">MGR</label>
                   <div class="stat-wrapper">
                     <span id="magic-resistance">{{currentStats?.magicResistance}}</span>
@@ -125,7 +120,7 @@
                     <span id="magic-resistance-scaling">{{ currentClassData?.statScaling?.magicResistance }}</span>
                   </div>
                 </div>
-                <div>
+                <div class="attribute-rows">
                   <label for="">DEX</label>
                   <div class="stat-wrapper">
                     <span id="dexterity">{{currentStats?.dexterity}}</span>
@@ -134,7 +129,7 @@
                     <span id="dexterity-scaling">{{ currentClassData?.statScaling?.dexterity }}</span>
                   </div>
                 </div>
-                <div>
+                <div class="attribute-rows">
                   <label for="">LUC</label>
                   <div class="stat-wrapper">
                     <span id="luck">{{currentStats?.luck}}</span>
@@ -143,20 +138,15 @@
                     <span id="luck-scaling">{{ currentClassData?.statScaling?.luck }}</span>
                   </div>
                 </div>
-                <!-- <div class="mini-captions exp-captions">
-                  <span>Level Up</span>
-                  <span>Total</span>
-                </div> -->
+
                 <div style="margin-top: 10px;">
                   <label for="">EXP</label>
                   <div class="exp-box">
                     <div style="display: flex; flex-direction: column; align-items: flex-start;">
                       <div class="mini-captions exp-captions" style="width: 110px;">
-                        <!-- <span>Level Up</span> -->
                         <span>Next Level</span>
                       </div>
                       <div class="stat-wrapper exp-wrapper">
-                        <!-- <span id="exp">{{currentStats?.requiredExp}}</span> -->
                         <span id="exp">{{ this.getRequiredExpForNextLevel()}}</span>
                       </div>
                     </div>
@@ -172,42 +162,20 @@
                 </div>
               </div>
             </div>
-            <div class="alt-artwork">
+            <!-- <div class="alt-artwork">
               <div class="class-contract" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://static.myfigurecollection.net/upload/pictures/2021/04/24/2697957.gif' + ')'}">
                 <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
               </div>
-              <!-- <img [hidden]="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.hqArtworkUrl" (load)="onArtworkLoad()" alt="High-quality artwork">
-              <img *ngIf="!artworkLoaded" style="height: 100%; width: auto;" [src]="currentClassData?.artworkUrl" alt="Low-quality artwork"> -->
               <blockquote>
                 <h5>Recommended for these people</h5>
                 <ul>
                   <li *ngFor="let recommendation of currentClassData?.recommendations">{{ recommendation.description}}</li>
                 </ul>
               </blockquote>
-            </div>
+            </div> -->
           </div>
           <hr>
-          <!-- <hr class="custom-hr" /> -->
-          <!-- <div style="display: flex; flex-direction: row; justify-content: space-between;">
-            <div class="n3">
-              <div class="gif-crt"></div>
-              <div class="class-title">
-                <img id="title-img" [src]="currentClassData?.titleUrl" alt="banner">
-              </div>
-              <div class="position-gif">
-                <div class="gif-wrapper">
-                  <img class="gif-animation" [src]="currentClassData?.animationUrl" alt="animation">
-                </div>
-              </div>
-            </div>
-            <blockquote>
-              <h5>Recommended for these people</h5>
-              <ul>
-                <li *ngFor="let recommendation of currentClassData?.recommendations">{{ recommendation.description}}</li>
-              </ul>
-            </blockquote>
-          </div> -->
-          <!-- <hr style="margin-top: 0;"> -->
+
         </div>
         <ng-container *ngIf="classSelected">
           <hr>
@@ -217,8 +185,7 @@
           <button id="build-btn" [class.selected-skills]="!showCommonSkills && !showUniqueSkills && viewBuild && !viewQuests && !viewRunes" mat-button (click)="viewCurrentBuild()">View Build</button>
           <button id="rune-matcher-btn" [class.selected-skills]="!showCommonSkills && !showUniqueSkills && !viewQuests && !viewBuild && viewRunes" mat-button (click)="viewRunesMatcher()">View Runes</button>
         </ng-container>
-        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->
-        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://ams3.digitaloceanspaces.com/web01.ho-sting/videogamesartwork_com/public/concept-art/1590653347/dragonscrown_environment_castle_town.png' + ')'}"> -->
+
         <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('castle_bg') + ')'}">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
@@ -240,7 +207,6 @@
                 <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder>
                 <h3><span style="color: #d9b359;">Unique Skills</span>: Can only be learned by one class.</h3>
               </ng-container>
-              <!-- <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span> -->
 
               <div class="common-skills" *ngIf="showCommonSkills && !showUniqueSkills">
                 <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
@@ -326,7 +292,6 @@
             </div>
           </ng-container>
         </div>
-        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.backgroundUrl + ')'}"> -->
         <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl+ ')'}">
           <div class="quests-wrapper">
             <span style="margin-bottom: 5px;">Skill Points from Quests: {{ calculateTotalSkillPoints() }}</span>
@@ -369,13 +334,7 @@
           <div class="build-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
             <div style="display: flex; width: 100%; justify-content: center; align-items: center;">
             </div>
-            <!-- <hr>
-            <div class="cards-wrapper">
-              <div *ngFor="let skill of currentBuild" class="card" style="background-image: url('{{ skill.cardImageUrl }}');">
-                <div class="card-content">{{ skill.name }}</div>
-              </div>
-            </div>
-            <hr> -->
+
             <div style="display: flex; width: 100%; justify-content: space-between;">
               <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
               <span style="cursor: pointer;" [matMenuTriggerFor]="menu" (click)="playSound('confirm')">Options</span>
@@ -404,7 +363,6 @@
                   <td>{{ skill.name }}</td>
                   <td>{{ skill.description }}</td>
                   <td>{{ skill | calculateTotalSP:currentClassData.skills }}</td>
-                  <!-- <td>{{ this.calculateSP(skill, currentClassData.skills) }}</td> -->
                   <td>{{ skill.rank }}</td>
                   <td class="build-effects-wrapper">
                     <ul class="build-effects">

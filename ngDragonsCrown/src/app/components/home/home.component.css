@@ -3,7 +3,8 @@
   width: 100%;
   min-height: 100vh;
   z-index: 1;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
+  overflow-x: scroll;
   overflow-y: auto;
 }
 
@@ -257,6 +258,8 @@
   background-position: right;
   background-repeat: no-repeat;
   background-color: black;
+  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 30%), url(--backgroundImage); */
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 30%), var(--backgroundImage);
 }
 
 .class-backdrop::before {
@@ -347,6 +350,7 @@
 }
 
 .n1-wrapper {
+  position: relative;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
@@ -358,12 +362,23 @@
   background-image: var(--plannerBackgroundUrl);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: bottom;
+  background-position: top;
   background-color: black;
 }
 
+.n1-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* background: linear-gradient(to right, #000000, #ffffff00); */
+  background: linear-gradient(to right, #000000, #000000b5 50%, transparent);
+}
+
 .n1 {
-  /* background-color: rgba(0, 0, 0, 0.3); */
   flex: 1;
 }
 
@@ -445,17 +460,15 @@
 }
 
 .col {
-  /* border: 1px solid #555; */
   padding: 8px;
-  padding-left: 25px;
+  /* padding-left: 25px; */
+  padding-left: 7% !important;
   width: 447px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* background-color: rgb(21 43 56 / 65%); */
-  background-color: rgba(0, 0, 0, 0.7);
-  /* border: 1px solid #fff; */
-  /* max-width: 320px; */
+  /* background-color: rgba(0, 0, 0, 0.7); */
 }
 
 .player-class {
@@ -617,7 +630,7 @@ label {
 
 .mini-captions span {
   width: 122px;
-  margin-bottom: 4px;
+  /* margin-bottom: 4px; */
 }
 
 .characters-label {
@@ -968,16 +981,19 @@ html {
   }
 }
 
+.reveal {
+  opacity: 0;
+  animation: reveal 2s ease forwards;
+}
 
-/* .sheen-effect::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255, 255, 255, 0.8);
-  transform: translateX(-100%) skewX(-30deg);
-  animation: sheen 5s ease-in-out infinite;
-  z-index: 1000;
-} */
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 @keyframes holographicTilt {
   0%, 100% {
@@ -1052,6 +1068,10 @@ blockquote ul li {
   text-align: justify;
 }
 
+.attribute-rows {
+  margin-bottom: 4px;
+}
+
 .scaling-wrapper {
   display: flex;
   justify-content: center;
@@ -1060,7 +1080,7 @@ blockquote ul li {
   border-radius: 0;
   color: #ccc;
   margin: 0;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   margin-left: 72px;
   padding: 0;
   vertical-align: middle;
@@ -1087,7 +1107,8 @@ blockquote ul li {
   justify-content: center;
   /* padding-left: 32px; */
   padding-top: 5px;
-  margin-bottom: 0 !important;
+  /* margin-bottom: 0 !important; */
+  margin-bottom: 4px;
 }
 
 .exp-captions span:first-child {
@@ -1885,4 +1906,27 @@ hr.custom-hr {
   font-family: Oswald, serif;
   letter-spacing: 0.05rem;
   font-size: 16px;
+}
+
+/* Extra small devices (phones, less than 576px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
 }
