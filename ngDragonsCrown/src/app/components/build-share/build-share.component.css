@@ -32,6 +32,8 @@
     background-position: top left;
     background-size: 100%;
     z-index: 1;
+    border: 5px solid transparent;
+    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
 .content::before {
