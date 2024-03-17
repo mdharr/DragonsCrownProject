@@ -218,7 +218,7 @@
   background-color: #160001;
   border: 1px solid #ffd602;
   height: 200px;
-  box-shadow: inset 0 0 5px #000000;
+  box-shadow: inset 0px 0px 25px #030a0d;
   background-image: url(/assets/graphics/splash.png);
   width: 100%;
   max-width: 1000px;

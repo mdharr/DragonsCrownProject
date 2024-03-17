@@ -328,7 +328,7 @@
           </div>
         </div>
         <div style="padding-bottom: 15px; min-height: 532px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [style.backgroundImage]="'url(' + getImageUrl('build_bg') + ')'">
-          <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #ffffff;" class="build-placeholder">
+          <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #ffffff; z-index: 2; text-shadow: 1px 1px black;" class="build-placeholder">
             <h3>Unlock skills to start planning out your build!</h3>
           </div>
           <div class="build-wrapper" style="width: 100%;" *ngIf="currentBuild.length">
@@ -344,7 +344,7 @@
                 <button class="custom-button" [ngClass]="{'with-icon': showByNameDesc}" mat-menu-item (click)="toggleDisplayOption('name_desc')">Show By Name Desc <mat-icon *ngIf="showByNameDesc">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showBySPAsc}" mat-menu-item (click)="toggleDisplayOption('sp_asc')">Show By SP Asc <mat-icon *ngIf="showBySPAsc">check</mat-icon></button>
                 <button class="custom-button" [ngClass]="{'with-icon': showBySPDesc}" mat-menu-item (click)="toggleDisplayOption('sp_desc')">Show By SP Desc <mat-icon *ngIf="showBySPDesc">check</mat-icon></button>
-                <button class="custom-button" mat-menu-item (click)="captureAndDownloadScreenshot()">Export Build</button>
+                <button class="custom-button" mat-menu-item (click)="captureAndDownloadScreenshot()">Screenshot Build</button>
                 <button class="custom-button" mat-menu-item (click)="generateAndCopyShareLink()">Copy Share Link</button>
               </mat-menu>
             </div>
@@ -389,4 +389,3 @@
     </div>
   </div>
 </div>
-

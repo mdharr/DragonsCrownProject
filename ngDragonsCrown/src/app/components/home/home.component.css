@@ -3,7 +3,6 @@
   width: 100%;
   min-height: 100vh;
   z-index: 1;
-  /* overflow-x: hidden; */
   overflow-x: scroll;
   overflow-y: auto;
 }
@@ -46,21 +45,19 @@
 }
 
 .main {
-  display: flex; /* This ensures it's on top of the fixed-position elements */
+  display: flex;
   flex-direction:column;
-  background: none; /* Adjust if you want a background for content */
+  background: none;
   padding: 1em;
   padding-bottom:0;
   padding-left:0;
   padding-right:0;
-  /* background-color:#000000; */
-  /* Further styling for your content */
 }
 
 #logoImg {
   width: 150px;
   height: auto;
-  z-index: 3; /* Ensures logo is on top of other content */
+  z-index: 3;
   position: absolute;
   top: 15px;
   left: 15px;
@@ -88,33 +85,32 @@
   z-index:1;
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
-  /* margin-bottom: 15px; */
 }
 
 .gdiv {
-  position: absolute; /* Position relative to .content */
-  top: 0px; /* Adjust this value so that .gdiv's bottom aligns with .content's top */
+  position: absolute;
+  top: 0px;
   left: 0;
-  width: 100%; /* Ensure it spans the full width of .content */
-  z-index: 10; /* Ensure it's above the content */
+  width: 100%;
+  z-index: 10;
 }
 
 .gdiv img {
-  display: block; /* Remove any default spacing/margin */
+  display: block;
   width: 100%;
   height: auto;
 }
 
 .bdiv {
   position: relative;
-  bottom: 0; /* Adjust this value so that .gdiv's bottom aligns with .content's top */
+  bottom: 0;
   left: 0;
-  width: 100%; /* Ensure it spans the full width of .content */
-  z-index: 10; /* Ensure it's above the content */
+  width: 100%;
+  z-index: 10;
 }
 
 .bdiv img {
-  display: block; /* Remove any default spacing/margin */
+  display: block;
   width: 100%;
   height: auto;
 }
@@ -128,34 +124,18 @@
 }
 
 .content h1 {
-  color: #222; /* Heading color */
+  color: #222;
   color: #e4b612;
-  margin-bottom: 20px; /* Spacing below the heading */
+  margin-bottom: 20px;
 }
 
 .content p {
   line-height: 1.6;
   margin-bottom: 20px;
   font-family: fantasy;
-  /* padding-top: 20px; */
   -webkit-filter: drop-shadow(0px 0px 8px rgba(14, 14, 14, 1.0));
-  /* text-align: justify; */
   color: #fff;
 }
-
-/* .content button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-} */
-
-/* .content button:hover {
-  background-color: #0056b3;
-} */
 
 .portraits {
   display: flex;
@@ -192,7 +172,6 @@
 }
 
 .unselected:hover {
-  /* box-shadow: rgba(3, 102, 214, 1) 0px 0px 0px 2px; */
   box-shadow: #ffd602 0px 0px 0px 2px;
   cursor: pointer;
   opacity: 1;
@@ -226,7 +205,6 @@
   max-width: 500px;
   max-height: 295px;
   -webkit-filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.3));
-  /* background-color: tan; */
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: rgb(202 179 92) 0px 0px 0px 1px;
 }
@@ -234,7 +212,6 @@
 .class-description {
   min-height: 400px;
   position: relative;
-  /* padding: 0px 50px 20px 50px; */
   padding: 0px 0px 20px 10px;
   display: flex;
   align-items: flex-start;
@@ -253,13 +230,11 @@
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-fill-mode: both;
-  /* border: 1px solid rgb(202, 179, 92); */
   border: 1px solid #ffd602;
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
   background-color: black;
-  /* background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 30%), url(--backgroundImage); */
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 30%), var(--backgroundImage);
 }
 
@@ -270,7 +245,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: inset 250px 0 20px -10px rgba(0,0,0,0.7);
   z-index: 1;
   background: rgba(255, 255, 255, 0);
 }
@@ -297,42 +271,35 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  /* height:160px; */
 }
 
 .gif-wrapper {
-  position: relative; /* This is crucial for absolute positioning of children */
+  position: relative;
   width: 210px;
-  /* width: 615px; */
   height: fit-content;
   display: flex;
   justify-content: center;
-  /* background-color: #fff; */
   padding: 5px;
-  /* border-radius: 15px;
-  border: 2px solid red; */
 }
 
 .gif-crt {
-  position: absolute; /* Changed from relative to absolute */
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0; /* Ensure it covers the whole area */
-  bottom: 0; /* Ensure it covers the whole area */
-  background-color: rgba(0, 0, 0, 0); /* Semi-transparent overlay */
-  z-index: 2; /* Higher z-index since we want this on top */
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 2;
   background-image: url("https://dragons-crown.com/resources/img/top/overlay.png");
   background-repeat: repeat;
-  pointer-events: none; /* Allows click events to pass through */
+  pointer-events: none;
   opacity: 0.2;
 }
 
 .gif-animation {
   position: relative;
-  width: auto; /* This will be relative to .gif-wrapper's width */
-  /* height: auto; */
-  z-index: 1; /* Lower z-index, but it's not necessary with the absolute positioning */
-  /* background-color: #fff; */
+  width: auto;
+  z-index: 1;
   border-radius: 15px;
   max-height: 190px;
   padding: 10px;
@@ -341,13 +308,10 @@
 
 .planner {
   position: relative;
-  /* width: 940px; */
   display: flex;
-  /* flex-flow: row wrap; */
   flex-direction: column-reverse;
   align-items: center;
   justify-content: space-between;
-  /* margin-top: 30px; */
 }
 
 .n1-wrapper {
@@ -356,7 +320,6 @@
   flex-direction: row-reverse;
   justify-content: space-evenly;
   width: 100%;
-  /* border: 1px solid rgb(202, 179, 92); */
   border: 1px solid #ffd602;
   margin-top: 8px;
   height: 435px;
@@ -374,8 +337,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-
-  /* background: linear-gradient(to right, #000000, #ffffff00); */
   background: linear-gradient(to right, #000000, #000000b5 50%, transparent);
 }
 
@@ -389,12 +350,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(0, 0, 0, 0.3); */
   padding-top: 20px;
-  /* background-color: rgb(21 43 56 / 80%); */
-  /* background-color: rgb(21 43 56 / 65%); */
   background-color: rgba(0, 0, 0, 0.7);
-  /* border: 1px solid #fff; */
   padding-left: 15px;
   padding-right: 15px;
   border-right: none;
@@ -447,10 +404,8 @@
   left: 0;
   right:0;
   bottom:0;
-  /* background-image: url(https://dragons-crown.com/resources/img/top/dragon.png); */
   background-repeat: no-repeat;
   background-position: right top;
-  /* background-size: 100%; */
   background-size: contain;
   transform: scaleX(-1);
   overflow: unset;
@@ -462,14 +417,11 @@
 
 .col {
   padding: 8px;
-  /* padding-left: 25px; */
   padding-left: 7% !important;
   width: 447px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: rgb(21 43 56 / 65%); */
-  /* background-color: rgba(0, 0, 0, 0.7); */
 }
 
 .player-class {
@@ -488,14 +440,12 @@
 
 .player-level input {
   padding-left: 14px;
-  /* pointer-events: none; */
 }
 
 .wrapper-class {
   width: 150px;
   border: 1px #555 solid;
   padding-left: 5px;
-  /* background-color: rgb(21 43 56 / 50%); */
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -512,8 +462,6 @@
 }
 
 .player-level input {
-  /* background: rgb(21 43 56); */
-  /* background-color: rgb(21 43 56 / 50%); */
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -535,7 +483,6 @@ label {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-    /* background-color: rgb(21 43 56 / 50%); */
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -591,7 +538,6 @@ label {
 
 .player-level label {
   width: 122px;
-  /* pointer-events:none; */
 }
 
 .player-level input {
@@ -614,7 +560,6 @@ label {
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  /* background-color: rgb(21 43 56 / 50%); */
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -631,24 +576,12 @@ label {
 
 .mini-captions span {
   width: 122px;
-  /* margin-bottom: 4px; */
 }
 
 .characters-label {
   display: flex;
   justify-content: center;
-  /* margin-top: 60px;
-  margin-bottom: 30px; */
 }
-
-/* .story-label {
-  display: flex;
-  justify-content: center;
-  background-color: black;
-  margin: 5px 0;
-  border: 1px solid #cab35c;
-  height: 198px;
-} */
 
 .story-label {
   display: flex;
@@ -658,11 +591,9 @@ label {
   justify-content: center;
   background-color: #160001;
   margin: 5px 0;
-  /* border: 1px solid #cab35c; */
   border: 1px solid #ffd602;
   height: 200px;
-  box-shadow: inset 0 0 5px #000000;
-  /* background-image: url(https://atlus.com/dragonscrown/img/common/menu_homelogo.png); */
+  box-shadow: inset 0px 0px 25px #030a0d;
   background-image: url(/assets/graphics/splash.png);
   margin-top: 9px;
 }
@@ -677,12 +608,7 @@ hr {
     height: 2px;
     width: 100%;
     background-color:rgb(202 179 92);
-    /* background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255,255,255),rgb(255,255,255)); */
 }
-
-/* #level {
-  pointer-events: none;
-} */
 
 .footer {
   color: #fff;
@@ -691,8 +617,6 @@ hr {
   display: flex;
   justify-content: center;
   border-top: 2px solid #d9b359;
-  /* background-color: rgba(0, 0, 0, 0.7); */
-  /* background-color: #0081bb38; */
   background-color: #004f8457;
 }
 
@@ -725,8 +649,7 @@ html {
 }
 
 #portraits-ul li {
-  position: relative; /* Add this to make the list item a positioning context */
-  /* other styles */
+  position: relative;
 }
 
 .selected-portrait {
@@ -743,41 +666,38 @@ html {
   height: 100%;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
   transform: skewX(-25deg);
-  animation: shining 10s infinite; /* Updated to reflect total cycle time */
-  animation-timing-function: cubic-bezier(0.5, 0, 1, 1); /* Controls the animation speed */
-  animation-fill-mode: forwards; /* Ensures the end state is maintained until the next cycle */
+  animation: shining 10s infinite;
+  animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
+  animation-fill-mode: forwards;
 }
 
 @keyframes shining {
   0% {
     left: -75%;
   }
-  /* Adjust the percentage to control the speed of the animation */
-  5% { /* 2s of animation within a 5s interval -> 2/5 = 40% */
+  5% {
     left: 125%;
   }
   100% {
-    left: 125%; /* Remain at the end position for the rest of the cycle */
+    left: 125%;
   }
 }
 
 .chara-pointer {
-  position: absolute; /* Absolutely position the pointer within the li */
-  top: -10px; /* Adjust as necessary */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Adjust horizontal position to truly center the pointer */
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 100;
   animation: new_blink 1.5s ease-in-out infinite;
-  width: 50px; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
-  /* Remove padding-top and border as it's not needed */
+  width: 50px;
+  height: 50px;
 }
 
-/* Ensure the image within the pointer container fits the pointer size */
 .chara-pointer img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Adjust if the image should maintain its aspect ratio */
+  object-fit: cover;
   top: -70px;
 }
 
@@ -807,10 +727,10 @@ html {
 .meta-wrapper {
   display: flex;
   width: 100%;
-  /* border: 1px solid rgb(202, 179, 92); */
   border: 1px solid #ffd602;
   background-color: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
+  box-shadow: inset 0px 0px 25px #030a0d;
 }
 
 .meta-wrapper.build-background {
@@ -830,12 +750,11 @@ html {
 }
 
 .build-background {
-  position: relative; /* Adjust as necessary */
+  position: relative;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top right;
+  background-position: center;
   background-color: black;
-  /* Any other styles previously applied to ::before */
 }
 
 .build-background::before {
@@ -845,20 +764,15 @@ html {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: var(--backgroundImageUrl);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top right;
-  /* filter: brightness(50%) opacity(70%); */
-  z-index: -1;
+  z-index: 1;
   background-color: black;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .rune-wrapper {
   display: flex;
   width: 100%;
   border: 1px solid #ffd602;
-  /* background-color: rgba(0, 0, 0, 0.6); */
   background-color: black;
   padding: 5px 10px;
   justify-content: center;
@@ -880,9 +794,8 @@ html {
   background-color: rgba(0, 0, 0, 0.20);
 }
 
-/* Assuming your div has a class name 'class-portrait' for targeting */
 .class-portrait {
-  position: relative; /* Needed for absolute positioning of the ::before pseudo-element */
+  position: relative;
   display: flex;
   width: 156.34px;
   height: 70.34px;
@@ -892,16 +805,16 @@ html {
 }
 
 .class-portrait::before {
-  content: ""; /* Needed to generate the pseudo-element */
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: var(--backgroundImageUrl); /* Use the CSS variable */
-  background-size: cover; /* Cover the element's total area */
-  background-position: center; /* Center the background image */
-  z-index: 0; /* Ensure it's below the content but above the element's background */
+  background-image: var(--backgroundImageUrl);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
 }
 
 .class-portrait span {
@@ -912,7 +825,6 @@ html {
   padding-left: 5px;
 }
 
-/* In your component's .css or .scss file */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -942,9 +854,7 @@ html {
   background-color: black;
   padding: 5px;
   border-radius: 6px;
-  /* border: 3px solid rgb(202, 179, 92); */
   border: 3px solid #ffd602;
-  /* overflow: hidden; */
   position: absolute;
   top: -130px;
   left: 0px;
@@ -968,14 +878,13 @@ html {
 
 #portraits-ul li {
   position: relative;
-  /* overflow: hidden; */
 }
 
 @keyframes sheen {
-  0%, 5% { /* Adjust 5% based on how quickly you want the sheen to move */
+  0%, 5% {
     transform: translateX(-150%) skewX(-30deg);
   }
-  8% { /* This might be adjusted based on the speed and how it looks visually */
+  8% {
     transform: translateX(200%) skewX(-30deg);
   }
   100% {
@@ -1019,9 +928,9 @@ html {
     rgba(255, 0, 255, 0.25),
     rgba(0, 255, 255, 0.25),
     rgba(255, 255, 0, 0.25),
-    rgba(255, 255, 255, 0.15) /* Repeating the starting color at the end */
+    rgba(255, 255, 255, 0.15)
   );
-  background-size: 200% 200%; /* Adjust as needed */
+  background-size: 200% 200%;
   animation: holographicTilt 4s linear infinite;
   z-index: 1;
 }
@@ -1059,7 +968,6 @@ blockquote h5 {
   font-family: 'meiryo';
   font-size: 18px;
   line-height: 30px;
-  /* text-indent: 30px; */
   color: #ffff00;
   padding:0;
 }
@@ -1082,14 +990,11 @@ blockquote ul li {
   border-radius: 0;
   color: #ccc;
   margin: 0;
-  /* margin-bottom: 5px; */
   margin-left: 72px;
   padding: 0;
   vertical-align: middle;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
-  /* background-color: rgba(21, 43, 56, 0.2); */
-  /* background-color: rgb(21 43 56 / 50%); */
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -1100,16 +1005,13 @@ blockquote ul li {
 }
 
 .sprite-container img:hover {
-  /* opacity: 0.7; */
   -webkit-filter: drop-shadow(0px 0px 5px #ffffff);
 }
 
 .exp-captions {
   display: flex;
   justify-content: center;
-  /* padding-left: 32px; */
   padding-top: 5px;
-  /* margin-bottom: 0 !important; */
   margin-bottom: 4px;
 }
 
@@ -1136,18 +1038,15 @@ blockquote ul li {
 .skill-cards {
   width: 150px;
   height: auto;
-  /* border: 5px solid #cab35c; */
 }
 
 .sheen-box {
   width: fit-content;
   height: fit-content;
   position: relative;
-  /* overflow: hidden; */
 }
 
 .selected-skills {
-  /* border: 1px solid rgb(202 179 92) !important; */
   border: 1px solid #ffd602 !important;
   border-bottom: 1px solid transparent !important;
   margin-bottom: -1px;
@@ -1253,7 +1152,6 @@ blockquote ul li {
   flex-wrap: wrap;
   gap: 5px;
   flex-direction: column;
-  /* margin-top: 15px; */
 }
 
 .remaining-sp {
@@ -1265,12 +1163,6 @@ blockquote ul li {
 }
 
 .skill-box {
-  /* display: flex;
-  padding: 5px;
-  border: 1px solid;
-  width: 450px;
-  float: left;
-  gap: 25px; */
   width: 350px;
   float: left;
 }
@@ -1302,7 +1194,6 @@ blockquote ul li {
 
 .skillListWrap dt:hover {
   cursor: pointer;
-  /* background-color: rgb(113 35 35 / 20%); */
   background-color: rgb(113 35 35 / 40%);
 }
 
@@ -1325,7 +1216,6 @@ blockquote ul li {
   width: 10%;
   font-size: 12px;
   font-weight: bold;
-  /* background: #666; */
   border: 1px solid #fff;
   border-right: none;
   color: #ccc;
@@ -1344,11 +1234,9 @@ blockquote ul li {
 }
 
 .skillListWrap dt span {
-  /* padding: 3px 5px; */
   padding: 0px 0px;
   text-align: center;
   color: #aaa;
-  /* background: #ddd; */
   background: transparent;
   border: 0;
   position: absolute;
@@ -1473,43 +1361,6 @@ table {
   transition: transform 0.1s ease-out;
 }
 
-/* TEST ANIMATION START */
-
-/* .image-wrapper {
-  height: 12rem;
-  width: 12rem;
-  border-radius: 6px;
-  background-color: #ccc;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  line-height: 1.6;
-}
-
-.image-wrapper img {
-  height: auto;
-  max-width: 100%;
-}
-
-.shine {
-  position: relative;
-  overflow: hidden;
-} */
-
-/* .shine::before {
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 100%);
-  content: "";
-  display: block;
-  height: 100%;
-  left: -75%;
-  position: absolute;
-  top: 0;
-  transform: skewX(-25deg);
-  width: 50%;
-  z-index: 2;
-  animation: shine 0.25s linear forwards;
-} */
-
 .tilt {
   --a: 1deg;
   width: 150px;
@@ -1526,34 +1377,27 @@ table {
   -webkit-mask-position: 0 0;
 }
 
-/* TEST ANIMATION END */
-
 .selected-skill {
-  /* background-color: rgb(113 35 35 / 77%) !important; */
   background-color: rgb(177 45 47 / 80%) !important;
 }
 
 .selected-rank {
-  /* background-color: rgb(113 35 35 / 77%) !important; */
   background-color: rgba(232, 185, 0, 0.77) !important;
   color: #fff !important;
 }
 
-/* QUESTS MODAL START */
-
-/* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: scroll; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  -webkit-animation-name: fadeIn; /* Fade in the background */
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  -webkit-animation-name: fadeIn;
   -webkit-animation-duration: 0.4s;
   animation-name: fadeIn;
   animation-duration: 0.4s;
@@ -1591,7 +1435,6 @@ table {
   cursor: pointer;
 }
 
-/* Add Animation */
 @-webkit-keyframes slideIn {
   from {bottom: -300px; opacity: 0}
   to {bottom: 0; opacity: 1}
@@ -1612,9 +1455,6 @@ table {
   to {opacity: 1}
 }
 
-
-/* QUESTS MODAL END */
-
 .quests-wrapper table {
   width: 100%;
   border-collapse: collapse;
@@ -1625,17 +1465,17 @@ table {
 .quests-wrapper th, td {
   text-align: left;
   padding: 8px;
-  border-bottom: 1px solid #ddd; /* Add a light border for each row */
+  border-bottom: 1px solid #ddd;
   font-size: 11px;
 }
 
 .quests-wrapper th {
-  background-color: #333; /* Darker shade for headers */
+  background-color: #051b2d;
   color: #fff;
 }
 
 .quests-wrapper tr:hover {
-  background-color: #666; /* Highlight rows on hover */
+  background-color: #666;
 }
 
 .quests-wrapper input[type="checkbox"] {
@@ -1643,21 +1483,20 @@ table {
 }
 
 .quests-wrapper button {
-  background-color: #4CAF50; /* Green background for the close button */
+  background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
-  margin: 10px 0; /* Space out the button from the table */
+  margin: 10px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .quests-wrapper button:hover {
-  background-color: #45a049; /* Darker shade on hover */
+  background-color: #45a049;
 }
 
 .quests-wrapper span {
-  /* margin-top: 20px; */
   font-family: Oswald, serif;
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
@@ -1678,49 +1517,41 @@ table {
   border-collapse: collapse;
   border: 1px solid;
   margin-top: 4px;
+  position: relative;
+  z-index: 3;
+}
+
+.build-wrapper tbody tr {
+  background-color: #0000009e;
 }
 
 .build-wrapper th, td {
   text-align: left;
   padding: 8px;
-  border-bottom: 1px solid #ddd; /* Add a light border for each row */
+  border-bottom: 1px solid #ddd;
   font-size: 11px;
 }
 
 .build-wrapper th {
-  background-color: #333; /* Darker shade for headers */
+  background-color: #051b2d;
   color: #fff;
 }
 
 .build-wrapper tr:hover {
-  background-color: #666; /* Highlight rows on hover */
+  background-color: #666;
 }
 
 .build-wrapper input[type="checkbox"] {
   margin-right: 10px;
 }
 
-/* .build-wrapper button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.build-wrapper button:hover {
-  background-color: #45a049;
-} */
-
 .build-wrapper span {
-  /* margin-top: 20px; */
   font-family: Oswald, serif;
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
   padding-top: 0;
-  color: #cab35c;
+  color: #fff;
+  z-index: 3;
 }
 
 .build-wrapper tr th {
@@ -1730,8 +1561,6 @@ table {
 .build-wrapper tr td {
   vertical-align: middle;
 }
-
-/* skill cards start */
 
 .cards-wrapper {
   display: flex;
@@ -1744,108 +1573,88 @@ table {
 .card {
   width: 100px;
   height: 150px;
-  background-size: cover; /* Ensure the image covers the entire card */
-  background-position: center; /* Center the background image */
+  background-size: cover;
+  background-position: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   border-radius: 8px;
-  position: relative; /* Needed for positioning the overlay */
-  overflow: hidden; /* Ensures the background does not bleed outside the border-radius */
+  position: relative;
+  overflow: hidden;
   justify-content: center;
 }
 
 .card::before {
-  content: ""; /* Needed to generate the pseudo-element */
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3); /* Dark overlay to improve image visibility */
-  z-index: 1; /* Ensures the overlay is above the background image */
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
 .card-content {
-  z-index: 2; /* Ensures the text is above the overlay */
-  color: white; /* Set text color */
-  position: relative; /* Position relative to card */
-  text-align: center; /* Center the text */
-  width: 100%; /* Ensure it spans the width of the card */
+  z-index: 2;
+  color: white;
+  position: relative;
+  text-align: center;
+  width: 100%;
   font-size: 12px;
   background-color: darkslategray;
 }
 
-/* Optional: Add hover effect for cards */
 .card:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease-in-out;
 }
-
-/* skill cards end  */
 
 .build-placeholder {
   min-height: 500px;
   width: 100%;
   color: #d9b359;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
-/* .build-effects {
-  list-style-position: outside;
-  list-style-image: url(https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_point_list.png);
-} */
-
 .build-effects {
-  list-style: none; /* Disable default list styling */
-  padding-left: 0; /* Adjust padding as needed */
+  list-style: none;
+  padding-left: 0;
   margin: 0;
 }
 
 .build-effects li {
-  position: relative; /* Context for absolute positioning of the pseudo-element */
-  padding-left: 16px; /* Provide space for the custom marker; adjust as needed */
+  position: relative;
+  padding-left: 16px;
 }
 
 .build-effects li::before {
   content: "";
   position: absolute;
-  left: 0; /* Align to the left of the list item */
-  top: 50%; /* Center vertically, but will adjust */
-  width: 14px; /* Width of the custom marker image */
-  height: 12px; /* Height of the custom marker image */
+  left: 0;
+  top: 50%;
+  width: 14px;
+  height: 12px;
   background-image: url('https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_point_list.png');
-  background-size: contain; /* Adjust based on your image */
-  transform: translateY(-50%); /* Center align the marker */
+  background-size: contain;
+  transform: translateY(-50%);
 }
 
-/* .build-effects li::marker {
-  unicode-bidi: isolate;
-  font-variant-numeric: tabular-nums;
-  text-transform: none;
-  text-indent: 0px !important;
-  text-align: start !important;
-  text-align-last: start !important;
-  display: flex;
-  align-items: center;
-} */
-
 hr.custom-hr {
-  border: none; /* Remove default border */
-  height: 5px; /* Set a fixed height */
-  background-image: url('https://www.4gamer.net/image/bg_4gamer.gif'); /* Path to your image */
-  background-size: cover; /* Cover the entire area of the HR */
-  background-repeat: no-repeat; /* Prevent image from repeating */
-  background-position: center; /* Center the background image */
+  border: none;
+  height: 5px;
+  background-image: url('https://www.4gamer.net/image/bg_4gamer.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .common-unique-wrapper {
   display: flex;
   flex-direction: column;
   border: 1px solid #fff;
-  /* margin-top: 29px; */
   padding: 20px 10px 5px;
   margin-bottom: 15px;
 }
@@ -1908,27 +1717,4 @@ hr.custom-hr {
   font-family: Oswald, serif;
   letter-spacing: 0.05rem;
   font-size: 16px;
-}
-
-/* Extra small devices (phones, less than 576px) */
-/* No media query since this is the default in Bootstrap */
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
 }
