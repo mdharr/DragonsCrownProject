@@ -10,7 +10,7 @@
 .carried-runes {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 .carried-runes .rune {
@@ -221,6 +221,8 @@ button.option-buttons:disabled {
   border-radius: 3px;
   font-size: 1.5rem;
   width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .spell-counter-top-right {
@@ -306,7 +308,7 @@ button.option-buttons:disabled {
   background-color: #00000094;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   border-radius: 3px;
   border: 1px solid #fff;
   position: absolute;
@@ -317,7 +319,9 @@ button.option-buttons:disabled {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
+  width: 100%;
+  padding: 10px;
 }
 
 .option-buttons-container {
