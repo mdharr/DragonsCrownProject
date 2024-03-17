@@ -357,7 +357,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onEnterPress(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
-      // Trigger the blur event manually
       let element = event.target as HTMLElement;
       element.blur();
     }
@@ -365,7 +364,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onLevelChange(): void {
     const enteredLevel = Number(this.currentStats.level);
-    this.updateLevel(enteredLevel);
+    if (isNaN(enteredLevel)) {
+      this.updateLevel(1);
+    } else {
+      this.updateLevel(enteredLevel);
+    }
     this.playSound('confirm');
   }
 
