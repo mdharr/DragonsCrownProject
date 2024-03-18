@@ -1222,21 +1222,32 @@ blockquote ul li {
 }
 
 .skillListWrap dl {
-  margin-bottom: 15px;
-  border: 1px solid rgb(255, 255, 255);
+  /* margin-bottom: 15px;
+  border: 1px solid rgb(255, 255, 255); */
 }
 
 .skillListWrap dt {
   padding: 5px 10px;
-  border-bottom: 1px solid #fff;
-  background-color: rgb(21 43 56 / 77%);
   position: relative;
   transition: background-color 0.2s ease-in-out;
+  background: #1b1a1a;
+  color: #f4e0a5;
+  border: 0px;
+  font-size: 14px;
+  /* box-shadow: 2px 5px 10px rgba(0,0,0,0.5), inset 0px 0px 14px 1px rgba(0,0,0,0.75); */
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
 }
 
 .skillListWrap dt:hover {
   cursor: pointer;
-  background-color: rgb(113 35 35 / 40%);
+  /* background-color: rgb(113 35 35 / 40%); */
+  color: #FFFFFF;
+}
+
+.skillListWrap dd {
+  border: 0.2px solid #999;
+  border-top: none;
 }
 
 .skillListWrap ol {
@@ -1420,7 +1431,8 @@ table {
 }
 
 .selected-skill {
-  background-color: rgb(177 45 47 / 80%) !important;
+  /* background-color: rgb(177 45 47 / 80%) !important; */
+  color:#FFFFFF !important;
 }
 
 .selected-rank {
@@ -1512,8 +1524,8 @@ table {
 }
 
 .quests-wrapper th {
-  background-color: #051b2d;
-  color: #fff;
+  background-color: #1b1a1a;
+  color: #cab35c;
 }
 
 .quests-wrapper tr:hover {
