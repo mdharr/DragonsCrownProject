@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { AudioEntity } from 'src/app/models/audio-entity';
 import { Rune } from 'src/app/models/rune';
 import { Spell } from 'src/app/models/spell';
@@ -8,7 +8,7 @@ import { Spell } from 'src/app/models/spell';
   templateUrl: './rune-matcher.component.html',
   styleUrls: ['./rune-matcher.component.css']
 })
-export class RuneMatcherComponent implements OnInit {
+export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // properties
   carriedRunes: Rune[] = [];
@@ -25,9 +25,11 @@ export class RuneMatcherComponent implements OnInit {
   nextCounter: number = 0;
   runeContainerWidth: number = 0;
   runeContainerHeight: number = 0;
+  currentTimeoutId: number | null = null;
 
   // sounds
   currentAudio: HTMLAudioElement | null = null;
+  currentAudioBufferSource: AudioBufferSourceNode | null = null;
   sounds: AudioEntity[] = [
     { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
     { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
@@ -54,6 +56,8 @@ export class RuneMatcherComponent implements OnInit {
     { name: 'unveil', path: '/assets/audio/dc_unveilt_se.mp3' },
     { name: 'unveil_alt', path: '/assets/audio/dc_unveil_se_alt.mp3' },
     { name: 'ending', path: '/assets/audio/dc_ending_se.mp3' },
+    { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
+    { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
   ]
 
   // booleans
@@ -63,12 +67,24 @@ export class RuneMatcherComponent implements OnInit {
   revealSpell: boolean = false;
   enableNext: boolean = false;
   showRuneLetters: boolean = false;
+  gameStarted: boolean = false;
 
   @ViewChild('runeContainer') runeContainerRef!: ElementRef;
   runePositions: Array<{ left: string, top: string }> = [];
 
   ngOnInit() {
     this.fetchData();
+  }
+
+  ngAfterViewInit() {
+    this.typeOutText('Match missing runes etched on the wall with carried runes to proceed. Enter the correct combination and be rewarded with powerful magic spells. Click SHOW HINT at anytime if you get stuck!', 'menu-text');
+  }
+
+  ngOnDestroy() {
+    this.stopCurrentSound();
+    if (this.currentTimeoutId) {
+      clearTimeout(this.currentTimeoutId);
+    }
   }
 
   async fetchData() {
@@ -184,12 +200,69 @@ export class RuneMatcherComponent implements OnInit {
     return null;
   }
 
+  // stopCurrentSound() {
+  //   if (this.currentAudio) {
+  //     this.currentAudio.pause();
+  //     this.currentAudio.currentTime = 0;
+  //     this.currentAudio = null;
+  //   }
+  // }
+
   stopCurrentSound() {
     if (this.currentAudio) {
-      this.currentAudio.pause();
-      this.currentAudio.currentTime = 0;
-      this.currentAudio = null;
+        this.currentAudio.pause();
+        this.currentAudio.currentTime = 0;
+        this.currentAudio = null;
     }
+
+    if (this.currentAudioBufferSource) {
+        this.currentAudioBufferSource.stop();
+        this.currentAudioBufferSource = null;
+    }
+  }
+
+  // playLoopingSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
+  //   const audioObj = this.sounds.find(sound => sound.name === soundName);
+  //   const audioPath = audioObj?.path;
+  //   if (audioPath) {
+  //       const audio = new Audio(audioPath);
+  //       audio.preload = 'auto';
+  //       audio.volume = volume;
+  //       audio.loop = true;  // Enable looping
+  //       audio.play();
+  //       this.currentAudio = audio; // Assuming you want to track the current audio
+  //       return audio;
+  //   }
+  //   return null;
+  // }
+
+  async playLoopingSound(soundName: string, volume: number = 1.0): Promise<AudioBufferSourceNode | null> {
+    const audioObj = this.sounds.find(sound => sound.name === soundName);
+    const audioPath = audioObj?.path;
+
+    if (audioPath) {
+        const context = new AudioContext();
+        return fetch(audioPath)
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+            .then(audioBuffer => {
+                const source = context.createBufferSource();
+                source.buffer = audioBuffer;
+                source.loop = true;
+
+                const gainNode = context.createGain();
+                gainNode.gain.value = volume;
+
+                source.connect(gainNode);
+                gainNode.connect(context.destination);
+
+                source.start(0);
+                this.currentAudioBufferSource = source;
+
+                return source;
+            });
+    }
+    return Promise.resolve(null);
   }
 
   getDelay(index: number): number {
@@ -292,6 +365,13 @@ export class RuneMatcherComponent implements OnInit {
 
   viewRuneLetters() {
     this.showRuneLetters = !this.showRuneLetters;
+    this.playSound('blip');
+  }
+
+  startGame() {
+    this.gameStarted = !this.gameStarted;
+    this.stopCurrentSound();
+    this.playSound('rune');
   }
 
   getRandomLeft(index: number): string {
@@ -309,7 +389,7 @@ export class RuneMatcherComponent implements OnInit {
   calculateRunePositions() {
     const runeSize = 100; // The size of the rune image
     const containerWidth = 898; // Assuming the container width
-    const containerHeight = 261; // Assuming the container height
+    const containerHeight = 310; // Assuming the container height
     const positions = [];
 
     for (let i = 0; i < this.currentSpell.runes.length; i++) {
@@ -335,4 +415,70 @@ export class RuneMatcherComponent implements OnInit {
 
     this.runePositions = positions;
   }
+
+  // async typeOutText(input: string, elementId: string): Promise<void> {
+  //   const element = document.getElementById(elementId) as HTMLParagraphElement;
+  //   if (!element) {
+  //       console.error('Element not found');
+  //       return;
+  //   }
+
+  //   element.textContent = '';
+
+  //   if (this.currentTimeoutId !== null) {
+  //       clearTimeout(this.currentTimeoutId);
+  //       this.currentTimeoutId = null;
+  //   }
+
+  //   this.playLoopingSound('dialogue', 1.0);
+
+  //   for (let i = 0; i < input.length; i++) {
+  //       if (this.currentTimeoutId === null && i !== 0) {
+  //           return;
+  //       }
+
+  //       await new Promise<void>((resolve) => {
+  //           this.currentTimeoutId = window.setTimeout(() => {
+  //               element.textContent += input[i];
+  //               resolve();
+  //           }, 20);
+  //       });
+  //   }
+
+  //   this.currentTimeoutId = null;
+
+  //   this.stopCurrentSound();
+  // }
+
+  async typeOutText(input: string, elementId: string): Promise<void> {
+    const element = document.getElementById(elementId) as HTMLParagraphElement;
+    if (!element) {
+      console.error('Element not found');
+      return;
+    }
+
+    element.textContent = '';
+
+    this.playLoopingSound('dialogue', 1.0);
+
+    let temporaryText = '';
+    for (let i = 0; i < input.length; i++) {
+      temporaryText += input[i];
+      element.textContent = temporaryText;
+
+      // Logic to check if the next part of the word will fit
+      // If not, insert a hyphen and break
+      if (i < input.length - 1 && element.scrollWidth > element.clientWidth) {
+        temporaryText += '-';  // Add a hyphen at the break
+        element.textContent = temporaryText;
+        await new Promise<void>(resolve => setTimeout(resolve, 20));
+        temporaryText = '';  // Reset temporaryText for the next line
+      }
+
+      await new Promise<void>(resolve => setTimeout(resolve, 20));
+    }
+
+    this.stopCurrentSound();
+  }
+
 }

@@ -152,6 +152,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
     { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
     { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
+    { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
+    { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
   ]
 
   // subscriptions

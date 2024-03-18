@@ -5,12 +5,70 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  width: 100%;
 }
+
+.start-wrapper {
+  min-height: 295px;
+  height: 295px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background-color: black;
+  z-index: 1;
+  box-shadow: 0px 0px 25px #3c362f;
+  border: 1px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  background-color: #1b1a1a;
+  box-shadow: -1px 5px 10px rgba(0,0,0,0.5), inset 0px 0px 14px 1px rgba(0,0,0,0.75);
+  z-index: 1;
+  border: 10px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
+}
+
+.menu-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#menu-text {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.01);
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  min-height: 150px;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  word-wrap: break-word;
+  /* hyphens: auto; */
+  text-align: justify;
+}
+
+.continue-btn {
+
+}
+
+/* .carried-runes {
+  display: flex;
+  flex-direction: row;
+} */
 
 .carried-runes {
   display: flex;
   flex-direction: row;
-  /* gap: 20px; */
+  justify-content: space-evenly;
+  position: absolute;
+  top: 18px;
+  left: 20%;
+  gap: 20px;
 }
 
 .carried-runes .rune {
@@ -71,11 +129,13 @@
   background-color: rgb(3 68 89);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
   color: #fff;
+  border: 2px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
 .option-buttons:hover {
   background-color:rgba(153, 153, 153, 0.278);
-  border: 1px solid #fff;
+  border: 2px solid #fff;
 }
 
 button.option-buttons:disabled {
@@ -131,15 +191,19 @@ button.option-buttons:disabled {
   animation: complexReveal 0.5s ease forwards;
   width: 400px;
   height: 100px;
-  background-color: #000000;
+  background-color: #1b1a1a;
   justify-content: space-between;
   border-radius: 3px;
-  border: 1px solid #fff;
   position: absolute;
-  top: 40%;
+  /* top: 40%; */
+  top: 55%;
+  right: 0;
   padding: 5px;
   gap: 20px;
   letter-spacing: 0.05em;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
+  box-shadow: -1px 5px 10px rgba(0,0,0,0.5), inset 0px 0px 14px 1px rgba(0,0,0,0.75);
 }
 
 .reveal {
@@ -191,8 +255,12 @@ button.option-buttons:disabled {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  flex: 1;
-  text-align: center;
+  text-align: left;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  padding-top: 10px;
+  width: 100%;
 }
 
 .spell-counter {
@@ -222,6 +290,20 @@ button.option-buttons:disabled {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hint-top-center label {
+  min-width: 250px;
+  text-align: center;
+  background-color: #1b1a1a;
+  text-shadow: 1px 1px black;
+  padding: 0px 3px;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
+  box-shadow: -1px 5px 10px rgba(0,0,0,0.5), inset 0px 0px 14px 1px rgba(0,0,0,0.75);
 }
 
 .spell-counter-top-right {
@@ -257,7 +339,6 @@ button.option-buttons:disabled {
   width: 100%;
   justify-content: space-evenly;
 }
-
 
 .carried-rune-container img {
   width: 70px;
@@ -301,7 +382,21 @@ button.option-buttons:disabled {
   justify-content: center;
 }
 
-.footer-container {
+.no-spells h3 {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.stats-box {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .footer-container {
   width: 600px;
   height: 150px;
   background-color: #00000094;
@@ -312,6 +407,26 @@ button.option-buttons:disabled {
   border: 1px solid #fff;
   position: absolute;
   bottom: 0;
+  border: 1px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border: 10px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
+} */
+
+.footer-container {
+  width: 100%;
+  height: 110px;
+  background-color: #1b1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid #fff;
+  position: absolute;
+  bottom: 0;
+  border: 8px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
+  box-shadow: -1px 5px 10px rgba(0,0,0,0.5), inset 0px 0px 14px 1px rgba(0,0,0,0.75);
 }
 
 .button-and-runes-container {
@@ -324,8 +439,22 @@ button.option-buttons:disabled {
 }
 
 .option-buttons-container {
-  display: flex;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.start {
+  justify-self: start;
+}
+
+.end {
+  justify-self: end;
 }
 
 .icon-image {
@@ -367,7 +496,7 @@ button.option-buttons:disabled {
   transform: translateY(-10px);
   position: absolute;
   z-index: 2;
-  top: 5px;
+  top: -16px;
   scale: 1;
 }
 

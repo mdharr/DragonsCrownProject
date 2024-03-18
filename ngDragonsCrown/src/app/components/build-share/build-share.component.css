@@ -15,25 +15,25 @@
 
 .content {
   position: relative;
-    max-width: 1000px;
-    width: 1000px;
-    min-height: fit-content;
-    margin: 0 auto;
-    margin-top: 11px;
-    margin-bottom: 100px;
-    padding-top: 40px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    background-color: rgb(0 35 51);
-    background-color: rgb(3 68 89);
-    color: #fff;
-    box-shadow: 0px 0px 10px 2px #000000;
-    background-repeat: repeat;
-    background-position: top left;
-    background-size: 100%;
-    z-index: 1;
-    border: 5px solid transparent;
-    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
+  max-width: 1000px;
+  width: 1000px;
+  min-height: fit-content;
+  margin: 0 auto;
+  margin-top: 11px;
+  margin-bottom: 100px;
+  padding-top: 40px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: rgb(0 35 51);
+  background-color: rgb(3 68 89);
+  color: #fff;
+  box-shadow: 0px 0px 10px 2px #000000;
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 100%;
+  z-index: 1;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
 .content::before {
@@ -99,11 +99,12 @@
   max-width: 1000px;
   background-color: rgba(0, 0, 0, 0.6);
   background-color: #0404049b;
-  border: 2px solid #ffd602;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .build-background {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #1b1a1a;
   z-index: 0;
 }
 
@@ -216,11 +217,13 @@
   background-position: center;
   justify-content: center;
   background-color: #160001;
-  border: 1px solid #ffd602;
+  /* border: 1px solid #ffd602; */
   height: 200px;
   box-shadow: inset 0px 0px 25px #030a0d;
   background-image: url(/assets/graphics/splash.png);
   width: 100%;
   max-width: 1000px;
   margin-top: 10px;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }

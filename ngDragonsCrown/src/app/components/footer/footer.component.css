@@ -4,8 +4,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  border-top: 2px solid #d9b359;
   background-color: #004f8457;
+  border-top: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .footer-text {

@@ -83,7 +83,7 @@
   background-position: top left;
   background-size: 100%;
   z-index:1;
-  border: 5px solid transparent;
+  border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
@@ -132,9 +132,12 @@
 .content p {
   line-height: 1.6;
   margin-bottom: 20px;
-  font-family: fantasy;
-  -webkit-filter: drop-shadow(0px 0px 8px rgba(14, 14, 14, 1.0));
   color: #fff;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.05rem;
 }
 
 .portraits {
@@ -149,8 +152,9 @@
   width: 100%;
   padding: 0;
   min-height: 71px;
-  border: 1px solid rgb(202, 179, 92);
   background-color: black;
+  /* border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30; */
 }
 
 .portraits ul li img {
@@ -169,22 +173,35 @@
   opacity: 0.7;
   filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
   transition: filter 0.6s, opacity 0.3s;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+}
+
+.unselected:first-of-type {
+  border-left: 3px solid transparent;
+}
+
+.unselected:last-of-type {
+  border-right: 3px solid transparent;
 }
 
 .unselected:hover {
-  box-shadow: #ffd602 0px 0px 0px 2px;
   cursor: pointer;
   opacity: 1;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2);
   z-index: 3;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .selected {
-  box-shadow: rgb(244 67 54) 0px 0px 0px 2px;
+  /* box-shadow: rgb(244 67 54) 0px 0px 0px 3px; */
   width:100%;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2);
   opacity: 1;
   z-index: 2;
+  border: none;
+  border: 3px solid rgb(244 67 54);
 }
 
 .spacer {
@@ -236,6 +253,8 @@
   background-repeat: no-repeat;
   background-color: black;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 30%), var(--backgroundImage);
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .class-backdrop::before {
@@ -328,6 +347,8 @@
   background-size: cover;
   background-position: top;
   background-color: black;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .n1-wrapper::before {
@@ -596,6 +617,8 @@ label {
   box-shadow: inset 0px 0px 25px #030a0d;
   background-image: url(/assets/graphics/splash.png);
   margin-top: 9px;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .small-text {
@@ -731,6 +754,8 @@ html {
   background-color: rgba(0, 0, 0, 0.6);
   padding: 5px 10px;
   box-shadow: inset 0px 0px 25px #030a0d;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .meta-wrapper.build-background {
@@ -780,6 +805,8 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   padding-top: 15px;
+  border: 3px solid transparent;
+    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .rune-wrapper::before {
@@ -854,13 +881,15 @@ html {
   background-color: black;
   padding: 5px;
   border-radius: 6px;
-  border: 3px solid #ffd602;
+  border: 3px solid #b39a72;
   position: absolute;
   top: -130px;
   left: 0px;
   z-index: 1000;
   width: 200px;
   height: 115px;
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .media-wrapper {
@@ -1047,17 +1076,17 @@ blockquote ul li {
 }
 
 .selected-skills {
-  border: 1px solid #ffd602 !important;
-  border-bottom: 1px solid transparent !important;
-  margin-bottom: -1px;
   z-index: 1;
   background-color: rgb(0 0 0) !important;
   color: white !important;
+  border: 3px solid transparent !important;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 !important;
+  box-shadow: 0px 1px 1px black;
 }
 
 #common-btn {
-  border: 1px solid transparent;
-  margin-bottom: -1px;
+  border: 3px solid transparent;
+  margin-bottom: -2px;
   border-radius: 6px 0 0 0;
   width: 125px;
   font-family: Oswald, serif;
@@ -1065,16 +1094,18 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  font-size: 12px;
+  border-bottom: none !important;
 }
 
 #common-btn:hover {
   background-color:rgba(153, 153, 153, 0.278);
-  border: 1px solid #fff;
+  border: 3px solid #fff;
 }
 
 #unique-btn {
-  border: 1px solid transparent;
-  margin-bottom: -1px;
+  border: 3px solid transparent;
+  margin-bottom: -2px;
   border-radius: 0 0 0 0;
   width: 125px;
   font-family: Oswald, serif;
@@ -1082,16 +1113,18 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  font-size: 12px;
+  border-bottom: none !important;
 }
 
 #unique-btn:hover {
   background-color:rgba(153, 153, 153, 0.278);
-  border: 1px solid #fff;
+  border: 3px solid #fff;
 }
 
 #quests-btn {
-  border: 1px solid transparent;
-  margin-bottom: -1px;
+  border: 3px solid transparent;
+  margin-bottom: -2px;
   border-radius: 0 0 0 0;
   width: 125px;
   font-family: Oswald, serif;
@@ -1099,16 +1132,18 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  font-size: 12px;
+  border-bottom: none !important;
 }
 
 #quests-btn:hover {
   background-color:rgba(153, 153, 153, 0.278);
-  border: 1px solid #fff;
+  border: 3px solid #fff;
 }
 
 #build-btn {
-  border: 1px solid transparent;
-  margin-bottom: -1px;
+  border: 3px solid transparent;
+  margin-bottom: -2px;
   border-radius: 0;
   width: 125px;
   font-family: Oswald, serif;
@@ -1116,16 +1151,18 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  font-size: 12px;
+  border-bottom: none !important;
 }
 
 #build-btn:hover {
   background-color:rgba(153, 153, 153, 0.278);
-  border: 1px solid #fff;
+  border: 3px solid #fff;
 }
 
 #rune-matcher-btn {
-  border: 1px solid transparent;
-  margin-bottom: -1px;
+  border: 3px solid transparent;
+  margin-bottom: -2px;
   border-radius: 0 6px 0 0;
   width: 125px;
   font-family: Oswald, serif;
@@ -1133,11 +1170,13 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  font-size: 12px;
+  border-bottom: none !important;
 }
 
 #rune-matcher-btn:hover {
   background-color:rgba(153, 153, 153, 0.278);
-  border: 1px solid #fff;
+  border: 3px solid #fff;
 }
 
 .common-skills {
@@ -1155,7 +1194,10 @@ blockquote ul li {
 }
 
 .remaining-sp {
-  font-family: Oswald, serif;
+  /* font-family: Oswald, serif; */
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
   padding-top: 0;
@@ -1497,7 +1539,10 @@ table {
 }
 
 .quests-wrapper span {
-  font-family: Oswald, serif;
+  /* font-family: Oswald, serif; */
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
   padding-top: 0;
@@ -1718,3 +1763,4 @@ hr.custom-hr {
   letter-spacing: 0.05rem;
   font-size: 16px;
 }
+
