@@ -13,7 +13,10 @@
       </div>
       <div class="middle">
         <div class="story-label" style="display: flex;">
-          <app-particles style="overflow: hidden;"></app-particles>
+          <!-- <app-particles style="overflow: hidden;"></app-particles> -->
+          <div class="particle">
+            <video src="https://www.dragonsdogma.com/2/assets/images/media/ptcl.mp4" preload="" autoplay="" playsinline="" muted="" loop=""></video>
+          </div>
         </div>
         <hr>
         <p style="background-color: rgba(0, 0, 0, 0.01);" class="small-text">SELECT A CLASS:</p>
@@ -186,7 +189,8 @@
           <button id="rune-matcher-btn" [class.selected-skills]="!showCommonSkills && !showUniqueSkills && !viewQuests && !viewBuild && viewRunes" mat-button (click)="viewRunesMatcher()">View Runes</button>
         </ng-container>
 
-        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('castle_bg') + ')'}">
+        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('castle_bg') + ')'}"> -->
+        <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild && !viewRunes">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
 
@@ -295,7 +299,7 @@
         <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl+ ')'}">
           <div class="quests-wrapper">
             <span style="margin-bottom: 5px;">Skill Points from Quests: {{ calculateTotalSkillPoints() }}</span>
-            <table>
+            <!-- <table>
               <thead>
                 <tr>
                   <th>
@@ -324,7 +328,26 @@
                   <td>{{ quest.path }}</td>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
+            <label class="custom-checkbox">
+              <input type="checkbox"
+              [checked]="areAllQuestsSelected()"
+              (change)="toggleAllQuests($event)">
+              <span class="checkmark"></span>
+            </label>
+            <div class="quest-grid">
+              <div class="quest" *ngFor="let quest of quests">
+                <h6 style="color: #fff;">{{ quest.name }}</h6>
+                <p style="color: #fff;">{{ quest.description }}</p>
+                <p style="color: #fff;">SP: {{ quest.skillPoints }}</p>
+                <p style="color: #fff;">Location: {{ quest.location }}</p>
+                <p style="color: #fff;">Path: {{ quest.path }}</p>
+                <label class="custom-checkbox">
+                  <input type="checkbox" [checked]="quest.selected" (change)="toggleQuest(quest)">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <div style="padding-bottom: 15px; min-height: 536px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [style.backgroundImage]="'url(' + getImageUrl('build_bg') + ')'">
