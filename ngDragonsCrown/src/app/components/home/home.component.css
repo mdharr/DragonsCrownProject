@@ -231,7 +231,6 @@
 }
 
 .selected {
-  /* box-shadow: rgb(244 67 54) 0px 0px 0px 3px; */
   width:100%;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.2);
   opacity: 1;
@@ -555,24 +554,20 @@ label {
 
 #level:focus {
   outline: none;
-  animation: goldShine 2s infinite alternate;
+  animation: goldShine 500ms infinite alternate;
 }
 
 #level:focus-visible {
   outline: none;
-  animation: goldShine 1s infinite alternate;
+  animation: goldShine 500ms infinite alternate;
 }
 
 @keyframes goldShine {
-  from {
-    box-shadow: 0 0 0.5px 0 rgba(255, 215, 0, 0.6),
-                0 0 1px 0 rgba(255, 215, 0, 0.6),
-                0 0 1.5px 0.5px rgba(255, 215, 0, 0.6);
+  0% {
+    box-shadow: 0 0 0.5px 0 rgb(255 255 173 / 60%), 0 0 1px 0 rgb(255 255 173 / 60%), 0 0 1.5px 0.5px rgb(255 255 173 / 60%);
   }
-  to {
-    box-shadow: 0 0 0.5px 0.5px rgba(255, 215, 0, 0.8),
-                0 0 1px 1px rgba(255, 215, 0, 0.8),
-                0 0 1.5px 1.5px rgba(255, 215, 0, 0.8);
+  100% {
+      box-shadow: 0 0 0.5px 0.5px rgb(255 255 173 / 60%), 0 0 1px 1px rgb(255 255 173 / 60%), 0 0 1.5px 1.5px rgb(255 255 173 / 60%);
   }
 }
 
