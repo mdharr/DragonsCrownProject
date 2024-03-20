@@ -573,6 +573,33 @@ label {
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
+textarea {
+  border-color: #cab35c;
+  border: 3px solid transparent !important;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 !important;
+  background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png);
+  background-color: #1b1a1a;
+  box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75);
+  width: 100%;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+textarea:focus {
+  outline: none;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  border: 2px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
+}
+
+textarea:focus-visible {
+  outline: none;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  border: 2px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
+}
+
 .player-level::before {
   position: absolute;
   background: #e44732;

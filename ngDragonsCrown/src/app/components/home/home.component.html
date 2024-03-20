@@ -42,7 +42,6 @@
           </ul>
         </div>
         <hr>
-        <!-- <div class="class-description class-backdrop" [style.backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'"> -->
         <div class="class-description class-backdrop" [style.--backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'">
           <ng-container *ngIf="classSelected">
             <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation>
@@ -404,7 +403,7 @@
           </div>
         </div>
         <div style="padding-top: 15px;" *ngIf="classSelected && viewBuild && this.currentBuild.length > 0">
-          <textarea style="background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png); background-color: #1b1a1a; box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75); width: 100%; color: #fff; padding: 10px; border-color: #cab35c; margin-bottom: 10px;" readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
+          <textarea readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
           <button class="build-buttons" style="margin-right: 10px;" mat-button (click)="copyBuildToClipboard()">Copy</button>
           <button class="build-buttons" mat-button (click)="exportBuildAsTextFile()">Export</button>
         </div>
