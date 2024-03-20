@@ -52,15 +52,6 @@
   text-align: left;
 }
 
-.continue-btn {
-
-}
-
-/* .carried-runes {
-  display: flex;
-  flex-direction: row;
-} */
-
 .disable-pointer-events {
   pointer-events: none;
 }
