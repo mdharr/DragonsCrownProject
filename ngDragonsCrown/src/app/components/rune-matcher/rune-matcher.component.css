@@ -153,6 +153,7 @@ button.option-buttons:disabled {
   position: relative;
   /* border-bottom: 2px solid white; */
   background-color: #1b1a1a;
+  box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75);
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
@@ -200,6 +201,9 @@ button.option-buttons:disabled {
   justify-content: space-between;
   border-radius: 3px;
   position: absolute;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
   /* top: 40%; */
   top: 55%;
   right: 0;
@@ -208,7 +212,7 @@ button.option-buttons:disabled {
   letter-spacing: 0.05em;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
-  box-shadow: -1px 5px 10px rgba(0,0,0,0.5), inset 0px 0px 14px 1px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75);
 }
 
 .reveal {
@@ -302,6 +306,7 @@ button.option-buttons:disabled {
 
 .hint-top-center label {
   min-width: 250px;
+  font-size: 18px;
   text-align: center;
   background-color: #1b1a1a;
   background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png);
