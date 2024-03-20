@@ -555,11 +555,25 @@ label {
 
 #level:focus {
   outline: none;
-  border: 2px solid red;
+  animation: goldShine 2s infinite alternate;
 }
+
 #level:focus-visible {
   outline: none;
-  border: 2px solid red;
+  animation: goldShine 1s infinite alternate;
+}
+
+@keyframes goldShine {
+  from {
+    box-shadow: 0 0 0.5px 0 rgba(255, 215, 0, 0.6),
+                0 0 1px 0 rgba(255, 215, 0, 0.6),
+                0 0 1.5px 0.5px rgba(255, 215, 0, 0.6);
+  }
+  to {
+    box-shadow: 0 0 0.5px 0.5px rgba(255, 215, 0, 0.8),
+                0 0 1px 1px rgba(255, 215, 0, 0.8),
+                0 0 1.5px 1.5px rgba(255, 215, 0, 0.8);
+  }
 }
 
 #up-arrow {
