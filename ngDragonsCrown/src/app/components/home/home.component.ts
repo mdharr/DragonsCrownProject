@@ -108,6 +108,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   showBySPAsc: boolean = false;
   showBySPDesc: boolean = false;
   isSkillInfoVisible: boolean = false;
+  inputFocused: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -833,6 +834,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentClassAudio.currentTime = 0;
       this.currentClassAudio = null;
     }
+  }
+
+  onInputClick(): void {
+    if (!this.inputFocused) {
+      this.playSound('confirm');
+    }
+    this.inputFocused = true; // Set flag to true after the first click
+  }
+
+  onInputBlur(): void {
+    this.inputFocused = false; // Reset flag when input loses focus
   }
 
   getRequiredExpForNextLevel(): number {

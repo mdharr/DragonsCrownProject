@@ -236,7 +236,9 @@
   opacity: 1;
   z-index: 2;
   border: none;
-  border: 3px solid rgb(244 67 54);
+  /* border: 3px solid rgb(244 67 54); */
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
 .spacer {
@@ -554,12 +556,18 @@ label {
 
 #level:focus {
   outline: none;
-  animation: goldShine 500ms infinite alternate;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  border: 2px solid transparent;
+  background-color: #034459;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
 #level:focus-visible {
   outline: none;
-  animation: goldShine 500ms infinite alternate;
+  transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+  border: 2px solid transparent;
+  background-color: #034459;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
 @keyframes goldShine {
@@ -1557,9 +1565,11 @@ table {
 }
 
 .selected-skill {
-  background-color: #92312b !important;
+  /* background-color: #92312b !important; */
+  background-color: #034459 !important;
   color:#FFFFFF !important;
   box-shadow: none !important;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch !important;
 }
 
 .selected-rank {
@@ -1962,7 +1972,9 @@ hr.custom-hr {
   height: 20px;
   width: 20px;
   background-color: #ccc;
-  border-radius: 3px;
+  box-shadow: inset 0px 0px 1px #030a0d;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .custom-checkbox:hover input ~ .checkmark {
@@ -1970,7 +1982,8 @@ hr.custom-hr {
 }
 
 .custom-checkbox input:checked ~ .checkmark {
-  background-color: #92312b;
+  /* background-color: #92312b; */
+  background-color: #034459;
 }
 
 .checkmark:after {
@@ -1984,8 +1997,8 @@ hr.custom-hr {
 }
 
 .custom-checkbox .checkmark:after {
-  left: 7px;
-  top: 4px;
+  left: 5px;
+  top: 0px;
   width: 5px;
   height: 10px;
   border: solid white;

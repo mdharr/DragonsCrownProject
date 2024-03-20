@@ -63,7 +63,7 @@
               </div>
               <div class="player-level">
                 <label for="level">Level</label>
-                <input id="level" type="text" [(ngModel)]="currentStats.level" (blur)="onLevelChange()" (keyup)="onEnterPress($event)">
+                <input id="level" type="text" [(ngModel)]="currentStats.level" (blur)="onLevelChange(); onInputBlur()" (keyup)="onEnterPress($event)" (click)="onInputClick()">
                 <button mat-icon-button class="arrow-buttons" id="down-arrow" (click)="levelDown()">
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
