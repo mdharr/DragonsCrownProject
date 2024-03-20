@@ -15,7 +15,7 @@
         <div class="story-label" style="display: flex;">
           <!-- <app-particles style="overflow: hidden;"></app-particles> -->
           <div class="particle">
-            <video src="https://www.dragonsdogma.com/2/assets/images/media/ptcl.mp4" preload="auto" autoplay muted loop playsinline></video>
+            <video src="https://www.dragonsdogma.com/2/assets/images/media/ptcl.mp4" preload="metadata" autoplay muted loop playsinline></video>
           </div>
         </div>
         <hr>
@@ -201,7 +201,7 @@
                   <img class="skill-cards tilt" src="https://static.wikia.nocookie.net/dragons-crown/images/9/92/Common_skills.jpg" alt="Skill Card">
                 </div>
                 <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder>
-                <h3><span style="color: #d9b359;">Common Skills</span>: Can be learned by all classes.</h3>
+                <h3><span style="color: #d9b359;">Common Skills</span>: Available to all classes.</h3>
               </ng-container>
 
               <ng-container *ngIf="!showCommonSkills && showUniqueSkills">
@@ -209,7 +209,7 @@
                   <img class="skill-cards tilt" src="{{ currentClassData.cardUrl }}" alt="Skill Card">
                 </div>
                 <app-card-placeholder *ngIf="!playerCardLoaded"></app-card-placeholder>
-                <h3><span style="color: #d9b359;">Unique Skills</span>: Can only be learned by one class.</h3>
+                <h3><span style="color: #d9b359;">Unique Skills</span>: Specific to each class.</h3>
               </ng-container>
 
               <div class="common-skills" *ngIf="showCommonSkills && !showUniqueSkills">
@@ -329,7 +329,7 @@
                 </tr>
               </tbody>
             </table> -->
-            <label class="custom-checkbox">
+            <label class="custom-checkbox" id="toggle-all-label">
               <input type="checkbox"
               [checked]="areAllQuestsSelected()"
               (change)="toggleAllQuests($event)">

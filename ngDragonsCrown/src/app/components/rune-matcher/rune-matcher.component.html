@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="option-buttons-container">
-        <button class="option-buttons" (click)="getSpell()" [disabled]="!isNextAvailable()">{{ spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Start' }}</button>
+        <button id="start-button" class="option-buttons" (click)="getSpell()" [disabled]="!isNextAvailable()">{{ spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Start' }}</button>
         <button class="option-buttons end" (click)="viewRuneLetters()">{{ showRuneLetters ? 'Hide Hint' : 'Show Hint' }}</button>
         <button id="evaluate-button" class="option-buttons" (click)="evaluateCombination(currentRunes, userRunes)" [disabled]="!isSelectionComplete()">Submit</button>
         <button class="option-buttons end" (click)="restart()" [disabled]="!hasCurrentSpell">Restart</button>
@@ -66,6 +66,6 @@
     <div style="width: 700px; height: 150px; padding: 0px 30px;">
       <p id="menu-text"></p>
     </div>
-    <button (click)="startGame()" class="option-buttons">Continue</button>
+    <button (click)="startGame(); playSound('cast', .5)" class="option-buttons">Continue</button>
   </div>
 </div>
