@@ -1241,14 +1241,15 @@ blockquote ul li {
 #common-btn {
   border: 3px solid transparent;
   margin-bottom: -2px;
-  border-radius: 6px 0 0 0;
+  /* border-radius: 6px 0 0 0; */
+  border-radius: 0;
   width: 125px;
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: none !important;
 }
 
@@ -1267,7 +1268,7 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: none !important;
 }
 
@@ -1286,7 +1287,7 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: none !important;
 }
 
@@ -1305,7 +1306,7 @@ blockquote ul li {
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: none !important;
 }
 
@@ -1317,14 +1318,15 @@ blockquote ul li {
 #rune-matcher-btn {
   border: 3px solid transparent;
   margin-bottom: -2px;
-  border-radius: 0 6px 0 0;
+  /* border-radius: 0 6px 0 0; */
+  border-radius: 0;
   width: 125px;
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
   letter-spacing: 0.1rem;
   background-color:rgba(153, 153, 153, 0.088);
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: none !important;
 }
 
@@ -1989,16 +1991,20 @@ hr.custom-hr {
   text-rendering: geometricprecision;
   letter-spacing: 0.1rem;
   /* background-color: rgb(3 68 89); */
-  background-color: rgb(228 71 50);
+  /* background-color: rgb(228 71 50); */
+  background-color: rgb(161 47 32);
+  font-size: 16px;
   transition: background-color 0.2s ease-out, border 0.2s ease-out;
   color: #fff;
   border: 2px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
+  box-shadow: -1px 5px 10px rgba(0,0,0,0.5);
 }
 
 .build-buttons:hover {
   background-color:rgba(153, 153, 153, 0.278);
   border: 2px solid #fff;
+  box-shadow: 0px 1px 8px rgba(0,0,0,0.5);
 }
 
 /* GRID EXPERIMENT START */
@@ -2127,35 +2133,41 @@ hr.custom-hr {
   transform: rotate(45deg);
 }
 
-#toggle-all-label::before {
+#toggle-all-text {
+  position: absolute;
+  top: 7px;
+  right: 35px;
+}
+
+#toggle-all-text::before {
   position: absolute;
   background: #e44732;
   border-radius: 100%;
   content: "";
   display: block;
   height: 6px;
-  right: 43px;
+  right: 84px;
   position: absolute;
-  top: 6px;
+  top: 11px;
   width: 6px;
   z-index: 1;
 }
 
-#toggle-all-label::after {
+#toggle-all-text::after {
   position: absolute;
   background: #e44732;
   border-radius: 100%;
   content: "";
   display: block;
   height: 6px;
-  right: 43px;
+  right: 84px;
   position: absolute;
-  top: 6px;
+  top: 11px;
   width: 6px;
   z-index: 1;
 }
 
-#toggle-all-label::after {
+#toggle-all-text::after {
   position: absolute;
   animation: pulsate 1.5s ease infinite;
 }

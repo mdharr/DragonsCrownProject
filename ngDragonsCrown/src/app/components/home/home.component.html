@@ -334,6 +334,7 @@
                 </tr>
               </tbody>
             </table> -->
+            <span id="toggle-all-text">Toggle All</span>
             <label class="custom-checkbox" id="toggle-all-label">
               <input type="checkbox"
               [checked]="areAllQuestsSelected()"
@@ -403,9 +404,9 @@
           </div>
         </div>
         <div style="padding-top: 15px;" *ngIf="classSelected && viewBuild && this.currentBuild.length > 0">
-          <textarea style="width: 100%; background-color: #282828; color: #fff; padding: 10px; border-color: #cab35c;" readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
-          <button class="build-buttons" style="margin-right: 10px;" mat-button (click)="copyBuildToClipboard()">Copy Build Data</button>
-          <button class="build-buttons" mat-button (click)="exportBuildAsTextFile()">Export as Text File</button>
+          <textarea style="background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png); background-color: #1b1a1a; box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75); width: 100%; color: #fff; padding: 10px; border-color: #cab35c; margin-bottom: 10px;" readonly rows="10" [value]="generateBuildDataAsText()"></textarea>
+          <button class="build-buttons" style="margin-right: 10px;" mat-button (click)="copyBuildToClipboard()">Copy</button>
+          <button class="build-buttons" mat-button (click)="exportBuildAsTextFile()">Export</button>
         </div>
         <div class="rune-wrapper" style="padding-bottom: 15px;" *ngIf="classSelected && viewRunes">
           <app-rune-matcher style="z-index: 1; width: 100%; min-height: 500px; display: flex; align-items: center; justify-content: center; text-align: center;"></app-rune-matcher>
