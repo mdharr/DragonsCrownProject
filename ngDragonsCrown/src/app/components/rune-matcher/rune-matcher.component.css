@@ -61,6 +61,10 @@
   flex-direction: row;
 } */
 
+.disable-pointer-events {
+  pointer-events: none;
+}
+
 .carried-runes {
   display: flex;
   flex-direction: row;

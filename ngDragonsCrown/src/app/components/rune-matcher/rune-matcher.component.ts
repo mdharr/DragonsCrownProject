@@ -68,6 +68,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   enableNext: boolean = false;
   showRuneLetters: boolean = false;
   gameStarted: boolean = false;
+  carriedRunesEnabled: boolean = false;
 
   @ViewChild('runeContainer') runeContainerRef!: ElementRef;
   runePositions: Array<{ left: string, top: string }> = [];
@@ -138,6 +139,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         console.log("Current Carved Runes: ", this.currentCarvedRunes);
         this.stopCurrentSound();
         this.playSound('pageflip', 0.5);
+        this.carriedRunesEnabled = true;
       } catch (error) {
         console.error('Error choosing spell.');
       }
@@ -318,6 +320,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       }, 100)
       const evaluateButton = document.querySelector('#evaluate-button') as HTMLElement;
       evaluateButton.setAttribute('disabled', 'true');
+      this.carriedRunesEnabled = false;
     } else {
       const divElement = document.querySelector('.current-spell-wrapper') as HTMLElement;
       divElement?.classList.add('shake-animation');

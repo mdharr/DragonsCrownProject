@@ -39,7 +39,7 @@
   <div class="footer-container reveal">
     <div class="button-and-runes-container">
       <div class="carried-runes">
-        <div *ngFor="let carriedRune of carriedRunes; let i = index" class="carried-rune-container">
+        <div *ngFor="let carriedRune of carriedRunes; let i = index" class="carried-rune-container" [ngClass]="{'disable-pointer-events': !carriedRunesEnabled}">
           <span class="rune-letter" style="text-shadow: 1px 1px black;" [ngClass]="{'reveal-letters': showRuneLetters, 'hide-letters': !showRuneLetters}">{{ carriedRune.letter }}</span>
           <img class="rune"
                [src]="carriedRune.imageUrl"
