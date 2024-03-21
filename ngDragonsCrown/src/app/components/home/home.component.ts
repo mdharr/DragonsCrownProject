@@ -156,7 +156,61 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
     { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
     { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
-  ]
+  ];
+
+  fighterSounds: AudioEntity[] = [
+    { name: 'fighter1', path: '/assets/audio/select/fighter_select1.mp3' },
+    { name: 'fighter2', path: '/assets/audio/select/fighter_select2.mp3' },
+    { name: 'fighter3', path: '/assets/audio/select/fighter_select3.mp3' },
+    { name: 'fighter4', path: '/assets/audio/select/fighter_select4.mp3' },
+    { name: 'fighter5', path: '/assets/audio/select/fighter_select5.mp3' },
+    { name: 'fighter6', path: '/assets/audio/select/fighter_select6.mp3' },
+  ];
+
+  amazonSounds: AudioEntity[] = [
+    { name: 'amazon1', path: '/assets/audio/select/amazon_select1.mp3' },
+    { name: 'amazon2', path: '/assets/audio/select/amazon_select2.mp3' },
+    { name: 'amazon3', path: '/assets/audio/select/amazon_select3.mp3' },
+    { name: 'amazon4', path: '/assets/audio/select/amazon_select4.mp3' },
+    { name: 'amazon5', path: '/assets/audio/select/amazon_select5.mp3' },
+  ];
+
+  elfSounds: AudioEntity[] = [
+    { name: 'elf1', path: '/assets/audio/select/elf_select1.mp3' },
+    { name: 'elf2', path: '/assets/audio/select/elf_select2.mp3' },
+    { name: 'elf3', path: '/assets/audio/select/elf_select3.mp3' },
+    { name: 'elf4', path: '/assets/audio/select/elf_select4.mp3' },
+    { name: 'elf5', path: '/assets/audio/select/elf_select5.mp3' },
+    { name: 'elf6', path: '/assets/audio/select/elf_select6.mp3' },
+  ];
+
+  dwarfSounds: AudioEntity[] = [
+    { name: 'dwarf1', path: '/assets/audio/select/dwarf_select1.mp3' },
+    { name: 'dwarf2', path: '/assets/audio/select/dwarf_select2.mp3' },
+    { name: 'dwarf3', path: '/assets/audio/select/dwarf_select3.mp3' },
+    { name: 'dwarf4', path: '/assets/audio/select/dwarf_select4.mp3' },
+    { name: 'dwarf5', path: '/assets/audio/select/dwarf_select5.mp3' },
+    { name: 'dwarf6', path: '/assets/audio/select/dwarf_select6.mp3' },
+  ];
+
+  wizardSounds: AudioEntity[] = [
+    { name: 'wizard1', path: '/assets/audio/select/wizard_select1.mp3' },
+    { name: 'wizard2', path: '/assets/audio/select/wizard_select2.mp3' },
+    { name: 'wizard3', path: '/assets/audio/select/wizard_select3.mp3' },
+    { name: 'wizard4', path: '/assets/audio/select/wizard_select4.mp3' },
+    { name: 'wizard5', path: '/assets/audio/select/wizard_select5.mp3' },
+    { name: 'wizard6', path: '/assets/audio/select/wizard_select6.mp3' },
+    { name: 'wizard7', path: '/assets/audio/select/wizard_select7.mp3' },
+  ];
+
+  sorceressSounds: AudioEntity[] = [
+    { name: 'sorceress1', path: '/assets/audio/select/sorceress_select1.mp3' },
+    { name: 'sorceress2', path: '/assets/audio/select/sorceress_select2.mp3' },
+    { name: 'sorceress3', path: '/assets/audio/select/sorceress_select3.mp3' },
+    { name: 'sorceress4', path: '/assets/audio/select/sorceress_select4.mp3' },
+    { name: 'sorceress5', path: '/assets/audio/select/sorceress_select5.mp3' },
+    { name: 'sorceress6', path: '/assets/audio/select/sorceress_select6.mp3' },
+  ];
 
   // subscriptions
   private playerClassSubscription: Subscription | undefined;
@@ -267,12 +321,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.playSound('accept', 0.5);
         setTimeout(() => {
           this.stopCurrentClassSound();
-          this.playClassAudio(this.currentClassData.name.toLowerCase());
+          // this.playClassAudio(this.currentClassData.name.toLowerCase());
+          this.findClassAudio(this.currentClassData.name.toLowerCase());
         }, 200);
       }
       this.selectedClassIndex = classIndex;
       this.currentClassData = this.playerClasses[classIndex];
-      // console.log("CURRENT CLASS DATA: ", this.currentClassData);
 
       this.currentStats = { ...this.currentClassData.classStats[0] };
       this.resetLevel();
@@ -797,18 +851,79 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.copyShareLinkToClipboard();
   }
 
-  playClassAudio(className: string) {
+  getClassAudioEntity(className: string) {
+    let soundArr: AudioEntity[];
+
+    switch (className.toLowerCase()) {
+        case 'fighter':
+            soundArr = this.fighterSounds;
+            break;
+        case 'amazon':
+            soundArr = this.amazonSounds;
+            break;
+        case 'elf':
+            soundArr = this.elfSounds;
+            break;
+        case 'dwarf':
+            soundArr = this.dwarfSounds;
+            break;
+        case 'wizard':
+            soundArr = this.wizardSounds;
+            break;
+        case 'sorceress':
+            soundArr = this.sorceressSounds;
+            break;
+        default:
+            soundArr = [];
+            break;
+    }
+    return soundArr;
+  }
+
+  getRandomNum(arr: any) {
+    return Math.floor(Math.random() * arr.length) + 1;
+  }
+
+  findClassAudio(className: string) {
     if (this.previousClassVoice !== className) {
       this.previousClassVoice = className;
-
-      const targetClass = this.sounds.find(sound => sound.name === className);
-      if (targetClass) {
-        this.currentClassAudio = this.playSound(targetClass.name, 0.3);
+      const audioEntityArr = this.getClassAudioEntity(className);
+      const randomIndex = this.getRandomNum(audioEntityArr);
+      const targetClassSound = audioEntityArr.find((sound) => sound.name === (className + randomIndex));
+      console.log(targetClassSound);
+      if (targetClassSound) {
+        this.currentClassAudio = this.playSoundForClass(targetClassSound.name, audioEntityArr, 0.3);
       } else {
         console.error('Invalid class name:', className);
       }
     }
   }
+
+  playSoundForClass(soundName: string, audioEntity: AudioEntity[], volume: number = 1.0): HTMLAudioElement | null {
+    const audioObj = audioEntity.find(sound => sound.name === soundName);
+    const audioPath = audioObj?.path;
+    if (audioPath) {
+      const audio = new Audio(audioPath);
+      audio.volume = volume;
+      audio.play();
+      this.currentAudio = audio;
+      return audio;
+    }
+    return null;
+  }
+
+  // playClassAudio(className: string) {
+  //   if (this.previousClassVoice !== className) {
+  //     this.previousClassVoice = className;
+
+  //     const targetClass = this.sounds.find(sound => sound.name === className);
+  //     if (targetClass) {
+  //       this.currentClassAudio = this.playSound(targetClass.name, 0.3);
+  //     } else {
+  //       console.error('Invalid class name:', className);
+  //     }
+  //   }
+  // }
 
   playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
