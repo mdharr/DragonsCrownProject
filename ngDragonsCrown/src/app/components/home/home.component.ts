@@ -13,6 +13,7 @@ import { CombinedSkill } from 'src/app/models/combined-skill';
 import { ClassName } from 'src/app/types/class-name.type';
 import html2canvas from 'html2canvas';
 import { Router, RouterLink } from '@angular/router';
+import { VideoEntity } from 'src/app/models/video-entity';
 
 @Component({
   selector: 'app-home',
@@ -156,6 +157,15 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
     { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
     { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
+  ];
+
+  videos: VideoEntity[] = [
+    { name: 'fighter', path: '/assets/graphics/media/fighter_compressed.mp4' },
+    { name: 'amazon', path: '/assets/graphics/media/amazon_compressed.mp4' },
+    { name: 'elf', path: '/assets/graphics/media/elf_compressed.mp4' },
+    { name: 'dwarf', path: '/assets/graphics/media/dwarf_compressed.mp4' },
+    { name: 'sorceress', path: '/assets/graphics/media/sorceress_compressed.mp4' },
+    { name: 'wizard', path: '/assets/graphics/media/wizard_compressed.mp4' },
   ];
 
   fighterSounds: AudioEntity[] = [
