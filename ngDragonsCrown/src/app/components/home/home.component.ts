@@ -109,6 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   showBySPDesc: boolean = false;
   isSkillInfoVisible: boolean = false;
   inputFocused: boolean = false;
+  loading: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -258,6 +259,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewBuild = false;
     this.viewRunes = false;
     this.currentLevelSP = 1;
+    this.loading = true;
 
     if(this.classSelected) {
       this.selected = true;
@@ -278,6 +280,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       try {
         await this.preloadImage(this.currentClassData.cardUrl);
         this.playerCardLoaded = true;
+        this.loading = false;
       } catch (error) {
         console.error('Image loading failed', error);
       }
