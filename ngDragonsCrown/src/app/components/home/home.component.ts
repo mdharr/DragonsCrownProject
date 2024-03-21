@@ -111,6 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   isSkillInfoVisible: boolean = false;
   inputFocused: boolean = false;
   loading: boolean = false;
+  classDataLoaded: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -324,6 +325,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewRunes = false;
     this.currentLevelSP = 1;
     this.loading = true;
+    this.classDataLoaded = true;
 
     if(this.classSelected) {
       this.selected = true;
@@ -819,7 +821,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             description: skill.description,
             rank: skill.rank
         };
-        console.log(this.buildToShare);
     });
 
     this.skillsNameAsc = this.sortByNameAsc(this.currentBuild);
@@ -900,7 +901,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const audioEntityArr = this.getClassAudioEntity(className);
       const randomIndex = this.getRandomNum(audioEntityArr);
       const targetClassSound = audioEntityArr.find((sound) => sound.name === (className + randomIndex));
-      console.log(targetClassSound);
       if (targetClassSound) {
         this.currentClassAudio = this.playSoundForClass(targetClassSound.name, audioEntityArr, 0.3);
       } else {
@@ -921,19 +921,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     return null;
   }
-
-  // playClassAudio(className: string) {
-  //   if (this.previousClassVoice !== className) {
-  //     this.previousClassVoice = className;
-
-  //     const targetClass = this.sounds.find(sound => sound.name === className);
-  //     if (targetClass) {
-  //       this.currentClassAudio = this.playSound(targetClass.name, 0.3);
-  //     } else {
-  //       console.error('Invalid class name:', className);
-  //     }
-  //   }
-  // }
 
   getVideoPath(className: string): string | undefined {
     const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase());

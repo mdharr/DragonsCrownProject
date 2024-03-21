@@ -280,6 +280,15 @@
   background-color: black;
 }
 
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.9) 85%, rgba(0, 0, 0, 0));
+}
 
 .class-backdrop {
   position: relative;
@@ -1995,6 +2004,10 @@ hr.custom-hr {
     background-color: rgba(177 45 47 / 80%);
     color: #fff;
   }
+}
+
+.custom-button {
+  color: rgb(161, 47, 32);
 }
 
 .build-buttons {
