@@ -23,6 +23,7 @@ import { ParticlesComponent } from './components/particles/particles.component';
 import { RuneMatcherComponent } from './components/rune-matcher/rune-matcher.component';
 import { BuildShareComponent } from './components/build-share/build-share.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FooterComponent } from './components/footer/footer.component';
     RuneMatcherComponent,
     BuildShareComponent,
     FooterComponent,
+    LoadingScreenComponent,
   ],
   imports: [
     BrowserModule,
