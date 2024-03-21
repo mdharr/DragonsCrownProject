@@ -935,6 +935,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   //   }
   // }
 
+  getVideoPath(className: string): string | undefined {
+    const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase());
+    return video ? video.path : undefined;
+  }
+
   playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
     const audioPath = audioObj?.path;
