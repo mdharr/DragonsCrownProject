@@ -1,2 +1,4 @@
-export class VideoEntity {
+export interface VideoEntity {
+  name: string;
+  path: string;
 }
