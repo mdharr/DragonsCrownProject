@@ -120,17 +120,17 @@
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
   letter-spacing: 0.1rem;
-  /* background-color:rgba(153, 153, 153, 0.088); */
-  background-color: rgb(3 68 89);
-  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  background-color: #015c74;
+  transition: background-color 0.1s ease-in-out, border 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
   color: #fff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   border: 2px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
 .option-buttons:hover {
-  background-color:rgba(153, 153, 153, 0.278);
-  border: 2px solid #fff;
+  background-color: #01546b;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 button.option-buttons:disabled {

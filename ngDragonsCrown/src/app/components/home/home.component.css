@@ -110,10 +110,11 @@
   margin-top: 95px;
   margin-bottom: 100px;
   padding-top: 40px;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: rgba(255, 255, 255, 0.8); */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  background-color: rgb(0 35 51);
-  background-color: rgb(3 68 89);
+  /* background-color: rgb(0 35 51); */
+  /* background-color: rgb(3 68 89); */
+  background-color: #015c74;
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
   background-repeat: repeat;
@@ -561,7 +562,8 @@ label {
   outline: none;
   transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   border: 2px solid transparent;
-  background-color: #034459;
+  /* background-color: #034459; */
+  background-color: #015c74;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
@@ -569,7 +571,8 @@ label {
   outline: none;
   transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   border: 2px solid transparent;
-  background-color: #034459;
+  /* background-color: #034459; */
+  background-color: #015c74;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
@@ -1659,7 +1662,8 @@ table {
 
 .selected-skill {
   /* background-color: #92312b !important; */
-  background-color: #034459 !important;
+  /* background-color: #034459 !important; */
+  background-color: #015c74 !important;
   color:#FFFFFF !important;
   box-shadow: none !important;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch !important;
@@ -1993,22 +1997,6 @@ hr.custom-hr {
   }
 }
 
-/* .build-buttons {
-  border: 1px solid transparent;
-  font-family: Oswald, serif;
-  letter-spacing: 0.05rem;
-  font-size: 16px;
-  transition: background-color 0.2s ease-out, border 0.2s ease-out;
-}
-
-.build-buttons:hover {
-  background-color:rgba(153, 153, 153, 0.278);
-  border: 1px solid #fff;
-  font-family: Oswald, serif;
-  letter-spacing: 0.05rem;
-  font-size: 16px;
-} */
-
 .build-buttons {
   border: 1px solid #ffd602;
   margin-bottom: -1px;
@@ -2017,21 +2005,19 @@ hr.custom-hr {
   font-family: Oswald, serif;
   text-rendering: geometricprecision;
   letter-spacing: 0.1rem;
-  /* background-color: rgb(3 68 89); */
-  /* background-color: rgb(228 71 50); */
   background-color: rgb(161 47 32);
   font-size: 16px;
-  transition: background-color 0.2s ease-out, border 0.2s ease-out;
+  transition: background-color 0.1s ease-in-out, border 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
   color: #fff;
   border: 2px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
-  box-shadow: -1px 5px 10px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .build-buttons:hover {
-  background-color:rgba(153, 153, 153, 0.278);
-  border: 2px solid #fff;
-  box-shadow: 0px 1px 8px rgba(0,0,0,0.5);
+  /* background-color:rgba(153, 153, 153, 0.278); */
+  background-color: rgb(153, 45, 30);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* GRID EXPERIMENT START */
@@ -2137,7 +2123,8 @@ hr.custom-hr {
 
 .custom-checkbox input:checked ~ .checkmark {
   /* background-color: #92312b; */
-  background-color: #034459;
+  /* background-color: #034459; */
+  background-color: #015c74;
 }
 
 .checkmark:after {
