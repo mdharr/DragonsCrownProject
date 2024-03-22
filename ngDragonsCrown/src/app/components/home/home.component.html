@@ -45,10 +45,10 @@
         <!-- <div class="class-description class-backdrop" [style.--backgroundImage]="'url(' + (currentClassData?.selectImgUrl || getImageUrl('character_bg')) + ')'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }"> -->
         <div class="class-description class-backdrop" style="height: 394px;" [style.--backgroundImage]="'url(' + (getImageUrl('character_bg')) + ')'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }">
           <ng-container *ngIf="classSelected">
-            <div class="loading-screen" *ngIf="videoLoading">
+            <!-- <div class="loading-screen" *ngIf="videoLoading && !videoLoaded">
               <app-loading-screen></app-loading-screen>
-            </div>
-            <video autoplay loop style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" [src]="getVideoPath(currentClassData?.name.toLowerCase())" (loadedmetadata)="onVideoLoaded()">
+            </div> -->
+            <video autoplay loop style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" [src]="getVideoPath(currentClassData?.name.toLowerCase())">
               Your browser does not support the video tag.
             </video>
             <!-- <video (loadedmetadata)="onVideoLoaded()" autoplay loop style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" [src]="getVideoPath(currentClassData?.name.toLowerCase())"></video> -->

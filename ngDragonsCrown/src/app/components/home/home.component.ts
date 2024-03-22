@@ -112,7 +112,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   inputFocused: boolean = false;
   loading: boolean = false;
   classDataLoaded: boolean = false;
-  videoLoading: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -325,7 +324,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLevelSP = 1;
     this.loading = true;
     this.classDataLoaded = true;
-    this.videoLoading = true;
 
     if(this.classSelected) {
       this.selected = true;
@@ -923,12 +921,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   getVideoPath(className: string): string | undefined {
     const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase());
     return video ? video.path : undefined;
-  }
-
-  onVideoLoaded() {
-    setTimeout(() => {
-      this.videoLoading = false;
-    }, 2000);
   }
 
   playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {

@@ -296,7 +296,7 @@
 
 .class-backdrop {
   position: relative;
-  box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75);
+  /* box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75); */
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-fill-mode: both;
