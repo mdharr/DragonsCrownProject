@@ -280,6 +280,10 @@
   background-color: black;
 }
 
+.loading-screen {
+
+}
+
 .video-overlay {
   position: absolute;
   top: 0;

@@ -112,6 +112,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   inputFocused: boolean = false;
   loading: boolean = false;
   classDataLoaded: boolean = false;
+  videoLoading: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -238,7 +239,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.resetWindowPosition();
     this.subscribeToPlayerClassData();
     this.preloadImageEntities();
-    // this.typeOutText(this.introText, 'introduction-text');
   }
 
   ngOnDestroy() {
@@ -285,7 +285,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         next: (url) => {
           if (url === image.maxUrl) {
             image.isLoaded = true;
-            // Update the UI or trigger changes as needed
           }
         },
         error: (error) => console.error(`Failed to load image ${image.name}:`, error),
@@ -326,6 +325,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLevelSP = 1;
     this.loading = true;
     this.classDataLoaded = true;
+    this.videoLoading = true;
 
     if(this.classSelected) {
       this.selected = true;
@@ -333,7 +333,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.playSound('accept', 0.5);
         setTimeout(() => {
           this.stopCurrentClassSound();
-          // this.playClassAudio(this.currentClassData.name.toLowerCase());
           this.findClassAudio(this.currentClassData.name.toLowerCase());
         }, 200);
       }
@@ -351,7 +350,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         console.error('Image loading failed', error);
       }
 
-      // Reset quests and skill points from quests
       this.resetQuestsAndSkillPoints();
 
       this.commonSkills = this.currentClassData.skills
@@ -925,6 +923,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   getVideoPath(className: string): string | undefined {
     const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase());
     return video ? video.path : undefined;
+  }
+
+  onVideoLoaded() {
+    setTimeout(() => {
+      this.videoLoading = false;
+    }, 2000);
   }
 
   playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
