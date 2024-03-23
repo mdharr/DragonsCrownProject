@@ -191,8 +191,6 @@
   padding: 0;
   min-height: 71px;
   background-color: black;
-  /* border: 3px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30; */
 }
 
 .portraits ul li img {
@@ -238,7 +236,6 @@
   opacity: 1;
   z-index: 2;
   border: none;
-  /* border: 3px solid rgb(244 67 54); */
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
@@ -296,7 +293,6 @@
 
 .class-backdrop {
   position: relative;
-  /* box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75); */
   animation-name: fadeIn;
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -522,7 +518,6 @@
 
 .wrapper-class {
   width: 150px;
-  /* border: 1px #555 solid; */
   box-shadow: inset 0px 0px 5px #030a0d;
   border: 2px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
@@ -532,7 +527,6 @@
 
 .player-level input {
   text-align: center;
-  /* border: 1px #555 solid; */
   box-shadow: inset 0px 0px 5px #030a0d;
   border: 2px solid transparent;
     border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
@@ -575,7 +569,6 @@ label {
   outline: none;
   transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   border: 2px solid transparent;
-  /* background-color: #034459; */
   background-color: #015c74;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
@@ -584,7 +577,6 @@ label {
   outline: none;
   transition: border 0.2s ease-in-out, background-color 0.2s ease-in-out, border 0.2s ease-in-out;
   border: 2px solid transparent;
-  /* background-color: #034459; */
   background-color: #015c74;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
@@ -693,7 +685,6 @@ textarea:focus-visible {
   left: 50%;
   width: 30px !important;
   transform: translate(-50%, -50%);
-  /* border: 1px solid #555; */
   box-shadow: inset 0px 0px 5px #030a0d;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
@@ -715,7 +706,6 @@ textarea:focus-visible {
   display: flex;
   justify-content: center;
   width: 46px;
-  /* border: 1px #555 solid; */
   box-shadow: inset 0px 0px 5px #030a0d;
   border: 2px solid transparent;
     border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
@@ -1208,7 +1198,6 @@ blockquote ul li {
   display: flex;
   justify-content: center;
   width: 46px;
-  /* border: 1px #555 solid; */
   box-shadow: inset 0px 0px 5px #030a0d;
   border: 2px solid transparent;
     border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
@@ -1284,7 +1273,6 @@ blockquote ul li {
 #common-btn {
   border: 3px solid transparent;
   margin-bottom: -2px;
-  /* border-radius: 6px 0 0 0; */
   border-radius: 0;
   width: 125px;
   font-family: Oswald, serif;
@@ -1361,7 +1349,6 @@ blockquote ul li {
 #rune-matcher-btn {
   border: 3px solid transparent;
   margin-bottom: -2px;
-  /* border-radius: 0 6px 0 0; */
   border-radius: 0;
   width: 125px;
   font-family: Oswald, serif;
@@ -1428,7 +1415,6 @@ div.skillListWrap:first-of-type::after {
 }
 
 .remaining-sp {
-  /* font-family: Oswald, serif; */
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
   font-style: normal;
