@@ -27,23 +27,6 @@
   pointer-events: none;
 }
 
-/* .bg-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-  background-repeat: repeat;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-image: url(https://en.dragon-ball-official.com/assets/img/news/comment/bg_dots.png);
-  position: absolute;
-  background-size: 5px;
-} */
-
 .bg-overlay {
   background-position: left top;
   background-repeat: repeat;
@@ -110,10 +93,7 @@
   margin-top: 95px;
   margin-bottom: 100px;
   padding-top: 40px;
-  /* background: rgba(255, 255, 255, 0.8); */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  /* background-color: rgb(0 35 51); */
-  /* background-color: rgb(3 68 89); */
   background-color: #015c74;
   color: #fff;
   box-shadow: 0px 0px 10px 2px #000000;
@@ -1442,8 +1422,7 @@ div.skillListWrap:first-of-type::after {
 }
 
 .skillListWrap dl {
-  /* margin-bottom: 15px;
-  border: 1px solid rgb(255, 255, 255); */
+
 }
 
 .skillListWrap dt {
@@ -1461,7 +1440,6 @@ div.skillListWrap:first-of-type::after {
 
 .skillListWrap dt:hover {
   cursor: pointer;
-  /* background-color: rgb(113 35 35 / 40%); */
   color: #FFFFFF;
 }
 
@@ -1570,7 +1548,6 @@ dd, ol, table, tbody, th {
   margin-left: 25px;
   padding: 5px 10px;
   padding-top: 20px;
-  /* border: 1px solid #fff; */
   width: 100%;
   min-height: 300px;
   float: left;
@@ -1608,7 +1585,6 @@ table {
 .skillInfoBoard table td {
   padding: 5px 10px;
   text-align: right;
-  /* border: 1px solid #fff; */
   border: 1px solid #333131;
 }
 
@@ -1644,7 +1620,6 @@ table {
   --a: 1deg;
   width: 150px;
   aspect-ratio: 0.6;
-  /* border-radius: 6px; */
   transform: perspective(400px) rotate3d(var(--r,1,-1),0,calc(var(--i,1)*var(--a)));
   -webkit-mask: linear-gradient(135deg,#000c 40%,#000,#000c 60%) 100% 100%/250% 250%;
   transition: .4s;
@@ -1660,8 +1635,6 @@ table {
 }
 
 .selected-skill {
-  /* background-color: #92312b !important; */
-  /* background-color: #034459 !important; */
   background-color: #015c74 !important;
   color:#FFFFFF !important;
   box-shadow: none !important;
@@ -1669,8 +1642,6 @@ table {
 }
 
 .selected-rank {
-  /* background-color: rgba(232, 185, 0, 0.77) !important; */
-  /* background-color: rgb(228 71 50) !important; */
   background-color: rgb(161 47 32) !important;
   color: #fff !important;
   box-shadow: inset 0px 0px 2px 1px rgba(0,0,0,0.75) !important;
@@ -1787,7 +1758,6 @@ table {
 }
 
 .quests-wrapper span {
-  /* font-family: Oswald, serif; */
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -1947,7 +1917,6 @@ hr.custom-hr {
 .common-unique-wrapper {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid #fff; */
   padding: 20px 10px 5px;
   margin-bottom: 15px;
 }
@@ -1981,7 +1950,6 @@ hr.custom-hr {
 }
 
 .highest-selected-rank th {
-  /* background-color: rgb(21 43 56 / 100%) !important; */
   color: #fff !important;
 }
 
@@ -2018,12 +1986,9 @@ hr.custom-hr {
 }
 
 .build-buttons:hover {
-  /* background-color:rgba(153, 153, 153, 0.278); */
   background-color: rgb(153, 45, 30);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
-
-/* GRID EXPERIMENT START */
 
 .quest-grid .quest:first-of-type .custom-checkbox::before {
   position: absolute;
@@ -2125,8 +2090,6 @@ hr.custom-hr {
 }
 
 .custom-checkbox input:checked ~ .checkmark {
-  /* background-color: #92312b; */
-  /* background-color: #034459; */
   background-color: #015c74;
 }
 
@@ -2188,8 +2151,6 @@ hr.custom-hr {
   position: absolute;
   animation: pulsate 1.5s ease infinite;
 }
-
-/* GRID EXPERIMENT END */
 
 ::ng-deep .mat-mdc-menu-content {
   padding: 0;
