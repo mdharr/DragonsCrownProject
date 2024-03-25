@@ -78,7 +78,6 @@
 
 .carried-runes .rune:hover {
   filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.5)) brightness(1.2) saturate(1.2) !important;
-  /* filter: drop-shadow(0px 0px 5px crimson) brightness(110%) contrast(120%) saturate(120%) !important; */
   opacity: 1 !important;
   cursor: pointer;
   transition: filter 0.2s ease-in-out, transform 0.2s ease-in;
@@ -89,7 +88,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(5px); /* Adjusted for more visible wave effect */
+    transform: translateY(5px);
   }
   100% {
     transform: translateY(0px);
@@ -143,10 +142,8 @@ button.option-buttons:disabled {
   border-radius: 0px;
   animation: none !important;
   filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.5)) brightness(1.2) saturate(1.2) !important;
-  /* filter: brightness(1.6) drop-shadow(0 0 20px rgba(193, 146, 17, 0.5)) !important; */
   opacity: 1 !important;
   position: relative;
-  /* border-bottom: 2px solid white; */
   background-color: #1b1a1a;
   box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75);
   border: 3px solid transparent;
@@ -169,12 +166,11 @@ button.option-buttons:disabled {
   0% {
     left: -75%;
   }
-  /* Adjust the percentage to control the speed of the animation */
-  5% { /* 2s of animation within a 5s interval -> 2/5 = 40% */
+  5% {
     left: 125%;
   }
   100% {
-    left: 125%; /* Remain at the end position for the rest of the cycle */
+    left: 125%;
   }
 }
 
@@ -199,7 +195,6 @@ button.option-buttons:disabled {
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
   font-style: normal;
-  /* top: 40%; */
   top: 55%;
   right: 0;
   padding: 5px;
@@ -269,7 +264,6 @@ button.option-buttons:disabled {
 
 .spell-counter {
   width: 165px;
-  /* height: 70px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -402,23 +396,6 @@ button.option-buttons:disabled {
   justify-content: space-between;
 }
 
-/* .footer-container {
-  width: 600px;
-  height: 150px;
-  background-color: #00000094;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3px;
-  border: 1px solid #fff;
-  position: absolute;
-  bottom: 0;
-  border: 1px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
-  border: 10px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
-} */
-
 .footer-container {
   width: 100%;
   height: 110px;
@@ -440,7 +417,6 @@ button.option-buttons:disabled {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* padding-bottom: 15px; */
   width: 100%;
   padding: 10px;
 }
@@ -493,7 +469,6 @@ button.option-buttons:disabled {
 
 .progress-text {
   color: #fff;
-  /* text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); */
   text-shadow: 1px 1px black;
 }
 
