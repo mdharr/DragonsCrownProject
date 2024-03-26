@@ -13,7 +13,6 @@
   background-color: transparent;
   width: 125px;
   height: 125px;
-  /* overflow: hidden; */
 }
 
 .scroll-to-top-button .fairy {
@@ -28,7 +27,6 @@
 .fairy {
   width: 125px;
   height: 125px;
-  /* transition: transform 3s ease-in-out; */
   animation: fairy 1s ease-in-out infinite;
   will-change: animation;
 }
@@ -47,18 +45,3 @@
     transform: translateY(10px);
   }
 }
-
-/* @keyframes floatFairy {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(10px, -10px) scale(1.05);
-  }
-  50% {
-    transform: translate(20px, 0) scale(1.1);
-  }
-  75% {
-    transform: translate(10px, 10px) scale(1.05);
-  }
-} */

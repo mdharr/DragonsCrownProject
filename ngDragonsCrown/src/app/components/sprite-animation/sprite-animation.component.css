@@ -1,10 +1,10 @@
 .outer {
   position: relative;
-  z-index: 1; /* Ensure this is the starting layer context */
+  z-index: 1;
 }
 
 .inner {
-  position: relative; /* This makes .inner the reference for its absolutely positioned children */
+  position: relative;
   width: fit-content;
   height: fit-content;
   margin: 0;
