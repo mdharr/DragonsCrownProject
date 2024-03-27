@@ -13,7 +13,6 @@
       </div>
       <div class="middle">
         <div class="story-label" style="display: flex;">
-          <!-- <app-particles style="overflow: hidden;"></app-particles> -->
           <div class="particle">
             <video src="https://www.dragonsdogma.com/2/assets/images/media/ptcl.mp4" preload="metadata" autoplay muted loop playsinline></video>
           </div>
@@ -51,7 +50,6 @@
             <video autoplay loop style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" [src]="getVideoPath(currentClassData?.name.toLowerCase())">
               Your browser does not support the video tag.
             </video>
-            <!-- <video (loadedmetadata)="onVideoLoaded()" autoplay loop style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" [src]="getVideoPath(currentClassData?.name.toLowerCase())"></video> -->
             <div class="video-overlay"></div>
             <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation>
           </ng-container>
