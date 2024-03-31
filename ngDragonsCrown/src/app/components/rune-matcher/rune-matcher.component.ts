@@ -69,6 +69,11 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   showRuneLetters: boolean = false;
   gameStarted: boolean = false;
   carriedRunesEnabled: boolean = false;
+  suggestHint: boolean = false;
+  suggestNewGame: boolean = false;
+  evaluated: boolean = false;
+  gameOver: boolean = false;
+  private suggestHintTimeout: any;
 
   @ViewChild('runeContainer') runeContainerRef!: ElementRef;
   runePositions: Array<{ left: string, top: string }> = [];
@@ -127,6 +132,8 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         this.currentSpell = this.spells.splice(random, 1)[0];
         this.nextCounter++;
         this.hasCurrentSpell = true;
+        this.suggestHint = false;
+        this.evaluated = false;
         this.currentSpell.runes.forEach(r => {
           const rune = this.runeKey.find(rune => rune.id === r);
           if (rune) {
@@ -140,6 +147,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         this.stopCurrentSound();
         this.playSound('pageflip', 0.5);
         this.carriedRunesEnabled = true;
+        this.setTimerToSuggestHint();
       } catch (error) {
         console.error('Error choosing spell.');
       }
@@ -152,6 +160,17 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         this.restart();
       }, 5500);
     }
+  }
+
+  setTimerToSuggestHint() {
+    if (this.suggestHintTimeout) {
+      clearTimeout(this.suggestHintTimeout);
+    }
+
+    this.suggestHintTimeout = setTimeout(() => {
+      this.suggestHint = true;
+      console.log('tick')
+    }, 10000);
   }
 
   restart() {
@@ -314,6 +333,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log('Correct');
       this.currentScore++;
       this.revealSpell = true;
+      this.evaluated = true;
       setTimeout(() => {
         this.stopCurrentSound();
         this.playSound('reveal', 0.3);

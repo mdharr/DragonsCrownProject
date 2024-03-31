@@ -1047,7 +1047,7 @@ html {
   border: 3px solid #b39a72;
   position: absolute;
   top: -130px;
-  left: 0px;
+  left: -3px;
   z-index: 1000;
   width: 200px;
   height: 115px;

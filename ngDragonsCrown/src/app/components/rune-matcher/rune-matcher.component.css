@@ -496,36 +496,7 @@ button.option-buttons:disabled {
   position: relative;
 }
 
-#start-button::before {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: -19px;
-  position: absolute;
-  top: 10px;
-  width: 6px;
-  z-index: 1;
-}
-
 #start-button::after {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: -19px;
-  position: absolute;
-  top: 10px;
-  width: 6px;
-  z-index: 1;
-}
-
-#start-button::after {
-  position: absolute;
   animation: pulsate 1.5s ease infinite;
 }
 
@@ -535,7 +506,63 @@ button.option-buttons:disabled {
     transform: scale(1, 1);
   }
   100% {
-      opacity: .1;
-      transform: scale(3, 3);
+    opacity: .1;
+    transform: scale(3, 3);
   }
+}
+
+#start-button.enable-next::before,
+#start-button.enable-next::after {
+  right: -19px;
+  top: 13px;
+  position: absolute;
+  background: #e44732;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 6px;
+  width: 6px;
+  z-index: 1;
+}
+
+#start-button.can-evaluate::before,
+#start-button.can-evaluate::after {
+  right: -19px;
+  top: 58px;
+  position: absolute;
+  background: #e44732;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 6px;
+  width: 6px;
+  z-index: 1;
+}
+
+#start-button.suggest-hint::before,
+#start-button.suggest-hint::after {
+  right: -590px;
+  top: 13px;
+  position: absolute;
+  background: #e44732;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 6px;
+  width: 6px;
+  z-index: 1;
+}
+
+#start-button.suggest-new-game::before,
+#start-button.suggest-new-game::after {
+  right: -590px;
+  top: 58px;
+  position: absolute;
+  background: #e44732;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 6px;
+  width: 6px;
+  z-index: 1;
 }

@@ -52,10 +52,10 @@
         </div>
       </div>
       <div class="option-buttons-container">
-        <button mat-button id="start-button" class="option-buttons" (click)="getSpell()" [disabled]="!isNextAvailable()">{{ spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Start' }}</button>
+        <button mat-button id="start-button" class="option-buttons" (click)="getSpell()" [disabled]="!isNextAvailable() || noSpellsRemaining" [class.enable-next]="isNextAvailable() && !noSpellsRemaining" [class.can-evaluate]="isSelectionComplete() && !evaluated" [class.suggest-hint]="!isNextAvailable() && suggestHint && !isSelectionComplete()">{{ spells.length === 0 ? 'End' : hasCurrentSpell ? 'Next' : 'Start' }}</button>
         <button mat-button class="option-buttons end" (click)="viewRuneLetters()">{{ showRuneLetters ? 'Hide Hint' : 'Show Hint' }}</button>
         <button mat-button id="evaluate-button" class="option-buttons" (click)="evaluateCombination(currentRunes, userRunes)" [disabled]="!isSelectionComplete()">Submit</button>
-        <button mat-button class="option-buttons end" (click)="restart()" [disabled]="!hasCurrentSpell">Restart</button>
+        <button mat-button class="option-buttons end" (click)="restart()" [disabled]="!hasCurrentSpell || noSpellsRemaining">Restart</button>
       </div>
     </div>
   </div>
