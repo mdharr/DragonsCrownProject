@@ -331,6 +331,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.currentLevelSP = 1;
     this.loading = true;
     this.classDataLoaded = true;
+    this.showUniqueSkills = false;
 
     if(this.classSelected) {
       this.selected = true;
