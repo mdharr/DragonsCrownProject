@@ -47,6 +47,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsNameDesc: CombinedSkill[] = [];
   skillsBySPAsc: CombinedSkill[] = [];
   skillsBySPDesc: CombinedSkill[] = [];
+  currentVideoPath: string = '';
+  previousVideoPath: string = '';
 
   // app state
   buildToShare: any;
@@ -76,8 +78,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     },
     {
       name: 'character_bg',
-      minUrl: 'https://live.staticflickr.com/65535/53570769120_a9e153d0c8_k.jpg',
-      maxUrl: 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg',
+      minUrl: 'https://live.staticflickr.com/65535/53624067626_10b6b47321_k.jpg',
+      maxUrl: 'https://live.staticflickr.com/65535/53624067626_10b6b47321_k.jpg',
+      // minUrl: 'https://live.staticflickr.com/65535/53570769120_a9e153d0c8_k.jpg',
+      // maxUrl: 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg',
       isLoaded: false,
     },
   ];
@@ -86,6 +90,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
   @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
   @ViewChild('skillInfoBoard', { static: false }) skillInfoBoard!: ElementRef<HTMLDivElement>;
+  // @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+  @ViewChild('videoPlayer1') videoPlayer1!: ElementRef<HTMLVideoElement>;
+  @ViewChild('videoPlayer2') videoPlayer2!: ElementRef<HTMLVideoElement>;
 
   // booleans
   classSelected: boolean = false;
@@ -363,7 +370,46 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.showCommonSkills = true;
       this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
 
+      // Pause the previous video if there is one
+      if (this.previousVideoPath) {
+        const previousVideo = this.videoPlayer1.nativeElement as HTMLVideoElement;
+        previousVideo.pause();
+      }
+
+      // Load the new video in the hidden player for seamless transition
+      const newVideoPath = this.getVideoPath(this.currentClassData?.name.toLowerCase());
+      if (newVideoPath) {
+        const newVideoPlayer = this.videoPlayer2.nativeElement as HTMLVideoElement;
+        newVideoPlayer.src = newVideoPath;
+        const playPromise = new Promise<void>((resolve, reject) => {
+          newVideoPlayer.addEventListener('canplaythrough', () => {
+            // Once the new video is ready, resolve the promise
+            resolve();
+          });
+          newVideoPlayer.addEventListener('error', (error) => {
+            reject(error);
+          });
+        });
+
+        try {
+          await playPromise;
+          // Update the current and previous video paths
+          this.previousVideoPath = this.currentVideoPath;
+          this.currentVideoPath = newVideoPath;
+          // Once the new video is ready, replace the current video player
+          const currentVideoPlayer = this.videoPlayer1.nativeElement as HTMLVideoElement;
+          currentVideoPlayer.src = newVideoPath;
+
+        } catch (error) {
+          console.error('Error playing video:', error);
+        }
+      }
     }
+  }
+
+  getVideoPath(className: string): string | undefined {
+    const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase());
+    return video ? video.path : undefined;
   }
 
   onArtworkLoad() {
@@ -916,11 +962,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       return audio;
     }
     return null;
-  }
-
-  getVideoPath(className: string): string | undefined {
-    const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase());
-    return video ? video.path : undefined;
   }
 
   playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {

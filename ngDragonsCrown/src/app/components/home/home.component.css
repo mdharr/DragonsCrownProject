@@ -273,9 +273,9 @@
 
 .class-backdrop {
   position: relative;
-  animation-name: fadeIn;
+  /* animation-name: fadeIn;
   animation-duration: 1s;
-  animation-fill-mode: both;
+  animation-fill-mode: both; */
   border: 1px solid #ffd602;
   background-size: contain;
   background-position: right;
