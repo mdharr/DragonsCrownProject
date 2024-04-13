@@ -105,7 +105,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getSpell() {
-    console.log("Spell Key: ", this.spellKey.length);
     const imageElements = document.querySelectorAll('.carried-runes img');
     imageElements.forEach(element => element.classList.remove('no-animation'));
     const divElement = document.querySelector('.current-spell-wrapper') as HTMLElement;
@@ -113,7 +112,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       divElement?.classList.remove('reveal');
     }, 500);
-    console.log(imageElements);
     if (this.selectedRunes) {
       this.selectedRunes = [];
     }
@@ -143,7 +141,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         this.calculateRunePositions();
         this.currentCarvedRunes = this.currentRunes.filter(r => !r.isCarried);
         this.userRunes = this.userRunes.concat(this.currentCarvedRunes);
-        console.log("Current Carved Runes: ", this.currentCarvedRunes);
         this.stopCurrentSound();
         this.playSound('pageflip', 0.5);
         this.carriedRunesEnabled = true;
@@ -152,7 +149,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         console.error('Error choosing spell.');
       }
     } else {
-      console.log('No spells remaining.');
       this.noSpellsRemaining = true;
       this.stopCurrentSound();
       this.playSound('ending', 0.5);
@@ -169,7 +165,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.suggestHintTimeout = setTimeout(() => {
       this.suggestHint = true;
-      console.log('tick')
     }, 10000);
   }
 
@@ -330,7 +325,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     if (counter === spellRunes.length) {
       this.playSound('click', 0.5);
-      console.log('Correct');
       this.currentScore++;
       this.revealSpell = true;
       this.evaluated = true;
@@ -346,7 +340,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       divElement?.classList.add('shake-animation');
       this.stopCurrentSound();
       this.playSound('open', 0.5);
-      console.log('Incorrect');
       setTimeout(() => {
         divElement?.classList.remove('shake-animation');
       }, 300);

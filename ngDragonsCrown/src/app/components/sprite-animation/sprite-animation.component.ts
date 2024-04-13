@@ -271,12 +271,10 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     };
 
     this.initCanvas();
-    // Add the ticker listener once
-    // createjs.Ticker.on("tick", this.tickerListener);
+
   }
 
   ngOnDestroy() {
-    console.log('Destroying component and removing ticker listener.');
     if (this.tickerListener) {
       createjs.Ticker.off("tick", this.tickerListener);
     }

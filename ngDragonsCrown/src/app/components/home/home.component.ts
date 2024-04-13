@@ -608,10 +608,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
     if (this.selectedSkill && this.selectedSkill.index === skillIndex && this.selectedSkill.type === skillType) {
-      // console.log("This skill is already selected.");
     } else {
       this.selectedSkill = { index: skillIndex, type: skillType };
-      // console.log(this.selectedSkill);
       this.skillSelected = true;
       this.skillCardLoaded = false;
       this.isSkillInfoVisible = false;
@@ -1102,14 +1100,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         break;
     }
     this.playSound('confirm');
-    // Log the current state for debugging
-    // console.log({
-    //   'showAll': this.showAll,
-    //   'showByNameAsc': this.showByNameAsc,
-    //   'showByNameDesc': this.showByNameDesc,
-    //   'showBySPAsc': this.showBySPAsc,
-    //   'showBySPDesc': this.showBySPDesc,
-    // });
+
   }
 
   captureAndDownloadScreenshot() {
@@ -1145,9 +1136,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // Style elements
     if(element1) element1.style.color = '#fff';
     if(element1) element1.style.width = '100%';
-    // console.log(element1.style)
     const styles = window.getComputedStyle(element1);
-    console.log(styles);
     if(element2) element2.style.color = '#fff';
 
     // Clone the elements and append them to the temporary container
@@ -1186,22 +1175,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       console.error('Failed to copy build data: ', err);
     }
   }
-
-  // generateShareLinkAsText(): string {
-  //   const shareLink = `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
-  //   return shareLink;
-  // }
-
-  // async copyShareLinkToClipboard(): Promise<void> {
-  //   try {
-  //     const shareLink = this.generateShareLinkAsText();
-  //     await navigator.clipboard.writeText(shareLink);
-  //     this.playSound('rune');
-  //     console.log('Share link copied to clipboard:', shareLink);
-  //   } catch (err) {
-  //     console.error('Failed to copy share link: ', err);
-  //   }
-  // }
 
   exportBuildAsTextFile(): void {
     const buildData = this.generateBuildDataAsText();
