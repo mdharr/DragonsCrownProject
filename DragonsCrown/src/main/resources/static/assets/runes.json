@@ -1,0 +1,279 @@
+{
+  "runes": [
+    {
+      "id": 1,
+      "imageUrl": "/assets/graphics/runes/D.png",
+      "letter": "D",
+      "isCarried": true
+    },
+    {
+      "id": 2,
+      "imageUrl": "/assets/graphics/runes/E.png",
+      "letter": "E",
+      "isCarried": true
+    },
+    {
+      "id": 3,
+      "imageUrl": "/assets/graphics/runes/S.png",
+      "letter": "S",
+      "isCarried": true
+    },
+    {
+      "id": 4,
+      "imageUrl": "/assets/graphics/runes/T.png",
+      "letter": "T",
+      "isCarried": true
+    },
+    {
+      "id": 5,
+      "imageUrl": "/assets/graphics/runes/A.png",
+      "letter": "A",
+      "isCarried": false
+    },
+    {
+      "id": 6,
+      "imageUrl": "/assets/graphics/runes/B.png",
+      "letter": "B",
+      "isCarried": false
+    },
+    {
+      "id": 7,
+      "imageUrl": "/assets/graphics/runes/C.png",
+      "letter": "C",
+      "isCarried": false
+    },
+    {
+      "id": 8,
+      "imageUrl": "/assets/graphics/runes/F.png",
+      "letter": "F",
+      "isCarried": false
+    },
+    {
+      "id": 9,
+      "imageUrl": "/assets/graphics/runes/G.png",
+      "letter": "G",
+      "isCarried": false
+    },
+    {
+      "id": 10,
+      "imageUrl": "/assets/graphics/runes/H.png",
+      "letter": "H",
+      "isCarried": false
+    },
+    {
+      "id": 11,
+      "imageUrl": "/assets/graphics/runes/I.png",
+      "letter": "I",
+      "isCarried": false
+    },
+    {
+      "id": 12,
+      "imageUrl": "/assets/graphics/runes/K.png",
+      "letter": "K",
+      "isCarried": false
+    },
+    {
+      "id": 13,
+      "imageUrl": "/assets/graphics/runes/L.png",
+      "letter": "L",
+      "isCarried": false
+    },
+    {
+      "id": 14,
+      "imageUrl": "/assets/graphics/runes/M.png",
+      "letter": "M",
+      "isCarried": true
+    },
+    {
+      "id": 15,
+      "imageUrl": "/assets/graphics/runes/O.png",
+      "letter": "O",
+      "isCarried": false
+    },
+    {
+      "id": 16,
+      "imageUrl": "/assets/graphics/runes/P.png",
+      "letter": "P",
+      "isCarried": false
+    },
+    {
+      "id": 17,
+      "imageUrl": "/assets/graphics/runes/R.png",
+      "letter": "R",
+      "isCarried": true
+    },
+    {
+      "id": 18,
+      "imageUrl": "/assets/graphics/runes/S2.png",
+      "letter": "S",
+      "isCarried": false
+    },
+    {
+      "id": 19,
+      "imageUrl": "/assets/graphics/runes/T2.png",
+      "letter": "T",
+      "isCarried": false
+    },
+    {
+      "id": 20,
+      "imageUrl": "/assets/graphics/runes/W.png",
+      "letter": "W",
+      "isCarried": false
+    },
+    {
+      "id": 21,
+      "imageUrl": "/assets/graphics/runes/Z.png",
+      "letter": "Z",
+      "isCarried": false
+    }
+  ],
+  "spells": [
+    {
+      "id": 1,
+      "name": "Life From Stone",
+      "description": "Brings statues to life (mission related spell)",
+      "abbreviation": "L-F-S",
+      "runes": [13,8,3]
+    },
+    {
+      "id": 2,
+      "name": "Solomon's Flying Carpet",
+      "description": "Spawns a flying carpet (mission related spell)",
+      "abbreviation": "S-F-C",
+      "runes": [3,8,7]
+    },
+    {
+      "id": 3,
+      "name": "The Skeleton Key",
+      "description": "Opens hidden doors",
+      "abbreviation": "T-S-K",
+      "runes": [4,3,12]
+    },
+    {
+      "id": 4,
+      "name": "Dead Be Gone",
+      "description": "Kills undead enemies",
+      "abbreviation": "D-B-G",
+      "runes": [1,6,9]
+    },
+    {
+      "id": 5,
+      "name": "Treasure Hunter's Friend",
+      "description": "Uncovers hidden Treasure",
+      "abbreviation": "T-H-F",
+      "runes": [4,10,8]
+    },
+    {
+      "id": 6,
+      "name": "Double Score Bonus",
+      "description": "Doubles all points earned",
+      "abbreviation": "D-S-B",
+      "runes": [1,3,6]
+    },
+    {
+      "id": 7,
+      "name": "Potency And Durability",
+      "description": "Buffs attack and defense",
+      "abbreviation": "P-A-D",
+      "runes": [16,5,1]
+    },
+    {
+      "id": 8,
+      "name": "The Phoenix Incantation",
+      "description": "Grants all players an extra life point",
+      "abbreviation": "T-P-I",
+      "runes": [4,16,11]
+    },
+    {
+      "id": 9,
+      "name": "Sigil Of Death",
+      "description": "Casts a spell with a high chance of killing all enemies in range",
+      "abbreviation": "S-O-D",
+      "runes": [3,15,1]
+    },
+    {
+      "id": 10,
+      "name": "Tri-Elemental Blast",
+      "description": "Casts a Fire, Ice and Lightning AoE spell",
+      "abbreviation": "T-E-B",
+      "runes": [4,2,6]
+    },
+    {
+      "id": 11,
+      "name": "Enchanted Coin Geyser",
+      "description": "Spawns a random amount of money",
+      "abbreviation": "E-C-G",
+      "runes": [2,7,9]
+    },
+    {
+      "id": 12,
+      "name": "Extra Item Stock",
+      "description": "Grants one additional use to all consumable items",
+      "abbreviation": "E-I-S",
+      "runes": [2,11,3]
+    },
+    {
+      "id": 13,
+      "name": "The True Fist",
+      "description": "Buffs the damage done by bare handed attacks",
+      "abbreviation": "T-T-F",
+      "runes": [19,4,8]
+    },
+    {
+      "id": 14,
+      "name": "Call Sylphide's Wind",
+      "description": "Casts a spell which shields all players in wind",
+      "abbreviation": "C-S-W",
+      "runes": [7,3,20]
+    },
+    {
+      "id": 15,
+      "name": "Strength Beyond Strength",
+      "description": "Grants invulnerability",
+      "abbreviation": "S-B-S",
+      "runes": [18,6,3]
+    },
+    {
+      "id": 16,
+      "name": "Petrify The Flesh",
+      "description": "Petrify enemies",
+      "abbreviation": "P-T-F",
+      "runes": [16,4,8]
+    },
+    {
+      "id": 17,
+      "name": "Open The Sesame",
+      "description": "Opens hidden doors",
+      "abbreviation": "O-T-S",
+      "runes": [15,4,3]
+    },
+    {
+      "id": 18,
+      "name": "D I E",
+      "description": "Where all living things go (mission related)",
+      "abbreviation": "D-I-E",
+      "runes": [1,11,2]
+    },
+    {
+      "id": 19,
+      "name": "Salve Of Life",
+      "description": "Casts a healing circle on the ground",
+      "abbreviation": "S-O-L",
+      "runes": [3,15,13]
+    },
+    {
+      "id": 20,
+      "name": "Generate Weapon Stash",
+      "description": "Spawns a crate of temporary weapons",
+      "abbreviation": "G-W-S",
+      "runes": [9,20,3]
+    },
+    {
+      "id": 21,
+      "name": "Reveal Mystery Zone",
+      "description": "Used to gain access to the Illusionary Lands (mission related)",
+      "abbreviation": "R-M-Z",
+      "runes": [17,14,21]
+    }
+  ]
+}

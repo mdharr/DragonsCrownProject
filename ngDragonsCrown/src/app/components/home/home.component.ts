@@ -285,6 +285,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     window.scrollTo(0, 0);
   }
 
+  playVideo() {
+    const video = document.querySelector('.particle video') as HTMLVideoElement | null;
+    if (video) {
+      video.play()
+        .catch(error => console.error('Error trying to play the video:', error));
+    } else {
+      console.error('Video element not found!');
+    }
+  }
+
   preloadImageEntities() {
     this.images.forEach((image) => {
       this.preloadService.preloadImage(image.maxUrl).subscribe({
@@ -335,6 +345,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if(this.classSelected) {
       this.selected = true;
+      this.playVideo();
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
         this.playSound('accept', 0.5);
         setTimeout(() => {
