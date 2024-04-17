@@ -14,6 +14,7 @@ import { ClassName } from 'src/app/types/class-name.type';
 import html2canvas from 'html2canvas';
 import { Router, RouterLink } from '@angular/router';
 import { VideoEntity } from 'src/app/models/video-entity';
+import { PreloadAudioEntitiesService } from 'src/app/services/preload-audio-entities.service';
 
 @Component({
   selector: 'app-home',
@@ -49,6 +50,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsBySPDesc: CombinedSkill[] = [];
   currentVideoPath: string = '';
   previousVideoPath: string = '';
+  streamableImage: HTMLImageElement | null = null;
+  private currentLoadToken: any = null;
 
   // app state
   buildToShare: any;
@@ -122,6 +125,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // tooltip
   tooltipVisible: boolean = false;
+  tooltipLoading: boolean = false;
   tooltipUrl: string = '';
   tooltipIndex: number | null = null;
   tooltipTop: number = 0;
@@ -151,12 +155,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   };
 
   sounds: AudioEntity[] = [
-    { name: 'fighter', path: 'assets/audio/fighter_select.mp3' },
-    { name: 'amazon', path: 'assets/audio/amazon_select.mp3' },
-    { name: 'elf', path: 'assets/audio/elf_select.mp3' },
-    { name: 'dwarf', path: 'assets/audio/dwarf_select.mp3' },
-    { name: 'sorceress', path: 'assets/audio/sorceress_select.mp3' },
-    { name: 'wizard', path: 'assets/audio/wizard_select.mp3' },
     { name: 'coinbag', path: 'assets/audio/coinbag_1.wav' },
     { name: 'accept', path: 'assets/audio/dc_accept_se.mp3' },
     { name: 'coinflip', path: 'assets/audio/dc_coinflip_se.mp3' },
@@ -246,11 +244,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   preloadService = inject(PreloadService);
   ngZone = inject(NgZone);
   router = inject(Router);
+  preloadAudioService = inject(PreloadAudioEntitiesService);
 
   ngOnInit() {
     this.resetWindowPosition();
     this.subscribeToPlayerClassData();
     this.preloadImageEntities();
+    this.preloadAllAudioEntities();
   }
 
   ngOnDestroy() {
@@ -289,6 +289,20 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   resetWindowPosition() {
     history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
+  }
+
+  preloadAllAudioEntities() {
+    this.preloadAudioService.preloadAudio(
+      this.sounds,
+      this.fighterSounds,
+      this.amazonSounds,
+      this.elfSounds,
+      this.dwarfSounds,
+      this.sorceressSounds,
+      this.wizardSounds)
+      .then(() => {
+      // console.log('Audio preloading complete.');
+    });
   }
 
   playVideo() {
@@ -506,51 +520,90 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.playSound('confirm');
   }
 
-  // async typeOutText(input: string, elementId: string): Promise<void> {
-  //   const element = document.getElementById(elementId) as HTMLParagraphElement;
-  //   if (!element) {
-  //       console.error('Element not found');
-  //       return;
-  //   }
+  // showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
+  //   const element = event.currentTarget as HTMLElement;
+  //   const rect = element.getBoundingClientRect();
 
-  //   element.textContent = '';
+  //   this.tooltipVisible = true;
+  //   this.tooltipUrl = gifUrl;
+  //   this.tooltipIndex = index;
+  //   this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
+  //   this.tooltipLeft = rect.left + window.scrollX;
+  // }
 
-  //   if (this.currentTimeoutId !== null) {
-  //       clearTimeout(this.currentTimeoutId);
-  //       this.currentTimeoutId = null;
-  //   }
-
-  //   for (let i = 0; i < input.length; i++) {
-  //       if (this.currentTimeoutId === null && i !== 0) {
-  //           return;
-  //       }
-
-  //       await new Promise<void>((resolve) => {
-  //           this.currentTimeoutId = window.setTimeout(() => {
-  //               element.textContent += input[i];
-  //               resolve();
-  //           }, 10);
-  //       });
-  //   }
-
-  //   this.currentTimeoutId = null;
+  // hideTooltip(): void {
+  //   this.tooltipVisible = false;
+  //   this.tooltipUrl = '';
+  //   this.tooltipIndex = null;
   // }
 
   showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
     const element = event.currentTarget as HTMLElement;
     const rect = element.getBoundingClientRect();
+    const loadToken = {};  // Unique object to represent this load operation
 
+    // Ensure any existing image is canceled and removed before loading a new one
+    if (this.streamableImage) {
+      this.streamableImage.onload = null;  // Detach existing onload handler
+      this.streamableImage.onerror = null;  // Detach existing onerror handler
+      this.streamableImage.src = 'data:,';  // Use a blank data URL to fully unload the image
+      this.streamableImage = null;  // Help with garbage collection
+    }
+
+    // Create a new image and load
+    this.streamableImage = new Image();
+    this.streamableImage.onload = () => {
+      if (this.currentLoadToken === loadToken) {
+        this.tooltipUrl = gifUrl;
+        this.onGifLoad();
+      }
+    };
+    this.streamableImage.onerror = () => {
+      if (this.currentLoadToken === loadToken) {
+        this.hideTooltip();
+      }
+    };
+
+    this.currentLoadToken = loadToken; // Update the current load token
     this.tooltipVisible = true;
-    this.tooltipUrl = gifUrl;
+    this.tooltipLoading = false;  // Initially false, delay the loading indicator
+    this.tooltipUrl = '';
     this.tooltipIndex = index;
     this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
     this.tooltipLeft = rect.left + window.scrollX;
+
+    // Load the image
+    this.streamableImage.src = gifUrl;
+
+    // Delay showing the loader to avoid flicker on fast loads
+    setTimeout(() => {
+      // Only show the loading indicator if the image hasn't loaded yet and the tooltip is still visible
+      if (this.currentLoadToken === loadToken && !this.streamableImage!.complete) {
+        this.tooltipLoading = true;
+      }
+    }, 200); // 200 milliseconds or adjust based on the desired delay
   }
 
+
   hideTooltip(): void {
+    // Clear the image when hiding the tooltip
+    if (this.streamableImage) {
+      this.streamableImage.onload = null;
+      this.streamableImage.onerror = null;
+      this.streamableImage.src = 'data:,';  // Reset the source to a blank data URL
+      this.streamableImage = null;
+    }
+
+    // Reset tooltip state
     this.tooltipVisible = false;
-    this.tooltipUrl = '';
+    this.tooltipUrl = 'data:,';
     this.tooltipIndex = null;
+    this.tooltipLoading = false;
+    this.currentLoadToken = null;
+  }
+
+  onGifLoad(): void {
+    this.tooltipLoading = false;  // Stop loading when gif is loaded
   }
 
   changeSpriteTo(type: 'start' | 'end') {

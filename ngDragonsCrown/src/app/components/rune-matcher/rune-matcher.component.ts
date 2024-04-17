@@ -31,39 +31,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   currentAudio: HTMLAudioElement | null = null;
   currentAudioBufferSource: AudioBufferSourceNode | null = null;
   sounds: AudioEntity[] = [
-    // { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
-    // { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
-    // { name: 'elf', path: '/assets/audio/elf_select.mp3' },
-    // { name: 'dwarf', path: '/assets/audio/dwarf_select.mp3' },
-    // { name: 'sorceress', path: '/assets/audio/sorceress_select.mp3' },
-    // { name: 'wizard', path: '/assets/audio/wizard_select.mp3' },
-    // { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
-    // { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
-    // { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
-    // { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
-    // { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
-    // { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
-    // { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
-    // { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
-    // { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
-    // { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
-    // { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
-    // { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
-    // { name: 'cast', path: '/assets/audio/dc_cast_se.mp3' },
-    // { name: 'click', path: '/assets/audio/dc_click_se.mp3' },
-    // { name: 'open', path: '/assets/audio/dc_open_se.mp3' },
-    // { name: 'reveal', path: '/assets/audio/dc_reveal_se.mp3' },
-    // { name: 'unveil', path: '/assets/audio/dc_unveil_se.mp3' },
-    // { name: 'unveil_alt', path: '/assets/audio/dc_unveil_se_alt.mp3' },
-    // { name: 'ending', path: '/assets/audio/dc_ending_se.mp3' },
-    // { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
-    // { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
-    { name: 'fighter', path: 'assets/audio/fighter_select.mp3' },
-    { name: 'amazon', path: 'assets/audio/amazon_select.mp3' },
-    { name: 'elf', path: 'assets/audio/elf_select.mp3' },
-    { name: 'dwarf', path: 'assets/audio/dwarf_select.mp3' },
-    { name: 'sorceress', path: 'assets/audio/sorceress_select.mp3' },
-    { name: 'wizard', path: 'assets/audio/wizard_select.mp3' },
     { name: 'coinbag', path: 'assets/audio/coinbag_1.wav' },
     { name: 'accept', path: 'assets/audio/dc_accept_se.mp3' },
     { name: 'coinflip', path: 'assets/audio/dc_coinflip_se.mp3' },
@@ -267,39 +234,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  // async playLoopingSound(soundName: string, volume: number = 1.0): Promise<AudioBufferSourceNode | null> {
-  //   const audioObj = this.sounds.find(sound => sound.name === soundName);
-  //   const audioPath = audioObj?.path;
-
-  //   if (audioPath) {
-  //       const context = new AudioContext();
-  //       return fetch(audioPath)
-  //           .then(response => response.arrayBuffer())
-  //           .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-  //           .then(audioBuffer => {
-  //               const source = context.createBufferSource();
-  //               source.buffer = audioBuffer;
-  //               source.loop = true;
-
-  //               const gainNode = context.createGain();
-  //               gainNode.gain.value = volume;
-
-  //               source.connect(gainNode);
-  //               gainNode.connect(context.destination);
-
-  //               source.start(0);
-  //               this.currentAudioBufferSource = source;
-
-  //               return source;
-  //           });
-  //   }
-  //   return Promise.resolve(null);
-  // }
-
-  getDelay(index: number): number {
-    return index * 0.3;
-  }
-
   selectRune(runeId: number) {
     if (this.hasCurrentSpell) {
       const selectedRune = this.runeKey.find(r => r.id === runeId);
@@ -398,7 +332,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showRuneLetters = !this.showRuneLetters;
     this.playSound('blip');
   }
-
+  // make this asynchronous and preload rune images before setting gameStarted to true
   startGame() {
     this.gameStarted = !this.gameStarted;
     this.stopCurrentSound();
@@ -446,37 +380,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.runePositions = positions;
   }
-
-  // async typeOutText(input: string, elementId: string): Promise<void> {
-  //   const element = document.getElementById(elementId) as HTMLParagraphElement;
-  //   if (!element) {
-  //     console.error('Element not found');
-  //     return;
-  //   }
-
-  //   element.textContent = '';
-
-  //   this.playLoopingSound('dialogue', 1.0);
-
-  //   let temporaryText = '';
-  //   for (let i = 0; i < input.length; i++) {
-  //     temporaryText += input[i];
-  //     element.textContent = temporaryText;
-
-  //     // Logic to check if the next part of the word will fit
-  //     // If not, insert a hyphen and break
-  //     if (i < input.length - 1 && element.scrollWidth > element.clientWidth) {
-  //       temporaryText += '-';  // Add a hyphen at the break
-  //       element.textContent = temporaryText;
-  //       await new Promise<void>(resolve => setTimeout(resolve, 20));
-  //       temporaryText = '';  // Reset temporaryText for the next line
-  //     }
-
-  //     await new Promise<void>(resolve => setTimeout(resolve, 20));
-  //   }
-
-  //   this.stopCurrentSound();
-  // }
 
   async typeOutText(input: string, elementId: string): Promise<void> {
     const element = document.getElementById(elementId) as HTMLParagraphElement;
@@ -548,6 +451,10 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     return Promise.resolve(null);
+  }
+
+  getDelay(index: number): number {
+    return index * 0.3;
   }
 
 }

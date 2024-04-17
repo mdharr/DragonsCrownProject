@@ -24,18 +24,20 @@
             <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id"
                 (click)="loadClassData(i)"
                 [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}"
-                (mouseenter)="showTooltip($event, classData.animationUrl, i)"
+                (mouseenter)="showTooltip($event, classData.streamableUrl, i)"
                 (mouseleave)="hideTooltip()">
-                <div *ngIf="selectedClassIndex === i" class="chara-pointer">
-                  <img src="https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_pointer.png">
-                </div>
-                <div class="portrait-container" [ngClass]="{'selected-portrait': selectedClassIndex === i}">
-                  <img [src]="classData.portraitUrl" [alt]="classData.name">
-                </div>
+              <div *ngIf="selectedClassIndex === i" class="chara-pointer">
+                <img src="https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_pointer.png">
+              </div>
+              <div class="portrait-container" [ngClass]="{'selected-portrait': selectedClassIndex === i}">
+                <img [src]="classData.portraitUrl" [alt]="classData.name">
+              </div>
               <div *ngIf="tooltipVisible && tooltipIndex === i && selectedClassIndex !== i" class="custom-tooltip">
-                <div class="media-wrapper">
-                  <img [src]="classData.streamableUrl" alt="Media Content" style="width:100%; height: auto; max-height: 100%;">
+                <div *ngIf="tooltipLoading" class="loader-container">
+                  <div class="loader"></div>
                 </div>
+                <!-- Render the image only when tooltipUrl is not empty -->
+                <img *ngIf="!tooltipLoading" [src]="tooltipUrl" alt="" style="width:100%; height: auto; max-height: 100%;">
               </div>
             </li>
           </ul>
@@ -43,9 +45,6 @@
         <hr>
         <div class="class-description class-backdrop" style="height: 394px;" [style.--backgroundImage]="!classSelected ? 'url(' + getImageUrl('character_bg') + ')' : 'none'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }">
           <ng-container *ngIf="classSelected">
-            <!-- <video #videoPlayer autoplay loop style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" [src]="getVideoPath(currentClassData?.name.toLowerCase())">
-              Your browser does not support the video tag.
-            </video> -->
             <video #videoPlayer1 [src]="currentVideoPath" style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" autoplay loop>
               Your browser does not support the video tag.
             </video>
@@ -174,17 +173,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="alt-artwork">
-              <div class="class-contract" [ngStyle]="{'--backgroundImageUrl': 'url(' + 'https://static.myfigurecollection.net/upload/pictures/2021/04/24/2697957.gif' + ')'}">
-                <span>Level {{ currentStats.level }} {{ currentClassData.name }}</span>
-              </div>
-              <blockquote>
-                <h5>Recommended for these people</h5>
-                <ul>
-                  <li *ngFor="let recommendation of currentClassData?.recommendations">{{ recommendation.description}}</li>
-                </ul>
-              </blockquote>
-            </div> -->
           </div>
           <hr>
 
@@ -198,7 +186,6 @@
           <button id="rune-matcher-btn" [class.selected-skills]="!showCommonSkills && !showUniqueSkills && !viewQuests && !viewBuild && viewRunes" mat-button (click)="viewRunesMatcher()">View Runes</button>
         </ng-container>
 
-        <!-- <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + getImageUrl('castle_bg') + ')'}"> -->
         <div class="meta-wrapper class-background" *ngIf="classSelected && !viewQuests && !viewBuild && !viewRunes">
           <div style="display: flex; flex-direction: column;">
             <span class="remaining-sp">Remaining Skill Points: {{ totalAvailableSP }}</span>
@@ -297,7 +284,6 @@
                       <td>{{ detail.requiredSkillPoints }}</td>
                       <td>{{ detail.requiredPlayerLevel }}</td>
                       <td>{{ detail.similarSkillLevel }}</td>
-                      <!-- <td><span *ngFor="let effect of detail.effects.split(', ')">{{ effect }}<br></span></td> -->
                       <td style="text-align: left;">
                         <ul class="build-effects">
                           <li *ngFor="let effect of detail.effects.split(', ')">{{ effect }}</li>
@@ -313,36 +299,6 @@
         <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl+ ')'}">
           <div class="quests-wrapper">
             <span style="margin-bottom: 5px;">Skill Points from Quests: {{ calculateTotalSkillPoints() }}</span>
-            <!-- <table>
-              <thead>
-                <tr>
-                  <th>
-                    <input type="checkbox"
-                           [checked]="areAllQuestsSelected()"
-                           (change)="toggleAllQuests($event)">
-                  </th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>SP</th>
-                  <th>Location</th>
-                  <th>Path</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let quest of quests">
-                  <td>
-                    <input type="checkbox"
-                           [checked]="quest.selected"
-                           (change)="toggleQuest(quest)">
-                  </td>
-                  <td>{{ quest.name }}</td>
-                  <td>{{ quest.description }}</td>
-                  <td>{{ quest.skillPoints }}</td>
-                  <td>{{ quest.location }}</td>
-                  <td>{{ quest.path }}</td>
-                </tr>
-              </tbody>
-            </table> -->
             <span id="toggle-all-text">Toggle All</span>
             <label class="custom-checkbox" id="toggle-all-label">
               <input type="checkbox"
