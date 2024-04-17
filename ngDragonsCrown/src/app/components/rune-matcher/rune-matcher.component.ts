@@ -267,49 +267,34 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  // playLoopingSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
+  // async playLoopingSound(soundName: string, volume: number = 1.0): Promise<AudioBufferSourceNode | null> {
   //   const audioObj = this.sounds.find(sound => sound.name === soundName);
   //   const audioPath = audioObj?.path;
+
   //   if (audioPath) {
-  //       const audio = new Audio(audioPath);
-  //       audio.preload = 'auto';
-  //       audio.volume = volume;
-  //       audio.loop = true;  // Enable looping
-  //       audio.play();
-  //       this.currentAudio = audio; // Assuming you want to track the current audio
-  //       return audio;
+  //       const context = new AudioContext();
+  //       return fetch(audioPath)
+  //           .then(response => response.arrayBuffer())
+  //           .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+  //           .then(audioBuffer => {
+  //               const source = context.createBufferSource();
+  //               source.buffer = audioBuffer;
+  //               source.loop = true;
+
+  //               const gainNode = context.createGain();
+  //               gainNode.gain.value = volume;
+
+  //               source.connect(gainNode);
+  //               gainNode.connect(context.destination);
+
+  //               source.start(0);
+  //               this.currentAudioBufferSource = source;
+
+  //               return source;
+  //           });
   //   }
-  //   return null;
+  //   return Promise.resolve(null);
   // }
-
-  async playLoopingSound(soundName: string, volume: number = 1.0): Promise<AudioBufferSourceNode | null> {
-    const audioObj = this.sounds.find(sound => sound.name === soundName);
-    const audioPath = audioObj?.path;
-
-    if (audioPath) {
-        const context = new AudioContext();
-        return fetch(audioPath)
-            .then(response => response.arrayBuffer())
-            .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
-            .then(audioBuffer => {
-                const source = context.createBufferSource();
-                source.buffer = audioBuffer;
-                source.loop = true;
-
-                const gainNode = context.createGain();
-                gainNode.gain.value = volume;
-
-                source.connect(gainNode);
-                gainNode.connect(context.destination);
-
-                source.start(0);
-                this.currentAudioBufferSource = source;
-
-                return source;
-            });
-    }
-    return Promise.resolve(null);
-  }
 
   getDelay(index: number): number {
     return index * 0.3;
@@ -465,36 +450,34 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   // async typeOutText(input: string, elementId: string): Promise<void> {
   //   const element = document.getElementById(elementId) as HTMLParagraphElement;
   //   if (!element) {
-  //       console.error('Element not found');
-  //       return;
+  //     console.error('Element not found');
+  //     return;
   //   }
 
   //   element.textContent = '';
 
-  //   if (this.currentTimeoutId !== null) {
-  //       clearTimeout(this.currentTimeoutId);
-  //       this.currentTimeoutId = null;
-  //   }
-
   //   this.playLoopingSound('dialogue', 1.0);
 
+  //   let temporaryText = '';
   //   for (let i = 0; i < input.length; i++) {
-  //       if (this.currentTimeoutId === null && i !== 0) {
-  //           return;
-  //       }
+  //     temporaryText += input[i];
+  //     element.textContent = temporaryText;
 
-  //       await new Promise<void>((resolve) => {
-  //           this.currentTimeoutId = window.setTimeout(() => {
-  //               element.textContent += input[i];
-  //               resolve();
-  //           }, 20);
-  //       });
+  //     // Logic to check if the next part of the word will fit
+  //     // If not, insert a hyphen and break
+  //     if (i < input.length - 1 && element.scrollWidth > element.clientWidth) {
+  //       temporaryText += '-';  // Add a hyphen at the break
+  //       element.textContent = temporaryText;
+  //       await new Promise<void>(resolve => setTimeout(resolve, 20));
+  //       temporaryText = '';  // Reset temporaryText for the next line
+  //     }
+
+  //     await new Promise<void>(resolve => setTimeout(resolve, 20));
   //   }
-
-  //   this.currentTimeoutId = null;
 
   //   this.stopCurrentSound();
   // }
+
 
   async typeOutText(input: string, elementId: string): Promise<void> {
     const element = document.getElementById(elementId) as HTMLParagraphElement;
@@ -505,7 +488,12 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
     element.textContent = '';
 
-    this.playLoopingSound('dialogue', 1.0);
+    // Wait for the sound to be ready and playing
+    const soundReady = await this.playLoopingSound('dialogue', 1.0);
+    if (!soundReady) {
+      console.error('Failed to play sound');
+      return;
+    }
 
     let temporaryText = '';
     for (let i = 0; i < input.length; i++) {
@@ -513,18 +501,54 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       element.textContent = temporaryText;
 
       // Logic to check if the next part of the word will fit
-      // If not, insert a hyphen and break
       if (i < input.length - 1 && element.scrollWidth > element.clientWidth) {
         temporaryText += '-';  // Add a hyphen at the break
         element.textContent = temporaryText;
-        await new Promise<void>(resolve => setTimeout(resolve, 20));
+        await new Promise<void>(resolve => setTimeout(resolve, this.getDelay(i)));
         temporaryText = '';  // Reset temporaryText for the next line
       }
 
-      await new Promise<void>(resolve => setTimeout(resolve, 20));
+      await new Promise<void>(resolve => setTimeout(resolve, this.getDelay(i)));
     }
 
     this.stopCurrentSound();
+  }
+
+  async playLoopingSound(soundName: string, volume: number = 1.0): Promise<AudioBufferSourceNode | null> {
+    const audioObj = this.sounds.find(sound => sound.name === soundName);
+    const audioPath = audioObj?.path;
+
+    if (audioPath) {
+      const context = new AudioContext();
+      try {
+        const response = await fetch(audioPath);
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer = await context.decodeAudioData(arrayBuffer);
+
+        // Simulate a delay in preparing the audio
+        // await new Promise(resolve => setTimeout(resolve, 3000));
+
+        const source = context.createBufferSource();
+        source.buffer = audioBuffer;
+        source.loop = true;
+
+        const gainNode = context.createGain();
+        gainNode.gain.value = volume;
+
+        source.connect(gainNode);
+        gainNode.connect(context.destination);
+
+        source.start(0);
+        this.currentAudioBufferSource = source;
+
+        return source;
+      } catch (error) {
+        console.error('Error loading or playing sound:', error);
+        return null;
+      }
+    }
+
+    return Promise.resolve(null);
   }
 
 }
