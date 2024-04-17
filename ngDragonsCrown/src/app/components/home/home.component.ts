@@ -151,26 +151,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   };
 
   sounds: AudioEntity[] = [
-    // { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
-    // { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
-    // { name: 'elf', path: '/assets/audio/elf_select.mp3' },
-    // { name: 'dwarf', path: '/assets/audio/dwarf_select.mp3' },
-    // { name: 'sorceress', path: '/assets/audio/sorceress_select.mp3' },
-    // { name: 'wizard', path: '/assets/audio/wizard_select.mp3' },
-    // { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
-    // { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
-    // { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
-    // { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
-    // { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
-    // { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
-    // { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
-    // { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
-    // { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
-    // { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
-    // { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
-    // { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
-    // { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
-    // { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
     { name: 'fighter', path: 'assets/audio/fighter_select.mp3' },
     { name: 'amazon', path: 'assets/audio/amazon_select.mp3' },
     { name: 'elf', path: 'assets/audio/elf_select.mp3' },
@@ -194,12 +174,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   videos: VideoEntity[] = [
-    // { name: 'fighter', path: '/assets/graphics/media/fighter_compressed.mp4' },
-    // { name: 'amazon', path: '/assets/graphics/media/amazon_compressed.mp4' },
-    // { name: 'elf', path: '/assets/graphics/media/elf_compressed.mp4' },
-    // { name: 'dwarf', path: '/assets/graphics/media/dwarf_compressed.mp4' },
-    // { name: 'sorceress', path: '/assets/graphics/media/sorceress_compressed.mp4' },
-    // { name: 'wizard', path: '/assets/graphics/media/wizard_compressed.mp4' },
     { name: 'fighter', path: 'assets/graphics/media/fighter_compressed.mp4' },
     { name: 'amazon', path: 'assets/graphics/media/amazon_compressed.mp4' },
     { name: 'elf', path: 'assets/graphics/media/elf_compressed.mp4' },
@@ -209,12 +183,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   fighterSounds: AudioEntity[] = [
-    // { name: 'fighter1', path: '/assets/audio/select/fighter_select1.mp3' },
-    // { name: 'fighter2', path: '/assets/audio/select/fighter_select2.mp3' },
-    // { name: 'fighter3', path: '/assets/audio/select/fighter_select3.mp3' },
-    // { name: 'fighter4', path: '/assets/audio/select/fighter_select4.mp3' },
-    // { name: 'fighter5', path: '/assets/audio/select/fighter_select5.mp3' },
-    // { name: 'fighter6', path: '/assets/audio/select/fighter_select6.mp3' },
     { name: 'fighter1', path: 'assets/audio/select/fighter_select1.mp3' },
     { name: 'fighter2', path: 'assets/audio/select/fighter_select2.mp3' },
     { name: 'fighter3', path: 'assets/audio/select/fighter_select3.mp3' },
@@ -224,11 +192,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   amazonSounds: AudioEntity[] = [
-    // { name: 'amazon1', path: '/assets/audio/select/amazon_select1.mp3' },
-    // { name: 'amazon2', path: '/assets/audio/select/amazon_select2.mp3' },
-    // { name: 'amazon3', path: '/assets/audio/select/amazon_select3.mp3' },
-    // { name: 'amazon4', path: '/assets/audio/select/amazon_select4.mp3' },
-    // { name: 'amazon5', path: '/assets/audio/select/amazon_select5.mp3' },
     { name: 'amazon1', path: 'assets/audio/select/amazon_select1.mp3' },
     { name: 'amazon2', path: 'assets/audio/select/amazon_select2.mp3' },
     { name: 'amazon3', path: 'assets/audio/select/amazon_select3.mp3' },
@@ -237,12 +200,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   elfSounds: AudioEntity[] = [
-    // { name: 'elf1', path: '/assets/audio/select/elf_select1.mp3' },
-    // { name: 'elf2', path: '/assets/audio/select/elf_select2.mp3' },
-    // { name: 'elf3', path: '/assets/audio/select/elf_select3.mp3' },
-    // { name: 'elf4', path: '/assets/audio/select/elf_select4.mp3' },
-    // { name: 'elf5', path: '/assets/audio/select/elf_select5.mp3' },
-    // { name: 'elf6', path: '/assets/audio/select/elf_select6.mp3' },
     { name: 'elf1', path: 'assets/audio/select/elf_select1.mp3' },
     { name: 'elf2', path: 'assets/audio/select/elf_select2.mp3' },
     { name: 'elf3', path: 'assets/audio/select/elf_select3.mp3' },
@@ -252,12 +209,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   dwarfSounds: AudioEntity[] = [
-    // { name: 'dwarf1', path: '/assets/audio/select/dwarf_select1.mp3' },
-    // { name: 'dwarf2', path: '/assets/audio/select/dwarf_select2.mp3' },
-    // { name: 'dwarf3', path: '/assets/audio/select/dwarf_select3.mp3' },
-    // { name: 'dwarf4', path: '/assets/audio/select/dwarf_select4.mp3' },
-    // { name: 'dwarf5', path: '/assets/audio/select/dwarf_select5.mp3' },
-    // { name: 'dwarf6', path: '/assets/audio/select/dwarf_select6.mp3' },
     { name: 'dwarf1', path: 'assets/audio/select/dwarf_select1.mp3' },
     { name: 'dwarf2', path: 'assets/audio/select/dwarf_select2.mp3' },
     { name: 'dwarf3', path: 'assets/audio/select/dwarf_select3.mp3' },
@@ -267,13 +218,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   wizardSounds: AudioEntity[] = [
-    // { name: 'wizard1', path: '/assets/audio/select/wizard_select1.mp3' },
-    // { name: 'wizard2', path: '/assets/audio/select/wizard_select2.mp3' },
-    // { name: 'wizard3', path: '/assets/audio/select/wizard_select3.mp3' },
-    // { name: 'wizard4', path: '/assets/audio/select/wizard_select4.mp3' },
-    // { name: 'wizard5', path: '/assets/audio/select/wizard_select5.mp3' },
-    // { name: 'wizard6', path: '/assets/audio/select/wizard_select6.mp3' },
-    // { name: 'wizard7', path: '/assets/audio/select/wizard_select7.mp3' },
     { name: 'wizard1', path: 'assets/audio/select/wizard_select1.mp3' },
     { name: 'wizard2', path: 'assets/audio/select/wizard_select2.mp3' },
     { name: 'wizard3', path: 'assets/audio/select/wizard_select3.mp3' },
@@ -284,12 +228,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   sorceressSounds: AudioEntity[] = [
-    // { name: 'sorceress1', path: '/assets/audio/select/sorceress_select1.mp3' },
-    // { name: 'sorceress2', path: '/assets/audio/select/sorceress_select2.mp3' },
-    // { name: 'sorceress3', path: '/assets/audio/select/sorceress_select3.mp3' },
-    // { name: 'sorceress4', path: '/assets/audio/select/sorceress_select4.mp3' },
-    // { name: 'sorceress5', path: '/assets/audio/select/sorceress_select5.mp3' },
-    // { name: 'sorceress6', path: '/assets/audio/select/sorceress_select6.mp3' },
     { name: 'sorceress1', path: 'assets/audio/select/sorceress_select1.mp3' },
     { name: 'sorceress2', path: 'assets/audio/select/sorceress_select2.mp3' },
     { name: 'sorceress3', path: 'assets/audio/select/sorceress_select3.mp3' },

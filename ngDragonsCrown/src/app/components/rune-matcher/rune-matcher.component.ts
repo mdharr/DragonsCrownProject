@@ -478,7 +478,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   //   this.stopCurrentSound();
   // }
 
-
   async typeOutText(input: string, elementId: string): Promise<void> {
     const element = document.getElementById(elementId) as HTMLParagraphElement;
     if (!element) {
