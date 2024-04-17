@@ -29,7 +29,8 @@ export class ScrollToTopButtonComponent {
   }
 
   playCoinflipAudio() {
-    const audioPath = '/assets/audio/dc_coinflip_se.mp3';
+    // const audioPath = '/assets/audio/dc_coinflip_se.mp3';
+    const audioPath = 'assets/audio/dc_coinflip_se.mp3';
     const audio = new Audio(audioPath);
     audio.play();
   }

@@ -31,33 +31,60 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   currentAudio: HTMLAudioElement | null = null;
   currentAudioBufferSource: AudioBufferSourceNode | null = null;
   sounds: AudioEntity[] = [
-    { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
-    { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
-    { name: 'elf', path: '/assets/audio/elf_select.mp3' },
-    { name: 'dwarf', path: '/assets/audio/dwarf_select.mp3' },
-    { name: 'sorceress', path: '/assets/audio/sorceress_select.mp3' },
-    { name: 'wizard', path: '/assets/audio/wizard_select.mp3' },
-    { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
-    { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
-    { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
-    { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
-    { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
-    { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
-    { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
-    { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
-    { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
-    { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
-    { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
-    { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
-    { name: 'cast', path: '/assets/audio/dc_cast_se.mp3' },
-    { name: 'click', path: '/assets/audio/dc_click_se.mp3' },
-    { name: 'open', path: '/assets/audio/dc_open_se.mp3' },
-    { name: 'reveal', path: '/assets/audio/dc_reveal_se.mp3' },
-    { name: 'unveil', path: '/assets/audio/dc_unveilt_se.mp3' },
-    { name: 'unveil_alt', path: '/assets/audio/dc_unveil_se_alt.mp3' },
-    { name: 'ending', path: '/assets/audio/dc_ending_se.mp3' },
-    { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
-    { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
+    // { name: 'fighter', path: '/assets/audio/fighter_select.mp3' },
+    // { name: 'amazon', path: '/assets/audio/amazon_select.mp3' },
+    // { name: 'elf', path: '/assets/audio/elf_select.mp3' },
+    // { name: 'dwarf', path: '/assets/audio/dwarf_select.mp3' },
+    // { name: 'sorceress', path: '/assets/audio/sorceress_select.mp3' },
+    // { name: 'wizard', path: '/assets/audio/wizard_select.mp3' },
+    // { name: 'coinbag', path: '/assets/audio/coinbag_1.wav' },
+    // { name: 'accept', path: '/assets/audio/dc_accept_se.mp3' },
+    // { name: 'coinflip', path: '/assets/audio/dc_coinflip_se.mp3' },
+    // { name: 'confirm', path: '/assets/audio/dc_confirm_se.mp3' },
+    // { name: 'erase', path: '/assets/audio/dc_erase_se.mp3' },
+    // { name: 'rune',  path: '/assets/audio/dc_rune_se.mp3' },
+    // { name: 'scratch', path: '/assets/audio/dc_scratch_se.mp3' },
+    // { name: 'tick', path: '/assets/audio/dc_tick_se.mp3' },
+    // { name: 'ticks', path: '/assets/audio/dc_ticks_se.mp3' },
+    // { name: 'unlock', path: '/assets/audio/dc_unlock_se.mp3' },
+    // { name: 'pageflip', path: '/assets/audio/dc_pageflip_se.mp3' },
+    // { name: 'treasure', path: '/assets/audio/dc_treasure_se.mp3' },
+    // { name: 'cast', path: '/assets/audio/dc_cast_se.mp3' },
+    // { name: 'click', path: '/assets/audio/dc_click_se.mp3' },
+    // { name: 'open', path: '/assets/audio/dc_open_se.mp3' },
+    // { name: 'reveal', path: '/assets/audio/dc_reveal_se.mp3' },
+    // { name: 'unveil', path: '/assets/audio/dc_unveil_se.mp3' },
+    // { name: 'unveil_alt', path: '/assets/audio/dc_unveil_se_alt.mp3' },
+    // { name: 'ending', path: '/assets/audio/dc_ending_se.mp3' },
+    // { name: 'blip', path: '/assets/audio/dc_blip_se.mp3' },
+    // { name: 'dialogue', path: '/assets/audio/dc_dialogue_se.mp3' },
+    { name: 'fighter', path: 'assets/audio/fighter_select.mp3' },
+    { name: 'amazon', path: 'assets/audio/amazon_select.mp3' },
+    { name: 'elf', path: 'assets/audio/elf_select.mp3' },
+    { name: 'dwarf', path: 'assets/audio/dwarf_select.mp3' },
+    { name: 'sorceress', path: 'assets/audio/sorceress_select.mp3' },
+    { name: 'wizard', path: 'assets/audio/wizard_select.mp3' },
+    { name: 'coinbag', path: 'assets/audio/coinbag_1.wav' },
+    { name: 'accept', path: 'assets/audio/dc_accept_se.mp3' },
+    { name: 'coinflip', path: 'assets/audio/dc_coinflip_se.mp3' },
+    { name: 'confirm', path: 'assets/audio/dc_confirm_se.mp3' },
+    { name: 'erase', path: 'assets/audio/dc_erase_se.mp3' },
+    { name: 'rune',  path: 'assets/audio/dc_rune_se.mp3' },
+    { name: 'scratch', path: 'assets/audio/dc_scratch_se.mp3' },
+    { name: 'tick', path: 'assets/audio/dc_tick_se.mp3' },
+    { name: 'ticks', path: 'assets/audio/dc_ticks_se.mp3' },
+    { name: 'unlock', path: 'assets/audio/dc_unlock_se.mp3' },
+    { name: 'pageflip', path: 'assets/audio/dc_pageflip_se.mp3' },
+    { name: 'treasure', path: 'assets/audio/dc_treasure_se.mp3' },
+    { name: 'cast', path: 'assets/audio/dc_cast_se.mp3' },
+    { name: 'click', path: 'assets/audio/dc_click_se.mp3' },
+    { name: 'open', path: 'assets/audio/dc_open_se.mp3' },
+    { name: 'reveal', path: 'assets/audio/dc_reveal_se.mp3' },
+    { name: 'unveil', path: 'assets/audio/dc_unveil_se.mp3' },
+    { name: 'unveil_alt', path: 'assets/audio/dc_unveil_se_alt.mp3' },
+    { name: 'ending', path: 'assets/audio/dc_ending_se.mp3' },
+    { name: 'blip', path: 'assets/audio/dc_blip_se.mp3' },
+    { name: 'dialogue', path: 'assets/audio/dc_dialogue_se.mp3' },
   ]
 
   // booleans
@@ -94,7 +121,8 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async fetchData() {
-    const response = await fetch('/assets/runes.json');
+    // const response = await fetch('/assets/runes.json');
+    const response = await fetch('assets/runes.json');
     const data = await response.json();
     this.runeKey = data.runes;
     this.spellKey = [...data.spells];
@@ -197,9 +225,11 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       for (let i = 0; i < carriedRunes.length && i < selectedRunes.length; i++) {
         imageUrlMap.set(carriedRunes[i]!.id, selectedRunes[i]?.imageUrl || '');
       }
-      return imageUrlMap.get(runeId) || '/assets/graphics/runes/Unknown.png';
+      // return imageUrlMap.get(runeId) || '/assets/graphics/runes/Unknown.png';
+      return imageUrlMap.get(runeId) || 'assets/graphics/runes/Unknown.png';
     } else {
-      return '/assets/graphics/runes/Unknown.png';
+      // return '/assets/graphics/runes/Unknown.png';
+      return 'assets/graphics/runes/Unknown.png';
     }
   }
 

@@ -238,7 +238,7 @@
   border: 1px solid #ffd602;
   height: 200px;
   box-shadow: inset 0px 0px 14px 8px rgba(0,0,0,0.75);
-  background-image: url(/assets/graphics/splash.png);
+  /* background-image: url(/assets/graphics/splash.png); */
   margin-top: 9px;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
