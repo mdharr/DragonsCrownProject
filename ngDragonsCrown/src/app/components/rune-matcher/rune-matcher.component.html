@@ -62,10 +62,13 @@
 </div>
 
 <div class="start-wrapper" *ngIf="!gameStarted">
-  <div class="menu-box">
+  <div class="menu-box" style="position: relative;">
+    <div *ngIf="gameLoading" class="loader-container">
+      <div class="loader"></div>
+    </div>
     <div style="width: 700px; height: 150px; padding: 0px 30px;">
       <p id="menu-text"></p>
     </div>
-    <button (click)="startGame(); playSound('cast', .5)" class="option-buttons">Continue</button>
+    <button (click)="startGame()" class="option-buttons">Continue</button>
   </div>
 </div>

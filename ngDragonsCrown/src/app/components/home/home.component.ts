@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   previousVideoPath: string = '';
   streamableImage: HTMLImageElement | null = null;
   private currentLoadToken: any = null;
+  private observer: IntersectionObserver | null = null;
 
   // app state
   buildToShare: any;
@@ -60,31 +61,15 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   // image assets to preload
   images: ImageEntity[] = [
     {
-      name: 'red_bg',
-      minUrl: 'https://live.staticflickr.com/65535/53569475467_2d136f39b1_k.jpg',
-      maxUrl: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/bg_pattern.png',
-      isLoaded: false,
-    },
-    {
       name: 'build_bg',
-      // minUrl: 'https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg',
-      // maxUrl: 'https://live.staticflickr.com/65535/53572893684_541cc6b34d_k.jpg',
       minUrl: 'https://live.staticflickr.com/65535/53593069654_0b983c5af3_k.jpg',
       maxUrl: 'https://live.staticflickr.com/65535/53593069654_0b983c5af3_k.jpg',
-      isLoaded: false,
-    },
-    {
-      name: 'castle_bg',
-      minUrl: 'https://live.staticflickr.com/65535/53570769145_4230a9f7f7_k.jpg',
-      maxUrl: 'https://live.staticflickr.com/65535/53570755564_eb3a3d67b6_k.jpg',
       isLoaded: false,
     },
     {
       name: 'character_bg',
       minUrl: 'https://live.staticflickr.com/65535/53624067626_10b6b47321_k.jpg',
       maxUrl: 'https://live.staticflickr.com/65535/53624067626_10b6b47321_k.jpg',
-      // minUrl: 'https://live.staticflickr.com/65535/53570769120_a9e153d0c8_k.jpg',
-      // maxUrl: 'https://live.staticflickr.com/65535/53560863818_20e5c2da14_k.jpg',
       isLoaded: false,
     },
   ];
@@ -122,6 +107,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   inputFocused: boolean = false;
   loading: boolean = false;
   classDataLoaded: boolean = false;
+  audioPreloaded: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -236,6 +222,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // subscriptions
   private playerClassSubscription: Subscription | undefined;
+  private preloadSubscription: Subscription | undefined;
 
   // dependencies
   auth = inject(AuthService);
@@ -254,27 +241,34 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    if(this.playerClassSubscription) {
-      this.playerClassSubscription.unsubscribe();
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
     }
+
+    window.removeEventListener('scroll', this.handleScroll);
+    this.playerClassSubscription?.unsubscribe();
+    this.preloadSubscription?.unsubscribe();
   }
 
+
   ngAfterViewInit(): void {
-    const observer = new IntersectionObserver((entries) => {
+    this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('fadeIn');
-          observer.unobserve(entry.target);
+          this.observer?.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
 
     this.observedElements.forEach(element => {
-      observer.observe(element.nativeElement);
+      this.observer?.observe(element.nativeElement);
     });
   }
 
   subscribeToPlayerClassData() {
+
     this.playerClassSubscription = this.playerClassService.indexAll().subscribe({
       next: (data) => {
         this.playerClasses = data;
@@ -292,17 +286,20 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   preloadAllAudioEntities() {
-    this.preloadAudioService.preloadAudio(
-      this.sounds,
-      this.fighterSounds,
-      this.amazonSounds,
-      this.elfSounds,
-      this.dwarfSounds,
-      this.sorceressSounds,
-      this.wizardSounds)
-      .then(() => {
-      // console.log('Audio preloading complete.');
-    });
+    if (!this.audioPreloaded) {
+      this.preloadAudioService.preloadAudio(
+        this.sounds,
+        this.fighterSounds,
+        this.amazonSounds,
+        this.elfSounds,
+        this.dwarfSounds,
+        this.sorceressSounds,
+        this.wizardSounds
+      ).then(() => {
+          this.audioPreloaded = true;
+          console.log('Audio preloading complete.');
+      });
+  }
   }
 
   playVideo() {
@@ -317,7 +314,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   preloadImageEntities() {
     this.images.forEach((image) => {
-      this.preloadService.preloadImage(image.maxUrl).subscribe({
+      this.preloadSubscription = this.preloadService.preloadImage(image.maxUrl).subscribe({
         next: (url) => {
           if (url === image.maxUrl) {
             image.isLoaded = true;
@@ -334,13 +331,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   resetPortraits() {
-    const ul = document.querySelector('#portraits-ul');
-    if(ul) {
-      Array.from(ul.childNodes).forEach(child => {
-        const element = child as HTMLElement;
-        element.style.opacity = '0.5';
-        element.style.filter = 'drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5))';
-      })
+    let ul = document.querySelector('#portraits-ul');
+    if (ul) {
+        Array.from(ul.childNodes).forEach(child => {
+            const element = child as HTMLElement;
+            element.style.opacity = '0.5';
+            element.style.filter = 'drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5))';
+        });
+        ul = null;
     }
   }
 
@@ -350,7 +348,36 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     element.style.filter = 'filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1)';
   }
 
+  resetClassData() {
+    this.currentClassData = null;
+    this.skillsList = [];
+    this.currentBuild = [];
+    this.originalBuild = [];
+    this.currentStats = null;
+    this.commonSkills = [];
+    this.uniqueSkills = [];
+    this.quests = [];
+    this.selectedQuests = [];
+    this.currentVideoPath = '';
+    this.previousVideoPath = '';
+    this.selectedClassIndex = null;
+    this.currentSkill = new Skill();
+    this.selectedSkill = { index: null, type: null };
+    this.totalExp = 0;
+    this.currentLevel = 1;
+    this.currentLevelSP = 0;
+    this.totalAvailableSP = 0;
+    this.artworkLoaded = false;
+    this.playerCardLoaded = false;
+    this.skillCardLoaded = false;
+    this.tooltipVisible = false;
+    this.tooltipUrl = '';
+    this.tooltipIndex = null;
+    this.loading = false;
+}
+
   async loadClassData(classIndex: number): Promise<void> {
+    this.resetClassData();
     this.classSelected = true;
     this.skillSelected = false;
     this.currentSkill = new Skill();
@@ -583,7 +610,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }, 200); // 200 milliseconds or adjust based on the desired delay
   }
-
 
   hideTooltip(): void {
     // Clear the image when hiding the tooltip

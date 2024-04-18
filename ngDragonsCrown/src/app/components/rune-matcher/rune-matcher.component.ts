@@ -68,6 +68,8 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   evaluated: boolean = false;
   gameOver: boolean = false;
   private suggestHintTimeout: any;
+  typingActive: boolean = true;
+  gameLoading: boolean = false;
 
   @ViewChild('runeContainer') runeContainerRef!: ElementRef;
   runePositions: Array<{ left: string, top: string }> = [];
@@ -332,11 +334,35 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showRuneLetters = !this.showRuneLetters;
     this.playSound('blip');
   }
-  // make this asynchronous and preload rune images before setting gameStarted to true
-  startGame() {
-    this.gameStarted = !this.gameStarted;
+
+  async startGame() {
     this.stopCurrentSound();
+    this.typingActive = false;  // Stop typing text
+
     this.playSound('rune');
+    const runeImageUrls = this.runeKey.map(rune => rune.imageUrl);
+
+    try {
+      this.gameLoading = true;
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      await Promise.all(runeImageUrls.map(url => this.preloadImage(url)));
+      this.playSound('cast', .5);
+      this.gameLoading = false;
+      this.gameStarted = true;  // Set game to started only after all images are loaded
+      console.log('All rune images preloaded. Game started!');
+    } catch (error) {
+      console.error('Failed to preload rune images:', error);
+    }
+  }
+
+
+  preloadImage(url: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve();
+      img.onerror = reject;
+      img.src = url;
+    });
   }
 
   getRandomLeft(index: number): string {
@@ -352,9 +378,9 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   calculateRunePositions() {
-    const runeSize = 100; // The size of the rune image
-    const containerWidth = 898; // Assuming the container width
-    const containerHeight = 310; // Assuming the container height
+    const runeSize = 100;
+    const containerWidth = 898;
+    const containerHeight = 310;
     const positions = [];
 
     for (let i = 0; i < this.currentSpell.runes.length; i++) {
@@ -389,6 +415,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     element.textContent = '';
+    this.typingActive = true;  // Enable typing at the start
 
     // Wait for the sound to be ready and playing
     const soundReady = await this.playLoopingSound('dialogue', 1.0);
@@ -399,10 +426,11 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
     let temporaryText = '';
     for (let i = 0; i < input.length; i++) {
+      if (!this.typingActive) break;  // Exit loop if typing is stopped
+
       temporaryText += input[i];
       element.textContent = temporaryText;
 
-      // Logic to check if the next part of the word will fit
       if (i < input.length - 1 && element.scrollWidth > element.clientWidth) {
         temporaryText += '-';  // Add a hyphen at the break
         element.textContent = temporaryText;
@@ -415,6 +443,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.stopCurrentSound();
   }
+
 
   async playLoopingSound(soundName: string, volume: number = 1.0): Promise<AudioBufferSourceNode | null> {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
