@@ -12,7 +12,7 @@ import { PreloadService } from 'src/app/services/preload.service';
 import { CombinedSkill } from 'src/app/models/combined-skill';
 import { ClassName } from 'src/app/types/class-name.type';
 import html2canvas from 'html2canvas';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { VideoEntity } from 'src/app/models/video-entity';
 import { PreloadAudioEntitiesService } from 'src/app/services/preload-audio-entities.service';
 
@@ -78,7 +78,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
   @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
   @ViewChild('skillInfoBoard', { static: false }) skillInfoBoard!: ElementRef<HTMLDivElement>;
-  // @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoPlayer1') videoPlayer1!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoPlayer2') videoPlayer2!: ElementRef<HTMLVideoElement>;
 
@@ -120,25 +119,18 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // typewriter
   currentTimeoutId: number | null = null;
-  introText: string = "Embark on an epic journey across Hydeland, a land steeped in mystery and danger, in pursuit of the legendary Dragon's Crown. With this arcane tool at your disposal, you have the power to meticulously craft your adventurer, choosing your path with care and strategy. Fine-tune your character's stats, carefully plan out your skills, and share your hero's build with companions and fellow seekers of the crown.";
 
   // audio
   currentAudio: HTMLAudioElement | null = null;
   currentClassAudio: HTMLAudioElement | null = null;
-  private audioPaths: Record<ClassName, string> = {
-    // amazon: '/assets/audio/amazon_select.mp3',
-    // dwarf: '/assets/audio/dwarf_select.mp3',
-    // elf: '/assets/audio/elf_select.mp3',
-    // fighter: '/assets/audio/fighter_select.mp3',
-    // sorceress: '/assets/audio/sorceress_select.mp3',
-    // wizard: '/assets/audio/wizard_select.mp3',
-    amazon: 'assets/audio/amazon_select.mp3',
-    dwarf: 'assets/audio/dwarf_select.mp3',
-    elf: 'assets/audio/elf_select.mp3',
-    fighter: 'assets/audio/fighter_select.mp3',
-    sorceress: 'assets/audio/sorceress_select.mp3',
-    wizard: 'assets/audio/wizard_select.mp3',
-  };
+  // private audioPaths: Record<ClassName, string> = {
+  //   amazon: 'assets/audio/amazon_select.mp3',
+  //   dwarf: 'assets/audio/dwarf_select.mp3',
+  //   elf: 'assets/audio/elf_select.mp3',
+  //   fighter: 'assets/audio/fighter_select.mp3',
+  //   sorceress: 'assets/audio/sorceress_select.mp3',
+  //   wizard: 'assets/audio/wizard_select.mp3',
+  // };
 
   sounds: AudioEntity[] = [
     { name: 'coinbag', path: 'assets/audio/coinbag_1.wav' },
@@ -251,7 +243,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.preloadSubscription?.unsubscribe();
   }
 
-
   ngAfterViewInit(): void {
     this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -289,12 +280,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.audioPreloaded) {
       this.preloadAudioService.preloadAudio(
         this.sounds,
-        this.fighterSounds,
-        this.amazonSounds,
-        this.elfSounds,
-        this.dwarfSounds,
-        this.sorceressSounds,
-        this.wizardSounds
+        // this.fighterSounds,
+        // this.amazonSounds,
+        // this.elfSounds,
+        // this.dwarfSounds,
+        // this.sorceressSounds,
+        // this.wizardSounds
       ).then(() => {
           this.audioPreloaded = true;
           console.log('Audio preloading complete.');
@@ -302,10 +293,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
   }
 
-  playVideo() {
-    const video = document.querySelector('.particle video') as HTMLVideoElement | null;
-    if (video) {
-      video.play()
+  triggerParticles() {
+    const particles = document.querySelector('.particle video') as HTMLVideoElement | null;
+    if (particles) {
+      particles.play()
         .catch(error => console.error('Error trying to play the video:', error));
     } else {
       console.error('Video element not found!');
@@ -349,32 +340,30 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   resetClassData() {
-    this.currentClassData = null;
-    this.skillsList = [];
-    this.currentBuild = [];
-    this.originalBuild = [];
-    this.currentStats = null;
-    this.commonSkills = [];
-    this.uniqueSkills = [];
-    this.quests = [];
-    this.selectedQuests = [];
-    this.currentVideoPath = '';
-    this.previousVideoPath = '';
-    this.selectedClassIndex = null;
-    this.currentSkill = new Skill();
-    this.selectedSkill = { index: null, type: null };
-    this.totalExp = 0;
-    this.currentLevel = 1;
-    this.currentLevelSP = 0;
-    this.totalAvailableSP = 0;
-    this.artworkLoaded = false;
-    this.playerCardLoaded = false;
-    this.skillCardLoaded = false;
-    this.tooltipVisible = false;
-    this.tooltipUrl = '';
-    this.tooltipIndex = null;
-    this.loading = false;
-}
+    // this.currentClassData = null;
+    // this.skillsList = [];
+    // this.currentBuild = [];
+    // this.originalBuild = [];
+    // this.currentStats = null;
+    // this.commonSkills = [];
+    // this.uniqueSkills = [];
+    // this.quests = [];
+    // this.selectedQuests = [];
+    // this.selectedClassIndex = null;
+    // this.currentSkill = new Skill();
+    // this.selectedSkill = { index: null, type: null };
+    // this.totalExp = 0;
+    // this.currentLevel = 1;
+    // this.currentLevelSP = 0;
+    // this.totalAvailableSP = 0;
+    // this.artworkLoaded = false;
+    // this.playerCardLoaded = false;
+    // this.skillCardLoaded = false;
+    // this.tooltipVisible = false;
+    // this.tooltipUrl = '';
+    // this.tooltipIndex = null;
+    // this.loading = false;
+  }
 
   async loadClassData(classIndex: number): Promise<void> {
     this.resetClassData();
@@ -392,77 +381,173 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     if(this.classSelected) {
       this.selected = true;
-      this.playVideo();
+      this.triggerParticles();
+      this.pausePreviousVideo();
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
-        this.playSound('accept', 0.5);
-        setTimeout(() => {
-          this.stopCurrentClassSound();
-          this.findClassAudio(this.currentClassData.name.toLowerCase());
-        }, 200);
-      }
-      this.selectedClassIndex = classIndex;
-      this.currentClassData = this.playerClasses[classIndex];
+        this.selectedClassIndex = classIndex;
+        this.currentClassData = this.playerClasses[classIndex];
+        await this.playSound('accept', 0.5);
 
-      this.currentStats = { ...this.currentClassData.classStats[0] };
-      this.resetLevel();
-
-      try {
-        await this.preloadImage(this.currentClassData.cardUrl);
-        this.playerCardLoaded = true;
-        this.loading = false;
-      } catch (error) {
-        console.error('Image loading failed', error);
-      }
-
-      this.resetQuestsAndSkillPoints();
-
-      this.commonSkills = this.currentClassData.skills
-        .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
-        .map((skillObj: { skill: any; }) => skillObj.skill);
-
-      this.uniqueSkills = this.currentClassData.skills
-        .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === false)
-        .map((skillObj: { skill: any }) => skillObj.skill);
-
-      this.quests = this.currentClassData.quests.map((questObj: { quest: any }) => questObj.quest);
-
-      this.showCommonSkills = true;
-      this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
-
-      // Pause the previous video if there is one
-      if (this.previousVideoPath) {
-        const previousVideo = this.videoPlayer1.nativeElement as HTMLVideoElement;
-        previousVideo.pause();
-      }
-
-      // Load the new video in the hidden player for seamless transition
-      const newVideoPath = this.getVideoPath(this.currentClassData?.name.toLowerCase());
-      if (newVideoPath) {
-        const newVideoPlayer = this.videoPlayer2.nativeElement as HTMLVideoElement;
-        newVideoPlayer.src = newVideoPath;
-        const playPromise = new Promise<void>((resolve, reject) => {
-          newVideoPlayer.addEventListener('canplaythrough', () => {
-            // Once the new video is ready, resolve the promise
-            resolve();
-          });
-          newVideoPlayer.addEventListener('error', (error) => {
-            reject(error);
-          });
-        });
+        this.currentStats = { ...this.currentClassData.classStats[0] };
+        this.resetLevel();
 
         try {
-          await playPromise;
-          // Update the current and previous video paths
-          this.previousVideoPath = this.currentVideoPath;
-          this.currentVideoPath = newVideoPath;
-          // Once the new video is ready, replace the current video player
-          const currentVideoPlayer = this.videoPlayer1.nativeElement as HTMLVideoElement;
-          currentVideoPlayer.src = newVideoPath;
-
+          await this.preloadImage(this.currentClassData.cardUrl);
+          this.playerCardLoaded = true;
+          this.loading = false;
         } catch (error) {
-          console.error('Error playing video:', error);
+          console.error('Image loading failed', error);
         }
+
+        this.resetQuestsAndSkillPoints();
+
+        this.commonSkills = this.currentClassData.skills
+          .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
+          .map((skillObj: { skill: any; }) => skillObj.skill);
+
+        this.uniqueSkills = this.currentClassData.skills
+          .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === false)
+          .map((skillObj: { skill: any }) => skillObj.skill);
+
+        this.quests = this.currentClassData.quests.map((questObj: { quest: any }) => questObj.quest);
+
+        this.showCommonSkills = true;
+        this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
+
+        // this.pausePreviousVideo();
+        await this.playClassMedia(this.currentClassData.name.toLowerCase());
       }
+    }
+  }
+
+  pausePreviousVideo() {
+    if (this.previousVideoPath) {
+      const previousVideo = this.videoPlayer1.nativeElement as HTMLVideoElement;
+      previousVideo.pause();
+    }
+  }
+
+  async prepareVideo(className: string): Promise<HTMLVideoElement> {
+    const videoPath = this.getVideoPath(className.toLowerCase());
+    if (videoPath) {
+      const videoPlayer = this.videoPlayer2.nativeElement as HTMLVideoElement;
+      videoPlayer.src = videoPath;
+
+      return new Promise((resolve, reject) => {
+        videoPlayer.addEventListener('canplaythrough', () => resolve(videoPlayer), { once: true });
+        videoPlayer.addEventListener('error', () => reject(new Error('Error loading video')), { once: true });
+      });
+    } else {
+      throw new Error('Video not found');
+    }
+  }
+
+  async playVideo(videoPlayer: HTMLVideoElement): Promise<void> {
+    try {
+      await videoPlayer.play();
+      // Update the current and previous video paths
+      this.previousVideoPath = this.currentVideoPath;
+      this.currentVideoPath = videoPlayer.src;
+      // Replace the current video player source
+      const currentVideoPlayer = this.videoPlayer1.nativeElement as HTMLVideoElement;
+      currentVideoPlayer.src = videoPlayer.src;
+    } catch (error) {
+      console.error('Error playing video:', error);
+    }
+  }
+
+  async loadNewVideo(className: string): Promise<void> {
+    try {
+      // Fetch the new video path based on class
+      const newVideoPath = this.getVideoPath(className.toLowerCase());
+      if (!newVideoPath) {
+        throw new Error('Video not found');
+      }
+
+      // Set up the inactive video player with new video
+      const newVideoPlayer = this.videoPlayer2.nativeElement as HTMLVideoElement;
+      newVideoPlayer.src = newVideoPath;
+
+      // Await for the new video to be ready to play
+      await new Promise<void>((resolve, reject) => {
+        newVideoPlayer.addEventListener('canplaythrough', () => resolve(), { once: true });
+        newVideoPlayer.addEventListener('error', (error) => reject(new Error('Error loading video')), { once: true });
+      });
+
+      // Perform the swap of video players
+      const currentVideoPlayer = this.videoPlayer1.nativeElement as HTMLVideoElement;
+      currentVideoPlayer.src = newVideoPath;
+      currentVideoPlayer.load(); // Ensure the new source is loaded
+
+      // Optionally play the video right away or control playback elsewhere
+      currentVideoPlayer.play();
+
+      // Update the video path tracking
+      this.previousVideoPath = this.currentVideoPath;
+      this.currentVideoPath = newVideoPath;
+
+      // Swap the video elements if needed to maintain their roles
+      [this.videoPlayer1.nativeElement, this.videoPlayer2.nativeElement] = [this.videoPlayer2.nativeElement, this.videoPlayer1.nativeElement];
+    } catch (error) {
+      console.error('Error handling video:', error);
+    }
+  }
+
+  async prepareAudio(className: string): Promise<HTMLAudioElement> {
+    this.stopCurrentClassSound();
+    const audioEntities = this.getClassAudioEntity(className);
+    if (audioEntities.length > 0) {
+      const randomIndex = this.getRandomNum(audioEntities);
+      const selectedAudioEntity = audioEntities[randomIndex];
+      const audio = new Audio(selectedAudioEntity.path);
+      audio.volume = 0.5;
+      this.currentClassAudio = audio;
+      return new Promise((resolve, reject) => {
+        audio.oncanplaythrough = () => resolve(audio);
+        audio.onerror = () => reject(new Error('Error loading audio'));
+      });
+    } else {
+      throw new Error('No audio found for class: ' + className);
+    }
+  }
+
+  async playAudio(audio: HTMLAudioElement): Promise<void> {
+    try {
+      await audio.play();
+      this.currentAudio = audio;  // Update the current audio reference if needed
+    } catch (error) {
+      console.error('Error playing audio:', error);
+    }
+  }
+
+  async loadClassAudio(className: string): Promise<void> {
+    try {
+      const audio = await this.prepareAudio(className);
+      await this.playAudio(audio);
+    } catch (error) {
+      console.error('Error handling audio:', error);
+    }
+  }
+
+  async playClassMedia(className: string): Promise<void> {
+    try {
+      // Prepare both audio and video
+      const videoPromise = this.prepareVideo(className);
+      const audioPromise = this.prepareAudio(className);
+
+      // Wait for both media to be ready
+      const [videoPlayer, audio] = await Promise.all([videoPromise, audioPromise]);
+
+      // Play both media
+      const playVideoPromise = this.playVideo(videoPlayer);
+      const playAudioPromise = this.playAudio(audio);
+
+      // Optionally wait for both to start playing
+      await Promise.all([playVideoPromise, playAudioPromise]);
+
+      console.log('Both audio and video are now playing.');
+    } catch (error) {
+      console.error('Error synchronizing media playback:', error);
     }
   }
 
@@ -547,80 +632,62 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.playSound('confirm');
   }
 
-  // showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
-  //   const element = event.currentTarget as HTMLElement;
-  //   const rect = element.getBoundingClientRect();
-
-  //   this.tooltipVisible = true;
-  //   this.tooltipUrl = gifUrl;
-  //   this.tooltipIndex = index;
-  //   this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
-  //   this.tooltipLeft = rect.left + window.scrollX;
-  // }
-
-  // hideTooltip(): void {
-  //   this.tooltipVisible = false;
-  //   this.tooltipUrl = '';
-  //   this.tooltipIndex = null;
-  // }
-
   showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
     const element = event.currentTarget as HTMLElement;
     const rect = element.getBoundingClientRect();
-    const loadToken = {};  // Unique object to represent this load operation
 
-    // Ensure any existing image is canceled and removed before loading a new one
-    if (this.streamableImage) {
-      this.streamableImage.onload = null;  // Detach existing onload handler
-      this.streamableImage.onerror = null;  // Detach existing onerror handler
-      this.streamableImage.src = 'data:,';  // Use a blank data URL to fully unload the image
-      this.streamableImage = null;  // Help with garbage collection
+    // Check if the image is already loaded
+    if (!this.streamableImage || !this.streamableImage.complete) {
+      const loadToken = {}; // Unique object to represent this load operation
+
+      // Ensure any existing image is canceled and removed before loading a new one
+      if (this.streamableImage) {
+        this.streamableImage.onload = null;
+        this.streamableImage.onerror = null;
+        this.streamableImage.src = 'data:,';
+        this.streamableImage = null;
+      }
+
+      // Create a new image and load
+      this.streamableImage = new Image();
+      this.streamableImage.onload = () => {
+        if (this.currentLoadToken === loadToken) {
+          this.tooltipUrl = gifUrl;
+          this.onGifLoad();
+        }
+      };
+      this.streamableImage.onerror = () => {
+        if (this.currentLoadToken === loadToken) {
+          this.hideTooltip();
+        }
+      };
+
+      this.currentLoadToken = loadToken;
+      this.streamableImage.src = gifUrl;
+
+      // Delay showing the loader to avoid flicker on fast loads
+      setTimeout(() => {
+        if (this.currentLoadToken === loadToken && !this.streamableImage!.complete) {
+          this.tooltipLoading = true;
+        }
+      }, 200);
     }
 
-    // Create a new image and load
-    this.streamableImage = new Image();
-    this.streamableImage.onload = () => {
-      if (this.currentLoadToken === loadToken) {
-        this.tooltipUrl = gifUrl;
-        this.onGifLoad();
-      }
-    };
-    this.streamableImage.onerror = () => {
-      if (this.currentLoadToken === loadToken) {
-        this.hideTooltip();
-      }
-    };
-
-    this.currentLoadToken = loadToken; // Update the current load token
     this.tooltipVisible = true;
-    this.tooltipLoading = false;  // Initially false, delay the loading indicator
-    this.tooltipUrl = '';
+    this.tooltipUrl = gifUrl;
     this.tooltipIndex = index;
     this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
     this.tooltipLeft = rect.left + window.scrollX;
-
-    // Load the image
-    this.streamableImage.src = gifUrl;
-
-    // Delay showing the loader to avoid flicker on fast loads
-    setTimeout(() => {
-      // Only show the loading indicator if the image hasn't loaded yet and the tooltip is still visible
-      if (this.currentLoadToken === loadToken && !this.streamableImage!.complete) {
-        this.tooltipLoading = true;
-      }
-    }, 200); // 200 milliseconds or adjust based on the desired delay
   }
 
   hideTooltip(): void {
-    // Clear the image when hiding the tooltip
     if (this.streamableImage) {
       this.streamableImage.onload = null;
       this.streamableImage.onerror = null;
-      this.streamableImage.src = 'data:,';  // Reset the source to a blank data URL
+      this.streamableImage.src = 'data:,';
       this.streamableImage = null;
     }
 
-    // Reset tooltip state
     this.tooltipVisible = false;
     this.tooltipUrl = 'data:,';
     this.tooltipIndex = null;
@@ -629,7 +696,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onGifLoad(): void {
-    this.tooltipLoading = false;  // Stop loading when gif is loaded
+    this.tooltipLoading = false;
   }
 
   changeSpriteTo(type: 'start' | 'end') {
@@ -1029,47 +1096,80 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getRandomNum(arr: any) {
-    return Math.floor(Math.random() * arr.length) + 1;
+    return Math.floor(Math.random() * arr.length);
   }
 
-  findClassAudio(className: string) {
-    if (this.previousClassVoice !== className) {
-      this.previousClassVoice = className;
-      const audioEntityArr = this.getClassAudioEntity(className);
-      const randomIndex = this.getRandomNum(audioEntityArr);
-      const targetClassSound = audioEntityArr.find((sound) => sound.name === (className + randomIndex));
-      if (targetClassSound) {
-        this.currentClassAudio = this.playSoundForClass(targetClassSound.name, audioEntityArr, 0.3);
-      } else {
-        console.error('Invalid class name:', className);
-      }
-    }
-  }
+  // playSoundForClass(soundName: string, audioEntity: AudioEntity[], volume: number = 1.0): Promise<HTMLAudioElement | null> {
+  //   return new Promise((resolve, reject) => {
+  //     const audioObj = audioEntity.find(sound => sound.name === soundName);
+  //     const audioPath = audioObj?.path;
+  //     if (audioPath) {
+  //       const audio = new Audio(audioPath);
+  //       audio.volume = volume;
+  //       audio.play();
+  //       audio.onplay = () => {
+  //         resolve(audio);
+  //       };
+  //       audio.onerror = (error) => {
+  //         reject(error);
+  //       };
+  //       this.currentAudio = audio;
+  //     } else {
+  //       reject(new Error('Audio path not found'));
+  //     }
+  //   });
+  // }
 
-  playSoundForClass(soundName: string, audioEntity: AudioEntity[], volume: number = 1.0): HTMLAudioElement | null {
-    const audioObj = audioEntity.find(sound => sound.name === soundName);
-    const audioPath = audioObj?.path;
-    if (audioPath) {
-      const audio = new Audio(audioPath);
-      audio.volume = volume;
-      audio.play();
-      this.currentAudio = audio;
-      return audio;
-    }
-    return null;
-  }
+  // async findClassAudio(className: string): Promise<void> {
+  //   if (this.previousClassVoice !== className) {
+  //     this.previousClassVoice = className;
+  //     const audioEntityArr = this.getClassAudioEntity(className);
+  //     const randomIndex = this.getRandomNum(audioEntityArr);
+  //     const targetClassSound = audioEntityArr.find((sound) => sound.name === (className + randomIndex));
+  //     if (targetClassSound) {
+  //       try {
+  //         this.currentClassAudio = await this.playSoundForClass(targetClassSound.name, audioEntityArr, 0.3);
+  //       } catch (error) {
+  //         console.error('Error playing audio:', error);
+  //       }
+  //     } else {
+  //       console.error('Invalid class name:', className);
+  //     }
+  //   }
+  // }
 
-  playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
+  // playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
+  //   const audioObj = this.sounds.find(sound => sound.name === soundName);
+  //   const audioPath = audioObj?.path;
+  //   if (audioPath) {
+  //     const audio = new Audio(audioPath);
+  //     audio.volume = volume;
+  //     audio.play();
+  //     this.currentAudio = audio;
+  //     return audio;
+  //   }
+  //   return null;
+  // }
+
+  async playSound(soundName: string, volume: number = 1.0): Promise<HTMLAudioElement> {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
     const audioPath = audioObj?.path;
     if (audioPath) {
       const audio = new Audio(audioPath);
       audio.volume = volume;
-      audio.play();
-      this.currentAudio = audio;
-      return audio;
+
+      return new Promise((resolve, reject) => {
+        audio.play().then(() => {
+          this.currentAudio = audio;
+          resolve(audio);
+        }).catch((error) => {
+          console.error('Error playing audio:', error);
+          reject(error);
+        });
+      });
+    } else {
+      return Promise.reject(new Error('Audio path not found'));
     }
-    return null;
   }
 
   stopCurrentSound() {

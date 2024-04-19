@@ -44,12 +44,13 @@
         </div>
         <hr>
         <div class="class-description class-backdrop" style="height: 394px;" [style.--backgroundImage]="!classSelected ? 'url(' + getImageUrl('character_bg') + ')' : 'none'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }">
+        <!-- <div class="class-description class-backdrop" style="height: 394px;" [style.--backgroundImage]="'url(' + getImageUrl('character_bg') + ')'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }"> -->
           <ng-container *ngIf="classSelected">
-            <video #videoPlayer1 [src]="currentVideoPath" style="position:absolute; top:0; right:0; height: 100%; z-index: -1;" autoplay loop>
+            <video #videoPlayer1 style="position: absolute; top: 0; right: 0; height: 100%; z-index: 1;" autoplay loop>
               Your browser does not support the video tag.
             </video>
 
-            <video #videoPlayer2 style="display: none;" style="position:absolute; top:0; right:0; height: 100%; z-index: -2;">
+            <video #videoPlayer2 style="position: absolute; top: 0; right: 0; height: 100%; z-index: 0; display: none;">
               Your browser does not support the video tag.
             </video>
             <div class="video-overlay"></div>
