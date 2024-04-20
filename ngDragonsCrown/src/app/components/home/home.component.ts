@@ -722,10 +722,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewBuild = false;
     this.viewRunes = false;
     this.showUniqueSkills = false;
-    // const commonBtn = document.querySelector('#common-btn');
-    // const uniqueBtn = document.querySelector('#unique-btn');
-    // uniqueBtn?.classList.remove('selected-skills');
-    // commonBtn?.classList.add('selected-skills');
     this.playSound('accept', 0.5);
   }
 

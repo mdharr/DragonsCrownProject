@@ -329,8 +329,8 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   async startGame() {
     this.stopCurrentSound();
     this.typingActive = false;
-
     this.playSound('rune');
+
     const runeImageUrls = this.runeKey.map(rune => rune.imageUrl);
 
     try {
@@ -348,7 +348,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       this.playSound('cast', .5);
       this.gameLoading = false;
       this.gameStarted = true;
-      console.log('All rune images preloaded. Game started!');
     } catch (error) {
       console.error('Failed to preload rune images:', error);
     }
@@ -440,7 +439,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.stopCurrentSound();
   }
-
 
   async playLoopingSound(soundName: string, volume: number = 1.0): Promise<AudioBufferSourceNode | null> {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
