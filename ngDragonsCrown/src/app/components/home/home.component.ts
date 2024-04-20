@@ -339,34 +339,34 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     element.style.filter = 'filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1)';
   }
 
-  resetClassData() {
-    // this.currentClassData = null;
-    // this.skillsList = [];
-    // this.currentBuild = [];
-    // this.originalBuild = [];
-    // this.currentStats = null;
-    // this.commonSkills = [];
-    // this.uniqueSkills = [];
-    // this.quests = [];
-    // this.selectedQuests = [];
-    // this.selectedClassIndex = null;
-    // this.currentSkill = new Skill();
-    // this.selectedSkill = { index: null, type: null };
-    // this.totalExp = 0;
-    // this.currentLevel = 1;
-    // this.currentLevelSP = 0;
-    // this.totalAvailableSP = 0;
-    // this.artworkLoaded = false;
-    // this.playerCardLoaded = false;
-    // this.skillCardLoaded = false;
-    // this.tooltipVisible = false;
-    // this.tooltipUrl = '';
-    // this.tooltipIndex = null;
-    // this.loading = false;
-  }
+  // resetClassData() {
+  //   this.currentClassData = null;
+  //   this.skillsList = [];
+  //   this.currentBuild = [];
+  //   this.originalBuild = [];
+  //   this.currentStats = null;
+  //   this.commonSkills = [];
+  //   this.uniqueSkills = [];
+  //   this.quests = [];
+  //   this.selectedQuests = [];
+  //   this.selectedClassIndex = null;
+  //   this.currentSkill = new Skill();
+  //   this.selectedSkill = { index: null, type: null };
+  //   this.totalExp = 0;
+  //   this.currentLevel = 1;
+  //   this.currentLevelSP = 0;
+  //   this.totalAvailableSP = 0;
+  //   this.artworkLoaded = false;
+  //   this.playerCardLoaded = false;
+  //   this.skillCardLoaded = false;
+  //   this.tooltipVisible = false;
+  //   this.tooltipUrl = '';
+  //   this.tooltipIndex = null;
+  //   this.loading = false;
+  // }
 
   async loadClassData(classIndex: number): Promise<void> {
-    this.resetClassData();
+    // this.resetClassData();
     this.classSelected = true;
     this.skillSelected = false;
     this.currentSkill = new Skill();
@@ -386,10 +386,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
         this.selectedClassIndex = classIndex;
         this.currentClassData = this.playerClasses[classIndex];
-        await this.playSound('accept', 0.5);
 
         this.currentStats = { ...this.currentClassData.classStats[0] };
         this.resetLevel();
+        await this.playSound('accept', 0.5);
 
         try {
           await this.preloadImage(this.currentClassData.cardUrl);

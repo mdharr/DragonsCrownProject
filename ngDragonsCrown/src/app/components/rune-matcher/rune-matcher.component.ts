@@ -70,6 +70,7 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   private suggestHintTimeout: any;
   typingActive: boolean = true;
   gameLoading: boolean = false;
+  private isDestroyed = false;
 
   @ViewChild('runeContainer') runeContainerRef!: ElementRef;
   runePositions: Array<{ left: string, top: string }> = [];
@@ -84,13 +85,13 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.stopCurrentSound();
+    this.isDestroyed = true;
     if (this.currentTimeoutId) {
       clearTimeout(this.currentTimeoutId);
     }
   }
 
   async fetchData() {
-    // const response = await fetch('/assets/runes.json');
     const response = await fetch('assets/runes.json');
     const data = await response.json();
     this.runeKey = data.runes;
@@ -194,10 +195,8 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       for (let i = 0; i < carriedRunes.length && i < selectedRunes.length; i++) {
         imageUrlMap.set(carriedRunes[i]!.id, selectedRunes[i]?.imageUrl || '');
       }
-      // return imageUrlMap.get(runeId) || '/assets/graphics/runes/Unknown.png';
       return imageUrlMap.get(runeId) || 'assets/graphics/runes/Unknown.png';
     } else {
-      // return '/assets/graphics/runes/Unknown.png';
       return 'assets/graphics/runes/Unknown.png';
     }
   }
@@ -214,14 +213,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     return null;
   }
-
-  // stopCurrentSound() {
-  //   if (this.currentAudio) {
-  //     this.currentAudio.pause();
-  //     this.currentAudio.currentTime = 0;
-  //     this.currentAudio = null;
-  //   }
-  // }
 
   stopCurrentSound() {
     if (this.currentAudio) {
@@ -337,24 +328,31 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
   async startGame() {
     this.stopCurrentSound();
-    this.typingActive = false;  // Stop typing text
+    this.typingActive = false;
 
     this.playSound('rune');
     const runeImageUrls = this.runeKey.map(rune => rune.imageUrl);
 
     try {
       this.gameLoading = true;
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      await Promise.all(runeImageUrls.map(url => this.preloadImage(url)));
+
+      await Promise.all(runeImageUrls.map(url => {
+        if (this.isDestroyed) {
+          throw new Error('Component destroyed. Halting image loading.');
+        }
+        return this.preloadImage(url);
+      }));
+
+      if (this.isDestroyed) return;
+
       this.playSound('cast', .5);
       this.gameLoading = false;
-      this.gameStarted = true;  // Set game to started only after all images are loaded
+      this.gameStarted = true;
       console.log('All rune images preloaded. Game started!');
     } catch (error) {
       console.error('Failed to preload rune images:', error);
     }
   }
-
 
   preloadImage(url: string): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -415,9 +413,8 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     element.textContent = '';
-    this.typingActive = true;  // Enable typing at the start
+    this.typingActive = true;
 
-    // Wait for the sound to be ready and playing
     const soundReady = await this.playLoopingSound('dialogue', 1.0);
     if (!soundReady) {
       console.error('Failed to play sound');
@@ -426,16 +423,16 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
     let temporaryText = '';
     for (let i = 0; i < input.length; i++) {
-      if (!this.typingActive) break;  // Exit loop if typing is stopped
+      if (!this.typingActive) break;
 
       temporaryText += input[i];
       element.textContent = temporaryText;
 
       if (i < input.length - 1 && element.scrollWidth > element.clientWidth) {
-        temporaryText += '-';  // Add a hyphen at the break
+        temporaryText += '-';
         element.textContent = temporaryText;
         await new Promise<void>(resolve => setTimeout(resolve, this.getDelay(i)));
-        temporaryText = '';  // Reset temporaryText for the next line
+        temporaryText = '';
       }
 
       await new Promise<void>(resolve => setTimeout(resolve, this.getDelay(i)));
@@ -455,9 +452,6 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         const response = await fetch(audioPath);
         const arrayBuffer = await response.arrayBuffer();
         const audioBuffer = await context.decodeAudioData(arrayBuffer);
-
-        // Simulate a delay in preparing the audio
-        // await new Promise(resolve => setTimeout(resolve, 3000));
 
         const source = context.createBufferSource();
         source.buffer = audioBuffer;
