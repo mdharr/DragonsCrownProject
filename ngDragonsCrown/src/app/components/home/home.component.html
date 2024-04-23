@@ -54,6 +54,9 @@
               Your browser does not support the video tag.
             </video>
             <div class="video-overlay"></div>
+            <div *ngIf="classLoading" class="class-loader-container">
+              <div class="loader"></div>
+            </div>
             <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation>
           </ng-container>
         </div>

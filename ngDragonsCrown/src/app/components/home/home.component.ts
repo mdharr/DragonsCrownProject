@@ -4,13 +4,12 @@ import { PlayerClassService } from './../../services/player-class.service';
 import { AuthService } from './../../services/auth.service';
 import { AfterViewInit, Component, ElementRef, HostListener, inject, NgZone, OnDestroy, OnInit, QueryList, Renderer2, ViewChild, ViewChildren } from '@angular/core';
 import { PlayerClass } from 'src/app/models/player-class';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { Skill } from 'src/app/models/skill';
 import { Quest } from 'src/app/models/quest';
 import { ImageEntity } from 'src/app/models/image-entity';
 import { PreloadService } from 'src/app/services/preload.service';
 import { CombinedSkill } from 'src/app/models/combined-skill';
-import { ClassName } from 'src/app/types/class-name.type';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import { VideoEntity } from 'src/app/models/video-entity';
@@ -74,6 +73,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     },
   ];
 
+  // subjects
+  private destroy$ = new Subject<void>();
+
   // observed elements
   @ViewChildren('observedElement') observedElements!: QueryList<ElementRef>;
   @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
@@ -107,6 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   loading: boolean = false;
   classDataLoaded: boolean = false;
   audioPreloaded: boolean = false;
+  classLoading: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -233,6 +236,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
+
+    this.destroy$.next();
+    this.destroy$.complete();
+
     if (this.observer) {
       this.observer.disconnect();
       this.observer = null;
@@ -260,7 +267,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subscribeToPlayerClassData() {
 
-    this.playerClassSubscription = this.playerClassService.indexAll().subscribe({
+    this.playerClassSubscription = this.playerClassService.indexAll().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
       next: (data) => {
         this.playerClasses = data;
       },
@@ -288,7 +297,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         // this.wizardSounds
       ).then(() => {
           this.audioPreloaded = true;
-          console.log('Audio preloading complete.');
       });
   }
   }
@@ -339,34 +347,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     element.style.filter = 'filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1)';
   }
 
-  // resetClassData() {
-  //   this.currentClassData = null;
-  //   this.skillsList = [];
-  //   this.currentBuild = [];
-  //   this.originalBuild = [];
-  //   this.currentStats = null;
-  //   this.commonSkills = [];
-  //   this.uniqueSkills = [];
-  //   this.quests = [];
-  //   this.selectedQuests = [];
-  //   this.selectedClassIndex = null;
-  //   this.currentSkill = new Skill();
-  //   this.selectedSkill = { index: null, type: null };
-  //   this.totalExp = 0;
-  //   this.currentLevel = 1;
-  //   this.currentLevelSP = 0;
-  //   this.totalAvailableSP = 0;
-  //   this.artworkLoaded = false;
-  //   this.playerCardLoaded = false;
-  //   this.skillCardLoaded = false;
-  //   this.tooltipVisible = false;
-  //   this.tooltipUrl = '';
-  //   this.tooltipIndex = null;
-  //   this.loading = false;
-  // }
-
   async loadClassData(classIndex: number): Promise<void> {
-    // this.resetClassData();
     this.classSelected = true;
     this.skillSelected = false;
     this.currentSkill = new Skill();
@@ -378,12 +359,15 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loading = true;
     this.classDataLoaded = true;
     this.showUniqueSkills = false;
+    this.classLoading = false;
 
     if(this.classSelected) {
       this.selected = true;
       this.triggerParticles();
+
       this.pausePreviousVideo();
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
+        this.classLoading = true;
         this.selectedClassIndex = classIndex;
         this.currentClassData = this.playerClasses[classIndex];
 
@@ -414,16 +398,27 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showCommonSkills = true;
         this.currentSpriteUrl = this.currentClassData?.spriteStartUrl;
 
-        // this.pausePreviousVideo();
         await this.playClassMedia(this.currentClassData.name.toLowerCase());
+        this.classLoading = false;
       }
     }
   }
 
+  // pausePreviousVideo() {
+  //   if (this.previousVideoPath) {
+  //     const previousVideo = this.videoPlayer1.nativeElement as HTMLVideoElement;
+  //     previousVideo.pause();
+  //   }
+  // }
+
   pausePreviousVideo() {
-    if (this.previousVideoPath) {
-      const previousVideo = this.videoPlayer1.nativeElement as HTMLVideoElement;
-      previousVideo.pause();
+    if (this.videoPlayer1 && this.videoPlayer1.nativeElement) {
+      const currentVideo = this.videoPlayer1.nativeElement;
+      if (!currentVideo.paused) {
+        currentVideo.pause();
+      }
+    } else {
+      console.error('Video player is not initialized.');
     }
   }
 
@@ -544,8 +539,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       // Optionally wait for both to start playing
       await Promise.all([playVideoPromise, playAudioPromise]);
-
-      console.log('Both audio and video are now playing.');
     } catch (error) {
       console.error('Error synchronizing media playback:', error);
     }
@@ -1038,7 +1031,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.encodedData === null) {
       return ''; // Return empty string if data is not encoded
     }
-    return `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
+    // return `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
+    return `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}`;
   }
 
   async copyShareLinkToClipboard(): Promise<void> {
@@ -1094,58 +1088,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   getRandomNum(arr: any) {
     return Math.floor(Math.random() * arr.length);
   }
-
-  // playSoundForClass(soundName: string, audioEntity: AudioEntity[], volume: number = 1.0): Promise<HTMLAudioElement | null> {
-  //   return new Promise((resolve, reject) => {
-  //     const audioObj = audioEntity.find(sound => sound.name === soundName);
-  //     const audioPath = audioObj?.path;
-  //     if (audioPath) {
-  //       const audio = new Audio(audioPath);
-  //       audio.volume = volume;
-  //       audio.play();
-  //       audio.onplay = () => {
-  //         resolve(audio);
-  //       };
-  //       audio.onerror = (error) => {
-  //         reject(error);
-  //       };
-  //       this.currentAudio = audio;
-  //     } else {
-  //       reject(new Error('Audio path not found'));
-  //     }
-  //   });
-  // }
-
-  // async findClassAudio(className: string): Promise<void> {
-  //   if (this.previousClassVoice !== className) {
-  //     this.previousClassVoice = className;
-  //     const audioEntityArr = this.getClassAudioEntity(className);
-  //     const randomIndex = this.getRandomNum(audioEntityArr);
-  //     const targetClassSound = audioEntityArr.find((sound) => sound.name === (className + randomIndex));
-  //     if (targetClassSound) {
-  //       try {
-  //         this.currentClassAudio = await this.playSoundForClass(targetClassSound.name, audioEntityArr, 0.3);
-  //       } catch (error) {
-  //         console.error('Error playing audio:', error);
-  //       }
-  //     } else {
-  //       console.error('Invalid class name:', className);
-  //     }
-  //   }
-  // }
-
-  // playSound(soundName: string, volume: number = 1.0): HTMLAudioElement | null {
-  //   const audioObj = this.sounds.find(sound => sound.name === soundName);
-  //   const audioPath = audioObj?.path;
-  //   if (audioPath) {
-  //     const audio = new Audio(audioPath);
-  //     audio.volume = volume;
-  //     audio.play();
-  //     this.currentAudio = audio;
-  //     return audio;
-  //   }
-  //   return null;
-  // }
 
   async playSound(soundName: string, volume: number = 1.0): Promise<HTMLAudioElement> {
     const audioObj = this.sounds.find(sound => sound.name === soundName);

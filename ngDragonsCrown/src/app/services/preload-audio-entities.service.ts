@@ -11,11 +11,9 @@ export class PreloadAudioEntitiesService {
   constructor() {}
 
   async preloadAudio(...audioEntityArrays: AudioEntity[][]): Promise<void> {
-    // Flatten all arrays into a single array
     const allAudioEntities = audioEntityArrays.flat();
     const promises = allAudioEntities.map(audio => this.loadAudio(audio.path));
     await Promise.all(promises);
-    // console.log('All audio files preloaded');
   }
 
   private async loadAudio(path: string): Promise<void> {
@@ -26,7 +24,6 @@ export class PreloadAudioEntitiesService {
       }
       const arrayBuffer = await response.arrayBuffer();
       await this.audioContext.decodeAudioData(arrayBuffer, (buffer) => {
-        // console.log(`Preloaded: ${path}`);
       }, (error) => {
         console.error(`Error decoding audio data: ${error}`);
       });
