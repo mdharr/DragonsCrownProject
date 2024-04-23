@@ -365,8 +365,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.selected = true;
       this.triggerParticles();
 
-      this.pausePreviousVideo();
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
+        this.pausePreviousVideo();
         this.classLoading = true;
         this.selectedClassIndex = classIndex;
         this.currentClassData = this.playerClasses[classIndex];
