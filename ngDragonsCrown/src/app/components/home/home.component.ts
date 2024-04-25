@@ -1032,7 +1032,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       return ''; // Return empty string if data is not encoded
     }
     // return `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
-    return `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}`;
+    // return `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}`;
+    const shareLink = `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}&classId=${this.currentClassData.id}`;
+    return shareLink;
   }
 
   async copyShareLinkToClipboard(): Promise<void> {

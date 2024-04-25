@@ -40,6 +40,14 @@
   pointer-events: none;
 } */
 
+.main-background {
+  background-color: #282828;
+  background-image: url(https://www.4gamer.net/img/sp_dragonscrown/bg_dc_background_jack.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .bg-overlay {
   background-position: left top;
   background-repeat: repeat;

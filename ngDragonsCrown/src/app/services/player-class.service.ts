@@ -24,6 +24,18 @@ export class PlayerClassService {
     return options;
   }
 
+  find(id: number): Observable<PlayerClass> {
+    return this.http.get<PlayerClass>(`${this.url}/${id}`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('PlayerClassService.find(): error retrieving player class by id' + err)
+        );
+      })
+    );
+  }
+
   indexAll(): Observable<PlayerClass[]> {
     return this.http.get<PlayerClass[]>(`${this.url}`).pipe(
       catchError((err: any) => {
