@@ -63,8 +63,7 @@ export class BuildShareComponent implements OnInit, OnDestroy {
   subscribeToClass(id: number) {
     this.playerClassService.find(id).subscribe({
       next: (data) => {
-        this.playerClassImageUrl = data.hqArtworkUrl;
-        console.log("Player Class: ", this.playerClassImageUrl);
+        this.playerClassImageUrl = data.alternateArtUrl;
       },
       error: (fail) => {
         console.error('Error retrieving player classes data');

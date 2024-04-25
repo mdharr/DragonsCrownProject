@@ -23,6 +23,7 @@ export class PlayerClass {
   cardUrl: string;
   spritesheetUrl: string;
   paperUrl: string;
+  alternateArtUrl: string;
   classStats: ClassStats[];
   recommendations: Recommendation[];
   statScaling: StatScaling;
@@ -47,6 +48,7 @@ export class PlayerClass {
     cardUrl: string = '',
     spritesheetUrl: string = '',
     paperUrl: string = '',
+    alternateArtUrl: string = '',
     classStats: ClassStats[] = [],
     recommendations: Recommendation[] = [],
     statScaling: StatScaling = new StatScaling(),
@@ -70,6 +72,7 @@ export class PlayerClass {
     this.cardUrl = cardUrl;
     this.spritesheetUrl = spritesheetUrl;
     this.paperUrl = paperUrl;
+    this.alternateArtUrl = alternateArtUrl;
     this.classStats = classStats;
     this.recommendations = recommendations;
     this.statScaling = statScaling;

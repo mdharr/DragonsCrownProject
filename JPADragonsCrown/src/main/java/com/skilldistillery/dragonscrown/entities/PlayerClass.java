@@ -52,6 +52,8 @@ public class PlayerClass {
 	private String spritesheetUrl;
 	@Column(name = "paper_url")
 	private String paperUrl;
+	@Column(name = "alternate_art_url")
+	private String alternateArtUrl;
 	
 	@OneToMany(mappedBy = "playerClass")
 	private List<ClassStats> classStats;
@@ -75,7 +77,7 @@ public class PlayerClass {
 	public PlayerClass(int id, String name, String description, String animationUrl, String artworkUrl, String titleUrl,
 			String portraitUrl, String backgroundUrl, String iconUrl, String streamableUrl, String hqArtworkUrl,
 			String spriteStartUrl, String spriteEndUrl, String selectImgUrl, String cardUrl, String spritesheetUrl,
-			String paperUrl, List<ClassStats> classStats, List<Recommendation> recommendations, StatScaling statScaling,
+			String paperUrl, String alternateArtUrl, List<ClassStats> classStats, List<Recommendation> recommendations, StatScaling statScaling,
 			List<PlayerClassHasSkill> skills, List<PlayerClassHasQuest> quests) {
 		super();
 		this.id = id;
@@ -95,6 +97,7 @@ public class PlayerClass {
 		this.cardUrl = cardUrl;
 		this.spritesheetUrl = spritesheetUrl;
 		this.paperUrl = paperUrl;
+		this.alternateArtUrl = alternateArtUrl;
 		this.classStats = classStats;
 		this.recommendations = recommendations;
 		this.statScaling = statScaling;
@@ -219,6 +222,14 @@ public class PlayerClass {
 
 	public void setPaperUrl(String paperUrl) {
 		this.paperUrl = paperUrl;
+	}
+
+	public String getAlternateArtUrl() {
+		return alternateArtUrl;
+	}
+
+	public void setAlternateArtUrl(String alternateArtUrl) {
+		this.alternateArtUrl = alternateArtUrl;
 	}
 
 	public List<ClassStats> getClassStats() {
