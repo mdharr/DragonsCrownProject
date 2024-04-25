@@ -24,6 +24,7 @@ import { RuneMatcherComponent } from './components/rune-matcher/rune-matcher.com
 import { BuildShareComponent } from './components/build-share/build-share.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
+import { ParallaxDirective } from './directives/parallax.directive';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     BuildShareComponent,
     FooterComponent,
     LoadingScreenComponent,
+    ParallaxDirective,
   ],
   imports: [
     BrowserModule,

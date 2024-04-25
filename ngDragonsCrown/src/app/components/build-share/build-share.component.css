@@ -178,19 +178,19 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .meta-wrapper {
     width: 95%;
   }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .build-wrapper th, .build-wrapper td {
     padding: 10px;
   }
 }
 
-#video-background-container {
+#background-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -200,7 +200,7 @@
   overflow: hidden;
 }
 
-#video-background-player {
+#background-player {
   position: absolute;
   width: 120%;
   height: 120%;
@@ -211,11 +211,13 @@
 }
 
 .main-background {
-  background-color: #282828;
-  background-image: url(https://www.4gamer.net/img/sp_dragonscrown/bg_dc_background_jack.jpg);
+  background-color: #020202;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 20%),
+                    url('https://www.4gamer.net/img/sp_dragonscrown/bg_dc_background_jack.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .bg-overlay {

@@ -40,12 +40,22 @@
   pointer-events: none;
 } */
 
-.main-background {
+/* .main-background {
   background-color: #282828;
   background-image: url(https://www.4gamer.net/img/sp_dragonscrown/bg_dc_background_jack.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+} */
+
+.main-background {
+  background-color: #020202;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 20%),
+                    url('https://www.4gamer.net/img/sp_dragonscrown/bg_dc_background_jack.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .bg-overlay {

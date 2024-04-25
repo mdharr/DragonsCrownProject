@@ -15,7 +15,8 @@ export class BuildShareComponent implements OnInit, OnDestroy {
   build: any;
   buildArray: any[] = [];
   classId: number = 0;
-  playerClass: PlayerClass = new PlayerClass();
+  // playerClass: PlayerClass = new PlayerClass();
+  playerClassImageUrl: string = '';
 
   // subscriptions
   private paramsSubscription: Subscription | undefined;
@@ -28,6 +29,7 @@ export class BuildShareComponent implements OnInit, OnDestroy {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getRouteParams();
+    this.subscribeToClass(this.classId);
   }
 
   ngOnDestroy() {
@@ -47,7 +49,7 @@ export class BuildShareComponent implements OnInit, OnDestroy {
         const decodedJsonBuild = decodeURIComponent(encodedBuild);
         const buildObject = JSON.parse(decodedJsonBuild);
         this.buildArray = Object.values(buildObject);
-        this.classId = classId;
+        this.classId = +classId;
         console.log('Class ID:', this.classId);
       }
     });
@@ -61,8 +63,8 @@ export class BuildShareComponent implements OnInit, OnDestroy {
   subscribeToClass(id: number) {
     this.playerClassService.find(id).subscribe({
       next: (data) => {
-        this.playerClass = data;
-        console.log("Player Class: ", this.playerClass);
+        this.playerClassImageUrl = data.hqArtworkUrl;
+        console.log("Player Class: ", this.playerClassImageUrl);
       },
       error: (fail) => {
         console.error('Error retrieving player classes data');
