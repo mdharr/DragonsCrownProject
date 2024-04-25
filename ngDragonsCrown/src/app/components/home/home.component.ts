@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 import { VideoEntity } from 'src/app/models/video-entity';
 import { PreloadAudioEntitiesService } from 'src/app/services/preload-audio-entities.service';
 
+import * as pako from 'pako';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -1022,28 +1024,77 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillsBySPDesc = this.sortBySPDesc(this.currentBuild, this.currentClassData.skills);
   }
 
-  encodeBuild(buildData: any): string {
-    const jsonBuild = JSON.stringify(buildData);
-    return encodeURIComponent(jsonBuild);
+  // encodeBuild(buildData: any): string {
+  //   const jsonBuild = JSON.stringify(buildData);
+  //   return encodeURIComponent(jsonBuild);
+  // }
+
+  // encodeBuild(buildData: any): string {
+  //   const jsonBuild = JSON.stringify(buildData);
+  //   const compressedData = pako.deflate(jsonBuild);
+  //   const byteArray = Array.from(compressedData); // Convert Uint8Array to array of numbers
+  //   const base64Data = btoa(String.fromCharCode.apply(null, byteArray)); // Convert to base64
+  //   return encodeURIComponent(base64Data);
+  // }
+
+  // generateShareLinkAsText(): string {
+  //   if (this.encodedData === null) {
+  //     return ''; // Return empty string if data is not encoded
+  //   }
+  //   // return `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
+  //   // return `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}`;
+  //   const shareLink = `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}&classId=${this.currentClassData.id}`;
+  //   return shareLink;
+  // }
+
+  // async copyShareLinkToClipboard(): Promise<void> {
+  //   const shareLink = this.generateShareLinkAsText();
+  //   if (shareLink === '') {
+  //     console.error('Share link is not generated.');
+  //     return;
+  //   }
+
+  //   try {
+  //     await navigator.clipboard.writeText(shareLink);
+  //     console.log('Share link copied to clipboard:', shareLink);
+  //   } catch (err) {
+  //     console.error('Failed to copy share link: ', err);
+  //   }
+  // }
+
+  // generateAndCopyShareLink(): void {
+  //   this.playSound('rune', 0.5);
+  //   this.encodedData = this.encodeBuild(this.buildToShare);
+  //   console.log(this.encodedData);
+  //   this.copyShareLinkToClipboard();
+  // }
+
+  // test
+  async compressData(data: any): Promise<string> {
+    return new Promise((resolve, reject) => {
+      try {
+        const jsonBuild = JSON.stringify(data);
+        const compressedData = pako.deflate(jsonBuild);
+        const byteArray = Array.from(compressedData); // Convert Uint8Array to array of numbers
+        const base64Data = btoa(String.fromCharCode.apply(null, byteArray)); // Convert to base64
+        const encodedData = encodeURIComponent(base64Data);
+        resolve(encodedData);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
-  generateShareLinkAsText(): string {
-    if (this.encodedData === null) {
+  // Assuming this.encodedData is initialized elsewhere in your code
+  async generateShareLinkAsText(): Promise<string> {
+    if (!this.encodedData) {
       return ''; // Return empty string if data is not encoded
     }
-    // return `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
-    // return `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}`;
     const shareLink = `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}&classId=${this.currentClassData.id}`;
     return shareLink;
   }
 
-  async copyShareLinkToClipboard(): Promise<void> {
-    const shareLink = this.generateShareLinkAsText();
-    if (shareLink === '') {
-      console.error('Share link is not generated.');
-      return;
-    }
-
+  async copyShareLinkToClipboard(shareLink: string): Promise<void> {
     try {
       await navigator.clipboard.writeText(shareLink);
       console.log('Share link copied to clipboard:', shareLink);
@@ -1052,10 +1103,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  generateAndCopyShareLink(): void {
+  async generateAndCopyShareLink(buildData: any): Promise<void> {
     this.playSound('rune', 0.5);
-    this.encodedData = this.encodeBuild(this.buildToShare);
-    this.copyShareLinkToClipboard();
+    try {
+      const encodedData = await this.compressData(buildData);
+      this.encodedData = encodedData;
+      console.log(this.encodedData);
+      const shareLink = await this.generateShareLinkAsText();
+      await this.copyShareLinkToClipboard(shareLink);
+    } catch (error) {
+      console.error('Error generating and copying share link:', error);
+    }
   }
 
   getClassAudioEntity(className: string) {

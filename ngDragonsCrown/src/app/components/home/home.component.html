@@ -350,7 +350,7 @@
                 <button [class.custom-button]="showBySPAsc" mat-menu-item (click)="toggleDisplayOption('sp_asc')">Show By SP Asc</button>
                 <button [class.custom-button]="showBySPDesc" mat-menu-item (click)="toggleDisplayOption('sp_desc')">Show By SP Desc</button>
                 <button mat-menu-item (click)="captureAndDownloadScreenshot()">Screenshot Build</button>
-                <button mat-menu-item (click)="generateAndCopyShareLink()">Copy Share Link</button>
+                <button mat-menu-item (click)="generateAndCopyShareLink(buildToShare)">Copy Share Link</button>
               </mat-menu>
             </div>
             <table class="build-table">
