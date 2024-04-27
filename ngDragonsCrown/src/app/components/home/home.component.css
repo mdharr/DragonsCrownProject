@@ -638,7 +638,7 @@ textarea:focus-visible {
   content: "";
   display: block;
   height: 6px;
-  right: 160px;
+  right: 190px;
   position: absolute;
   top: 9px;
   width: 6px;
@@ -652,7 +652,7 @@ textarea:focus-visible {
   content: "";
   display: block;
   height: 6px;
-  right: 160px;
+  right: 190px;
   position: absolute;
   top: 9px;
   width: 6px;
