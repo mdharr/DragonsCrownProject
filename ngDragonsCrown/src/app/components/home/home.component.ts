@@ -595,13 +595,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setLevelToMax() {
-    if (this.skillsList.length > 0 || this.currentStats.level > 1) {
+    if (this.currentStats.level !== 99) {
       // this.skillsList = [];
       this.updateLevel(99);
       // this.currentLevelSP = this.initialTotalSP;
       this.updateTotalAvailableSP();
       this.updateCurrentBuild();
-      // this.playSound('erase');
+      this.playSound('confirm');
     }
   }
 
