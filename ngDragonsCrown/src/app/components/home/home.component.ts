@@ -594,6 +594,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  setLevelToMax() {
+    if (this.skillsList.length > 0 || this.currentStats.level > 1) {
+      // this.skillsList = [];
+      this.updateLevel(99);
+      // this.currentLevelSP = this.initialTotalSP;
+      this.updateTotalAvailableSP();
+      this.updateCurrentBuild();
+      // this.playSound('erase');
+    }
+  }
+
   updateLevel(newLevel: number): void {
     const validLevel = Math.max(1, Math.min(newLevel, 99));
     const stats = this.currentClassData.classStats.find((stat: { level: number; }) => stat.level === validLevel);
