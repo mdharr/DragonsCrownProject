@@ -596,9 +596,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   setLevelToMax() {
     if (this.currentStats.level !== 99) {
-      // this.skillsList = [];
       this.updateLevel(99);
-      // this.currentLevelSP = this.initialTotalSP;
       this.updateTotalAvailableSP();
       this.updateCurrentBuild();
       this.playSound('confirm');
