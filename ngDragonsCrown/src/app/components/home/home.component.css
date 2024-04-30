@@ -231,7 +231,7 @@
   height: auto;
   opacity: 0.7;
   filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
-  transition: filter 0.6s, opacity 0.3s;
+  transition: filter 0.6s, opacity 0.3s, transform 0.3s;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
@@ -251,6 +251,7 @@
   z-index: 3;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  transform: scale(1.05) translateY(-5px);
 }
 
 .selected {
@@ -1144,10 +1145,6 @@ html {
   width: 100%;
   height: auto;
   max-height: 100%;
-}
-
-#portraits-ul li {
-  position: relative;
 }
 
 @keyframes sheen {

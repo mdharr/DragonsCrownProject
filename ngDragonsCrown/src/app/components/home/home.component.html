@@ -38,8 +38,7 @@
                 <div *ngIf="tooltipLoading" class="loader-container">
                   <div class="loader"></div>
                 </div>
-                <!-- Render the image only when tooltipUrl is not empty -->
-                <img *ngIf="!tooltipLoading" [src]="tooltipUrl" alt="" style="width:100%; height: auto; max-height: 100%;">
+                <img *ngIf="tooltipVisible && !tooltipLoading" [src]="tooltipUrl" alt="" style="width:100%; height: auto; max-height: 100%;">
               </div>
             </li>
           </ul>

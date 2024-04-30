@@ -693,7 +693,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     this.tooltipVisible = false;
-    this.tooltipUrl = 'data:,';
+    this.tooltipUrl = '';
     this.tooltipIndex = null;
     this.tooltipLoading = false;
     this.currentLoadToken = null;
@@ -1094,10 +1094,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  // Assuming this.encodedData is initialized elsewhere in your code
   async generateShareLinkAsText(): Promise<string> {
     if (!this.encodedData) {
-      return ''; // Return empty string if data is not encoded
+      return '';
     }
     const shareLink = `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}&classId=${this.currentClassData.id}`;
     return shareLink;
