@@ -26,7 +26,7 @@
             <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id"
                 (click)="loadClassData(i)"
                 [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}"
-                (mouseenter)="showTooltip($event, classData.streamableUrl, i)"
+                (mouseenter)="showTooltip($event, classData.name, i)"
                 (mouseleave)="hideTooltip()">
               <div *ngIf="selectedClassIndex === i" class="chara-pointer">
                 <img src="https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_pointer.png">
@@ -38,7 +38,9 @@
                 <div *ngIf="tooltipLoading" class="loader-container">
                   <div class="loader"></div>
                 </div>
-                <img *ngIf="tooltipVisible && !tooltipLoading" [src]="tooltipUrl" alt="" style="width:100%; height: auto; max-height: 100%;">
+                <!-- <video autoplay *ngIf="tooltipVisible && !tooltipLoading" [src]="currentVideoSrc" style="width:100%; height: auto; max-height: 100%;"></video> -->
+                <video #videoPlayer3 [autoplay]="true" [muted]="true" *ngIf="tooltipVisible && !tooltipLoading" [src]="currentVideoSrc" style="width:100%; height: auto; max-height: 100%;"></video>
+
               </div>
             </li>
           </ul>

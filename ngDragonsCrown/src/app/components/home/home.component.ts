@@ -50,10 +50,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   skillsBySPAsc: CombinedSkill[] = [];
   skillsBySPDesc: CombinedSkill[] = [];
   currentVideoPath: string = '';
+  currentVideoSrc: string = '';
   previousVideoPath: string = '';
   streamableImage: HTMLImageElement | null = null;
   private currentLoadToken: any = null;
   private observer: IntersectionObserver | null = null;
+  fetchController: AbortController | null = null;
 
   // app state
   buildToShare: any;
@@ -84,6 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('skillInfoBoard', { static: false }) skillInfoBoard!: ElementRef<HTMLDivElement>;
   @ViewChild('videoPlayer1') videoPlayer1!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoPlayer2') videoPlayer2!: ElementRef<HTMLVideoElement>;
+  @ViewChild('videoPlayer3') videoPlayer3!: ElementRef<HTMLVideoElement>;
 
   // booleans
   classSelected: boolean = false;
@@ -161,6 +164,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     { name: 'dwarf', path: 'assets/graphics/media/dwarf_compressed.mp4' },
     { name: 'sorceress', path: 'assets/graphics/media/sorceress_compressed.mp4' },
     { name: 'wizard', path: 'assets/graphics/media/wizard_compressed.mp4' },
+    { name: 'fighter_intro', path: 'assets/graphics/media/fighter_intro.mp4' },
+    { name: 'amazon_intro', path: 'assets/graphics/media/amazon_intro.mp4' },
+    { name: 'elf_intro', path: 'assets/graphics/media/elf_intro.mp4' },
+    { name: 'dwarf_intro', path: 'assets/graphics/media/dwarf_intro.mp4' },
+    { name: 'sorceress_intro', path: 'assets/graphics/media/sorceress_intro.mp4' },
+    { name: 'wizard_intro', path: 'assets/graphics/media/wizard_intro.mp4' },
   ];
 
   fighterSounds: AudioEntity[] = [
@@ -265,6 +274,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.observedElements.forEach(element => {
       this.observer?.observe(element.nativeElement);
     });
+
   }
 
   subscribeToPlayerClassData() {
@@ -551,6 +561,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     return video ? video.path : undefined;
   }
 
+  // getIntroVideoPath(className: string): string | undefined {
+  //   const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase() + "_intro");
+  //   return video ? video.path : undefined;
+  // }
+
   onArtworkLoad() {
     this.artworkLoaded = true;
   }
@@ -636,71 +651,128 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.playSound('confirm');
   }
 
-  showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
-    const element = event.currentTarget as HTMLElement;
-    const rect = element.getBoundingClientRect();
+  // showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
+  //   const element = event.currentTarget as HTMLElement;
+  //   const rect = element.getBoundingClientRect();
 
-    // Check if the image is already loaded
-    if (!this.streamableImage || !this.streamableImage.complete) {
-      const loadToken = {}; // Unique object to represent this load operation
+  //   // Check if the image is already loaded
+  //   if (!this.streamableImage || !this.streamableImage.complete) {
+  //     const loadToken = {}; // Unique object to represent this load operation
 
-      // Ensure any existing image is canceled and removed before loading a new one
-      if (this.streamableImage) {
-        this.streamableImage.onload = null;
-        this.streamableImage.onerror = null;
-        this.streamableImage.src = 'data:,';
-        this.streamableImage = null;
-      }
+  //     // Ensure any existing image is canceled and removed before loading a new one
+  //     if (this.streamableImage) {
+  //       this.streamableImage.onload = null;
+  //       this.streamableImage.onerror = null;
+  //       this.streamableImage.src = 'data:,';
+  //       this.streamableImage = null;
+  //     }
 
-      // Create a new image and load
-      this.streamableImage = new Image();
-      this.streamableImage.onload = () => {
-        if (this.currentLoadToken === loadToken) {
-          this.tooltipUrl = gifUrl;
-          this.onGifLoad();
-        }
-      };
-      this.streamableImage.onerror = () => {
-        if (this.currentLoadToken === loadToken) {
-          this.hideTooltip();
-        }
-      };
+  //     // Create a new image and load
+  //     this.streamableImage = new Image();
+  //     this.streamableImage.onload = () => {
+  //       if (this.currentLoadToken === loadToken) {
+  //         this.tooltipUrl = gifUrl;
+  //         this.onGifLoad();
+  //       }
+  //     };
+  //     this.streamableImage.onerror = () => {
+  //       if (this.currentLoadToken === loadToken) {
+  //         this.hideTooltip();
+  //       }
+  //     };
 
-      this.currentLoadToken = loadToken;
-      this.streamableImage.src = gifUrl;
+  //     this.currentLoadToken = loadToken;
+  //     this.streamableImage.src = gifUrl;
 
-      // Delay showing the loader to avoid flicker on fast loads
-      setTimeout(() => {
-        if (this.currentLoadToken === loadToken && !this.streamableImage!.complete) {
-          this.tooltipLoading = true;
-        }
-      }, 200);
+  //     // Delay showing the loader to avoid flicker on fast loads
+  //     setTimeout(() => {
+  //       if (this.currentLoadToken === loadToken && !this.streamableImage!.complete) {
+  //         this.tooltipLoading = true;
+  //       }
+  //     }, 200);
+  //   }
+
+  //   this.tooltipVisible = true;
+  //   this.tooltipUrl = gifUrl;
+  //   this.tooltipIndex = index;
+  //   this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
+  //   this.tooltipLeft = rect.left + window.scrollX;
+  // }
+
+  showTooltip = async (event: MouseEvent, videoName: string, index: number): Promise<void> => {
+    if (!event.currentTarget) {
+      console.error('Event target is null');
+      return;
+    }
+
+    // Abort any ongoing fetch operation
+    if (this.fetchController) {
+      this.fetchController.abort();
+      this.fetchController = null; // Clear the existing controller
     }
 
     this.tooltipVisible = true;
-    this.tooltipUrl = gifUrl;
-    this.tooltipIndex = index;
-    this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
-    this.tooltipLeft = rect.left + window.scrollX;
-  }
+    this.tooltipLoading = true;
+    const currentTooltipIndex = index; // Store the current index
+    this.tooltipIndex = currentTooltipIndex;
+    this.currentVideoSrc = ''; // Reset the video source initially
+    this.fetchController = new AbortController(); // New controller for the new fetch
 
-  hideTooltip(): void {
-    if (this.streamableImage) {
-      this.streamableImage.onload = null;
-      this.streamableImage.onerror = null;
-      this.streamableImage.src = 'data:,';
-      this.streamableImage = null;
+    const videoPath = this.getIntroVideoPath(videoName);
+    if (!videoPath) {
+      console.error('Video path is empty for:', videoName);
+      this.tooltipLoading = false;
+      return;
     }
 
-    this.tooltipVisible = false;
-    this.tooltipUrl = '';
-    this.tooltipIndex = null;
-    this.tooltipLoading = false;
-    this.currentLoadToken = null;
+    try {
+      const introVideoResponse = await fetch(videoPath, { signal: this.fetchController.signal });
+      if (introVideoResponse.ok) {
+        // Check if the tooltip index has changed
+        if (this.tooltipIndex !== currentTooltipIndex) {
+          return; // Bail out if no longer hovering over the same portrait
+        }
+        this.currentVideoSrc = ''; // Clear the current source
+        this.currentVideoSrc = videoPath;
+        this.tooltipLoading = false;
+      } else {
+        console.error('Failed to fetch intro video:', introVideoResponse.statusText);
+        this.tooltipLoading = false;
+      }
+    } catch (error) {
+      if (error instanceof Error && error.name !== 'AbortError') {
+        console.error('Error fetching intro video:', error.message);
+      }
+      this.tooltipLoading = false;
+    } finally {
+      this.fetchController = null;
+    }
   }
 
-  onGifLoad(): void {
+  hideTooltip = (): void => {
+    this.tooltipVisible = false;
     this.tooltipLoading = false;
+    this.currentVideoSrc = '';
+
+    // Abort the fetch operation when the tooltip is hidden
+    if (this.fetchController) {
+      this.fetchController.abort();
+      this.fetchController = null;
+    }
+  }
+
+
+  getIntroVideoPath(videoName: string): string {
+    const video = this.videos.find(v => v.name.toLowerCase() === videoName.toLowerCase() + "_intro");
+    return video ? video.path : '';
+  }
+
+  forcePlayVideo(videoElement: HTMLVideoElement): void {
+    if (videoElement) {
+      videoElement.play().catch(err => {
+        console.error('Error attempting to play video:', err.message);
+      });
+    }
   }
 
   changeSpriteTo(type: 'start' | 'end') {

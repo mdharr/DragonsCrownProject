@@ -258,7 +258,8 @@ button.option-buttons:disabled {
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
   font-style: normal;
-  padding-top: 10px;
+  /* padding-top: 10px; */
+  /* text-align: right; */
   width: 100%;
 }
 
@@ -438,6 +439,10 @@ button.option-buttons:disabled {
 
 .end {
   justify-self: end;
+}
+
+.icon-wrapper {
+  min-width: 85.84px;
 }
 
 .icon-image {

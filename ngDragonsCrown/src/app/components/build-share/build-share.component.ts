@@ -41,20 +41,6 @@ export class BuildShareComponent implements OnInit, OnDestroy {
     }
   }
 
-  // getRouteParams() {
-  //   this.paramsSubscription = this.activatedRoute.queryParams.subscribe(params => {
-  //     const encodedBuild = params['encodedBuild'];
-  //     const classId = params['classId'];
-  //     if (encodedBuild && classId) {
-  //       const decodedJsonBuild = decodeURIComponent(encodedBuild);
-  //       const buildObject = JSON.parse(decodedJsonBuild);
-  //       this.buildArray = Object.values(buildObject);
-  //       this.classId = +classId;
-  //       console.log('Class ID:', this.classId);
-  //     }
-  //   });
-  // }
-
   getRouteParams() {
     this.paramsSubscription = this.activatedRoute.queryParams.subscribe(params => {
       const encodedBuild = params['encodedBuild'];
@@ -71,12 +57,6 @@ export class BuildShareComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-
-  // decodeBuild(encodedBuild: string): any {
-  //   const decodedJsonBuild = decodeURIComponent(encodedBuild);
-  //   return JSON.parse(decodedJsonBuild);
-  // }
 
   decodeBuild(encodedBuild: string): any {
     try {

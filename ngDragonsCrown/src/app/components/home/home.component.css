@@ -1090,17 +1090,21 @@ html {
   border-radius: 6px;
   border: 3px solid #b39a72;
   position: absolute;
-  top: -130px;
+  /* top: -130px;
+  left: -3px; */
+  top: -195px;
   left: -3px;
   z-index: 1000;
-  width: 200px;
-  height: 115px;
+  /* width: 200px;
+  height: 115px; */
+  width: 300px;
+  height: 172px;
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .loader-container {
-  height: 100px;
+  height: 150px;
   width: 100%;
   display: flex;
   justify-content: center;

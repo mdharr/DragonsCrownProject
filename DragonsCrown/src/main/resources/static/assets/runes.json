@@ -131,14 +131,14 @@
     {
       "id": 1,
       "name": "Life From Stone",
-      "description": "Brings statues to life (mission related spell)",
+      "description": "Brings statues to life",
       "abbreviation": "L-F-S",
       "runes": [13,8,3]
     },
     {
       "id": 2,
       "name": "Solomon's Flying Carpet",
-      "description": "Spawns a flying carpet (mission related spell)",
+      "description": "Spawns a flying carpet",
       "abbreviation": "S-F-C",
       "runes": [3,8,7]
     },
@@ -250,7 +250,7 @@
     {
       "id": 18,
       "name": "D I E",
-      "description": "Where all living things go (mission related)",
+      "description": "Where all living things go",
       "abbreviation": "D-I-E",
       "runes": [1,11,2]
     },
@@ -271,7 +271,7 @@
     {
       "id": 21,
       "name": "Reveal Mystery Zone",
-      "description": "Used to gain access to the Illusionary Lands (mission related)",
+      "description": "Used to gain access to the Illusionary Lands",
       "abbreviation": "R-M-Z",
       "runes": [17,14,21]
     }
