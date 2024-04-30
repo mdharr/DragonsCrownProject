@@ -251,7 +251,7 @@
   z-index: 3;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
-  transform: scale(1.05) translateY(-5px);
+  transform: scale(1.05);
 }
 
 .selected {
