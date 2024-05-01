@@ -41,3 +41,31 @@ img {
   display: block;
   image-rendering: pixelated;
 }
+
+.color-selector {
+  display: flex;
+  justify-content: center;
+}
+
+.color-box {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin: 0 5px;
+  border: 1px solid #fff;
+  position: relative;
+}
+
+.color-box::before {
+  content: "";
+  background-image: url(https://atlus.com/dragonscrown/img/character/bg_colorvariations.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  opacity: .5;
+}

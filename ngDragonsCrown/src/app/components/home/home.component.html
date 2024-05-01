@@ -60,7 +60,10 @@
             <div *ngIf="classLoading" class="class-loader-container">
               <div class="loader"></div>
             </div>
-            <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation>
+            <!-- <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation> -->
+            <ng-container *ngIf="currentClassData">
+              <app-sprite-animation [className]="currentClassData.name.toLowerCase()"></app-sprite-animation>
+            </ng-container>
           </ng-container>
         </div>
         <div class="planner" *ngIf="classSelected">

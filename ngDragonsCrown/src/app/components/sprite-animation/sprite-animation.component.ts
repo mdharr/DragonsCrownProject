@@ -17,6 +17,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   spriteSheetMap: any;
   private tickerListener: Function | null = null;
   private animation: any;
+  colorVariants: string[] = [];
 
   isStageReady: boolean = false;
   showLoader: boolean = false;
@@ -78,7 +79,15 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
       "do": [0, 38, true, 1.2]
     },
     // spritesheet url
-    "images": ["https://dragons-crown.com/resources/sprite/character/fighter1.png"],
+    // "images": ["https://dragons-crown.com/resources/sprite/character/fighter1.png"],
+    'colors': ['#bdbdbd', '#ff787d', '#ffc162', '#32231F', '#ac8c71'],
+    'images': [
+      'https://dragons-crown.com/resources/sprite/character/fighter1.png',
+      'https://dragons-crown.com/resources/sprite/character/fighter2.png',
+      'https://dragons-crown.com/resources/sprite/character/fighter3.png',
+      'https://dragons-crown.com/resources/sprite/character/fighter4.png',
+      'https://dragons-crown.com/resources/sprite/character/fighter5.png'
+    ],
     "loader": ["https://dragons-crown.com/resources/img/character/c1_loader.png"]
   };
 
@@ -113,7 +122,15 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 23, true, 0.45]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/amazon1.png"],
+    // "images": ["https://dragons-crown.com/resources/sprite/character/amazon1.png"],
+    'colors': ['#ffc162', '#bdbdbd', '#ffc162', '#ff787d', '#a00087'],
+    'images': [
+      'https://dragons-crown.com/resources/sprite/character/amazon1.png',
+      'https://dragons-crown.com/resources/sprite/character/amazon2.png',
+      'https://dragons-crown.com/resources/sprite/character/amazon3.png',
+      'https://dragons-crown.com/resources/sprite/character/amazon4.png',
+      'https://dragons-crown.com/resources/sprite/character/amazon5.png'
+    ],
     "loader": ["https://dragons-crown.com/resources/img/character/c2_loader.png"]
   };
 
@@ -145,7 +162,15 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 20, true, 0.3]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/elf1.png"],
+    // "images": ["https://dragons-crown.com/resources/sprite/character/elf1.png"],
+    'colors': ['#9ac871', '#ff6a6e', '#32231F', '#ac8c71', '#004e00'],
+    'images': [
+      'https://dragons-crown.com/resources/sprite/character/elf1.png',
+      'https://dragons-crown.com/resources/sprite/character/elf2.png',
+      'https://dragons-crown.com/resources/sprite/character/elf3.png',
+      'https://dragons-crown.com/resources/sprite/character/elf4.png',
+      'https://dragons-crown.com/resources/sprite/character/elf5.png'
+    ],
     "loader": ["https://dragons-crown.com/resources/img/character/c4_loader.png"]
   };
 
@@ -172,7 +197,15 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 15, true, 0.45]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/dwarf1.png"],
+    // "images": ["https://dragons-crown.com/resources/sprite/character/dwarf1.png"],
+    'colors': ['#ac8c71', '#ff6a6e', '#646956', '#c57534', '#9ac871'],
+    'images': [
+      'https://dragons-crown.com/resources/sprite/character/dwarf1.png',
+      'https://dragons-crown.com/resources/sprite/character/dwarf2.png',
+      'https://dragons-crown.com/resources/sprite/character/dwarf3.png',
+      'https://dragons-crown.com/resources/sprite/character/dwarf4.png',
+      'https://dragons-crown.com/resources/sprite/character/dwarf5.png'
+    ],
     "loader": ["https://dragons-crown.com/resources/img/character/c5_loader.png"]
   };
 
@@ -215,7 +248,15 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 31, true, 0.45]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/sorceress1.png"],
+    // "images": ["https://dragons-crown.com/resources/sprite/character/sorceress1.png"],
+    'colors': ['#6d184a', '#44433f', '#9a893e', '#4a9a89', '#773238'],
+    'images': [
+      'https://dragons-crown.com/resources/sprite/character/sorceress1.png',
+      'https://dragons-crown.com/resources/sprite/character/sorceress2.png',
+      'https://dragons-crown.com/resources/sprite/character/sorceress3.png',
+      'https://dragons-crown.com/resources/sprite/character/sorceress4.png',
+      'https://dragons-crown.com/resources/sprite/character/sorceress5.png'
+    ],
     "loader": ["https://dragons-crown.com/resources/img/character/c6_loader.png"]
   };
 
@@ -256,11 +297,27 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "animations": {
       "do": [0, 29, true, 0.3]
     },
-    "images": ["https://dragons-crown.com/resources/sprite/character/wizard1.png"],
+    // "images": ["https://dragons-crown.com/resources/sprite/character/wizard1.png"],
+    'colors': ['#996d9b', '#ff6a6e', '#646956', '#6d184a', '#315d7a'],
+    'images': [
+      'https://dragons-crown.com/resources/sprite/character/wizard1.png',
+      'https://dragons-crown.com/resources/sprite/character/wizard2.png',
+      'https://dragons-crown.com/resources/sprite/character/wizard3.png',
+      'https://dragons-crown.com/resources/sprite/character/wizard4.png',
+      'https://dragons-crown.com/resources/sprite/character/wizard5.png'
+    ],
     "loader": ["https://dragons-crown.com/resources/img/character/c3_loader.png"]
   };
 
+  constructor() {
+    this.initializeSpriteSheetMap();
+  }
+
   ngOnInit() {
+    this.initCanvas();
+  }
+
+  initializeSpriteSheetMap() {
     this.spriteSheetMap = {
       'fighter': this.fighterSpriteSheetData,
       'amazon': this.amazonSpriteSheetData,
@@ -269,9 +326,6 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
       'sorceress': this.sorceressSpriteSheetData,
       'wizard': this.wizardSpriteSheetData
     };
-
-    this.initCanvas();
-
   }
 
   ngOnDestroy() {
@@ -280,10 +334,18 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.showLoader = true;
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Current className:', this.className);  // Debugging current class name
+    console.log('Available classes in map:', Object.keys(this.spriteSheetMap));  // Check what keys are in the spriteSheetMap
     if (changes['className'] && changes['className'].currentValue) {
-      this.loadSpriteSheet(changes['className'].currentValue);
+      const newClass = changes['className'].currentValue;
+      console.log('New class received:', newClass);  // Debugging output for newClass
+      if (this.spriteSheetMap[newClass]) {  // Ensure it's a valid class name
+        this.colorVariants = this.spriteSheetMap[newClass].colors;
+        this.loadSpriteSheet(newClass);
+      } else {
+        console.error('Invalid class name:', newClass);  // Error log if class name is invalid
+      }
     }
   }
 
@@ -331,22 +393,24 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private startAnimation = (): void => {
-
-    // Check if an animation already exists and remove it
+    // First, remove any existing animation from the stage to ensure it doesn't overlap with the new one
     if (this.animation) {
-      this.stage.removeChild(this.animation);
+        this.stage.removeChild(this.animation);
+        this.animation = null;  // Clear the reference to the old animation
     }
-    const animation = new createjs.Sprite(this.spriteSheet, "do");
+
+    // Create the new sprite from the updated sprite sheet
+    this.animation = new createjs.Sprite(this.spriteSheet, "do");
 
     // Manually set a scale factor
     const scale = 0.5; // Adjust this value as needed to fit the sprite within the canvas
 
     // Apply the scale factor
-    animation.scaleX = scale;
-    animation.scaleY = scale;
+    this.animation.scaleX = scale;
+    this.animation.scaleY = scale;
 
     // Get the bounds of the sprite after scaling
-    const spriteBounds = animation.getBounds();
+    const spriteBounds = this.animation.getBounds();
     const scaledSpriteWidth = spriteBounds.width * scale;
     const scaledSpriteHeight = spriteBounds.height * scale;
 
@@ -355,24 +419,31 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     const centerY = (this.canvasRef.nativeElement.height - scaledSpriteHeight) / 2;
 
     // Set the sprite's registration point to the top-left
-    animation.regX = spriteBounds.x;
-    animation.regY = spriteBounds.y;
+    this.animation.regX = spriteBounds.x;
+    this.animation.regY = spriteBounds.y;
 
     // Position the sprite in the center of the canvas
-    animation.x = centerX;
-    animation.y = centerY;
+    this.animation.x = centerX;
+    this.animation.y = centerY;
 
-    this.stage.addChild(animation);
+    // Add the new animation to the stage
+    this.stage.addChild(this.animation);
     this.showLoader = false;
-    animation.play();
+    this.animation.play();
 
     // Explicitly update the stage after adding the sprite and starting the animation
     this.stage.update();
+  };
 
-    // Update the stage on each tick, using a stored reference
-    this.tickerListener = this.stage.update.bind(this.stage);
-    createjs.Ticker.reset();
-    createjs.Ticker.on("tick", this.tickerListener);
+  changeSprite(index: number): void {
+    this.showLoader = true;
+    const className = this.className;
+    const newImageUrl = this.spriteSheetMap[className].images[index];
+    if (newImageUrl) {
+      const newSpriteSheetData = { ...this.spriteSheetMap[className], images: [newImageUrl] };
+      this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
+      this.startAnimation();
+    }
   }
 
 }
