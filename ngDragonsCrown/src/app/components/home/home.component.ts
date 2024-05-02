@@ -16,11 +16,19 @@ import { VideoEntity } from 'src/app/models/video-entity';
 import { PreloadAudioEntitiesService } from 'src/app/services/preload-audio-entities.service';
 
 import * as pako from 'pako';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('slideUpAndOut', [
+      transition(':leave', [
+        animate('0.1s linear', style({ transform: 'translateY(-100%)' }))
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -115,6 +123,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   classDataLoaded: boolean = false;
   audioPreloaded: boolean = false;
   classLoading: boolean = false;
+  appLoading: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -274,7 +283,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.observedElements.forEach(element => {
       this.observer?.observe(element.nativeElement);
     });
-
   }
 
   subscribeToPlayerClassData() {
@@ -310,7 +318,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       ).then(() => {
           this.audioPreloaded = true;
       });
-  }
+    }
   }
 
   triggerParticles() {
@@ -360,6 +368,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   async loadClassData(classIndex: number): Promise<void> {
+    this.appLoading = true;
     this.classSelected = true;
     this.skillSelected = false;
     this.currentSkill = new Skill();
@@ -412,6 +421,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
         await this.playClassMedia(this.currentClassData.name.toLowerCase());
         this.classLoading = false;
+        this.appLoading = false;
       }
     }
   }

@@ -314,6 +314,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
+    // this.flickerEffect();
     this.initCanvas();
   }
 
@@ -371,79 +372,96 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 
   private loadSpriteSheet(className: string): void {
     if (!this.isStageReady) {
-      console.warn('Attempted to load sprite sheet before stage was initialized.');
-      // Optionally, you could retry after a delay or set up an event/listener pattern
-      return;
+        console.warn('Attempted to load sprite sheet before stage was initialized.');
+        return;
     }
+
+    this.showLoader = true; // Ensure loader is shown while loading
 
     this.stage.removeAllChildren();
     this.stage.clear();
 
-    // No need to off and on the ticker listener here if it's managed globally
-
     const spriteSheetData = this.spriteSheetMap[className];
     if (spriteSheetData) {
-      this.spriteSheet = new createjs.SpriteSheet(spriteSheetData);
-      if (this.spriteSheet.complete) {
-        this.startAnimation();
-      } else {
-        this.spriteSheet.on("complete", this.startAnimation, this);
-      }
+        this.spriteSheet = new createjs.SpriteSheet(spriteSheetData);
+        if (this.spriteSheet.complete) {
+            this.startAnimation();
+        } else {
+            this.spriteSheet.on("complete", () => {
+                this.startAnimation();
+                this.showLoader = false; // Hide loader when the sprite sheet is ready
+            }, this, true); // Use true to run once and avoid potential memory leaks
+        }
     }
   }
 
   private startAnimation = (): void => {
-    // First, remove any existing animation from the stage to ensure it doesn't overlap with the new one
+    // First, check if an animation is already present and remove it
     if (this.animation) {
         this.stage.removeChild(this.animation);
-        this.animation = null;  // Clear the reference to the old animation
     }
 
-    // Create the new sprite from the updated sprite sheet
+    // Create the new sprite animation
     this.animation = new createjs.Sprite(this.spriteSheet, "do");
 
-    // Manually set a scale factor
-    const scale = 0.5; // Adjust this value as needed to fit the sprite within the canvas
-
-    // Apply the scale factor
+    // Setting up sprite scaling and positioning
+    const scale = 0.5;  // Example scale factor
     this.animation.scaleX = scale;
     this.animation.scaleY = scale;
 
-    // Get the bounds of the sprite after scaling
     const spriteBounds = this.animation.getBounds();
     const scaledSpriteWidth = spriteBounds.width * scale;
     const scaledSpriteHeight = spriteBounds.height * scale;
 
-    // Calculate the centered position
     const centerX = (this.canvasRef.nativeElement.width - scaledSpriteWidth) / 2;
     const centerY = (this.canvasRef.nativeElement.height - scaledSpriteHeight) / 2;
 
-    // Set the sprite's registration point to the top-left
     this.animation.regX = spriteBounds.x;
     this.animation.regY = spriteBounds.y;
-
-    // Position the sprite in the center of the canvas
     this.animation.x = centerX;
     this.animation.y = centerY;
 
-    // Add the new animation to the stage
     this.stage.addChild(this.animation);
-    this.showLoader = false;
     this.animation.play();
-
-    // Explicitly update the stage after adding the sprite and starting the animation
     this.stage.update();
-  };
+
+    this.showLoader = false;  // Hide the loader once everything is set
+};
 
   changeSprite(index: number): void {
-    this.showLoader = true;
+    this.showLoader = true;  // Enable the loader immediately
+
     const className = this.className;
     const newImageUrl = this.spriteSheetMap[className].images[index];
+
     if (newImageUrl) {
-      const newSpriteSheetData = { ...this.spriteSheetMap[className], images: [newImageUrl] };
-      this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
-      this.startAnimation();
+        const newSpriteSheetData = {
+            ...this.spriteSheetMap[className],
+            images: [newImageUrl]
+        };
+
+        // Reinitialize the sprite sheet with the new image URL
+        this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
+
+        if (this.spriteSheet.complete) {
+            // If the sprite sheet is immediately ready, start the animation
+            this.startAnimation();
+        } else {
+            // Listen for the 'complete' event which indicates the sprite sheet has finished loading
+            this.spriteSheet.on("complete", () => {
+                this.startAnimation();
+            }, this, true); // Pass true for the third parameter to ensure this listener is removed after execution
+        }
     }
+  }
+
+  flickerEffect() {
+    const crt = document.querySelector('.crt') as HTMLElement;
+    setInterval(() => {
+      if (crt) {
+        crt.style.opacity = (Math.random() > 0.9) ? '0.8' : '1';
+      }
+    }, 500);
   }
 
 }
