@@ -1,7 +1,11 @@
-import { Component, ElementRef, Input, ViewChild, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, OnInit, OnChanges, SimpleChanges, OnDestroy, inject, Renderer2 } from '@angular/core';
 
 // createjs declaration
 declare var createjs: any;
+
+interface ClassTitles {
+  [key: string]: string;
+}
 
 @Component({
   selector: 'app-sprite-animation',
@@ -21,6 +25,15 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 
   isStageReady: boolean = false;
   showLoader: boolean = false;
+
+  classTitles: ClassTitles = {
+    "fighter": "https://atlus.com/dragonscrown/img/character/fighter/fightter_title.png",
+    "amazon": "https://atlus.com/dragonscrown/img/character/amazon/amazon_title.png",
+    "elf": "https://atlus.com/dragonscrown/img/character/elf/elf_title.png",
+    "dwarf": "https://atlus.com/dragonscrown/img/character/dwarf/dwarf_title.png",
+    "sorceress": "https://atlus.com/dragonscrown/img/character/sorceress/sorceress_title.png",
+    "wizard": "https://atlus.com/dragonscrown/img/character/wizard/wizard_title.png"
+  }
 
   // The frames array within your fighterSpriteSheetData contains a series of arrays, each representing a single frame of the sprite sheet. Each inner array specifies details about how a particular image (or part of an image) should be rendered. Here's what each index in these inner arrays represents:
   // X Position: The horizontal position of the frame's top-left corner within the sprite sheet image. This tells the renderer where to start cutting the frame from the sprite sheet.
@@ -309,6 +322,9 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     "loader": ["https://dragons-crown.com/resources/img/character/c3_loader.png"]
   };
 
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
+
   constructor() {
     this.initializeSpriteSheetMap();
   }
@@ -344,6 +360,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
       if (this.spriteSheetMap[newClass]) {  // Ensure it's a valid class name
         this.colorVariants = this.spriteSheetMap[newClass].colors;
         this.loadSpriteSheet(newClass);
+        // this.applyBackgroundImage();
       } else {
         console.error('Invalid class name:', newClass);  // Error log if class name is invalid
       }
@@ -463,5 +480,13 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
       }
     }, 500);
   }
+
+  // applyBackgroundImage() {
+  //   const imageUrl = this.classTitles[this.className];
+  //   const innerElement = this.el.nativeElement.querySelector('.inner');
+  //   if (innerElement) {
+  //     innerElement.style.setProperty('--dynamic-background-image', `url(${imageUrl})`);
+  //   }
+  // }
 
 }

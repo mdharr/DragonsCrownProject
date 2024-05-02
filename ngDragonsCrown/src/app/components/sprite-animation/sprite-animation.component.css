@@ -22,12 +22,14 @@
 
 /* .inner::before {
   content: "";
-  background-image: url('https://atlus.com/dragonscrown/img/character/color_variations_title.png');
-  background-size: auto;
+  background-image: var(--dynamic-background-image);
+  background-size: cover;
   position: absolute;
-  z-index: 1;
-  bottom: 0;
+  z-index: 9999;
+  top: 0;
   left: 0;
+  width: 241px;
+  height: 320px;
 } */
 
 canvas {
@@ -57,6 +59,20 @@ img {
 .color-selector {
   display: flex;
   justify-content: center;
+  position: relative;
+  width: fit-content;
+}
+
+.color-selector::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background-image: url(https://atlus.com/dragonscrown/img/character/color_variations_title.png);
+  background-size: contain;
+  width: 150px;
+  background-repeat: no-repeat;
+  height: 50px;
 }
 
 .color-box {

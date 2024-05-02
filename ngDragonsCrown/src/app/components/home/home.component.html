@@ -27,7 +27,7 @@
             <li *ngFor="let classData of playerClasses; let i = index" [id]="classData.id"
                 (click)="loadClassData(i)"
                 [ngClass]="{'selected': selectedClassIndex === i, 'unselected': selectedClassIndex !== i}"
-                (mouseenter)="showTooltip($event, classData.name, i)"
+                (mouseenter)="selectedClassIndex !== i ? showTooltip($event, classData.name, i) : ''"
                 (mouseleave)="hideTooltip()">
               <div *ngIf="selectedClassIndex === i" class="chara-pointer">
                 <img src="https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_pointer.png">

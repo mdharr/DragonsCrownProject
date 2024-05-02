@@ -25,7 +25,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations: [
     trigger('slideUpAndOut', [
       transition(':leave', [
-        animate('0.1s linear', style({ transform: 'translateY(-100%)' }))
+        animate('0.15s linear', style({ transform: 'translateY(-100%)' }))
       ])
     ])
   ]
@@ -61,7 +61,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   currentVideoSrc: string = '';
   previousVideoPath: string = '';
   streamableImage: HTMLImageElement | null = null;
-  private currentLoadToken: any = null;
   private observer: IntersectionObserver | null = null;
   fetchController: AbortController | null = null;
 
@@ -368,7 +367,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   async loadClassData(classIndex: number): Promise<void> {
-    this.appLoading = true;
     this.classSelected = true;
     this.skillSelected = false;
     this.currentSkill = new Skill();
@@ -388,6 +386,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
       if (!this.currentClassData || this.currentClassData.name !== this.playerClasses[classIndex].name) {
         this.pausePreviousVideo();
+        this.appLoading = true;
         this.classLoading = true;
         this.selectedClassIndex = classIndex;
         this.currentClassData = this.playerClasses[classIndex];
