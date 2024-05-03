@@ -139,14 +139,14 @@
 
 .background-image {
   position: absolute;
-  top: 0;
+  top: 45px;
   left: 0;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
-  background-color: white;
+  background-color: #fff;
   filter: brightness(40%);
   z-index: -1;
 }
