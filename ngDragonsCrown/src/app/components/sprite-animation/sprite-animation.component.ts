@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild, OnInit, OnChanges, SimpleChanges, OnDestroy, inject, Renderer2 } from '@angular/core';
+import { AudioEntity } from 'src/app/models/audio-entity';
 
 // createjs declaration
 declare var createjs: any;
@@ -22,9 +23,14 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   private tickerListener: Function | null = null;
   private animation: any;
   colorVariants: string[] = [];
+  currentAudio: HTMLAudioElement | null = null;
 
   isStageReady: boolean = false;
   showLoader: boolean = false;
+
+  sounds: AudioEntity[] = [
+    { name: 'confirm', path: 'assets/audio/dc_confirm_se.mp3' },
+  ];
 
   classTitles: ClassTitles = {
     "fighter": "https://atlus.com/dragonscrown/img/character/fighter/fightter_title.png",
@@ -448,6 +454,8 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   changeSprite(index: number): void {
     this.showLoader = true;  // Enable the loader immediately
 
+    this.playSound('confirm');
+
     const className = this.className;
     const newImageUrl = this.spriteSheetMap[className].images[index];
 
@@ -481,12 +489,32 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     }, 500);
   }
 
-  // applyBackgroundImage() {
-  //   const imageUrl = this.classTitles[this.className];
-  //   const innerElement = this.el.nativeElement.querySelector('.inner');
-  //   if (innerElement) {
-  //     innerElement.style.setProperty('--dynamic-background-image', `url(${imageUrl})`);
-  //   }
-  // }
+  applyBackgroundImage() {
+    const imageUrl = this.classTitles[this.className];
+    const innerElement = this.el.nativeElement.querySelector('.inner');
+    if (innerElement) {
+      innerElement.style.setProperty('--dynamic-background-image', `url(${imageUrl})`);
+    }
+  }
 
+  async playSound(soundName: string, volume: number = 1.0): Promise<HTMLAudioElement> {
+    const audioObj = this.sounds.find(sound => sound.name === soundName);
+    const audioPath = audioObj?.path;
+    if (audioPath) {
+      const audio = new Audio(audioPath);
+      audio.volume = volume;
+
+      return new Promise((resolve, reject) => {
+        audio.play().then(() => {
+          this.currentAudio = audio;
+          resolve(audio);
+        }).catch((error) => {
+          console.error('Error playing audio:', error);
+          reject(error);
+        });
+      });
+    } else {
+      return Promise.reject(new Error('Audio path not found'));
+    }
+  }
 }

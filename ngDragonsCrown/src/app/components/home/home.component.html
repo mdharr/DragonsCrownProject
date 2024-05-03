@@ -91,12 +91,12 @@
                   <mat-icon>keyboard_arrow_up</mat-icon>
                 </button>
 
-                <button mat-icon-button class="arrow-buttons" id="refresh-btn" (click)="setLevelToOne()">
-                  <mat-icon>refresh</mat-icon>
-                </button>
-
                 <button mat-icon-button class="arrow-buttons" id="refresh-btn" (click)="setLevelToMax()">
                   <mat-icon>keyboard_double_arrow_up</mat-icon>
+                </button>
+
+                <button mat-icon-button class="arrow-buttons" id="refresh-btn" (click)="setLevelToOne()">
+                  <mat-icon>refresh</mat-icon>
                 </button>
               </div>
 
@@ -307,11 +307,11 @@
                     </tr>
                   </tbody>
                 </table>
-                <p>
+                <!-- <p>
                   <span style="color:#d9b359;">Knockback value</span>: The value used to make the enemy fall back. It adds up when you land an attack, and if it exceeds a certain value, you will be thrown back.<br>
                   <span style="color:#d9b359;">Down value</span>: Value used to knock down an enemy. If it exceeds a certain value, you can knock it down and send it flying.<br>
                   <span style="color:#d9b359;">Stun value</span>: Value to stun the enemy. When the accumulated value exceeds a certain level, it will stun the enemy and stop their movement.
-                </p>
+                </p> -->
               </div>
             </div>
           </ng-container>

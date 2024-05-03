@@ -6,7 +6,7 @@ import { AudioEntity } from '../models/audio-entity';
 })
 export class PreloadAudioEntitiesService {
 
-  private audioContext = new AudioContext();
+  private audioContext: AudioContext = new AudioContext();
 
   constructor() {}
 

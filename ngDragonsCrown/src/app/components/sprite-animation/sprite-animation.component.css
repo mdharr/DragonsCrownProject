@@ -58,44 +58,61 @@ img {
 
 .color-selector {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
-  width: fit-content;
+  width: 100%;
+  padding-top: 7px;
 }
 
-.color-selector::before {
+.color-selector:before {
   content: "";
   position: absolute;
-  top: -30px;
-  left: 0;
-  background-image: url(https://atlus.com/dragonscrown/img/character/color_variations_title.png);
+  background-image: url(https://dragons-crown.com/resources/img/character/color_c1.png);
   background-size: contain;
-  width: 150px;
   background-repeat: no-repeat;
-  height: 50px;
+  background-position: center;
+  height: 70px;
+  top: -25px;
+  width: 100%;
+}
+
+.color-selector div:first-child {
+  margin-left: 30px;
 }
 
 .color-box {
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   cursor: pointer;
-  margin: 0 5px;
-  border: 1px solid #fff;
+  margin-right: 6px;
   position: relative;
+  transition: filter 0.2s, transform 0.2s;
+  border: 2px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+}
+
+.color-box:hover {
+  filter:brightness(1.3);
+  transform: scale(1.1);
+  cursor: pointer;
+  /* border: 3px solid transparent;
+  overflow: hidden;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30; */
 }
 
 .color-box::before {
   content: "";
   background-image: url(https://atlus.com/dragonscrown/img/character/bg_colorvariations.jpg);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   z-index: 5;
   position: absolute;
   top: 0;
   left: 0;
-  width: 25px;
-  height: 25px;
-  opacity: .5;
+  width: 20px;
+  height: 20px;
+  opacity: 0.4;
+  overflow:hidden;
 }
 
 /* .crt {
@@ -148,4 +165,28 @@ img {
   z-index: 3;
   mix-blend-mode: color;
   transform: translateX(-50%) scale(1.02);
+} */
+
+/*
+.color-selector:before {
+  content: "";
+  position: absolute;
+  background-image: url(https://dragons-crown.com/resources/img/special/menu_bg.png);
+  background-repeat: no-repeat;
+  height: 50px;
+  background-size: contain;
+} */
+
+/* .inner.crt::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  background-image: url(https://atlus.com/dragonscrown/img/character/color_variations_title.png);
+  background-image: var(--dynamic-background-image);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 50px;
 } */
