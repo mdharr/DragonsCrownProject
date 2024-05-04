@@ -26,6 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { ParallaxDirective } from './directives/parallax.directive';
 import { MediaPlayerComponent } from './components/media-player/media-player.component';
+import { SampleVoiceComponent } from './components/sample-voice/sample-voice.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MediaPlayerComponent } from './components/media-player/media-player.com
     LoadingScreenComponent,
     ParallaxDirective,
     MediaPlayerComponent,
+    SampleVoiceComponent,
   ],
   imports: [
     BrowserModule,

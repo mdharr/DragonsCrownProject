@@ -41,7 +41,6 @@
                 </div>
                 <!-- <video autoplay *ngIf="tooltipVisible && !tooltipLoading" [src]="currentVideoSrc" style="width:100%; height: auto; max-height: 100%;"></video> -->
                 <video #videoPlayer3 [autoplay]="true" [muted]="true" *ngIf="tooltipVisible && !tooltipLoading" [src]="currentVideoSrc" style="width:100%; height: auto; max-height: 100%;"></video>
-
               </div>
             </li>
           </ul>
@@ -67,6 +66,9 @@
             </ng-container>
           </ng-container>
         </div>
+        <hr>
+        <app-sample-voice></app-sample-voice>
+        <!-- <hr> -->
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper" [ngStyle]="{'--plannerBackgroundUrl': 'url(' + currentClassData?.paperUrl + ')'}">
             <div class="col n1 class-background">
