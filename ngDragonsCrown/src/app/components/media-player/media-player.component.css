@@ -1,0 +1,8 @@
+.video-container {
+  width: 400px;
+  height: 225px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+}

@@ -259,9 +259,10 @@
             <div class="skillInfoBoard" #skillInfoBoard>
               <div *ngIf="isSkillInfoVisible" class="skill-info-board-child">
                 <div class="skill-card-wrapper">
-                  <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
+                  <!-- <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
                     <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
-                  </div>
+                  </div> -->
+                  <app-media-player [skillName]="currentSkill.name"></app-media-player>
                   <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder>
                 </div>
                 <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span>: {{ currentSkill.description }}</h3>

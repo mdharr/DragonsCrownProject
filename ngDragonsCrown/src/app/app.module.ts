@@ -25,6 +25,7 @@ import { BuildShareComponent } from './components/build-share/build-share.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { ParallaxDirective } from './directives/parallax.directive';
+import { MediaPlayerComponent } from './components/media-player/media-player.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ParallaxDirective } from './directives/parallax.directive';
     FooterComponent,
     LoadingScreenComponent,
     ParallaxDirective,
+    MediaPlayerComponent,
   ],
   imports: [
     BrowserModule,
