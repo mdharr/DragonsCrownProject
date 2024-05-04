@@ -68,7 +68,7 @@
         </div>
         <hr>
         <app-sample-voice></app-sample-voice>
-        <!-- <hr> -->
+        <hr *ngIf="classSelected">
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper" [ngStyle]="{'--plannerBackgroundUrl': 'url(' + currentClassData?.paperUrl + ')'}">
             <div class="col n1 class-background">
@@ -265,7 +265,7 @@
                     <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
                   </div> -->
                   <app-media-player [skillName]="currentSkill.name"></app-media-player>
-                  <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder>
+                  <!-- <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder> -->
                 </div>
                 <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span>: {{ currentSkill.description }}</h3>
                 <table>
