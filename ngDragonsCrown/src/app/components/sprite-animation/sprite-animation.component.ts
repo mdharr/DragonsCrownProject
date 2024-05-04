@@ -24,6 +24,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   private animation: any;
   colorVariants: string[] = [];
   currentAudio: HTMLAudioElement | null = null;
+  currentIndex: number = 0;
 
   isStageReady: boolean = false;
   showLoader: boolean = false;
@@ -413,6 +414,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
             this.spriteSheet.on("complete", () => {
                 this.startAnimation();
                 this.showLoader = false; // Hide loader when the sprite sheet is ready
+                this.currentIndex = 0;
             }, this, true); // Use true to run once and avoid potential memory leaks
         }
     }
@@ -452,31 +454,34 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 };
 
   changeSprite(index: number): void {
-    this.showLoader = true;  // Enable the loader immediately
 
-    this.playSound('confirm');
+    if (this.currentIndex !== index) {
+      this.showLoader = true;  // Enable the loader immediately
+      this.currentIndex = index;
+      this.playSound('confirm');
 
-    const className = this.className;
-    const newImageUrl = this.spriteSheetMap[className].images[index];
+      const className = this.className;
+      const newImageUrl = this.spriteSheetMap[className].images[index];
 
-    if (newImageUrl) {
-        const newSpriteSheetData = {
-            ...this.spriteSheetMap[className],
-            images: [newImageUrl]
-        };
+      if (newImageUrl) {
+          const newSpriteSheetData = {
+              ...this.spriteSheetMap[className],
+              images: [newImageUrl]
+          };
 
-        // Reinitialize the sprite sheet with the new image URL
-        this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
+          // Reinitialize the sprite sheet with the new image URL
+          this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
 
-        if (this.spriteSheet.complete) {
-            // If the sprite sheet is immediately ready, start the animation
-            this.startAnimation();
-        } else {
-            // Listen for the 'complete' event which indicates the sprite sheet has finished loading
-            this.spriteSheet.on("complete", () => {
-                this.startAnimation();
-            }, this, true); // Pass true for the third parameter to ensure this listener is removed after execution
-        }
+          if (this.spriteSheet.complete) {
+              // If the sprite sheet is immediately ready, start the animation
+              this.startAnimation();
+          } else {
+              // Listen for the 'complete' event which indicates the sprite sheet has finished loading
+              this.spriteSheet.on("complete", () => {
+                  this.startAnimation();
+              }, this, true); // Pass true for the third parameter to ensure this listener is removed after execution
+          }
+      }
     }
   }
 
