@@ -307,13 +307,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   preloadAllAudioEntities() {
     if (!this.audioPreloaded) {
       this.preloadAudioService.preloadAudio(
-        this.sounds,
-        // this.fighterSounds,
-        // this.amazonSounds,
-        // this.elfSounds,
-        // this.dwarfSounds,
-        // this.sorceressSounds,
-        // this.wizardSounds
+        this.sounds
       ).then(() => {
           this.audioPreloaded = true;
       });
@@ -570,11 +564,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     return video ? video.path : undefined;
   }
 
-  // getIntroVideoPath(className: string): string | undefined {
-  //   const video = this.videos.find(v => v.name.toLowerCase() === className.toLowerCase() + "_intro");
-  //   return video ? video.path : undefined;
-  // }
-
   onArtworkLoad() {
     this.artworkLoaded = true;
   }
@@ -660,54 +649,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.playSound('confirm');
   }
 
-  // showTooltip(event: MouseEvent, gifUrl: string, index: number): void {
-  //   const element = event.currentTarget as HTMLElement;
-  //   const rect = element.getBoundingClientRect();
-
-  //   // Check if the image is already loaded
-  //   if (!this.streamableImage || !this.streamableImage.complete) {
-  //     const loadToken = {}; // Unique object to represent this load operation
-
-  //     // Ensure any existing image is canceled and removed before loading a new one
-  //     if (this.streamableImage) {
-  //       this.streamableImage.onload = null;
-  //       this.streamableImage.onerror = null;
-  //       this.streamableImage.src = 'data:,';
-  //       this.streamableImage = null;
-  //     }
-
-  //     // Create a new image and load
-  //     this.streamableImage = new Image();
-  //     this.streamableImage.onload = () => {
-  //       if (this.currentLoadToken === loadToken) {
-  //         this.tooltipUrl = gifUrl;
-  //         this.onGifLoad();
-  //       }
-  //     };
-  //     this.streamableImage.onerror = () => {
-  //       if (this.currentLoadToken === loadToken) {
-  //         this.hideTooltip();
-  //       }
-  //     };
-
-  //     this.currentLoadToken = loadToken;
-  //     this.streamableImage.src = gifUrl;
-
-  //     // Delay showing the loader to avoid flicker on fast loads
-  //     setTimeout(() => {
-  //       if (this.currentLoadToken === loadToken && !this.streamableImage!.complete) {
-  //         this.tooltipLoading = true;
-  //       }
-  //     }, 200);
-  //   }
-
-  //   this.tooltipVisible = true;
-  //   this.tooltipUrl = gifUrl;
-  //   this.tooltipIndex = index;
-  //   this.tooltipTop = rect.top + window.scrollY - element.offsetHeight;
-  //   this.tooltipLeft = rect.left + window.scrollX;
-  // }
-
   showTooltip = async (event: MouseEvent, videoName: string, index: number): Promise<void> => {
     if (!event.currentTarget) {
       console.error('Event target is null');
@@ -769,7 +710,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.fetchController = null;
     }
   }
-
 
   getIntroVideoPath(videoName: string): string {
     const video = this.videos.find(v => v.name.toLowerCase() === videoName.toLowerCase() + "_intro");
@@ -1113,51 +1053,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skillsBySPAsc = this.sortBySPAsc(this.currentBuild, this.currentClassData.skills);
     this.skillsBySPDesc = this.sortBySPDesc(this.currentBuild, this.currentClassData.skills);
   }
-
-  // encodeBuild(buildData: any): string {
-  //   const jsonBuild = JSON.stringify(buildData);
-  //   return encodeURIComponent(jsonBuild);
-  // }
-
-  // encodeBuild(buildData: any): string {
-  //   const jsonBuild = JSON.stringify(buildData);
-  //   const compressedData = pako.deflate(jsonBuild);
-  //   const byteArray = Array.from(compressedData); // Convert Uint8Array to array of numbers
-  //   const base64Data = btoa(String.fromCharCode.apply(null, byteArray)); // Convert to base64
-  //   return encodeURIComponent(base64Data);
-  // }
-
-  // generateShareLinkAsText(): string {
-  //   if (this.encodedData === null) {
-  //     return ''; // Return empty string if data is not encoded
-  //   }
-  //   // return `http://localhost:4305/#/build?encodedBuild=${this.encodedData}`;
-  //   // return `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}`;
-  //   const shareLink = `https://www.dragonscrownplanner.com/DragonsCrown/#/build?encodedBuild=${this.encodedData}&classId=${this.currentClassData.id}`;
-  //   return shareLink;
-  // }
-
-  // async copyShareLinkToClipboard(): Promise<void> {
-  //   const shareLink = this.generateShareLinkAsText();
-  //   if (shareLink === '') {
-  //     console.error('Share link is not generated.');
-  //     return;
-  //   }
-
-  //   try {
-  //     await navigator.clipboard.writeText(shareLink);
-  //     console.log('Share link copied to clipboard:', shareLink);
-  //   } catch (err) {
-  //     console.error('Failed to copy share link: ', err);
-  //   }
-  // }
-
-  // generateAndCopyShareLink(): void {
-  //   this.playSound('rune', 0.5);
-  //   this.encodedData = this.encodeBuild(this.buildToShare);
-  //   console.log(this.encodedData);
-  //   this.copyShareLinkToClipboard();
-  // }
 
   // test
   async compressData(data: any): Promise<string> {

@@ -6,6 +6,7 @@
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   background-color: #000;
+  position: relative;
 }
 
 video {
@@ -22,3 +23,23 @@ video {
     opacity: 1;
   }
 }
+
+.loader {
+  position: absolute;
+  background: transparent;
+  width: 63px;
+  height: 63px;
+  border-top: 4px solid rgba(255, 255, 255, 0.3);
+  border-right: 4px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 4px solid rgba(255, 255, 255, 0.3);
+  border-left: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s ease infinite;
+  top: 76px;
+  left: 170px;
+}
+
+@-webkit-keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }
+  100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
+@keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }
+  100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
