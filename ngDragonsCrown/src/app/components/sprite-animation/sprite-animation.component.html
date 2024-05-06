@@ -1,5 +1,6 @@
 <div class="outer">
   <div class="inner crt">
+    <!-- <img class="class-title" [src]="this.classTitles[className]" alt=""> -->
     <img [hidden]="!showLoader" [src]="this.spriteSheetMap[className]?.loader[0]" alt="loading image">
     <canvas [hidden]="showLoader" #canvas width="241" height="320"></canvas>
   </div>

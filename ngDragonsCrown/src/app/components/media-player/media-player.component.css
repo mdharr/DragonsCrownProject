@@ -7,6 +7,9 @@
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   background-color: #000;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 video {
@@ -35,8 +38,8 @@ video {
   border-left: 4px solid #fff;
   border-radius: 50%;
   animation: spin 1s ease infinite;
-  top: 76px;
-  left: 170px;
+  /* top: 76px;
+  left: 170px; */
 }
 
 @-webkit-keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }

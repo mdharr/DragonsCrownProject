@@ -20,6 +20,16 @@
   align-items: center;
 }
 
+.class-title {
+  content: "";
+  position: absolute;
+  top: -15px;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: 30px;
+}
+
 /* .inner::before {
   content: "";
   background-image: var(--dynamic-background-image);
@@ -35,6 +45,7 @@
 canvas {
   display: block;
   image-rendering: pixelated;
+  margin-top: -25px;
 }
 
 /* .gif-crt {
@@ -54,6 +65,7 @@ img {
   image-rendering: pixelated;
   width: fit-content;
   height: fit-content;
+  margin-top: -25px;
 }
 
 .color-selector {
