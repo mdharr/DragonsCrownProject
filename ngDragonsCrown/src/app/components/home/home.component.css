@@ -642,7 +642,7 @@ textarea:focus-visible {
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
-.player-level::before {
+/* .player-level::before {
   position: absolute;
   background: #e44732;
   border-radius: 100%;
@@ -673,7 +673,7 @@ textarea:focus-visible {
 .player-level::after {
   position: absolute;
   animation: pulsate 1.5s ease infinite;
-}
+} */
 
 #up-arrow {
   padding:0;
@@ -798,7 +798,7 @@ textarea:focus-visible {
   width: fit-content;
 }
 
-.small-text::before {
+/* .small-text::before {
   position: absolute;
   background: #e44732;
   border-radius: 100%;
@@ -829,7 +829,7 @@ textarea:focus-visible {
 .small-text::after {
   position: absolute;
   animation: pulsate 1.5s ease infinite;
-}
+} */
 
 @keyframes pulsate {
   0% {
@@ -1450,7 +1450,7 @@ blockquote ul li {
   flex-direction: column;
 }
 
-div.skillListWrap:first-of-type::before {
+/* div.skillListWrap:first-of-type::before {
   position: absolute;
   background: #e44732;
   border-radius: 100%;
@@ -1481,7 +1481,7 @@ div.skillListWrap:first-of-type::after {
 div.skillListWrap:first-of-type::after {
   position: absolute;
   animation: pulsate 1.5s ease infinite;
-}
+} */
 
 .remaining-sp {
   font-family: "Titillium Web", sans-serif;
@@ -2079,7 +2079,7 @@ hr.custom-hr {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.quest-grid .quest:first-of-type .custom-checkbox::before {
+/* .quest-grid .quest:first-of-type .custom-checkbox::before {
   position: absolute;
   background: #e44732;
   border-radius: 100%;
@@ -2110,7 +2110,7 @@ hr.custom-hr {
 .quest-grid .quest:first-of-type .custom-checkbox::after {
   position: absolute;
   animation: pulsate 1.5s ease infinite;
-}
+} */
 
 .quest-grid {
   display: grid;
@@ -2140,7 +2140,7 @@ hr.custom-hr {
   z-index: 1;
 }
 
-.quest::before {
+/* .quest::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -2154,7 +2154,7 @@ hr.custom-hr {
   z-index: -1;
   background-color: #000;
   filter: opacity(0.5);
-}
+} */
 
 .quest h6 {
   margin: 0 !important;

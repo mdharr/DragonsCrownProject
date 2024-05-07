@@ -43,6 +43,20 @@ export class MediaPlayerComponent {
     ['Punisher', 'assets/graphics/media/amazon-skills-punisher-sm.mp4'],
     ['Stun Wave', 'assets/graphics/media/amazon-skills-stun-wave-sm.mp4'],
     ['War Paint', 'assets/graphics/media/amazon-skills-war-paint-sm.mp4'],
+    ['Blaze', 'assets/graphics/media/wizard-skills-blaze-sm.mp4'],
+    ['Concentrate', 'assets/graphics/media/wizard-skills-concentrate-sm.mp4'],
+    ['Create Golem', 'assets/graphics/media/wizard-skills-create-golem-sm.mp4'],
+    ['Extinction', 'assets/graphics/media/wizard-skills-extinction-sm.mp4'],
+    ['Extract', 'assets/graphics/media/wizard-skills-extract-sm.mp4'],
+    ['Fire Ward', 'assets/graphics/media/wizard-skills-fire-ward-sm.mp4'],
+    ['Flame Burst', 'assets/graphics/media/wizard-skills-flame-burst-sm.mp4'],
+    ['Levitation', 'assets/graphics/media/wizard-skills-levitation-sm.mp4'],
+    ['Mental Absorb', 'assets/graphics/media/wizard-skills-mental-absorb-sm.mp4'],
+    ['Meteor Swarm', 'assets/graphics/media/wizard-skills-meteor-swarm-sm.mp4'],
+    ['Slow', 'assets/graphics/media/wizard-skills-slow-sm.mp4'],
+    ['Spirit Up', 'assets/graphics/media/wizard-skills-spirit-up-sm.mp4'],
+    ['Storm', 'assets/graphics/media/wizard-skills-storm-sm.mp4'],
+    ['Thunderbolt', 'assets/graphics/media/wizard-skills-thunderbolt-sm.mp4'],
   ]);
 
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
