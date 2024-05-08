@@ -15,7 +15,7 @@ export class Skill {
     description: string = '',
     cardImageUrl: string = '',
     isCommon: boolean = false,
-    skillDetails: SkillDetails[] = []
+    skillDetails: SkillDetails[] = [],
   ) {
     this.id = id;
     this.name = name;
