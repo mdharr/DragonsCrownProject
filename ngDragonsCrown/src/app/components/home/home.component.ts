@@ -275,7 +275,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.playerClassSubscription?.unsubscribe();
     this.preloadSubscription?.unsubscribe();
 
-    this.renderer.removeClass(document.body.querySelector('.wrapper'), 'body-no-scroll');
+    this.renderer.setStyle(document.body, 'overflow', 'auto'); // Re-enable scroll when modal is closed
 
   }
 

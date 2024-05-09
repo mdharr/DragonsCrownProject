@@ -2381,6 +2381,7 @@ hr.custom-hr {
 
 .open-modal-btn::after {
   position: absolute;
+  background: #e44732;
   border-radius: 100%;
   content: "";
   display: block;
