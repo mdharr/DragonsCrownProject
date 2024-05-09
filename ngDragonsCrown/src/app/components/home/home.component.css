@@ -2290,3 +2290,114 @@ hr.custom-hr {
 ::ng-deep .mat-mdc-menu-item .mdc-list-item__primary-text:hover {
   color: #f4e0a5 !important;
 }
+
+.open-modal-btn {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 999;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+}
+
+.open-modal-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-image: url(https://dragons-crown.com/resources/img/sp/howtoplay/facility/en_voice7.png);
+  background-size: 70px 111px;
+  background-position: 47.5% 93%;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.open-modal-btn:hover {
+  filter:brightness(1.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+
+/* Fullscreen modal styles */
+.modal {
+  display: none;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  width: 100%;
+  padding: 20px;
+  margin: auto;
+  transition: all 0.3s ease;
+  transform: scale(0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png);
+  box-shadow: inset 0px 0px 25px #030a0d;
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border-radius: 0;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+/* The Close Button */
+.close-modal-btn {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.open-modal-btn::after {
+  position: absolute;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 13px;
+  right: 8.5px;
+  bottom: 8.5px;
+  width: 13px;
+  z-index: -1;
+}
+
+.open-modal-btn::after {
+  position: absolute;
+  animation: pulsate 1.5s ease infinite;
+}
+
+.body-no-scroll {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}

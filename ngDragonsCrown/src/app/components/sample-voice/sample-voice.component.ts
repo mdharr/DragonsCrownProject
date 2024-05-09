@@ -34,8 +34,6 @@ export class SampleVoiceComponent implements OnInit {
   ngOnInit() {
     this.jpAudios = this.audios.filter(item => item.lang === 'jp');
     this.enAudios = this.audios.filter(item => item.lang === 'en');
-    console.log(this.jpAudios);
-    console.log(this.enAudios);
   }
 
   playAudio(id: number, audioUrl: string): void {
@@ -91,62 +89,12 @@ export class SampleVoiceComponent implements OnInit {
     return Object.values(this.isLoading).some(status => status);
   }
 
-  // private currentAudio: HTMLAudioElement | null = null;
-  // private currentId: number | null = null;
-  // activeId: number | null = null;
-  // isLoading: { [id: number]: boolean } = {};  // Track loading state for each ID
-
-  // playAudio(id: number, audioUrl: string): void {
-  //   if (this.currentId === id) {
-  //     // If the same button is clicked whether audio is currently playing or loading, stop and reset
-  //     if (this.currentAudio) {
-  //       this.currentAudio.pause();
-  //     }
-  //     this.resetAudio(id); // Reset using the id directly passed
-  //     return;
-  //   }
-
-  //   if (this.currentAudio && this.currentId !== null) {
-  //     this.currentAudio.pause();
-  //     this.resetAudio(this.currentId); // Ensure non-null id is used
-  //   }
-
-  //   this.isLoading[id] = true;  // Set loading to true for the specific ID
-  //   this.fetchAndPlayAudio(id, audioUrl);
-  // }
-
-  // private fetchAndPlayAudio(id: number, audioUrl: string): void {
-  //   const audio = new Audio(audioUrl);
-  //   audio.addEventListener('canplaythrough', () => {
-  //     if (this.isLoading[id]) { // Check if still intended to play this audio
-  //       this.isLoading[id] = false;  // Audio is ready to play, set loading false for the ID
-  //       this.currentAudio = audio;
-  //       this.currentAudio.play();
-  //       this.currentId = id;
-  //       this.activeId = id;
-
-  //       // Cleanup when audio ends
-  //       this.currentAudio.addEventListener('ended', () => {
-  //         this.resetAudio(id); // Use the id that was successfully used to play
-  //       });
-  //     } else {
-  //       // If loading was cancelled, just reset this audio
-  //       audio.pause();
-  //     }
-  //   });
-
-  //   audio.load();  // Start loading the audio
-  // }
-
-  // private resetAudio(id: number): void {
-  //   if (this.currentId === id) {
-  //     if (this.currentAudio) {
-  //       this.currentAudio.pause();
-  //       this.currentAudio = null;
-  //     }
-  //     this.currentId = null;
-  //     this.activeId = null;
-  //     this.isLoading[id] = false;  // Ensure to reset the loading state for this ID
-  //   }
-  // }
+  stopAudio(): void {
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio = null;
+      this.currentId = null;
+      this.activeId = null;
+    }
+  }
 }

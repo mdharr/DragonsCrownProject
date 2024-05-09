@@ -62,11 +62,11 @@ img {
 section.s3 {
   width: 100%;
   padding: 10px 15px;
-  background-color: rgba(0, 0, 0, 0.6);
+  /* background-color: rgba(0, 0, 0, 0.6);
   background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png);
   box-shadow: inset 0px 0px 25px #030a0d;
   border: 3px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30; */
 }
 
 /* li.active {

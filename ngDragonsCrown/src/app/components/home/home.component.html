@@ -47,8 +47,11 @@
         </div>
         <hr>
         <div class="class-description class-backdrop" style="height: 394px;" [style.--backgroundImage]="!classSelected ? 'url(' + getImageUrl('character_bg') + ')' : 'none'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }">
-        <!-- <div class="class-description class-backdrop" style="height: 394px;" [style.--backgroundImage]="'url(' + getImageUrl('character_bg') + ')'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }"> -->
+          <!-- Button to open the modal -->
+          <button *ngIf="!this.showModal" (click)="toggleModal()" class="open-modal-btn"></button>
+
           <ng-container *ngIf="classSelected">
+
             <video #videoPlayer1 style="position: absolute; top: 0; right: 0; height: 100%; z-index: 1;" autoplay loop>
               Your browser does not support the video tag.
             </video>
@@ -66,8 +69,10 @@
             </ng-container>
           </ng-container>
         </div>
-        <!-- <hr> -->
-        <!-- <app-sample-voice></app-sample-voice> -->
+        <!-- <ng-container *ngIf="classSelected">
+          <hr>
+          <app-sample-voice></app-sample-voice>
+        </ng-container> -->
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper" [ngStyle]="{'--plannerBackgroundUrl': 'url(' + currentClassData?.paperUrl + ')'}">
             <div class="col n1 class-background">
@@ -404,5 +409,15 @@
         <img src="https://dragonscrown.s3.amazonaws.com/DragonsCrownPatterns/gold_bottom_pattern.png" alt="">
       </div>
     </div>
+  </div>
+</div>
+
+<div [class.show]="showModal" class="modal">
+  <!-- <button (click)="toggleModal()" class="close-modal-btn">X</button> -->
+  <button (click)="toggleModal()" class="close-modal-btn">
+  <img src="https://dragons-crown.com/resources/img/modal/modal_close_btn.png" alt="X">
+  </button>
+  <div class="modal-content">
+    <app-sample-voice></app-sample-voice>
   </div>
 </div>

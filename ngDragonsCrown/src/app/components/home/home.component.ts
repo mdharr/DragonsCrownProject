@@ -17,6 +17,7 @@ import { PreloadAudioEntitiesService } from 'src/app/services/preload-audio-enti
 
 import * as pako from 'pako';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { SampleVoiceComponent } from '../sample-voice/sample-voice.component';
 
 @Component({
   selector: 'app-home',
@@ -64,6 +65,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private observer: IntersectionObserver | null = null;
   fetchController: AbortController | null = null;
 
+  private listenerFn: (() => void) | null = null;
+
   // app state
   buildToShare: any;
   encodedData: any;
@@ -94,6 +97,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('videoPlayer1') videoPlayer1!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoPlayer2') videoPlayer2!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoPlayer3') videoPlayer3!: ElementRef<HTMLVideoElement>;
+  @ViewChild(SampleVoiceComponent) sampleVoiceComponent!: SampleVoiceComponent;
+
 
   // booleans
   classSelected: boolean = false;
@@ -123,6 +128,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   audioPreloaded: boolean = false;
   classLoading: boolean = false;
   appLoading: boolean = false;
+  showModal: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -252,6 +258,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscribeToPlayerClassData();
     this.preloadImageEntities();
     this.preloadAllAudioEntities();
+
   }
 
   ngOnDestroy() {
@@ -267,6 +274,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     window.removeEventListener('scroll', this.handleScroll);
     this.playerClassSubscription?.unsubscribe();
     this.preloadSubscription?.unsubscribe();
+
+    this.renderer.removeClass(document.body.querySelector('.wrapper'), 'body-no-scroll');
+
   }
 
   ngAfterViewInit(): void {
@@ -382,6 +392,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.pausePreviousVideo();
         this.appLoading = true;
         this.classLoading = true;
+        this.renderer.setStyle(document.body, 'overflow', 'hidden');
         this.selectedClassIndex = classIndex;
         this.currentClassData = this.playerClasses[classIndex];
 
@@ -415,16 +426,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         await this.playClassMedia(this.currentClassData.name.toLowerCase());
         this.classLoading = false;
         this.appLoading = false;
+        this.renderer.setStyle(document.body, 'overflow', 'auto');
       }
     }
   }
-
-  // pausePreviousVideo() {
-  //   if (this.previousVideoPath) {
-  //     const previousVideo = this.videoPlayer1.nativeElement as HTMLVideoElement;
-  //     previousVideo.pause();
-  //   }
-  // }
 
   pausePreviousVideo() {
     if (this.videoPlayer1 && this.videoPlayer1.nativeElement) {
@@ -1081,7 +1086,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   async copyShareLinkToClipboard(shareLink: string): Promise<void> {
     try {
       await navigator.clipboard.writeText(shareLink);
-      console.log('Share link copied to clipboard:', shareLink);
     } catch (err) {
       console.error('Failed to copy share link: ', err);
     }
@@ -1092,7 +1096,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     try {
       const encodedData = await this.compressData(buildData);
       this.encodedData = encodedData;
-      console.log(this.encodedData);
       const shareLink = await this.generateShareLinkAsText();
       await this.copyShareLinkToClipboard(shareLink);
     } catch (error) {
@@ -1348,7 +1351,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       const buildData = this.generateBuildDataAsText();
       await navigator.clipboard.writeText(buildData);
       this.playSound('rune');
-      console.log('Build data copied to clipboard.');
     } catch (err) {
       console.error('Failed to copy build data: ', err);
     }
@@ -1397,6 +1399,43 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     const currentSkillId = this.currentSkill.id;
     if (currentSkillId) {
 
+    }
+  }
+
+  // toggleModal(): void {
+  //   this.showModal = !this.showModal;
+  //   if (this.showModal) {
+  //     this.renderer.addClass(document.body.querySelector('.wrapper'), 'body-no-scroll');
+  //   } else {
+  //     this.renderer.removeClass(document.body.querySelector('.wrapper'), 'body-no-scroll');
+  //   }
+  // }
+
+  toggleModal(): void {
+    this.showModal = !this.showModal;
+    if (this.showModal) {
+      // Disable scroll when modal is open
+      this.renderer.setStyle(document.body, 'overflow', 'hidden');
+      // Listen for escape key to close modal
+      this.listenerFn = this.renderer.listen('window', 'keydown', (event) => {
+        if (event.key === 'Escape') {
+          this.closeModal();
+        }
+      });
+    } else {
+      this.closeModal();
+    }
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.renderer.setStyle(document.body, 'overflow', 'auto'); // Re-enable scroll when modal is closed
+    if (this.listenerFn) {
+      this.listenerFn(); // Remove event listener when modal is closed
+      this.listenerFn = null;
+    }
+    if (!this.showModal && this.sampleVoiceComponent) {
+      this.sampleVoiceComponent.stopAudio();
     }
   }
 }

@@ -1,15 +1,4 @@
 <section class="s3">
-  <div class="title-japanese"></div>
-  <ul>
-    <li *ngFor="let audio of jpAudios" [class.active]="activeId === audio.id">
-      <button type="button" [attr.data-id]="audio.id"
-              (click)="playAudio(audio.id, audio.url)"
-              [style.pointer-events]="anyLoading() ? 'none' : 'auto'">
-        <img src="{{audio.imgSrc}}" alt="ALL">
-      </button>
-      <div *ngIf="isLoading[audio.id]" class="loader"></div>
-    </li>
-  </ul>
   <div class="title-english"></div>
   <ul>
     <li *ngFor="let audio of enAudios" [class.active]="activeId === audio.id">
@@ -21,5 +10,15 @@
       <div *ngIf="isLoading[audio.id]" class="loader"></div>
     </li>
   </ul>
+  <div class="title-japanese"></div>
+  <ul>
+    <li *ngFor="let audio of jpAudios" [class.active]="activeId === audio.id">
+      <button type="button" [attr.data-id]="audio.id"
+              (click)="playAudio(audio.id, audio.url)"
+              [style.pointer-events]="anyLoading() ? 'none' : 'auto'">
+        <img src="{{audio.imgSrc}}" alt="ALL">
+      </button>
+      <div *ngIf="isLoading[audio.id]" class="loader"></div>
+    </li>
+  </ul>
 </section>
-

@@ -359,17 +359,14 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Current className:', this.className);  // Debugging current class name
-    console.log('Available classes in map:', Object.keys(this.spriteSheetMap));  // Check what keys are in the spriteSheetMap
     if (changes['className'] && changes['className'].currentValue) {
       const newClass = changes['className'].currentValue;
-      console.log('New class received:', newClass);  // Debugging output for newClass
-      if (this.spriteSheetMap[newClass]) {  // Ensure it's a valid class name
+      if (this.spriteSheetMap[newClass]) {
         this.colorVariants = this.spriteSheetMap[newClass].colors;
         this.loadSpriteSheet(newClass);
         // this.applyBackgroundImage();
       } else {
-        console.error('Invalid class name:', newClass);  // Error log if class name is invalid
+        console.error('Invalid class name:', newClass);
       }
     }
   }
@@ -381,14 +378,13 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.stage = new createjs.Stage(this.canvasRef.nativeElement);
-    this.isStageReady = true; // Indicate that the stage is now ready
+    this.isStageReady = true;
     this.showLoader = true;
     this.tickerListener = (event: any) => this.stage.update(event);
     createjs.Ticker.reset();
     createjs.Ticker.framerate = 30;
     createjs.Ticker.on("tick", this.tickerListener);
 
-    // If a class name has already been set, attempt to load its sprite sheet
     if (this.className) {
       this.loadSpriteSheet(this.className);
     }
@@ -400,7 +396,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
         return;
     }
 
-    this.showLoader = true; // Ensure loader is shown while loading
+    this.showLoader = true;
 
     this.stage.removeAllChildren();
     this.stage.clear();
@@ -413,7 +409,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
         } else {
             this.spriteSheet.on("complete", () => {
                 this.startAnimation();
-                this.showLoader = false; // Hide loader when the sprite sheet is ready
+                this.showLoader = false;
                 this.currentIndex = 0;
             }, this, true); // Use true to run once and avoid potential memory leaks
         }
@@ -421,16 +417,13 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private startAnimation = (): void => {
-    // First, check if an animation is already present and remove it
     if (this.animation) {
         this.stage.removeChild(this.animation);
     }
 
-    // Create the new sprite animation
     this.animation = new createjs.Sprite(this.spriteSheet, "do");
 
-    // Setting up sprite scaling and positioning
-    const scale = 0.5;  // Example scale factor
+    const scale = 0.5;
     this.animation.scaleX = scale;
     this.animation.scaleY = scale;
 
@@ -450,13 +443,13 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     this.animation.play();
     this.stage.update();
 
-    this.showLoader = false;  // Hide the loader once everything is set
+    this.showLoader = false;
 };
 
   changeSprite(index: number): void {
 
     if (this.currentIndex !== index) {
-      this.showLoader = true;  // Enable the loader immediately
+      this.showLoader = true;
       this.currentIndex = index;
       this.playSound('confirm');
 
@@ -469,17 +462,14 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
               images: [newImageUrl]
           };
 
-          // Reinitialize the sprite sheet with the new image URL
           this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
 
           if (this.spriteSheet.complete) {
-              // If the sprite sheet is immediately ready, start the animation
               this.startAnimation();
           } else {
-              // Listen for the 'complete' event which indicates the sprite sheet has finished loading
               this.spriteSheet.on("complete", () => {
                   this.startAnimation();
-              }, this, true); // Pass true for the third parameter to ensure this listener is removed after execution
+              }, this, true);
           }
       }
     }

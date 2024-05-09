@@ -254,7 +254,6 @@ export class MediaPlayerComponent {
   }
 
   videoReady(): void {
-    console.log('Video is ready to play!');
     this.isLoading = false;
     this.videoPlayer.nativeElement.play();
   }

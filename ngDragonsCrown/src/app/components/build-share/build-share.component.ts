@@ -50,7 +50,6 @@ export class BuildShareComponent implements OnInit, OnDestroy {
         if (decodedBuild) {
           this.buildArray = Object.values(decodedBuild);
           this.classId = +classId;
-          console.log('Class ID:', this.classId);
         } else {
           console.error('Error decoding or parsing build data.');
         }
@@ -77,8 +76,6 @@ export class BuildShareComponent implements OnInit, OnDestroy {
 
       // Parse the decompressed JSON string
       const parsedData = JSON.parse(decompressedData);
-
-      console.log('Decoded and parsed data:', parsedData);
 
       return parsedData;
     } catch (error) {
