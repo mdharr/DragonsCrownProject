@@ -5,9 +5,11 @@
   display: flex;
   justify-content: center;
   /* background-color: #004f8457; */
-  background-color: #10111100;
+  background-color: #0739614a;
+  /* background-color: #10111100; */
   border-bottom: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  padding-bottom: 0;
 }
 
 .navbar-text {
@@ -26,7 +28,9 @@
   margin: 0;
   color: #fff;
   /* font-family: Oswald, serif; */
-  font-family: Rubik, serif;
+  /* font-family: Rubik, serif; */
+  font-family: "Gabriela Spark", serif;
+  font-size: 28px;
   text-rendering: geometricprecision;
   letter-spacing: 0.2rem;
 }

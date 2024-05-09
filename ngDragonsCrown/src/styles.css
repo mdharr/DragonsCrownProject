@@ -5,14 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Almendra+Display&family=Oswald:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://db.onlinewebfonts.com/c/e2966061a9aceac1d5c38500a6a81652?family=Gabriela+Spark');
 
 /* body {
-  font-family: 'MedievalMystery', sans-serif;
+  font-family: 'Retro', sans-serif;
 } */
 
 /* @font-face {
-  font-family: 'MedievalMystery';
-  src: url('src/assets/fonts/MedievalMystery.ttf') format('truetype');
+  font-family: 'Retro';
+  src: url('src/assets/fonts/retro.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 } */

@@ -166,18 +166,18 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   videos: VideoEntity[] = [
-    { name: 'fighter', path: 'assets/graphics/media/fighter_compressed.mp4' },
-    { name: 'amazon', path: 'assets/graphics/media/amazon_compressed.mp4' },
-    { name: 'elf', path: 'assets/graphics/media/elf_compressed.mp4' },
-    { name: 'dwarf', path: 'assets/graphics/media/dwarf_compressed.mp4' },
-    { name: 'sorceress', path: 'assets/graphics/media/sorceress_compressed.mp4' },
-    { name: 'wizard', path: 'assets/graphics/media/wizard_compressed.mp4' },
-    { name: 'fighter_intro', path: 'assets/graphics/media/fighter_intro.mp4' },
-    { name: 'amazon_intro', path: 'assets/graphics/media/amazon_intro.mp4' },
-    { name: 'elf_intro', path: 'assets/graphics/media/elf_intro.mp4' },
-    { name: 'dwarf_intro', path: 'assets/graphics/media/dwarf_intro.mp4' },
-    { name: 'sorceress_intro', path: 'assets/graphics/media/sorceress_intro.mp4' },
-    { name: 'wizard_intro', path: 'assets/graphics/media/wizard_intro.mp4' },
+    { name: 'fighter', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter_compressed.mp4' },
+    { name: 'amazon', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/amazon_compressed.mp4' },
+    { name: 'elf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/elf_compressed.mp4' },
+    { name: 'dwarf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/dwarf_compressed.mp4' },
+    { name: 'sorceress', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/sorceress_compressed.mp4' },
+    { name: 'wizard', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard_compressed.mp4' },
+    { name: 'fighter_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter_intro.mp4' },
+    { name: 'amazon_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/amazon_intro.mp4' },
+    { name: 'elf_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/elf_intro.mp4' },
+    { name: 'dwarf_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/dwarf_intro.mp4' },
+    { name: 'sorceress_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/sorceress_intro.mp4' },
+    { name: 'wizard_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard_intro.mp4' },
   ];
 
   fighterSounds: AudioEntity[] = [
@@ -1393,4 +1393,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+  findPlayerClassBySkill(skillId: number) {
+    const currentSkillId = this.currentSkill.id;
+    if (currentSkillId) {
+
+    }
+  }
 }
