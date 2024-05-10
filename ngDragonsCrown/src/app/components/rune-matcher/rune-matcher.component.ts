@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { AudioEntity } from 'src/app/models/audio-entity';
 import { Rune } from 'src/app/models/rune';
 import { Spell } from 'src/app/models/spell';
+import { SoundManagerService } from 'src/app/services/sound-manager.service';
 
 @Component({
   selector: 'app-rune-matcher',
@@ -75,6 +76,8 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('runeContainer') runeContainerRef!: ElementRef;
   runePositions: Array<{ left: string, top: string }> = [];
 
+  soundManager= inject(SoundManagerService);
+
   ngOnInit() {
     this.fetchData();
   }
@@ -140,7 +143,10 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         this.currentCarvedRunes = this.currentRunes.filter(r => !r.isCarried);
         this.userRunes = this.userRunes.concat(this.currentCarvedRunes);
         this.stopCurrentSound();
-        this.playSound('pageflip', 0.5);
+        if (this.soundManager.isSoundEnabled()) {
+
+          this.playSound('pageflip', 0.5);
+        }
         this.carriedRunesEnabled = true;
         this.setTimerToSuggestHint();
       } catch (error) {
@@ -149,7 +155,9 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.noSpellsRemaining = true;
       this.stopCurrentSound();
-      this.playSound('ending', 0.5);
+      if (this.soundManager.isSoundEnabled()) {
+        this.playSound('ending', 0.5);
+      }
       setTimeout(() => {
         this.restart();
       }, 5500);
@@ -178,7 +186,10 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
     imageElements.forEach(element => element.classList.add('no-animation'));
     this.hasCurrentSpell = false;
     this.nextCounter = 0;
-    this.playSound('erase', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('erase', 0.5);
+    }
   }
 
   getRuneImageUrl(runeId: number) {
@@ -234,13 +245,19 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
         this.selectedRunes = this.selectedRunes.filter(r => r.id !== runeId);
         this.userRunes = this.userRunes.filter(r => r.id !== runeId);
 
-        this.playSound('scratch', 0.5);
+        if (this.soundManager.isSoundEnabled()) {
+
+          this.playSound('scratch', 0.5);
+        }
       } else {
         if (selectedRune && this.selectedRunes.length < (3 - this.currentCarvedRunes.length)) {
           this.selectedRunes.push(selectedRune);
           this.userRunes.push(selectedRune);
 
-          this.playSound('rune', 0.5);
+          if (this.soundManager.isSoundEnabled()) {
+
+            this.playSound('rune', 0.5);
+          }
         }
       }
     }
@@ -266,13 +283,19 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
     if (counter === spellRunes.length) {
-      this.playSound('click', 0.5);
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('click', 0.5);
+      }
       this.currentScore++;
       this.revealSpell = true;
       this.evaluated = true;
       setTimeout(() => {
         this.stopCurrentSound();
-        this.playSound('reveal', 0.3);
+        if (this.soundManager.isSoundEnabled()) {
+
+          this.playSound('reveal', 0.3);
+        }
       }, 100)
       const evaluateButton = document.querySelector('#evaluate-button') as HTMLElement;
       evaluateButton.setAttribute('disabled', 'true');
@@ -281,7 +304,10 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       const divElement = document.querySelector('.current-spell-wrapper') as HTMLElement;
       divElement?.classList.add('shake-animation');
       this.stopCurrentSound();
-      this.playSound('open', 0.5);
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('open', 0.5);
+      }
       setTimeout(() => {
         divElement?.classList.remove('shake-animation');
       }, 300);
@@ -311,7 +337,10 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
       if (selectedRune && this.selectedRunes.length < (3 - this.currentCarvedRunes.length)) {
         this.selectedRunes.push(selectedRune);
         this.userRunes.push(selectedRune);
-        this.playSound('rune', 0.5);
+        if (this.soundManager.isSoundEnabled()) {
+
+          this.playSound('rune', 0.5);
+        }
       }
     }
   }
@@ -323,13 +352,19 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
   viewRuneLetters() {
     this.showRuneLetters = !this.showRuneLetters;
-    this.playSound('blip');
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('blip');
+    }
   }
 
   async startGame() {
     this.stopCurrentSound();
     this.typingActive = false;
-    this.playSound('rune');
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('rune');
+    }
 
     const runeImageUrls = this.runeKey.map(rune => rune.imageUrl);
 
@@ -345,7 +380,10 @@ export class RuneMatcherComponent implements OnInit, AfterViewInit, OnDestroy {
 
       if (this.isDestroyed) return;
 
-      this.playSound('cast', .5);
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('cast', .5);
+      }
       this.gameLoading = false;
       this.gameStarted = true;
     } catch (error) {

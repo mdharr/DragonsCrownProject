@@ -18,6 +18,7 @@ import { PreloadAudioEntitiesService } from 'src/app/services/preload-audio-enti
 import * as pako from 'pako';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { SampleVoiceComponent } from '../sample-voice/sample-voice.component';
+import { SoundManagerService } from 'src/app/services/sound-manager.service';
 
 @Component({
   selector: 'app-home',
@@ -252,6 +253,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ngZone = inject(NgZone);
   router = inject(Router);
   preloadAudioService = inject(PreloadAudioEntitiesService);
+  soundManager= inject(SoundManagerService);
 
   ngOnInit() {
     this.resetWindowPosition();
@@ -398,7 +400,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
         this.currentStats = { ...this.currentClassData.classStats[0] };
         this.resetLevel();
-        await this.playSound('accept', 0.5);
+
+        if (this.soundManager.isSoundEnabled()) {
+
+          await this.playSound('accept', 0.5);
+        }
 
         try {
           await this.preloadImage(this.currentClassData.cardUrl);
@@ -548,17 +554,26 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     try {
       // Prepare both audio and video
       const videoPromise = this.prepareVideo(className);
-      const audioPromise = this.prepareAudio(className);
 
-      // Wait for both media to be ready
-      const [videoPlayer, audio] = await Promise.all([videoPromise, audioPromise]);
+      if (this.soundManager.isSoundEnabled()) {
 
-      // Play both media
-      const playVideoPromise = this.playVideo(videoPlayer);
-      const playAudioPromise = this.playAudio(audio);
+        const audioPromise = this.prepareAudio(className);
 
-      // Optionally wait for both to start playing
-      await Promise.all([playVideoPromise, playAudioPromise]);
+              // Wait for both media to be ready
+              const [videoPlayer, audio] = await Promise.all([videoPromise, audioPromise]);
+
+              // Play both media
+              const playVideoPromise = this.playVideo(videoPlayer);
+              const playAudioPromise = this.playAudio(audio);
+
+              // Wait for both to start playing
+              await Promise.all([playVideoPromise, playAudioPromise]);
+      } else {
+        const videoPlayer = await videoPromise;
+
+        const playVideoPromise = this.playVideo(videoPlayer);
+        await Promise.all([playVideoPromise]);
+      }
     } catch (error) {
       console.error('Error synchronizing media playback:', error);
     }
@@ -580,7 +595,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     const newLevel = Number(this.currentStats.level) + 1;
     this.updateLevel(newLevel);
-    this.playSound('confirm');
+    if (this.soundManager.isSoundEnabled()) {
+      this.playSound('confirm');
+    }
   }
 
   levelDown(): void {
@@ -590,7 +607,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     const newLevel = Number(this.currentStats.level) - 1;
     this.updateLevel(newLevel);
-    this.playSound('confirm');
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('confirm');
+    }
   }
 
   resetLevel() {
@@ -608,7 +628,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentLevelSP = this.initialTotalSP;
       this.updateTotalAvailableSP();
       this.updateCurrentBuild();
-      this.playSound('erase');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('erase');
+      }
     }
   }
 
@@ -617,7 +640,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateLevel(99);
       this.updateTotalAvailableSP();
       this.updateCurrentBuild();
-      this.playSound('confirm');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('confirm');
+      }
     }
   }
 
@@ -651,7 +677,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       this.updateLevel(enteredLevel);
     }
-    this.playSound('confirm');
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('confirm');
+    }
   }
 
   showTooltip = async (event: MouseEvent, videoName: string, index: number): Promise<void> => {
@@ -752,7 +781,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewBuild = false;
     this.viewRunes = false;
     this.showUniqueSkills = false;
-    this.playSound('accept', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('accept', 0.5);
+    }
   }
 
   viewUniqueSkills() {
@@ -765,7 +797,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // const uniqueBtn = document.querySelector('#unique-btn');
     // commonBtn?.classList.remove('selected-skills');
     // uniqueBtn?.classList.add('selected-skills');
-    this.playSound('accept', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('accept', 0.5);
+    }
   }
 
   viewQuestList() {
@@ -774,7 +809,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewRunes = false;
     this.showCommonSkills = false;
     this.showUniqueSkills = false;
-    this.playSound('accept', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('accept', 0.5);
+    }
   }
 
   viewCurrentBuild() {
@@ -783,7 +821,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewRunes = false;
     this.showCommonSkills = false;
     this.showUniqueSkills = false;
-    this.playSound('accept', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('accept', 0.5);
+    }
   }
 
   viewRunesMatcher() {
@@ -792,7 +833,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.viewQuests = false;
     this.showCommonSkills = false;
     this.showUniqueSkills = false;
-    this.playSound('accept', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('accept', 0.5);
+    }
   }
 
   async selectSkill(skillIndex: number, skillType: 'common' | 'unique'): Promise<void> {
@@ -804,7 +848,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.isSkillInfoVisible = false;
       this.toggleGlassEffect();
       this.stopCurrentSound();
-      this.playSound('pageflip');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('pageflip');
+      }
 
       const skill = skillType === 'common' ? this.commonSkills[skillIndex] : this.uniqueSkills[skillIndex];
       this.currentSkill = skill;
@@ -877,7 +924,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.calculateTotalSkillPoints();
     this.updateTotalAvailableSP();
     this.stopCurrentSound();
-    this.playSound('coinbag', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('coinbag', 0.5);
+    }
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
@@ -893,7 +943,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.updateTotalAvailableSP();
     this.stopCurrentSound();
-    this.playSound('coinbag', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('coinbag', 0.5);
+    }
     if (this.totalAvailableSP < 0) {
       this.resetSkills();
     }
@@ -963,8 +1016,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     );
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
-    this.stopCurrentSound();
-    this.playSound('erase');
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.stopCurrentSound();
+      this.playSound('erase');
+    }
   }
 
   handleSkillClick(skill: Skill, skillDetail: SkillDetails): void {
@@ -992,8 +1048,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             alert("Not enough skill points available.");
             return;
         }
-        this.stopCurrentSound();
-        this.playSound('confirm');
+        if (this.soundManager.isSoundEnabled()) {
+
+          this.stopCurrentSound();
+          this.playSound('confirm');
+        }
     }
     // Update total available SP after any changes
     this.updateTotalAvailableSP();
@@ -1017,7 +1076,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     event.stopPropagation(); // Prevent event from triggering parent click events
 
     if (this.skillsList.some(skill => skill.name === skillName)) {
-      this.playSound('scratch');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('scratch');
+      }
     }
 
     this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
@@ -1092,7 +1154,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   async generateAndCopyShareLink(buildData: any): Promise<void> {
-    this.playSound('rune', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('rune', 0.5);
+    }
     try {
       const encodedData = await this.compressData(buildData);
       this.encodedData = encodedData;
@@ -1175,7 +1240,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onInputClick(): void {
     if (!this.inputFocused) {
-      this.playSound('confirm');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('confirm');
+      }
     }
     this.inputFocused = true; // Set flag to true after the first click
   }
@@ -1280,14 +1348,20 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showAll = true;
         break;
     }
-    this.playSound('confirm');
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('confirm');
+    }
 
   }
 
   captureAndDownloadScreenshot() {
     const element = document.querySelector('.meta-wrapper.build-background') as HTMLElement;
     if (element) {
-      this.playSound('confirm');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('confirm');
+      }
       html2canvas(element).then(canvas => {
         const link = document.createElement('a');
         link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
@@ -1295,7 +1369,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         link.click();
         setTimeout(() => {
           this.stopCurrentSound();
-          this.playSound('treasure', 0.5);
+          if (this.soundManager.isSoundEnabled()) {
+
+            this.playSound('treasure', 0.5);
+          }
         }, 100);
       });
     }
@@ -1332,7 +1409,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.png`;
     link.href = canvas.toDataURL();
     link.click();
-    this.playSound('treasure', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('treasure', 0.5);
+    }
 
     // Clean up: remove the temporary container
     document.body.removeChild(tempContainer);
@@ -1350,7 +1430,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     try {
       const buildData = this.generateBuildDataAsText();
       await navigator.clipboard.writeText(buildData);
-      this.playSound('rune');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('rune');
+      }
     } catch (err) {
       console.error('Failed to copy build data: ', err);
     }
@@ -1363,7 +1446,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     link.download = `level-${this.currentStats.level}-${this.currentClassData.name.toLowerCase()}-build.txt`;
     link.href = URL.createObjectURL(blob);
     link.click();
-    this.playSound('treasure', 0.5);
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('treasure', 0.5);
+    }
   }
 
   @HostListener('window:scroll', ['$event'])

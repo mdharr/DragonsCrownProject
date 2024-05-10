@@ -10,6 +10,7 @@
   border-bottom: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   padding-bottom: 0;
+  position: relative;
 }
 
 .navbar-text {
@@ -56,4 +57,20 @@
   background-image: url(https://en.dragon-ball-official.com/assets/img/news/comment/bg_dots.png);
   position: absolute;
   background-size: 5px;
+}
+
+#toggle-sound-btn {
+  border: none !important;
+}
+
+#toggle-sound-btn {
+  position: absolute;
+  padding: 0;
+  color: #ccc;
+  right: 10px;
+  transition: color 0.2s ease;
+}
+
+#toggle-sound-btn:hover {
+  color: #fff;
 }

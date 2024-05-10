@@ -2,4 +2,7 @@
   <div [routerLink]="['/home']" class="navbar-text" style="display: flex;">
     <h2>Dragon's Crown Planner</h2>
   </div>
+  <button mat-icon-button id="toggle-sound-btn" (click)="toggleSounds()">
+    <mat-icon>{{ soundEnabled() ? 'volume_up' : 'volume_off' }}</mat-icon>
+  </button>
 </div>

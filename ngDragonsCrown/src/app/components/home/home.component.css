@@ -676,21 +676,31 @@ textarea:focus-visible {
 } */
 
 #up-arrow {
-  padding:0;
-  border-color: #222;
-  color: #ccc;
-  vertical-align: middle;
-  margin-left:4px;
-  width:30px
-}
-
-#down-arrow {
+  display: flex;
+  align-items: center;
   padding:0;
   border-color: #222;
   color: #ccc;
   vertical-align: middle;
   margin-left:4px;
   width:30px;
+  box-shadow: inset 0px 0px 5px #030a0d;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+}
+
+#down-arrow {
+  display: flex;
+  align-items: center;
+  padding:0;
+  border-color: #222;
+  color: #ccc;
+  vertical-align: middle;
+  margin-left:4px;
+  width:30px;
+  box-shadow: inset 0px 0px 5px #030a0d;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 #down-arrow:hover,
@@ -700,12 +710,17 @@ textarea:focus-visible {
 }
 
 #refresh-btn {
+  display: flex;
+  align-items: center;
   padding: 0;
   border-color: #222;
   color: #ccc;
   vertical-align: middle;
   margin-left: 4px;
   width: 30px;
+  box-shadow: inset 0px 0px 5px #030a0d;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 ::ng-deep .mat-mdc-icon-button {
@@ -719,10 +734,19 @@ textarea:focus-visible {
   left: 50%;
   width: 30px !important;
   transform: translate(-50%, -50%);
+}
+
+/* .mat-mdc-icon-button .mat-mdc-button-touch-target {
+  position: absolute;
+  top: 50%;
+  height: 25px !important;
+  left: 50%;
+  width: 30px !important;
+  transform: translate(-50%, -50%);
   box-shadow: inset 0px 0px 5px #030a0d;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
-}
+} */
 
 .player-level label {
   width: 122px;
