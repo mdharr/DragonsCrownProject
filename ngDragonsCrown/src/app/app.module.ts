@@ -27,6 +27,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
 import { ParallaxDirective } from './directives/parallax.directive';
 import { MediaPlayerComponent } from './components/media-player/media-player.component';
 import { SampleVoiceComponent } from './components/sample-voice/sample-voice.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SampleVoiceComponent } from './components/sample-voice/sample-voice.com
     ParallaxDirective,
     MediaPlayerComponent,
     SampleVoiceComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

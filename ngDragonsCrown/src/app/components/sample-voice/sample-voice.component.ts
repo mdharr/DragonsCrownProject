@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { AudioEntity } from 'src/app/models/audio-entity';
+import { SoundManagerService } from 'src/app/services/sound-manager.service';
 
 @Component({
   selector: 'app-sample-voice',
@@ -17,6 +19,9 @@ export class SampleVoiceComponent implements OnInit {
   showJapanese: boolean = false;
   showEnglish: boolean = true;
 
+  sounds: AudioEntity[] = [{ name: 'confirm', path: 'assets/audio/dc_confirm_se.mp3' },];
+  currentSound: HTMLAudioElement | null = null;
+
   audios = [
     { id: 20000, url: 'https://dragons-crown.com/resources/audio/20000.wav', imgSrc: 'https://dragons-crown.com/resources/img/sp/howtoplay/facility/ja_voice1.png', lang: "jp" },
     { id: 30000, url: 'https://dragons-crown.com/resources/audio/30000.wav', imgSrc: 'https://dragons-crown.com/resources/img/sp/howtoplay/facility/ja_voice2.png', lang: "jp" },
@@ -34,12 +39,18 @@ export class SampleVoiceComponent implements OnInit {
     { id: 180000, url: 'https://dragons-crown.com/resources/audio/180000.wav', imgSrc: 'https://dragons-crown.com/resources/img/sp/howtoplay/facility/en_voice7.png', lang: "en" }
   ];
 
+  soundManager= inject(SoundManagerService);
+
   ngOnInit() {
     this.jpAudios = this.audios.filter(item => item.lang === 'jp');
     this.enAudios = this.audios.filter(item => item.lang === 'en');
   }
 
   playAudio(id: number, audioUrl: string): void {
+    if (this.soundManager.isSoundEnabled()) {
+
+      this.playSound('confirm', 0.5);
+    }
     if (this.currentId === id) {
       if (this.currentAudio) {
         this.currentAudio.pause();
@@ -105,6 +116,10 @@ export class SampleVoiceComponent implements OnInit {
     if (this.showJapanese) {
       this.showJapanese = !this.showJapanese;
       this.showEnglish = !this.showEnglish;
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('confirm', 0.5);
+      }
     }
   }
 
@@ -112,6 +127,31 @@ export class SampleVoiceComponent implements OnInit {
     if (this.showEnglish) {
       this.showEnglish = !this.showEnglish;
       this.showJapanese = !this.showJapanese;
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('confirm', 0.5);
+      }
+    }
+  }
+
+  async playSound(soundName: string, volume: number = 1.0): Promise<HTMLAudioElement> {
+    const audioObj = this.sounds.find(sound => sound.name === soundName);
+    const audioPath = audioObj?.path;
+    if (audioPath) {
+      const audio = new Audio(audioPath);
+      audio.volume = volume;
+
+      return new Promise((resolve, reject) => {
+        audio.play().then(() => {
+          this.currentAudio = audio;
+          resolve(audio);
+        }).catch((error) => {
+          console.error('Error playing audio:', error);
+          reject(error);
+        });
+      });
+    } else {
+      return Promise.reject(new Error('Audio path not found'));
     }
   }
 }

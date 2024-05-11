@@ -1508,6 +1508,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           this.closeModal();
         }
       });
+      if (this.soundManager.isSoundEnabled()) {
+        this.playSound('confirm');
+      }
       this.triggerIntro();
     } else {
       this.closeModal();
@@ -1523,6 +1526,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     if (!this.showModal && this.sampleVoiceComponent) {
       this.sampleVoiceComponent.stopAudio();
+    }
+    if (this.soundManager.isSoundEnabled()) {
+      this.playSound('confirm');
     }
   }
 

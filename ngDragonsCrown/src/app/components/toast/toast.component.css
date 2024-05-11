@@ -1,0 +1,25 @@
+/* src/app/components/toast/toast.component.css */
+.toast {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  /* border-radius: 5px; */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0.9;
+  display: block;
+  width: fit-content;
+  min-width: 140px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.05rem;
+}

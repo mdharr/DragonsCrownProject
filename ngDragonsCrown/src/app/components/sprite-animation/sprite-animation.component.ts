@@ -1,3 +1,4 @@
+import { SoundManagerService } from 'src/app/services/sound-manager.service';
 import { Component, ElementRef, Input, ViewChild, OnInit, OnChanges, SimpleChanges, OnDestroy, inject, Renderer2 } from '@angular/core';
 import { AudioEntity } from 'src/app/models/audio-entity';
 
@@ -28,6 +29,8 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
 
   isStageReady: boolean = false;
   showLoader: boolean = false;
+
+  soundManager = inject(SoundManagerService);
 
   sounds: AudioEntity[] = [
     { name: 'confirm', path: 'assets/audio/dc_confirm_se.mp3' },
@@ -451,7 +454,10 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     if (this.currentIndex !== index) {
       this.showLoader = true;
       this.currentIndex = index;
-      this.playSound('confirm');
+      if (this.soundManager.isSoundEnabled()) {
+
+        this.playSound('confirm');
+      }
 
       const className = this.className;
       const newImageUrl = this.spriteSheetMap[className].images[index];
