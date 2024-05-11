@@ -21,7 +21,7 @@ export class NavbarComponent {
 
       this.playSound('confirm', 0.5);
     }
-    this.toastService.show(this.soundEnabled() ? 'Sound Enabled' : 'Sound Disabled'); console.log('Toasty!');
+    this.toastService.show(!this.soundEnabled() ? 'Sound Enabled' : 'Sound Disabled');
     this.soundManager.toggleSound();
   }
 
