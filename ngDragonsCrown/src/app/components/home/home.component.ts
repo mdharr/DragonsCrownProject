@@ -1508,6 +1508,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           this.closeModal();
         }
       });
+      this.triggerIntro();
     } else {
       this.closeModal();
     }
@@ -1522,6 +1523,16 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     if (!this.showModal && this.sampleVoiceComponent) {
       this.sampleVoiceComponent.stopAudio();
+    }
+  }
+
+  triggerIntro() {
+    const modalVideo = document.querySelector('.modal-video video') as HTMLVideoElement | null;
+    if (modalVideo) {
+      modalVideo.play()
+        .catch(error => console.error('Error trying to play the video:', error));
+    } else {
+      console.error('Video element not found!');
     }
   }
 }

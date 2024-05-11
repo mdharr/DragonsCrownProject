@@ -1,6 +1,9 @@
 <section class="s3">
-  <div class="title-english"></div>
-  <ul>
+  <div class="options">
+    <div class="title-english" (click)="toggleEnglish()"></div>
+    <div class="title-japanese" (click)="toggleJapanese()"></div>
+  </div>
+  <ul *ngIf="showEnglish">
     <li *ngFor="let audio of enAudios" [class.active]="activeId === audio.id">
       <button type="button" [attr.data-id]="audio.id"
               (click)="playAudio(audio.id, audio.url)"
@@ -10,8 +13,8 @@
       <div *ngIf="isLoading[audio.id]" class="loader"></div>
     </li>
   </ul>
-  <div class="title-japanese"></div>
-  <ul>
+  <!-- <div class="title-japanese"></div> -->
+  <ul *ngIf="showJapanese">
     <li *ngFor="let audio of jpAudios" [class.active]="activeId === audio.id">
       <button type="button" [attr.data-id]="audio.id"
               (click)="playAudio(audio.id, audio.url)"

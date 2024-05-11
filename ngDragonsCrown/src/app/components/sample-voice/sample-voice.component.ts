@@ -13,6 +13,9 @@ export class SampleVoiceComponent implements OnInit {
   isLoading: { [id: number]: boolean } = {};  // Track loading state for each ID
   jpAudios: any;
   enAudios: any;
+  toggleLanguage: boolean = false;
+  showJapanese: boolean = false;
+  showEnglish: boolean = true;
 
   audios = [
     { id: 20000, url: 'https://dragons-crown.com/resources/audio/20000.wav', imgSrc: 'https://dragons-crown.com/resources/img/sp/howtoplay/facility/ja_voice1.png', lang: "jp" },
@@ -95,6 +98,20 @@ export class SampleVoiceComponent implements OnInit {
       this.currentAudio = null;
       this.currentId = null;
       this.activeId = null;
+    }
+  }
+
+  toggleEnglish() {
+    if (this.showJapanese) {
+      this.showJapanese = !this.showJapanese;
+      this.showEnglish = !this.showEnglish;
+    }
+  }
+
+  toggleJapanese() {
+    if (this.showEnglish) {
+      this.showEnglish = !this.showEnglish;
+      this.showJapanese = !this.showJapanese;
     }
   }
 }

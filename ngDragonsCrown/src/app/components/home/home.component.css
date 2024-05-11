@@ -2365,7 +2365,7 @@ hr.custom-hr {
 }
 
 /* Modal Content */
-.modal-content {
+/* .modal-content {
   position: relative;
   background-color: #fefefe;
   width: 100%;
@@ -2379,6 +2379,55 @@ hr.custom-hr {
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   border-radius: 0;
+} */
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  height: 600px;
+  width: 1059px;
+  padding: 20px;
+  margin: auto;
+  transition: all 0.3s ease;
+  transform: scale(0.5);
+  background-color: rgb(14 14 14);
+  background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png);
+  box-shadow: inset 0px 0px 25px #030a0d;
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border-radius: 0;
+  /* display: flex;
+  flex-direction: column;
+  align-items: normal;
+  justify-content: center; */
+  padding-top: 50px;
+}
+
+.modal-video {
+  position: absolute;
+  z-index: -1;
+  width: -moz-fit-content;
+  /* width: fit-content; */
+  height: 350px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-video video {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border-radius: 0;
+  margin-top: 20px;
+
 }
 
 .modal.show {
