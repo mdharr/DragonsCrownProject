@@ -168,7 +168,8 @@ li.active button img {
   display: flex;
   gap: 10px;
   justify-content: space-between;
-  width: 980px;
+  width: 100%;
+  min-width: 980px;
 }
 
 @-webkit-keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }
