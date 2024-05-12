@@ -114,6 +114,7 @@ export class SampleVoiceComponent implements OnInit {
 
   toggleEnglish() {
     if (this.showJapanese) {
+      this.stopAudio();
       this.showJapanese = !this.showJapanese;
       this.showEnglish = !this.showEnglish;
       if (this.soundManager.isSoundEnabled()) {
@@ -125,6 +126,7 @@ export class SampleVoiceComponent implements OnInit {
 
   toggleJapanese() {
     if (this.showEnglish) {
+      this.stopAudio();
       this.showEnglish = !this.showEnglish;
       this.showJapanese = !this.showJapanese;
       if (this.soundManager.isSoundEnabled()) {
