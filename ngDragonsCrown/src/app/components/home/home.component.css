@@ -973,7 +973,7 @@ html {
   padding: 50px;
 }
 
-.class-background::before {
+/* .class-background::before {
   content: '';
   position: absolute;
   top: 0;
@@ -985,7 +985,7 @@ html {
   background-size: cover;
   background-position: center;
   z-index: -1;
-}
+} */
 
 .meta-wrapper {
   display: flex;
@@ -1993,6 +1993,11 @@ table {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+}
+
+.build-placeholder h3 {
+  font-family: "Gabriela Spark", serif;
+  font-size: 24px;
 }
 
 .build-effects {

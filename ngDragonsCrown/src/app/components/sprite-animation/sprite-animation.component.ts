@@ -404,7 +404,9 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
     this.stage.removeAllChildren();
     this.stage.clear();
 
-    const spriteSheetData = this.spriteSheetMap[className];
+    const spriteSheetData = {...this.spriteSheetMap[className]};
+    spriteSheetData.images = [spriteSheetData.images[0]];
+
     if (spriteSheetData) {
         this.spriteSheet = new createjs.SpriteSheet(spriteSheetData);
         if (this.spriteSheet.complete) {
@@ -469,7 +471,7 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
           };
 
           this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
-
+          console.log(this.spriteSheet);
           if (this.spriteSheet.complete) {
               this.startAnimation();
           } else {

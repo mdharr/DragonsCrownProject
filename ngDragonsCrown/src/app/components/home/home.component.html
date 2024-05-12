@@ -60,19 +60,14 @@
               Your browser does not support the video tag.
             </video>
             <div class="video-overlay"></div>
-            <div *ngIf="classLoading" class="class-loader-container">
+            <!-- <div *ngIf="classLoading" class="class-loader-container">
               <div class="loader"></div>
-            </div>
-            <!-- <app-sprite-animation [className]="currentClassData?.name.toLowerCase()"></app-sprite-animation> -->
+            </div> -->
             <ng-container *ngIf="currentClassData">
               <app-sprite-animation [className]="currentClassData.name.toLowerCase()"></app-sprite-animation>
             </ng-container>
           </ng-container>
         </div>
-        <!-- <ng-container *ngIf="classSelected">
-          <hr>
-          <app-sample-voice></app-sample-voice>
-        </ng-container> -->
         <div class="planner" *ngIf="classSelected">
           <div class="n1-wrapper" [ngStyle]="{'--plannerBackgroundUrl': 'url(' + currentClassData?.paperUrl + ')'}">
             <div class="col n1 class-background">
@@ -348,7 +343,6 @@
             </div>
           </div>
         </div>
-        <!-- <div style="padding-bottom: 15px; min-height: 536px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [style.backgroundImage]="!currentBuild.length ? 'url(' + getImageUrl('build_bg') + ')' : 'url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png)'" [style.backgroundColor]="'black'"> -->
         <div style="padding-bottom: 15px; min-height: 536px;" class="meta-wrapper build-background" *ngIf="classSelected && viewBuild && !viewQuests" [style.backgroundImage]="'url(https://dragons-crown.com/resources/img/comic/bg1_f1cacb0212fac7c798a7cffc6926343a.png)'" [style.backgroundColor]="'black'">
           <div *ngIf="!currentBuild.length" style="min-height: 500px; color: #ffffff; z-index: 2; text-shadow: 1px 1px black;" class="build-placeholder">
             <h3>Unlock skills to start planning out your build!</h3>

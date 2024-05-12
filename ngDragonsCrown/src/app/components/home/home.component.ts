@@ -173,12 +173,18 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   videos: VideoEntity[] = [
-    { name: 'fighter', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter_compressed.mp4' },
-    { name: 'amazon', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/amazon_compressed.mp4' },
-    { name: 'elf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/elf_compressed.mp4' },
-    { name: 'dwarf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/dwarf_compressed.mp4' },
-    { name: 'sorceress', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/sorceress_compressed.mp4' },
-    { name: 'wizard', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard_compressed.mp4' },
+    { name: 'fighter', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter_compressed_sm.mp4' },
+    { name: 'amazon', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/amazon_compressed_sm.mp4' },
+    { name: 'elf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/elf_compressed_sm.mp4' },
+    { name: 'dwarf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/dwarf_compressed_sm.mp4' },
+    { name: 'sorceress', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/sorceress_compressed_sm.mp4' },
+    { name: 'wizard', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard_compressed_sm.mp4' },
+    // { name: 'fighter', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter_compressed.mp4' },
+    // { name: 'amazon', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/amazon_compressed.mp4' },
+    // { name: 'elf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/elf_compressed.mp4' },
+    // { name: 'dwarf', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/dwarf_compressed.mp4' },
+    // { name: 'sorceress', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/sorceress_compressed.mp4' },
+    // { name: 'wizard', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard_compressed.mp4' },
     { name: 'fighter_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter_intro.mp4' },
     { name: 'amazon_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/amazon_intro.mp4' },
     { name: 'elf_intro', path: 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/elf_intro.mp4' },
@@ -474,43 +480,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       currentVideoPlayer.src = videoPlayer.src;
     } catch (error) {
       console.error('Error playing video:', error);
-    }
-  }
-
-  async loadNewVideo(className: string): Promise<void> {
-    try {
-      // Fetch the new video path based on class
-      const newVideoPath = this.getVideoPath(className.toLowerCase());
-      if (!newVideoPath) {
-        throw new Error('Video not found');
-      }
-
-      // Set up the inactive video player with new video
-      const newVideoPlayer = this.videoPlayer2.nativeElement as HTMLVideoElement;
-      newVideoPlayer.src = newVideoPath;
-
-      // Await for the new video to be ready to play
-      await new Promise<void>((resolve, reject) => {
-        newVideoPlayer.addEventListener('canplaythrough', () => resolve(), { once: true });
-        newVideoPlayer.addEventListener('error', (error) => reject(new Error('Error loading video')), { once: true });
-      });
-
-      // Perform the swap of video players
-      const currentVideoPlayer = this.videoPlayer1.nativeElement as HTMLVideoElement;
-      currentVideoPlayer.src = newVideoPath;
-      currentVideoPlayer.load(); // Ensure the new source is loaded
-
-      // Optionally play the video right away or control playback elsewhere
-      currentVideoPlayer.play();
-
-      // Update the video path tracking
-      this.previousVideoPath = this.currentVideoPath;
-      this.currentVideoPath = newVideoPath;
-
-      // Swap the video elements if needed to maintain their roles
-      [this.videoPlayer1.nativeElement, this.videoPlayer2.nativeElement] = [this.videoPlayer2.nativeElement, this.videoPlayer1.nativeElement];
-    } catch (error) {
-      console.error('Error handling video:', error);
     }
   }
 
