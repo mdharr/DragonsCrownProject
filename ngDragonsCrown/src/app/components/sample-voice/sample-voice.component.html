@@ -13,7 +13,6 @@
       <div *ngIf="isLoading[audio.id]" class="loader"></div>
     </li>
   </ul>
-  <!-- <div class="title-japanese"></div> -->
   <ul *ngIf="showJapanese">
     <li *ngFor="let audio of jpAudios" [class.active]="activeId === audio.id">
       <button type="button" [attr.data-id]="audio.id"
@@ -25,3 +24,4 @@
     </li>
   </ul>
 </section>
+

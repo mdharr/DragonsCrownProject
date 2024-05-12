@@ -1,11 +1,3 @@
-/* section.s3 .title-japanese {
-  background: url(https://dragons-crown.com/resources/img/howtoplay/facility/f1_s3_japanese.png) top no-repeat;
-  min-height: 36px;
-  min-width: 100%;
-  position: relative;
-  margin: 24px auto;
-} */
-
 section.s3 .title-japanese {
   background: url(https://dragons-crown.com/resources/img/howtoplay/facility/f1_s3_japanese.png) top no-repeat;
   min-height: 36px;
@@ -25,14 +17,6 @@ section.s3 .title-english:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-/* section.s3 .title-english {
-  background: url(https://dragons-crown.com/resources/img/howtoplay/facility/f1_s3_english.png) top no-repeat;
-  min-height: 37px;
-  min-width: 100%;
-  position: relative;
-  margin: 24px auto;
-} */
-
 section.s3 .title-english {
   background: url(https://dragons-crown.com/resources/img/howtoplay/facility/f1_s3_english.png) top no-repeat;
   min-height: 37px;
@@ -46,16 +30,6 @@ section.s3 .title-english {
 
 /* section.s3 ul {
   width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  overflow: visible;
-} */
-
-section.s3 ul {
-  width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
@@ -63,10 +37,23 @@ section.s3 ul {
   align-items: flex-end;
   overflow: visible;
   position: relative;
+} */
+
+section.s3 ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+  overflow: visible;
 }
 
+
 section.s3 ul:last-child {
-  width: 980px;
+  width: 100%;
+  min-width: 980px;
   margin: 0 auto;
   padding: 0;
   display: flex;
@@ -100,18 +87,23 @@ section.s3 ul li:hover {
   filter: brightness(0.8);
 }
 
+section.s3 ul li {
+  flex: 1 1 auto;
+  margin: 5px;
+  box-sizing: border-box;
+  position: relative;
+  transition: opacity 0.3s;
+  overflow: visible;
+}
+
+
 img {
   width: 100px;
 }
 
-/* section.s3 {
-  width: 100%;
-  padding: 10px 15px;
-} */
-
 section.s3 {
   width: 100%;
-  padding: 10px 15px;
+  min-width: 980px;
 }
 
 li {
@@ -124,6 +116,16 @@ li button {
   align-items: flex-start;
   overflow: visible;
 }
+
+li button {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
 
 li button img {
   transition: opacity 0.3s ease, filter 0.3s ease;
@@ -168,9 +170,23 @@ li.active button img {
   display: flex;
   gap: 10px;
   justify-content: space-between;
+  width: 100%;
+  min-width: 800px;
+  padding: 10px;
 }
 
 @-webkit-keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }
   100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
 @keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }
   100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
+
+  @media (max-width: 600px) {
+    section.s3 ul li {
+      flex-basis: 100%;
+    }
+  }
+
+  li button img {
+    max-width: 100%;
+    height: auto;
+  }

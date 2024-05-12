@@ -1474,39 +1474,6 @@ blockquote ul li {
   flex-direction: column;
 }
 
-/* div.skillListWrap:first-of-type::before {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 357px;
-  position: absolute;
-  top: 16px;
-  width: 6px;
-  z-index: 1;
-}
-
-div.skillListWrap:first-of-type::after {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 357px;
-  position: absolute;
-  top: 16px;
-  width: 6px;
-  z-index: 1;
-}
-
-div.skillListWrap:first-of-type::after {
-  position: absolute;
-  animation: pulsate 1.5s ease infinite;
-} */
-
 .remaining-sp {
   font-family: "Titillium Web", sans-serif;
   font-weight: 600;
@@ -1546,7 +1513,8 @@ div.skillListWrap:first-of-type::after {
   color: #f4e0a5;
   border: 0px;
   font-size: 14px;
-  box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75);
+  /* box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75); */
+  box-shadow: none;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
 }
@@ -1580,7 +1548,8 @@ div.skillListWrap:first-of-type::after {
   width: 10%;
   font-size: 12px;
   font-weight: bold;
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
+  border: 1px solid #333131;
   border-right: none;
   color: #ccc;
   text-align: center;
@@ -1590,7 +1559,8 @@ div.skillListWrap:first-of-type::after {
 }
 
 .skillListWrap li:last-child {
-  border-right: 1px solid #fff;
+  /* border-right: 1px solid #fff; */
+  border-right: 1px solid #333131;
 }
 
 .skillListWrap li:hover {
@@ -1750,7 +1720,8 @@ table {
 .selected-skill {
   background-color: #015c74 !important;
   color:#FFFFFF !important;
-  box-shadow: none !important;
+  /* box-shadow: none !important; */
+  box-shadow: inset 0px 0px 10px 1px rgba(0, 0, 0, 0.5) !important;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch !important;
 }
 
@@ -1792,7 +1763,8 @@ table {
   -webkit-animation-name: slideIn;
   -webkit-animation-duration: 0.4s;
   animation-name: slideIn;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
+  overflow-x: scroll;
 }
 
 .close {
@@ -2391,7 +2363,6 @@ hr.custom-hr {
   background-color: #fefefe;
   height: 600px;
   width: 1059px;
-  padding: 20px;
   margin: auto;
   transition: all 0.3s ease;
   transform: scale(0.5);
@@ -2401,10 +2372,6 @@ hr.custom-hr {
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   border-radius: 0;
-  /* display: flex;
-  flex-direction: column;
-  align-items: normal;
-  justify-content: center; */
   padding-top: 50px;
 }
 
@@ -2412,7 +2379,6 @@ hr.custom-hr {
   position: absolute;
   z-index: -1;
   width: -moz-fit-content;
-  /* width: fit-content; */
   height: 350px;
   top: 0;
   left: 0;
@@ -2421,12 +2387,14 @@ hr.custom-hr {
   width: 100%;
   display: flex;
   justify-content: center;
+  min-width: 980px;
 }
 
 .modal-video video {
   height: 100%;
   display: flex;
   justify-content: center;
+  width: -moz-fit-content;
   width: fit-content;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
