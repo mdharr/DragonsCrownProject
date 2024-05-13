@@ -7,6 +7,7 @@ export class Skill {
   description: string;
   cardImageUrl: string;
   isCommon: boolean;
+  category: string;
   skillDetails: SkillDetails[];
 
   constructor(
@@ -15,6 +16,7 @@ export class Skill {
     description: string = '',
     cardImageUrl: string = '',
     isCommon: boolean = false,
+    category: string = '',
     skillDetails: SkillDetails[] = [],
   ) {
     this.id = id;
@@ -22,6 +24,7 @@ export class Skill {
     this.description = description;
     this.cardImageUrl = cardImageUrl;
     this.isCommon = isCommon;
+    this.category = category;
     this.skillDetails = skillDetails;
   }
 }

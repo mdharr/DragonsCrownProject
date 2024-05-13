@@ -39,3 +39,14 @@
   position: absolute;
   background-size: 5px;
 }
+
+.footer-text p a {
+  color: #d9b359;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-text p a:hover {
+  color: #dd4855;
+  cursor: pointer;
+}

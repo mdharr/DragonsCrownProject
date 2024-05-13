@@ -138,7 +138,7 @@ export class MediaPlayerComponent {
     ['Cyclone Masher', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-cyclone-masher-sm.mp4'],])],
     ['Distraction', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-distraction-sm.mp4'],])],
     ['Judgement', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-judgement-sm.mp4'],])],
-    ['Reflect Missile', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-reflect-missile-sm.mp4'],])],
+    ['Missile Reflect', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-reflect-missile-sm.mp4'],])],
     ['Rebuke', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-rebuke-sm.mp4'],])],
     ['Reflex Guard', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-reflex-guard-sm.mp4'],])],
     ['Sacrifice', new Map([['fighter', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/fighter-skills-sacrifice-sm.mp4'],])],

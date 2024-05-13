@@ -16,7 +16,7 @@ import { VideoEntity } from 'src/app/models/video-entity';
 import { PreloadAudioEntitiesService } from 'src/app/services/preload-audio-entities.service';
 
 import * as pako from 'pako';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, style, transition, animate } from '@angular/animations';
 import { SampleVoiceComponent } from '../sample-voice/sample-voice.component';
 import { SoundManagerService } from 'src/app/services/sound-manager.service';
 
@@ -71,6 +71,18 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   // app state
   buildToShare: any;
   encodedData: any;
+
+  // category counts
+  categoryCounts = new Map([
+    ["Attack", 0],
+    ["Defense", 0],
+    ["Supplemental", 0],
+    ["Air", 0],
+    ["Ground", 0],
+    ["Bow and arrow", 0],
+    ["Tools", 0],
+    ["Special", 0]
+  ]);
 
   // image assets to preload
   images: ImageEntity[] = [
@@ -378,6 +390,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     element.style.filter = 'filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1)';
   }
 
+  resetCategoryCounts() {
+    this.categoryCounts.forEach((value, key, map) => {
+      map.set(key, 0);
+    });
+  }
+
   async loadClassData(classIndex: number): Promise<void> {
     this.classSelected = true;
     this.skillSelected = false;
@@ -421,6 +439,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         }
 
         this.resetQuestsAndSkillPoints();
+        this.resetCategoryCounts();
 
         this.commonSkills = this.currentClassData.skills
           .filter((skillObj: { skill: { common: boolean; }; }) => skillObj.skill.common === true)
@@ -951,12 +970,20 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // First, remove any existing entries of this skill up to the selected rank to avoid duplicates
     this.skillsList = this.skillsList.filter(item => item.skillId !== skill.id || item.rank > selectedSkillDetail.rank);
 
+    let additions = 0;
+
     // Then, add all ranks up to and including the selected rank
     skill.skillDetails.forEach(skillDetail => {
       if (skillDetail.rank <= selectedSkillDetail.rank) {
         this.addSkillDetailToList(skill, skillDetail);
+        additions++;
       }
     });
+
+    if (additions > 0) {
+      this.updateCategoryCount(skill.category, additions);
+    }
+
     this.updateCurrentBuild();
   }
 
@@ -973,16 +1000,31 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       similarSkillLevel: skillDetail.similarSkillLevel,
       requiredPlayerLevel: skillDetail.requiredPlayerLevel,
       effects: skillDetail.effects,
+      category: skill.category,
     };
 
     this.skillsList.push(skillToAdd);
     this.updateCurrentBuild();
   }
 
+  updateCategoryCount(category: string, change: number): void {
+    const currentCount = this.categoryCounts.get(category) || 0;
+    this.categoryCounts.set(category, currentCount + change);
+  }
+
   removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
+    const ranksBeingRemoved = this.skillsList.filter(item =>
+      item.skillId === skill.id && item.rank >= selectedSkillDetail.rank
+    ).length;
+
     this.skillsList = this.skillsList.filter(item =>
       !(item.skillId === skill.id && item.rank >= selectedSkillDetail.rank)
     );
+
+    if (ranksBeingRemoved > 0) {
+      this.updateCategoryCount(skill.category, -ranksBeingRemoved);
+    }
+
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
     if (this.soundManager.isSoundEnabled()) {
@@ -996,6 +1038,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     // Check if the selected rank is already selected
     const isAlreadySelected = this.isSkillDetailSelected(skill, skillDetail);
 
+    // Calculate the number of ranks to potentially add or remove
+    const ranksToAdd = skill.skillDetails.filter(detail =>
+      detail.rank <= skillDetail.rank && !this.isSkillDetailSelected(skill, detail)
+    ).length;
+
     if (isAlreadySelected) {
         // If the selected rank is already selected, remove it and all higher ranks
         this.removeFromSkillsList(skill, skillDetail);
@@ -1005,14 +1052,25 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             .filter(detail => detail.rank <= skillDetail.rank && !this.isSkillDetailSelected(skill, detail))
             .reduce((total, detail) => total + detail.requiredSkillPoints, 0);
 
+        const requiredSimilarSkillPointsToAdd = skill.skillDetails
+        .filter(detail => detail.rank <= skillDetail.rank && detail.similarSkillLevel <= skillDetail.similarSkillLevel && !this.isSkillDetailSelected(skill, detail))
+        .reduce((total, detail) => total + detail.similarSkillLevel, 0);
+
         // Check if we have enough SP to add the skill and its unselected previous ranks
         if (requiredSPToAdd <= this.totalAvailableSP) {
+          if (this.categoryCounts.has(skill.category) && requiredSimilarSkillPointsToAdd <= (this.categoryCounts.get(skill.category) ?? 0) || skill.category === null) {
             // If so, add all ranks up to and including the selected rank that haven't been selected yet
             skill.skillDetails.forEach(detail => {
                 if (detail.rank <= skillDetail.rank && !this.isSkillDetailSelected(skill, detail)) {
                     this.addSkillDetailToList(skill, detail);
                 }
             });
+          } else {
+            // alert(`${ skill.name.toUpperCase() } is ${ skill.category.toUpperCase() } type. ${skill} requires a total of ${ requiredSimilarSkillPointsToAdd } ranks between all ${ skill.category } skills to unlock.`);
+            return;
+          }
+            // Update category count positively since adding skills
+            // this.updateCategoryCount(skill.category, ranksToAdd);
         } else {
             alert("Not enough skill points available.");
             return;
@@ -1023,8 +1081,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           this.playSound('confirm');
         }
     }
+
+    this.updateCategoryCount(skill.category, isAlreadySelected ? -ranksToAdd : ranksToAdd);
+
     // Update total available SP after any changes
     this.updateTotalAvailableSP();
+    console.log(this.categoryCounts);
   }
 
   updateTotalAvailableSP(): void {
@@ -1044,6 +1106,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   removeSkillsByName(skillName: string, event: MouseEvent): void {
     event.stopPropagation(); // Prevent event from triggering parent click events
 
+    // Determine how many instances of the skill are being removed
+    const removals = this.skillsList.filter(skill => skill.name === skillName);
+    const removalCount = removals.length;
+
     if (this.skillsList.some(skill => skill.name === skillName)) {
       if (this.soundManager.isSoundEnabled()) {
 
@@ -1052,6 +1118,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
+
+    // Update category count for the skill's category (assuming all removed skills have the same category)
+    if (removalCount > 0) {
+      const skillCategory = removals[0].category; // Assuming all instances have the same category
+      const currentCount = this.categoryCounts.get(skillCategory) || 0;
+      this.categoryCounts.set(skillCategory, currentCount - removalCount);
+    }
+
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
   }

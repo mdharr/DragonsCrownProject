@@ -12,6 +12,10 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * @author mdharr
+ *
+ */
 @Entity
 public class Skill {
 
@@ -25,6 +29,7 @@ public class Skill {
 	private String cardImageUrl;
 	@Column(name = "is_common")
 	private boolean isCommon;
+	private String category;
 	
 	@OneToMany(mappedBy = "skill")
 	private List<SkillDetails> skillDetails;
@@ -34,14 +39,15 @@ public class Skill {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Skill(int id, String name, String description, String cardImageUrl, boolean isCommon,
-			List<SkillDetails> skillDetails) {
+	public Skill(int id, String name, String description, String cardImageUrl, boolean isCommon, 
+			String category, List<SkillDetails> skillDetails) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.cardImageUrl = cardImageUrl;
 		this.isCommon = isCommon;
+		this.category = category;
 		this.skillDetails = skillDetails;
 	}
 
@@ -76,6 +82,14 @@ public class Skill {
 		this.isCommon = isCommon;
 	}
 	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public List<SkillDetails> getSkillDetails() {
 		return skillDetails;
 	}
@@ -99,10 +113,11 @@ public class Skill {
 		Skill other = (Skill) obj;
 		return id == other.id;
 	}
+
 	@Override
 	public String toString() {
 		return "Skill [id=" + id + ", name=" + name + ", description=" + description + ", cardImageUrl=" + cardImageUrl
-				+ ", isCommon=" + isCommon + "]";
+				+ ", isCommon=" + isCommon + ", category=" + category + ", skillDetails=" + skillDetails + "]";
 	}
 	
 }

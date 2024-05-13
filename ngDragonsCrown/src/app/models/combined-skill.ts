@@ -10,4 +10,5 @@ export interface CombinedSkill {
   similarSkillLevel: number;
   requiredPlayerLevel: number;
   effects: string;
+  category: string;
 }

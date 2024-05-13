@@ -243,7 +243,7 @@
                 <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
                   <dl>
                     <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
-                      {{ uniqueSkill.name }}
+                      {{ uniqueSkill.name }} <span [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#f4e0a5' : '#dd4855'}" style="top: 0; bottom: 0; display: flex; align-items: center; padding-right: 30px;">{{ uniqueSkill.category }}</span>
                       <span class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
                     </dt>
                     <dd>
@@ -266,7 +266,7 @@
                   <app-media-player [skillName]="currentSkill.name" [className]="currentClassData.name"></app-media-player>
                   <!-- <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder> -->
                 </div>
-                <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span>: {{ currentSkill.description }}</h3>
+                <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span> - {{ currentSkill.description }}</h3>
                 <table>
                   <tbody>
                     <tr>
@@ -309,11 +309,6 @@
                     </tr>
                   </tbody>
                 </table>
-                <!-- <p>
-                  <span style="color:#d9b359;">Knockback value</span>: The value used to make the enemy fall back. It adds up when you land an attack, and if it exceeds a certain value, you will be thrown back.<br>
-                  <span style="color:#d9b359;">Down value</span>: Value used to knock down an enemy. If it exceeds a certain value, you can knock it down and send it flying.<br>
-                  <span style="color:#d9b359;">Stun value</span>: Value to stun the enemy. When the accumulated value exceeds a certain level, it will stun the enemy and stop their movement.
-                </p> -->
               </div>
             </div>
           </ng-container>

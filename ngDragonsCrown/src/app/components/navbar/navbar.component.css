@@ -27,13 +27,12 @@
 
 .navbar-text h2 {
   margin: 0;
-  color: #fff;
-  /* font-family: Oswald, serif; */
-  /* font-family: Rubik, serif; */
+  color: #eaebde;
   font-family: "Gabriela Spark", serif;
-  font-size: 22px;
+  font-size: 24px;
   text-rendering: geometricprecision;
   letter-spacing: 0.2rem;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, .9));
 }
 
 @media screen and (max-width: 400px) {

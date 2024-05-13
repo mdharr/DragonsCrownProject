@@ -74,8 +74,6 @@ section.s3 ul:last-child {
   align-items: flex-end;
   margin-bottom: 24px;
   overflow: visible;
-  position: absolute;
-  bottom: 0;
 }
 
 section.s3 ul li button {
@@ -112,6 +110,10 @@ img {
 section.s3 {
   width: 100%;
   padding: 10px 15px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 li {
