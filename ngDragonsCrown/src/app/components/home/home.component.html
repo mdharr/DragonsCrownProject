@@ -243,7 +243,8 @@
                 <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
                   <dl>
                     <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
-                      {{ uniqueSkill.name }} <span [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#f4e0a5' : '#dd4855'}" style="top: 0; bottom: 0; display: flex; align-items: center; padding-right: 30px;">{{ uniqueSkill.category }}</span>
+                      <!-- {{ uniqueSkill.name }} <span [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#f4e0a5' : '#dd4855'}" style="top: 0; bottom: 0; display: flex; align-items: center; padding-right: 30px;">{{ uniqueSkill.category }}</span> -->
+                      {{ uniqueSkill.name }} <span [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#cccccc' : '#b9aa80'}" style="top: 0; bottom: 0; display: flex; align-items: center; padding-right: 30px;">{{ uniqueSkill.category }}</span>
                       <span class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
                     </dt>
                     <dd>
@@ -260,11 +261,12 @@
             <div class="skillInfoBoard" #skillInfoBoard>
               <div *ngIf="isSkillInfoVisible" class="skill-info-board-child">
                 <div class="skill-card-wrapper">
-                  <!-- <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative;" *ngIf="skillCardLoaded">
+                  <!-- <span *ngIf="skillSelected" class="skill-media-btn"><a (click)="enableSkillCardView()">Toggle</a></span> -->
+                  <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative; height: 249px;" *ngIf="skillCardLoaded && viewSkillCard" (click)="enableSkillCardView()">
                     <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
-                  </div> -->
-                  <app-media-player [skillName]="currentSkill.name" [className]="currentClassData.name"></app-media-player>
-                  <!-- <app-card-placeholder *ngIf="!skillCardLoaded"></app-card-placeholder> -->
+                  </div>
+                  <app-media-player *ngIf="!viewSkillCard" [skillName]="currentSkill.name" [className]="currentClassData.name" (click)="enableSkillCardView()"></app-media-player>
+                  <app-card-placeholder *ngIf="!skillCardLoaded && viewSkillCard"></app-card-placeholder>
                 </div>
                 <h3><span style="color: #d9b359;">{{ currentSkill.name }}</span> - {{ currentSkill.description }}</h3>
                 <table>

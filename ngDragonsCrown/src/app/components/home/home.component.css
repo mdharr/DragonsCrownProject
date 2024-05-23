@@ -428,7 +428,6 @@ app-sample-voice {
   justify-content: space-evenly;
   width: 100%;
   border: 1px solid #ffd602;
-  margin-top: 8px;
   height: 435px;
   background-image: var(--plannerBackgroundUrl);
   background-repeat: no-repeat;
@@ -1355,6 +1354,16 @@ blockquote ul li {
   width: fit-content;
   height: fit-content;
   position: relative;
+  animation: fadeInQuickly 0.2s forwards linear;
+}
+
+@keyframes fadeInQuickly {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .selected-skills {
@@ -1489,6 +1498,23 @@ blockquote ul li {
   color: #d9b359;
 }
 
+.skill-media-btn a {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.05rem;
+  padding-top: 0;
+  color: #d9b359;
+  position: absolute;
+  top: -50px;
+  right: -10px;
+  cursor: pointer;
+}
+
+.skill-media-btn a:hover {
+  color: #fff;
+}
+
 .skill-box {
   width: 350px;
   float: left;
@@ -1581,8 +1607,8 @@ blockquote ul li {
   position: absolute;
   top: 4px;
   right: 5px;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 10px;
+  font-weight: 500;
 }
 
 .btn-base {

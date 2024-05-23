@@ -142,6 +142,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   classLoading: boolean = false;
   appLoading: boolean = false;
   showModal: boolean = false;
+  viewSkillCard: boolean = false;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -1583,5 +1584,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       console.error('Video element not found!');
     }
+  }
+
+  enableSkillCardView() {
+    this.viewSkillCard = !this.viewSkillCard;
   }
 }

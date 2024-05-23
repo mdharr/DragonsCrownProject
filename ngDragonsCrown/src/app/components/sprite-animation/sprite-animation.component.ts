@@ -471,7 +471,6 @@ export class SpriteAnimationComponent implements OnInit, OnChanges, OnDestroy {
           };
 
           this.spriteSheet = new createjs.SpriteSheet(newSpriteSheetData);
-          console.log(this.spriteSheet);
           if (this.spriteSheet.complete) {
               this.startAnimation();
           } else {

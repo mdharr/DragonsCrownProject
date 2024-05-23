@@ -196,7 +196,7 @@ export class MediaPlayerComponent {
       ['wizard', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard-skills-concentrate-sm.mp4'],
       ['sorceress', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/sorceress-skills-concentrate-sm.mp4']
     ])],
-    ['Create Golem', new Map([['wizard', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard-skills-create-golem-sm.mp4']])],
+    ['Create Wood Golem', new Map([['wizard', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard-skills-create-golem-sm.mp4']])],
     ['Extinction', new Map([['wizard', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard-skills-extinction-sm.mp4']])],
     ['Extract', new Map([
       ['wizard', 'https://dragonscrown.s3.amazonaws.com/DragonsCrownVideos/wizard-skills-extract-sm.mp4'],
