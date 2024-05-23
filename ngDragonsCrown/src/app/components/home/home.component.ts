@@ -20,6 +20,7 @@ import { trigger, style, transition, animate } from '@angular/animations';
 import { SampleVoiceComponent } from '../sample-voice/sample-voice.component';
 import { SoundManagerService } from 'src/app/services/sound-manager.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { StrictModeService } from 'src/app/services/strict-mode.service';
 
 @Component({
   selector: 'app-home',
@@ -144,6 +145,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   appLoading: boolean = false;
   showModal: boolean = false;
   viewSkillCard: boolean = false;
+  strictModeEnabled: boolean = true;
 
   // tooltip
   tooltipVisible: boolean = false;
@@ -275,6 +277,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   preloadAudioService = inject(PreloadAudioEntitiesService);
   soundManager= inject(SoundManagerService);
   snackbarService = inject(SnackbarService);
+  dialogService = inject(StrictModeService);
+  strictModeService = inject(StrictModeService);
 
   ngOnInit() {
     this.resetWindowPosition();
@@ -1772,5 +1776,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       await this.playSound('rune', 1);
     }
     this.snackbarService.openSnackbar(message, action, this.currentClassData.name.toLowerCase());
+  }
+
+  openEnableStrictMode() {
+    this.dialogService.openToggleStrictModeComponent();
+  }
+
+  isStrictModeActive() {
+    return this.strictModeService.isStrictModeEnabled();
   }
 }

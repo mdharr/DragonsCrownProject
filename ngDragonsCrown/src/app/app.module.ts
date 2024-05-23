@@ -30,6 +30,7 @@ import { MediaPlayerComponent } from './components/media-player/media-player.com
 import { SampleVoiceComponent } from './components/sample-voice/sample-voice.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
+import { ToggleStrictModeComponent } from './components/toggle-strict-mode/toggle-strict-mode.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CustomSnackbarComponent } from './components/custom-snackbar/custom-sna
     SampleVoiceComponent,
     ToastComponent,
     CustomSnackbarComponent,
+    ToggleStrictModeComponent,
   ],
   imports: [
     BrowserModule,

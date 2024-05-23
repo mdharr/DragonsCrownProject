@@ -312,6 +312,8 @@
                   </tbody>
                 </table>
                 <p class="video-toggle">*Click video to toggle between demo and card view</p>
+                <p style="cursor: pointer;" (click)="openEnableStrictMode()">Toggle Strict Mode</p>
+                <p>Current Mode: {{ isStrictModeActive() ? "Strict" : "Free" }}</p>
               </div>
             </div>
           </ng-container>

@@ -1,0 +1,84 @@
+.dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+h2[mat-dialog-title] {
+  background-color: #262626;
+  color: white;
+  padding: 15px;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.05rem;
+  margin-bottom: 5px;
+  padding-top: 0;
+  /* color: #d9b359; */
+}
+
+button[mat-button] {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  font-family: "Titillium Web", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 28px;
+}
+
+.dialog-content {
+  padding: 20px;
+}
+
+.dialog-input {
+  width: 100%;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-button {
+  background-color: #fff;
+  color: #333;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.create-button {
+  background-color: #262626;
+  color: white;
+  font-family: "Titillium Web", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.create-button:hover {
+  background-color: red;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #fff;
+}
+
+::ng-deep .mat-mdc-checkbox label {
+  cursor: pointer;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.2rem;
+}
+
+::ng-deep .mdc-dialog__content > div {
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding:5px;
+  margin-bottom: 5px;
+}
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  /* border-radius: 28px !important; */
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+}
+
+.label-name {
+  color: #333;
+}
