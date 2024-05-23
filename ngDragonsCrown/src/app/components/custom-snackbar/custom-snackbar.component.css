@@ -1,0 +1,102 @@
+.custom-snackbar {
+  /* background-color: #e9eef5; */
+  /* background-color: #bcd067; */
+  /* background-color: #015c74; */
+  background-color: #1b1a1a;
+  color: #fff;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 672px;
+  min-width: 344px;
+  /* border-radius: 28px; */
+  border-radius: 0;
+  box-shadow: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.3);
+  /* border: 1px solid transparent; */
+  transition: box-shadow 0.3s ease-in-out;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.05rem;
+  font-size: 0.8rem;
+  white-space: pre-line;
+}
+
+.custom-snackbar:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+/* .fighter {
+  background-color: #1c1c1b;
+}
+
+.amazon {
+  background-color: #af5220;
+}
+
+.elf {
+  background-color: #4d591e;
+}
+
+.dwarf {
+  background-color: #4a3216;
+}
+
+.sorceress {
+  background-color: #321c2c;
+}
+
+.wizard {
+  background-color: #1a1b2a;
+} */
+
+.snackbar-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  /* background-color: red; */
+  /* background-color: #f4e0a5; */
+  background-color: rgb(161 47 32);
+  animation: countdown 6000ms linear forwards;
+}
+
+@keyframes countdown {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+.snackbar-btn {
+  border: none;
+  background-color: transparent;
+  color: red;
+  cursor: pointer;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.05rem;
+  font-size: 0.8rem;
+}
+
+.snackbar-btn:hover {
+  color: rgb(161 47 32);
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+::ng-deep .mat-mdc-snack-bar-container {
+  margin: 8px;
+  position: static;
+}

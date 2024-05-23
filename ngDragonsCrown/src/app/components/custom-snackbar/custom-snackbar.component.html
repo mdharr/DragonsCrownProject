@@ -1,0 +1,5 @@
+<div [ngClass]="data.className" class="custom-snackbar">
+  <span>{{ data.message }}</span>
+  <button class="snackbar-btn" mat-button *ngIf="data.action" (click)="dismiss()">{{ data.action }}</button>
+  <div class="snackbar-progress-bar"></div>
+</div>

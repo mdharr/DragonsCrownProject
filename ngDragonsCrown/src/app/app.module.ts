@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +29,7 @@ import { ParallaxDirective } from './directives/parallax.directive';
 import { MediaPlayerComponent } from './components/media-player/media-player.component';
 import { SampleVoiceComponent } from './components/sample-voice/sample-voice.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ToastComponent } from './components/toast/toast.component';
     MediaPlayerComponent,
     SampleVoiceComponent,
     ToastComponent,
+    CustomSnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { ToastComponent } from './components/toast/toast.component';
     MatButtonModule,
     MatTooltipModule,
     MatDialogModule,
+    MatSnackBarModule,
     MatMenuModule,
     BrowserAnimationsModule
   ],

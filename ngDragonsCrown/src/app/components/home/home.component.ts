@@ -19,6 +19,7 @@ import * as pako from 'pako';
 import { trigger, style, transition, animate } from '@angular/animations';
 import { SampleVoiceComponent } from '../sample-voice/sample-voice.component';
 import { SoundManagerService } from 'src/app/services/sound-manager.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-home',
@@ -81,7 +82,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     ["Ground", 0],
     ["Bow and arrow", 0],
     ["Tools", 0],
-    ["Special", 0]
+    ["Special", 0],
+    ["Common", 0]
   ]);
 
   // image assets to preload
@@ -111,7 +113,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('videoPlayer2') videoPlayer2!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoPlayer3') videoPlayer3!: ElementRef<HTMLVideoElement>;
   @ViewChild(SampleVoiceComponent) sampleVoiceComponent!: SampleVoiceComponent;
-
 
   // booleans
   classSelected: boolean = false;
@@ -273,6 +274,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   router = inject(Router);
   preloadAudioService = inject(PreloadAudioEntitiesService);
   soundManager= inject(SoundManagerService);
+  snackbarService = inject(SnackbarService);
 
   ngOnInit() {
     this.resetWindowPosition();
@@ -955,6 +957,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.updateTotalAvailableSP();
   }
 
+  resetSkillsByCategory(category: string) {
+    this.skillsList.filter(skill => !(skill.category === category));
+  }
+
   isSkillDetailSelected(skill: Skill, skillDetail: SkillDetails): boolean {
     return this.skillsList.some(item =>
       item.skillId === skill.id && item.rank === skillDetail.rank
@@ -1013,26 +1019,191 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.categoryCounts.set(category, currentCount + change);
   }
 
+  // iteration 1
+  // removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
+  //   const ranksBeingRemoved = this.skillsList.filter(item =>
+  //     item.skillId === skill.id && item.rank >= selectedSkillDetail.rank
+  //   ).length;
+
+  //   this.skillsList = this.skillsList.filter(item =>
+  //     !(item.skillId === skill.id && item.rank >= selectedSkillDetail.rank)
+  //   );
+  //   const skillCategory = skill.category;
+
+  //   const skills = this.skillsList.filter(item => item.category === skillCategory);
+
+  //   if (ranksBeingRemoved > 0) {
+  //     this.updateCategoryCount(skill.category, -ranksBeingRemoved);
+  //   }
+
+  //   this.updateTotalAvailableSP();
+  //   this.updateCurrentBuild();
+  //   if (this.soundManager.isSoundEnabled()) {
+
+  //     this.stopCurrentSound();
+  //     this.playSound('erase');
+  //   }
+  // }
+
+  // meetSimilarSkillLvlReqs(category: string): boolean {
+  //   const categoryCount = this.categoryCounts.get(category) ?? 0;
+  //   return this.skillsList
+  //     .filter(skill => skill.category === category)
+  //     .every(skill => skill.similarSkillLevel > categoryCount);
+  // }
+
+  // iteration 2
+  // removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
+  //   console.log("Removing from skills list");
+
+  //   // Calculate ranks being removed
+  //   const ranksBeingRemoved = this.skillsList.filter(item =>
+  //     item.skillId === skill.id && item.rank >= selectedSkillDetail.rank
+  //   ).length;
+  //   console.log(`Ranks being removed: ${ranksBeingRemoved}`);
+
+  //   // Remove the specified ranks from the skills list
+  //   this.skillsList = this.skillsList.filter(item =>
+  //     !(item.skillId === skill.id && item.rank >= selectedSkillDetail.rank)
+  //   );
+  //   // console.log(`Skills list after removal: ${JSON.stringify(this.skillsList)}`);
+
+  //   const skillCategory = skill.category;
+
+  //   if (ranksBeingRemoved > 0) {
+  //     this.updateCategoryCount(skill.category, -ranksBeingRemoved);
+  //   }
+
+  //   // Continuously check and update skills in the category until all meet the similar skill level requirement
+  //   while (!this.meetSimilarSkillLvlReqs(skillCategory)) {
+  //     console.log(this.meetSimilarSkillLvlReqs(skillCategory));
+  //     console.log("Checking similar skill level requirements");
+  //     const skillsInCategory = this.skillsList.filter(item => item.category === skillCategory);
+  //     let skillRemoved = false;
+
+  //     for (let skillInCategory of skillsInCategory) {
+  //       const categoryCount = this.categoryCounts.get(skillCategory) ?? 0;
+  //       // console.log(`Category count: ${categoryCount}, Skill similar skill level: ${skillInCategory.similarSkillLevel}`);
+
+  //       // Remove ranks one by one, ensuring the similar skill level requirement is not counted for itself or ranks with the same similar skill level
+  //       if (skillInCategory.similarSkillLevel >= categoryCount) {
+  //         console.log("Inside first if");
+
+  //         // Find the current rank to remove
+  //         const rankToRemove = this.skillsList.find(item =>
+  //           item.skillId === skillInCategory.skillId && item.rank === skillInCategory.rank
+  //         );
+
+  //         if (rankToRemove) {
+  //           console.log("Inside second if");
+
+  //           // Check if the previous rank has the same similar skill level requirement
+  //           const previousRank = this.skillsList.find(item =>
+  //             item.skillId === skillInCategory.skillId && item.rank === skillInCategory.rank - 1 && item.similarSkillLevel === skillInCategory.similarSkillLevel
+  //           );
+
+  //           // Remove the current rank
+  //           this.skillsList = this.skillsList.filter(item => item !== rankToRemove);
+  //           this.updateCategoryCount(skillCategory, -1);
+
+  //           // If previous rank has the same similar skill level requirement, remove it as well
+  //           if (previousRank) {
+  //             console.log("Removing previous rank with the same similar skill level");
+  //             this.skillsList = this.skillsList.filter(item => item !== previousRank);
+  //             this.updateCategoryCount(skillCategory, -1);
+  //           }
+
+  //           skillRemoved = true;
+  //           break; // Break the loop to start the while check again
+  //         }
+  //       }
+  //     }
+
+  //     if (!skillRemoved) {
+  //       // Break if no skills were removed in this iteration to avoid infinite loop
+  //       break;
+  //     }
+  //   }
+
+  //   // console.log(`Final skills list: ${JSON.stringify(this.skillsList)}`);
+
+  //   this.updateTotalAvailableSP();
+  //   this.updateCurrentBuild();
+
+  //   if (this.soundManager.isSoundEnabled()) {
+  //     this.stopCurrentSound();
+  //     this.playSound('erase');
+  //   }
+  // }
+
+  // meetSimilarSkillLvlReqs(category: string): boolean {
+  //   const categoryCount = this.categoryCounts.get(category) ?? 0;
+  //   return this.skillsList
+  //     .filter(skill => skill.category === category)
+  //     .every(skill => skill.similarSkillLevel < categoryCount);
+  // }
+
+  // iteration 3
   removeFromSkillsList(skill: Skill, selectedSkillDetail: SkillDetails): void {
+
+    // Calculate ranks being removed
     const ranksBeingRemoved = this.skillsList.filter(item =>
       item.skillId === skill.id && item.rank >= selectedSkillDetail.rank
     ).length;
 
+    // Remove the specified ranks from the skills list
     this.skillsList = this.skillsList.filter(item =>
       !(item.skillId === skill.id && item.rank >= selectedSkillDetail.rank)
     );
+
+    const skillCategory = skill.category;
 
     if (ranksBeingRemoved > 0) {
       this.updateCategoryCount(skill.category, -ranksBeingRemoved);
     }
 
+    // Continuously check and remove skills in the category until all meet the similar skill level requirement
+    let skillRemoved = true;
+    let snackbarShown = false;
+    while (skillRemoved) {
+      if (!snackbarShown) {
+        snackbarShown = true;
+        this.openSnackbar(`Additional ranks may have been removed for ${ skill.category.toUpperCase() } to ensure strict build planning.`, 'Dismiss');
+      }
+      skillRemoved = false;
+      const categoryCount = this.categoryCounts.get(skillCategory) ?? 0;
+
+      // Filter skills in the category that do not meet the requirements
+      const skillsToRemove = this.skillsList.filter(skill =>
+        skill.category === skillCategory && (skill.similarSkillLevel >= categoryCount - 3 && skill.similarSkillLevel > 0)
+      );
+
+      if (skillsToRemove.length > 0) {
+        skillRemoved = true;
+        for (let skillToRemove of skillsToRemove) {
+          // Remove each skill that does not meet the requirement
+          this.skillsList = this.skillsList.filter(item => item !== skillToRemove);
+          this.updateCategoryCount(skillCategory, -1);
+        }
+      }
+    }
+
+    console.log(`Final skills list: ${JSON.stringify(this.skillsList)}`);
+
     this.updateTotalAvailableSP();
     this.updateCurrentBuild();
-    if (this.soundManager.isSoundEnabled()) {
 
+    if (this.soundManager.isSoundEnabled()) {
       this.stopCurrentSound();
       this.playSound('erase');
     }
+  }
+
+  meetSimilarSkillLvlReqs(category: string): boolean {
+    const categoryCount = this.categoryCounts.get(category) ?? 0;
+    return this.skillsList
+      .filter(skill => skill.category === category)
+      .every(skill => skill.similarSkillLevel < categoryCount - 3 || skill.similarSkillLevel === 0);
   }
 
   handleSkillClick(skill: Skill, skillDetail: SkillDetails): void {
@@ -1068,12 +1239,14 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             });
           } else {
             // alert(`${ skill.name.toUpperCase() } is ${ skill.category.toUpperCase() } type. ${skill} requires a total of ${ requiredSimilarSkillPointsToAdd } ranks between all ${ skill.category } skills to unlock.`);
+            this.openSnackbar(`This rank of ${ skill.name.toUpperCase() } requires a total of ${ requiredSimilarSkillPointsToAdd } points between all ${ skill.category.toUpperCase() } type skills. Please level up other ${ skill.category.toUpperCase() } skills first.`, 'Dismiss');
             return;
           }
             // Update category count positively since adding skills
             // this.updateCategoryCount(skill.category, ranksToAdd);
         } else {
-            alert("Not enough skill points available.");
+            // alert("Not enough skill points available.");
+            this.openSnackbar(`Insufficient skill points. ${ requiredSPToAdd - this.totalAvailableSP } more ${ requiredSPToAdd - this.totalAvailableSP > 1 ? 'points' : 'point' } required.`, 'Dismiss');
             return;
         }
         if (this.soundManager.isSoundEnabled()) {
@@ -1104,8 +1277,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.skillsList.some(skill => skill.skillId === skillId && skill.rank === rank);
   }
 
-  removeSkillsByName(skillName: string, event: MouseEvent): void {
-    event.stopPropagation(); // Prevent event from triggering parent click events
+  removeSkillsByName(skillName: string, event?: MouseEvent): void {
+    event?.stopPropagation(); // Prevent event from triggering parent click events
 
     // Determine how many instances of the skill are being removed
     const removals = this.skillsList.filter(skill => skill.name === skillName);
@@ -1591,5 +1764,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       await this.playSound('confirm', 0.5);
     }
     this.viewSkillCard = !this.viewSkillCard;
+  }
+
+  async openSnackbar(message: string, action: string, currentClassData?: any) {
+    if (this.soundManager.isSoundEnabled()) {
+
+      await this.playSound('rune', 1);
+    }
+    this.snackbarService.openSnackbar(message, action, this.currentClassData.name.toLowerCase());
   }
 }
