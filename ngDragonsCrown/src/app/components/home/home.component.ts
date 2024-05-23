@@ -1586,7 +1586,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  enableSkillCardView() {
+  async enableSkillCardView() {
+    if (this.soundManager.isSoundEnabled()) {
+      await this.playSound('confirm', 0.5);
+    }
     this.viewSkillCard = !this.viewSkillCard;
   }
 }

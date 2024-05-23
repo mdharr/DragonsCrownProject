@@ -1728,6 +1728,14 @@ table {
 
 .skill-info-board-child {
   transition: transform 0.1s ease-out;
+  position: relative;
+}
+
+.video-toggle {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  margin-bottom: 0 !important;
 }
 
 .tilt {
