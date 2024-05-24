@@ -1605,7 +1605,7 @@ blockquote ul li {
   background: transparent;
   border: 0;
   position: absolute;
-  top: 4px;
+  /* top: 4px; */
   right: 5px;
   font-size: 10px;
   font-weight: 500;
@@ -2491,4 +2491,72 @@ hr.custom-hr {
   overflow: hidden;
   height: 100%;
   width: 100%;
+}
+
+.skill-category {
+  top: 50%;
+  bottom: 50%;
+  display: flex;
+  align-items: center;
+  padding-right: 10px !important;
+  transition: transform 0.2s;
+}
+
+.move-left {
+  transform: translateX(-20px);
+  transition: transform 0.2s;
+}
+
+.strict-mode-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 110px;
+  margin-right: 10px;
+  padding-top: 5px;
+  text-align: left;
+}
+
+.strict-mode-toggle {
+  cursor: pointer;
+  margin: 0 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+.strict-mode-toggle:hover {
+  color: #f4e0a5 !important;
+}
+
+.strict-mode-wrapper::before {
+  position: absolute;
+  background: #e44732;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 6px;
+  right: 120px;
+  position: absolute;
+  top: 14px;
+  width: 6px;
+  z-index: 1;
+}
+
+.strict-mode-wrapper::after {
+  position: absolute;
+  background: #e44732;
+  border-radius: 100%;
+  content: "";
+  display: block;
+  height: 6px;
+  right: 120px;
+  position: absolute;
+  top: 14px;
+  width: 6px;
+  z-index: 1;
+}
+
+.strict-mode-wrapper::after {
+  position: absolute;
+  animation: pulsate 1.5s ease infinite;
 }

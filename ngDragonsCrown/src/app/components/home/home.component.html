@@ -228,8 +228,8 @@
                 <div class="skillListWrap" *ngFor="let commonSkill of commonSkills; let i = index">
                   <dl>
                     <dt (click)="selectSkill(i, 'common')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'common'}">
-                      {{ commonSkill.name }}
-                      <span class="btn-base" (click)="removeSkillsByName(commonSkill.name, $event)"><mat-icon>close</mat-icon></span>
+                      {{ commonSkill.name }} <span class="skill-category" [ngClass]="{'move-left': !isStrictModeActive()}" [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'common' ? '#cccccc' : '#b9aa80'}">{{ commonSkill.category }}</span>
+                      <span style="top: 3.5px;"  *ngIf="!isStrictModeActive()" class="btn-base" (click)="removeSkillsByName(commonSkill.name, $event)"><mat-icon>close</mat-icon></span>
                     </dt>
                     <dd>
                       <ol>
@@ -244,8 +244,8 @@
                   <dl>
                     <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
                       <!-- {{ uniqueSkill.name }} <span [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#f4e0a5' : '#dd4855'}" style="top: 0; bottom: 0; display: flex; align-items: center; padding-right: 30px;">{{ uniqueSkill.category }}</span> -->
-                      {{ uniqueSkill.name }} <span [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#cccccc' : '#b9aa80'}" style="top: 0; bottom: 0; display: flex; align-items: center; padding-right: 30px;">{{ uniqueSkill.category }}</span>
-                      <span class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
+                      {{ uniqueSkill.name }} <span class="skill-category" [ngClass]="{'move-left': !isStrictModeActive()}" [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#cccccc' : '#b9aa80'}">{{ uniqueSkill.category }}</span>
+                      <span style="top: 3.5px;" *ngIf="!isStrictModeActive()" class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
                     </dt>
                     <dd>
                       <ol>
@@ -311,10 +311,12 @@
                     </tr>
                   </tbody>
                 </table>
-                <p class="video-toggle">*Click video to toggle between demo and card view</p>
-                <p style="cursor: pointer;" (click)="openEnableStrictMode()">Toggle Strict Mode</p>
-                <p>Current Mode: {{ isStrictModeActive() ? "Strict" : "Free" }}</p>
+                <p class="video-toggle">*Click {{ !viewSkillCard ? "video" : "card" }} to toggle between demo and card view</p>
               </div>
+            </div>
+            <div class="strict-mode-wrapper">
+              <p class="strict-mode-toggle" (click)="openEnableStrictMode()">Strict Mode: <span [ngStyle]="{'color': isStrictModeActive() ? 'rgb(167 255 0)' : 'rgb(255 33 0)'}">{{ isStrictModeActive() ? "On" : "Off" }}</span></p>
+              <!-- <p class="strict-mode-toggle" (click)="openEnableStrictMode()">Strict Mode: <span [ngStyle]="{'color': isStrictModeActive() ? '#799740' : '#962514'}">{{ isStrictModeActive() ? "On" : "Off" }}</span></p> -->
             </div>
           </ng-container>
         </div>

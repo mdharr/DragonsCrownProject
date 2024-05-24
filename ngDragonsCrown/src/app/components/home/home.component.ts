@@ -1172,7 +1172,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     while (skillRemoved) {
       if (!snackbarShown) {
         snackbarShown = true;
-        this.openSnackbar(`Additional ranks may have been removed for ${ skill.category.toUpperCase() } to ensure strict build planning.`, 'Dismiss');
+        this.openSnackbar(`Additional ranks may have been removed from ${ skill.category.toUpperCase() } skills to ensure the build can be made in-game.`, 'Dismiss');
       }
       skillRemoved = false;
       const categoryCount = this.categoryCounts.get(skillCategory) ?? 0;
@@ -1778,7 +1778,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.snackbarService.openSnackbar(message, action, this.currentClassData.name.toLowerCase());
   }
 
-  openEnableStrictMode() {
+  async openEnableStrictMode() {
+    if (this.soundManager.isSoundEnabled()) {
+
+      await this.playSound('confirm', 1);
+    }
     this.dialogService.openToggleStrictModeComponent();
   }
 
