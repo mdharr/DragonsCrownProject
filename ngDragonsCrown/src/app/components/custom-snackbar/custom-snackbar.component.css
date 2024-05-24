@@ -29,29 +29,29 @@
   box-shadow: 0 6px 12px rgba(0,0,0,0.5);
 }
 
-/* .fighter {
-  background-color: #1c1c1b;
+.fighter {
+  background-color: #52524f;
 }
 
 .amazon {
-  background-color: #af5220;
+  background-color: #ce6025;
 }
 
 .elf {
-  background-color: #4d591e;
+  background-color: #879c36;
 }
 
 .dwarf {
-  background-color: #4a3216;
+  background-color: #94642d;
 }
 
 .sorceress {
-  background-color: #321c2c;
+  background-color: #8d4e7c;
 }
 
 .wizard {
-  background-color: #1a1b2a;
-} */
+  background-color: #4b4e76;
+}
 
 .snackbar-progress-bar {
   position: absolute;
@@ -61,7 +61,7 @@
   height: 5px;
   /* background-color: red; */
   /* background-color: #f4e0a5; */
-  background-color: rgb(161 47 32);
+  /* background-color: rgb(161 47 32); */
   animation: countdown 6000ms linear forwards;
 }
 

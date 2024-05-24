@@ -16,7 +16,7 @@ export class AuthService {
     // Create POST request to register a new account
     return this.http.post<User>(this.url + 'register', user).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () => new Error('AuthService.register(): error registering user.')
         );
@@ -44,7 +44,7 @@ export class AuthService {
         return newUser;
       }),
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () => new Error('AuthService.login(): error logging in user.')
         );
@@ -72,7 +72,7 @@ export class AuthService {
       .get<User>(this.url + 'authenticate', httpOptions)
       .pipe(
         catchError((err: any) => {
-          console.log(err);
+          console.error(err);
           return throwError(
             () => new Error( 'AuthService.getUserById(): error retrieving user: ' + err )
           );

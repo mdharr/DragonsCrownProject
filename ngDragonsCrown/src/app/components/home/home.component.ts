@@ -288,11 +288,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.preloadAllAudioEntities();
     this.strictModeSubscription = this.strictModeService.getStrictModeObservable().subscribe(
       (isStrictModeEnabled: boolean) => {
-        this.resetQuestsAndSkillPoints();
+        // this.resetQuestsAndSkillPoints();
         this.resetCategoryCounts();
         this.skillsList = [];
         this.updateTotalAvailableSP();
         this.updateCurrentBuild();
+        this.updateTotalAvailableSP();
       }
     );
 
@@ -1135,7 +1136,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           this.removeFromSkillsList(skill, skillDetail);
         }
     } else {
-        // First, find out the total SP required to add this rank and all previous unselected ranks
+        // find out the total SP required to add this rank and all previous unselected ranks
         const requiredSPToAdd = skill.skillDetails
             .filter(detail => detail.rank <= skillDetail.rank && !this.isSkillDetailSelected(skill, detail))
             .reduce((total, detail) => total + detail.requiredSkillPoints, 0);
@@ -1144,11 +1145,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         .filter(detail => detail.rank <= skillDetail.rank && detail.similarSkillLevel <= skillDetail.similarSkillLevel && !this.isSkillDetailSelected(skill, detail))
         .reduce((total, detail) => total + detail.similarSkillLevel, 0);
 
-        // Check if we have enough SP to add the skill and its unselected previous ranks
+        // check if there is enough SP to add the skill and its unselected previous ranks
         if (requiredSPToAdd <= this.totalAvailableSP) {
           // if strict mode enabled
           if (this.categoryCounts.has(skill.category) && requiredSimilarSkillPointsToAdd <= (this.categoryCounts.get(skill.category) ?? 0) || skill.category === null && this.isStrictModeActive()) {
-            // If so, add all ranks up to and including the selected rank that haven't been selected yet
+            // if so, add all ranks up to and including the selected rank that haven't been selected yet
             skill.skillDetails.forEach(detail => {
                 if (detail.rank <= skillDetail.rank && !this.isSkillDetailSelected(skill, detail)) {
                     this.addSkillDetailToList(skill, detail);
@@ -1163,14 +1164,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
                 }
               });
             } else {
-              // alert(`${ skill.name.toUpperCase() } is ${ skill.category.toUpperCase() } type. ${skill} requires a total of ${ requiredSimilarSkillPointsToAdd } ranks between all ${ skill.category } skills to unlock.`);
               this.openSnackbar(`This rank of ${ skill.name.toUpperCase() } requires a total of ${ requiredSimilarSkillPointsToAdd } points between all ${ skill.category.toUpperCase() } type skills. Please level up other ${ skill.category.toUpperCase() } skills first.`, 'Dismiss');
               return;
             }
           }
 
         } else {
-            // alert("Not enough skill points available.");
             this.openSnackbar(`Insufficient skill points. ${ requiredSPToAdd - this.totalAvailableSP } more ${ requiredSPToAdd - this.totalAvailableSP > 1 ? 'points' : 'point' } required.`, 'Dismiss');
             return;
         }
@@ -1202,9 +1201,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   removeSkillsByName(skillName: string, event?: MouseEvent): void {
-    event?.stopPropagation(); // Prevent event from triggering parent click events
+    event?.stopPropagation(); // prevent event from triggering parent click events
 
-    // Determine how many instances of the skill are being removed
+    // determine how many instances of the skill are being removed
     const removals = this.skillsList.filter(skill => skill.name === skillName);
     const removalCount = removals.length;
 
@@ -1217,9 +1216,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.skillsList = this.skillsList.filter(skill => skill.name !== skillName);
 
-    // Update category count for the skill's category (assuming all removed skills have the same category)
+    // update category count for the skill's category
     if (removalCount > 0) {
-      const skillCategory = removals[0].category; // Assuming all instances have the same category
+      const skillCategory = removals[0].category;
       const currentCount = this.categoryCounts.get(skillCategory) || 0;
       this.categoryCounts.set(skillCategory, currentCount - removalCount);
     }
