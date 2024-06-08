@@ -34,24 +34,6 @@ app-sample-voice {
   height: 100%;
 }
 
-/* #video-background-player {
-  position: absolute;
-  width: 120%;
-  height: 120%;
-  left: -10%;
-  top: -10%;
-  object-fit: cover;
-  pointer-events: none;
-} */
-
-/* .main-background {
-  background-color: #282828;
-  background-image: url(https://www.4gamer.net/img/sp_dragonscrown/bg_dc_background_jack.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
-
 .main-background {
   background-color: #020202;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, transparent 20%),
@@ -71,7 +53,6 @@ app-sample-voice {
   height: 100%;
   left: 50%;
   opacity: .4;
-  /* position: absolute; */
   top: 50%;
   transform: translate(-50%, -50%);
   transition: opacity .2s ease-out;
@@ -79,8 +60,6 @@ app-sample-voice {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.2);
   background-image: url(https://www.dragonsdogma.com/2/assets/images/common/bg_overlay.png);
-
-  /* Adjustments */
   position: fixed;
   width: 120vw;
   height: 100vw;
@@ -315,7 +294,7 @@ app-sample-voice {
   justify-content: center;
   align-items: center;
   background: #131313;
-  z-index: 1000; /* High enough to cover other content */
+  z-index: 1000;
 }
 
 .video-overlay {
@@ -325,15 +304,11 @@ app-sample-voice {
   width: 30%;
   height: 100%;
   z-index: 1;
-  /* background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.9) 85%, rgba(0, 0, 0, 0)); */
   background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.9) 93%, rgba(0, 0, 0, 0));
 }
 
 .class-backdrop {
   position: relative;
-  /* animation-name: fadeIn;
-  animation-duration: 1s;
-  animation-fill-mode: both; */
   border: 1px solid #ffd602;
   background-size: contain;
   background-position: right;
@@ -645,39 +620,6 @@ textarea:focus-visible {
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch;
 }
 
-/* .player-level::before {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 190px;
-  position: absolute;
-  top: 9px;
-  width: 6px;
-  z-index: 1;
-}
-
-.player-level::after {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 190px;
-  position: absolute;
-  top: 9px;
-  width: 6px;
-  z-index: 1;
-}
-
-.player-level::after {
-  position: absolute;
-  animation: pulsate 1.5s ease infinite;
-} */
-
 #up-arrow {
   display: flex;
   align-items: center;
@@ -739,18 +681,6 @@ textarea:focus-visible {
   transform: translate(-50%, -50%);
 }
 
-/* .mat-mdc-icon-button .mat-mdc-button-touch-target {
-  position: absolute;
-  top: 50%;
-  height: 25px !important;
-  left: 50%;
-  width: 30px !important;
-  transform: translate(-50%, -50%);
-  box-shadow: inset 0px 0px 5px #030a0d;
-  border: 3px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
-} */
-
 .player-level label {
   width: 122px;
 }
@@ -811,7 +741,6 @@ textarea:focus-visible {
   border: 1px solid #ffd602;
   height: 200px;
   box-shadow: inset 0px 0px 14px 8px rgba(0,0,0,0.75);
-  /* background-image: url(/assets/graphics/splash.png); */
   margin-top: 9px;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
@@ -824,39 +753,6 @@ textarea:focus-visible {
   position: relative;
   width: fit-content;
 }
-
-/* .small-text::before {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 104px;
-  position: absolute;
-  top: 7px;
-  width: 6px;
-  z-index: 1;
-}
-
-.small-text::after {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 104px;
-  position: absolute;
-  top: 7px;
-  width: 6px;
-  z-index: 1;
-}
-
-.small-text::after {
-  position: absolute;
-  animation: pulsate 1.5s ease infinite;
-} */
 
 @keyframes pulsate {
   0% {
@@ -975,20 +871,6 @@ html {
   position: relative;
   padding: 50px;
 }
-
-/* .class-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-image: var(--backgroundImageUrl);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-} */
 
 .meta-wrapper {
   display: flex;
@@ -1127,13 +1009,9 @@ html {
   border-radius: 6px;
   border: 3px solid #b39a72;
   position: absolute;
-  /* top: -130px;
-  left: -3px; */
   top: -195px;
   left: -3px;
   z-index: 1000;
-  /* width: 200px;
-  height: 115px; */
   width: 300px;
   height: 172px;
   border: 5px solid transparent;
@@ -1494,7 +1372,6 @@ blockquote ul li {
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
   padding-top: 0;
-  /* color: #cab35c; */
   color: #d9b359;
 }
 
@@ -1544,7 +1421,6 @@ blockquote ul li {
   color: #f4e0a5;
   border: 0px;
   font-size: 14px;
-  /* box-shadow: inset 0px 0px 14px 1px rgba(0,0,0,0.75); */
   box-shadow: none;
   border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 stretch;
@@ -1579,7 +1455,6 @@ blockquote ul li {
   width: 10%;
   font-size: 12px;
   font-weight: bold;
-  /* border: 1px solid #fff; */
   border: 1px solid #333131;
   border-right: none;
   color: #ccc;
@@ -1590,7 +1465,6 @@ blockquote ul li {
 }
 
 .skillListWrap li:last-child {
-  /* border-right: 1px solid #fff; */
   border-right: 1px solid #333131;
 }
 
@@ -1605,7 +1479,6 @@ blockquote ul li {
   background: transparent;
   border: 0;
   position: absolute;
-  /* top: 4px; */
   right: 5px;
   font-size: 10px;
   font-weight: 500;
@@ -1759,7 +1632,6 @@ table {
 .selected-skill {
   background-color: #015c74 !important;
   color:#FFFFFF !important;
-  /* box-shadow: none !important; */
   box-shadow: inset 0px 0px 10px 1px rgba(0, 0, 0, 0.5) !important;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 5 stretch !important;
 }
@@ -1857,7 +1729,6 @@ table {
 
 .quests-wrapper th {
   background-color: #1b1a1a;
-  /* color: #cab35c; */
   color: #d9b359;
 }
 
@@ -1890,7 +1761,6 @@ table {
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
   padding-top: 0;
-  /* color: #cab35c; */
   color: #d9b359;
 }
 
@@ -1940,7 +1810,6 @@ table {
   letter-spacing: 0.05rem;
   margin-bottom: 5px;
   padding-top: 0;
-  /* color: #cab35c; */
   color: #d9b359;
   z-index: 3;
 }
@@ -2123,56 +1992,12 @@ hr.custom-hr {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* .quest-grid .quest:first-of-type .custom-checkbox::before {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 43px;
-  position: absolute;
-  top: 6px;
-  width: 6px;
-  z-index: 1;
-}
-
-.quest-grid .quest:first-of-type .custom-checkbox::after {
-  position: absolute;
-  background: #e44732;
-  border-radius: 100%;
-  content: "";
-  display: block;
-  height: 6px;
-  right: 43px;
-  position: absolute;
-  top: 6px;
-  width: 6px;
-  z-index: 1;
-}
-
-.quest-grid .quest:first-of-type .custom-checkbox::after {
-  position: absolute;
-  animation: pulsate 1.5s ease infinite;
-} */
-
 .quest-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
   margin-top: 15px;
 }
-
-/* .quest {
-  position: relative;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  background: #1b1a1a;
-  box-shadow: inset 0px 0px 25px #030a0d;
-  border: 3px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
-} */
 
 .quest {
   position: relative;
@@ -2184,25 +2009,8 @@ hr.custom-hr {
   z-index: 1;
 }
 
-/* .quest::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url(https://live.staticflickr.com/65535/53697092321_b4dd5381f3_b.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background-color: #000;
-  filter: opacity(0.5);
-} */
-
 .quest h6 {
   margin: 0 !important;
-  /* color: #cab35c !important; */
   color: #d9b359 !important;
 }
 
@@ -2371,8 +2179,6 @@ hr.custom-hr {
   transform: translateY(-2px);
 }
 
-
-/* Fullscreen modal styles */
 .modal {
   display: none;
   z-index: 999;
@@ -2385,23 +2191,6 @@ hr.custom-hr {
   justify-content: center;
 }
 
-/* Modal Content */
-/* .modal-content {
-  position: relative;
-  background-color: #fefefe;
-  width: 100%;
-  padding: 20px;
-  margin: auto;
-  transition: all 0.3s ease;
-  transform: scale(0.5);
-  background-color: rgba(0, 0, 0, 0.6);
-  background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png);
-  box-shadow: inset 0px 0px 25px #030a0d;
-  border: 5px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
-  border-radius: 0;
-} */
-
 .modal-content {
   position: relative;
   background-color: #fefefe;
@@ -2411,7 +2200,6 @@ hr.custom-hr {
   transition: all 0.3s ease;
   transform: scale(0.5);
   background-color: rgb(14 14 14);
-  /* background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png); */
   box-shadow: inset 0px 0px 25px #030a0d;
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
@@ -2455,7 +2243,6 @@ hr.custom-hr {
   transform: scale(1);
 }
 
-/* The Close Button */
 .close-modal-btn {
   position: absolute;
   right: 30px;

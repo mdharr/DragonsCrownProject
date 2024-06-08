@@ -1,10 +1,16 @@
-<h2 mat-dialog-title class="dialog-title">Enable {{ isStrictModeActive() ? 'Free' : 'Strict' }} Mode</h2>
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title class="dialog-title">{{ isStrictModeActive() ? 'Disable' : 'Enable' }} Strict Mode</h2>
 
-<div mat-dialog-content class="dialog-content">
-  <span class="label-name">"Strict" mode ensures that your build can adheres to the similar skill level requirements in the game. "Free" mode allows you to allocate points how you wish. Changing this setting will reset your build, do you wish to proceed?</span>
-</div>
+  <div mat-dialog-content class="dialog-content">
+    <span class="content-text">
+      Enabling 'Strict' mode ensures that your build complies with the in-game similar skill level requirements.
+      Disabling this mode allows unrestricted allocation of skill points. Please note that changing this setting
+      will reset your current build. Do you wish to proceed?
+    </span>
+  </div>
 
-<div mat-dialog-actions class="dialog-actions">
-  <button mat-raised-button mat-button (click)="closeDialog()" class="cancel-button">No</button>
-  <button mat-raised-button mat-button (click)="toggleStrictMode()" class="create-button">Yes</button>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button mat-button (click)="closeDialog()" class="cancel-button">No</button>
+    <button mat-raised-button mat-button (click)="toggleStrictMode()" class="create-button">Yes</button>
+  </div>
 </div>

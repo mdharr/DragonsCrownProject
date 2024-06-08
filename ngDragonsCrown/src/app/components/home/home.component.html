@@ -3,10 +3,6 @@
 
   <div id="video-background-container" class="main-background" appParallax></div>
 
-  <!-- <div id="video-background-container">
-    <iframe id="video-background-player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" title="Background Video" src="https://www.youtube-nocookie.com/embed/dfyrRsYAAdo?controls=0&showinfo=0&modestbranding=1&wmode=transparent&vq=large&rel=0&loop=1&playlist=dfyrRsYAAdo&enablejsapi=1&autoplay=1&mute=1"></iframe>
-  </div> -->
-
   <div class="bg-overlay"></div>
 
   <div class="main">
@@ -39,7 +35,6 @@
                 <div *ngIf="tooltipLoading" class="loader-container">
                   <div class="loader"></div>
                 </div>
-                <!-- <video autoplay *ngIf="tooltipVisible && !tooltipLoading" [src]="currentVideoSrc" style="width:100%; height: auto; max-height: 100%;"></video> -->
                 <video #videoPlayer3 [autoplay]="true" [muted]="true" *ngIf="tooltipVisible && !tooltipLoading" [src]="currentVideoSrc" style="width:100%; height: auto; max-height: 100%;"></video>
               </div>
             </li>
@@ -47,7 +42,6 @@
         </div>
         <hr>
         <div class="class-description class-backdrop" style="height: 394px;" [style.--backgroundImage]="!classSelected ? 'url(' + getImageUrl('character_bg') + ')' : 'none'" [ngStyle]="{ 'filter': !classDataLoaded ? 'brightness(0.8)' : 'brightness(1)' }">
-          <!-- Button to open the modal -->
           <button *ngIf="!this.showModal" (click)="toggleModal()" class="open-modal-btn"></button>
 
           <ng-container *ngIf="classSelected">
@@ -60,9 +54,6 @@
               Your browser does not support the video tag.
             </video>
             <div class="video-overlay"></div>
-            <!-- <div *ngIf="classLoading" class="class-loader-container">
-              <div class="loader"></div>
-            </div> -->
             <ng-container *ngIf="currentClassData">
               <app-sprite-animation [className]="currentClassData.name.toLowerCase()"></app-sprite-animation>
             </ng-container>
@@ -243,7 +234,6 @@
                 <div class="skillListWrap" *ngFor="let uniqueSkill of uniqueSkills; let i = index">
                   <dl>
                     <dt (click)="selectSkill(i, 'unique')" [ngClass]="{'selected-skill': selectedSkill.index === i && selectedSkill.type === 'unique'}">
-                      <!-- {{ uniqueSkill.name }} <span [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#f4e0a5' : '#dd4855'}" style="top: 0; bottom: 0; display: flex; align-items: center; padding-right: 30px;">{{ uniqueSkill.category }}</span> -->
                       {{ uniqueSkill.name }} <span class="skill-category" [ngClass]="{'move-left': !isStrictModeActive()}" [ngStyle]="{ 'color': selectedSkill.index === i && selectedSkill.type === 'unique' ? '#cccccc' : '#b9aa80'}">{{ uniqueSkill.category }}</span>
                       <span style="top: 3.5px;" *ngIf="!isStrictModeActive()" class="btn-base" (click)="removeSkillsByName(uniqueSkill.name, $event)"><mat-icon>close</mat-icon></span>
                     </dt>
@@ -261,7 +251,6 @@
             <div class="skillInfoBoard" #skillInfoBoard>
               <div *ngIf="isSkillInfoVisible" class="skill-info-board-child">
                 <div class="skill-card-wrapper">
-                  <!-- <span *ngIf="skillSelected" class="skill-media-btn"><a (click)="enableSkillCardView()">Toggle</a></span> -->
                   <div class="sheen-box" style="width:fit-content; height:fit-content; position:relative; height: 249px;" *ngIf="skillCardLoaded && viewSkillCard" (click)="enableSkillCardView()">
                     <img class="skill-cards tilt" src="{{ currentSkill.cardImageUrl }}" alt="Skill Card">
                   </div>
@@ -303,7 +292,7 @@
                       <td>{{ detail.requiredSkillPoints }}</td>
                       <td>{{ detail.requiredPlayerLevel }}</td>
                       <td>{{ detail.similarSkillLevel }}</td>
-                      <td style="text-align: left;">
+                      <td style="text-align: left; min-width: 200px;">
                         <ul class="build-effects">
                           <li *ngFor="let effect of detail.effects.split(', ')">{{ effect }}</li>
                         </ul>
@@ -314,11 +303,10 @@
                 <p class="video-toggle">*Click {{ !viewSkillCard ? "video" : "card" }} to toggle between demo and card view</p>
               </div>
             </div>
-            <div class="strict-mode-wrapper">
-              <p class="strict-mode-toggle" (click)="openEnableStrictMode()">Strict Mode: <span [ngStyle]="{'color': isStrictModeActive() ? 'rgb(167 255 0)' : 'rgb(255 33 0)'}">{{ isStrictModeActive() ? "On" : "Off" }}</span></p>
-              <!-- <p class="strict-mode-toggle" (click)="openEnableStrictMode()">Strict Mode: <span [ngStyle]="{'color': isStrictModeActive() ? '#799740' : '#962514'}">{{ isStrictModeActive() ? "On" : "Off" }}</span></p> -->
-            </div>
           </ng-container>
+          <div class="strict-mode-wrapper">
+            <p class="strict-mode-toggle" (click)="openEnableStrictMode()">Strict Mode: <span [ngStyle]="{'color': isStrictModeActive() ? 'rgb(167 255 0)' : 'rgb(255 33 0)'}">{{ isStrictModeActive() ? "On" : "Off" }}</span></p>
+          </div>
         </div>
         <div class="meta-wrapper class-background" *ngIf="classSelected && viewQuests && !viewRunes" [ngStyle]="{'--backgroundImageUrl': 'url(' + currentClassData?.hqArtworkUrl+ ')'}">
           <div class="quests-wrapper">

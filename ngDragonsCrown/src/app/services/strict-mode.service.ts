@@ -33,7 +33,7 @@ export class StrictModeService {
 
   openToggleStrictModeComponent() {
     this.dialog.open(ToggleStrictModeComponent,{
-      width: '400px',
+      width: '600px',
       // data: { userList: UserList }
     });
   }

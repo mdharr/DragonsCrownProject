@@ -1,6 +1,4 @@
 .video-container {
-  /* width: 400px;
-  height: 225px; */
   width: 420px;
   height: 249px;
   overflow: hidden;
@@ -47,8 +45,6 @@ video {
   border-left: 4px solid #fff;
   border-radius: 50%;
   animation: spin 1s ease infinite;
-  /* top: 76px;
-  left: 170px; */
 }
 
 @-webkit-keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }
