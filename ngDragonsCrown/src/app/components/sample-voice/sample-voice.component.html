@@ -8,7 +8,8 @@
       <button type="button" [attr.data-id]="audio.id"
               (click)="playAudio(audio.id, audio.url)"
               [style.pointer-events]="anyLoading() ? 'none' : 'auto'">
-        <img src="{{audio.imgSrc}}" alt="ALL">
+        <img *ngIf="!loading" src="{{audio.imgSrc}}" alt="ALL">
+        <img class="placeholder" *ngIf="loading" src="assets/graphics/media/voice_dummy_min.png" alt="placeholder">
       </button>
       <div *ngIf="isLoading[audio.id]" class="loader"></div>
     </li>
@@ -18,7 +19,8 @@
       <button type="button" [attr.data-id]="audio.id"
               (click)="playAudio(audio.id, audio.url)"
               [style.pointer-events]="anyLoading() ? 'none' : 'auto'">
-        <img src="{{audio.imgSrc}}" alt="ALL">
+        <img *ngIf="!loading" src="{{audio.imgSrc}}" alt="ALL">
+        <img class="placeholder" *ngIf="loading" src="assets/graphics/media/voice_dummy_min.png" alt="placeholder">
       </button>
       <div *ngIf="isLoading[audio.id]" class="loader"></div>
     </li>

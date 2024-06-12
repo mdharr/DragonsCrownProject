@@ -97,7 +97,15 @@ li button {
 
 li button img {
   transition: opacity 0.3s ease, filter 0.3s ease;
-  overflow: visible;
+  /* overflow: visible; */
+  animation: 1.5s fadeIn linear forwards;
+}
+
+li button .placeholder {
+  animation: none;
+  filter: blur(2px);
+  animation: none;
+  background-color: transparent;
 }
 
 li.active button img {
@@ -146,3 +154,21 @@ li.active button img {
   100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
 @keyframes spin {  0% {    -webkit-transform: rotate(0);            transform: rotate(0);  }
   100% {    -webkit-transform: rotate(360deg);            transform: rotate(360deg);  }}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

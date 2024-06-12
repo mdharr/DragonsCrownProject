@@ -18,6 +18,7 @@ export class SampleVoiceComponent implements OnInit {
   toggleLanguage: boolean = false;
   showJapanese: boolean = false;
   showEnglish: boolean = true;
+  loading: boolean = true;
 
   sounds: AudioEntity[] = [{ name: 'confirm', path: 'assets/audio/dc_confirm_se.mp3' },];
   currentSound: HTMLAudioElement | null = null;
@@ -44,6 +45,30 @@ export class SampleVoiceComponent implements OnInit {
   ngOnInit() {
     this.jpAudios = this.audios.filter(item => item.lang === 'jp');
     this.enAudios = this.audios.filter(item => item.lang === 'en');
+    this.loadImages(this.enAudios);
+  }
+
+  loadImages(audios: any[]): void {
+    this.loading = true;
+    const imagesToLoad = [...audios];
+    let loadedImages = 0;
+
+    imagesToLoad.forEach(audio => {
+      const img = new Image();
+      img.src = audio.imgSrc;
+      img.onload = () => {
+        loadedImages++;
+        if (loadedImages === imagesToLoad.length) {
+          this.loading = false;
+        }
+      };
+      img.onerror = () => {
+        loadedImages++;
+        if (loadedImages === imagesToLoad.length) {
+          this.loading = false;
+        }
+      };
+    });
   }
 
   playAudio(id: number, audioUrl: string): void {
@@ -114,6 +139,7 @@ export class SampleVoiceComponent implements OnInit {
 
   toggleEnglish() {
     if (this.showJapanese) {
+      this.loadImages(this.enAudios);
       this.stopAudio();
       this.showJapanese = !this.showJapanese;
       this.showEnglish = !this.showEnglish;
@@ -126,6 +152,7 @@ export class SampleVoiceComponent implements OnInit {
 
   toggleJapanese() {
     if (this.showEnglish) {
+      this.loadImages(this.enAudios);
       this.stopAudio();
       this.showEnglish = !this.showEnglish;
       this.showJapanese = !this.showJapanese;
