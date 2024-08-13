@@ -1,3 +1,4 @@
+import { ClassStats } from './../../models/class-stats';
 import { AudioEntity } from './../../models/audio-entity';
 import { SkillDetails } from './../../models/skill-details';
 import { PlayerClassService } from './../../services/player-class.service';
@@ -774,10 +775,13 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   calculateTotalExperience() {
-    const level = this.currentStats.level - 1;
     let total = 0;
-    for(let i = level; i >= 1; i--) {
-      total += this.currentClassData.classStats[level].requiredExp
+    const level = this.currentStats.level;
+
+    if (level > 1) {
+      for (let i = 2; i <= level; i++) {
+        total += this.currentClassData.classStats[i - 1].requiredExp;
+      }
     }
     this.totalExp = total;
   }
