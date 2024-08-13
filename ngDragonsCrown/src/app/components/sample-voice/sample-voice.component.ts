@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { AudioEntity } from 'src/app/models/audio-entity';
 import { SoundManagerService } from 'src/app/services/sound-manager.service';
 
@@ -7,7 +7,7 @@ import { SoundManagerService } from 'src/app/services/sound-manager.service';
   templateUrl: './sample-voice.component.html',
   styleUrls: ['./sample-voice.component.css']
 })
-export class SampleVoiceComponent implements OnInit {
+export class SampleVoiceComponent implements OnInit, OnDestroy {
 
   private currentAudio: HTMLAudioElement | null = null;
   private currentId: number | null = null;
@@ -40,6 +40,8 @@ export class SampleVoiceComponent implements OnInit {
     { id: 180000, url: 'https://dragons-crown.com/resources/audio/180000.wav', imgSrc: 'https://dragons-crown.com/resources/img/sp/howtoplay/facility/en_voice7.png', lang: "en" }
   ];
 
+  private audioCache: { [key: string]: HTMLAudioElement } = {};
+
   soundManager= inject(SoundManagerService);
 
   ngOnInit() {
@@ -47,6 +49,10 @@ export class SampleVoiceComponent implements OnInit {
     this.enAudios = this.audios.filter(item => item.lang === 'en');
     this.loadImages(this.enAudios);
   }
+
+  // ngOnDestroy() {
+  //   this.stopAudio();
+  // }
 
   loadImages(audios: any[]): void {
     this.loading = true;
@@ -71,51 +77,52 @@ export class SampleVoiceComponent implements OnInit {
     });
   }
 
-  playAudio(id: number, audioUrl: string): void {
-    if (this.soundManager.isSoundEnabled()) {
+  // playAudio(id: number, audioUrl: string): void {
+  //   if (this.soundManager.isSoundEnabled()) {
 
-      this.playSound('confirm', 0.5);
-    }
-    if (this.currentId === id) {
-      if (this.currentAudio) {
-        this.currentAudio.pause();
-      }
-      this.resetAudio(id);
-      return;
-    }
+  //     this.playSound('confirm', 0.5);
+  //   }
+  //   if (this.currentId === id) {
+  //     if (this.currentAudio) {
+  //       this.currentAudio.pause();
+  //     }
+  //     this.resetAudio(id);
+  //     return;
+  //   }
 
-    if (this.currentAudio && this.currentId !== null) {
-      this.currentAudio.pause();
-      this.resetAudio(this.currentId);
-    }
+  //   if (this.currentAudio && this.currentId !== null) {
+  //     this.currentAudio.pause();
+  //     this.resetAudio(this.currentId);
+  //   }
 
-    this.isLoading[id] = true;
-    this.fetchAndPlayAudio(id, audioUrl);
-  }
+  //   this.isLoading[id] = true;
+  //   this.fetchAndPlayAudio(id, audioUrl);
+  // }
 
-  private fetchAndPlayAudio(id: number, audioUrl: string): void {
-    const audio = new Audio(audioUrl);
-    audio.addEventListener('canplaythrough', () => {
-      if (this.isLoading[id]) {
-        this.isLoading[id] = false;
-        this.currentAudio = audio;
-        this.currentAudio.play();
-        this.currentId = id;
-        this.activeId = id;
+  // private fetchAndPlayAudio(id: number, audioUrl: string): void {
+  //   const audio = new Audio(audioUrl);
+  //   audio.addEventListener('canplaythrough', () => {
+  //     if (this.isLoading[id]) {
+  //       this.isLoading[id] = false;
+  //       this.currentAudio = audio;
+  //       this.currentAudio.play();
+  //       this.currentId = id;
+  //       this.activeId = id;
 
-        this.currentAudio.addEventListener('ended', () => this.resetAudio(id));
-      } else {
-        audio.pause();
-      }
-    });
+  //       this.currentAudio.addEventListener('ended', () => this.resetAudio(id));
+  //     } else {
+  //       audio.pause();
+  //     }
+  //   });
 
-    audio.load();
-  }
+  //   audio.load();
+  // }
 
   private resetAudio(id: number): void {
     if (this.currentId === id) {
       if (this.currentAudio) {
         this.currentAudio.pause();
+        this.currentAudio.currentTime = 0;
         this.currentAudio = null;
       }
       this.currentId = null;
@@ -128,14 +135,26 @@ export class SampleVoiceComponent implements OnInit {
     return Object.values(this.isLoading).some(status => status);
   }
 
-  stopAudio(): void {
-    if (this.currentAudio) {
-      this.currentAudio.pause();
-      this.currentAudio = null;
-      this.currentId = null;
-      this.activeId = null;
-    }
-  }
+  // stopAudio(): void {
+  //   if (this.currentAudio) {
+  //     this.currentAudio.pause();
+  //     this.currentAudio = null;
+  //     this.currentId = null;
+  //     this.activeId = null;
+  //   }
+  // }
+
+  // stopAudio(): void {
+  //   if (this.currentAudio) {
+  //     this.currentAudio.pause();
+  //     this.currentAudio.currentTime = 0; // Reset the audio to the beginning
+  //     this.currentAudio.src = ''; // Clear the source
+  //     this.currentAudio.load(); // Reload the audio element
+  //     this.currentAudio = null;
+  //     this.currentId = null;
+  //     this.activeId = null;
+  //   }
+  // }
 
   toggleEnglish() {
     if (this.showJapanese) {
@@ -163,24 +182,143 @@ export class SampleVoiceComponent implements OnInit {
     }
   }
 
+  // async playSound(soundName: string, volume: number = 1.0): Promise<HTMLAudioElement> {
+  //   const audioObj = this.sounds.find(sound => sound.name === soundName);
+  //   const audioPath = audioObj?.path;
+  //   if (audioPath) {
+  //     const audio = new Audio(audioPath);
+  //     audio.volume = volume;
+
+  //     return new Promise((resolve, reject) => {
+  //       audio.play().then(() => {
+  //         this.currentAudio = audio;
+  //         resolve(audio);
+  //       }).catch((error) => {
+  //         console.error('Error playing audio:', error);
+  //         reject(error);
+  //       });
+  //     });
+  //   } else {
+  //     return Promise.reject(new Error('Audio path not found'));
+  //   }
+  // }
+
   async playSound(soundName: string, volume: number = 1.0): Promise<HTMLAudioElement> {
     const audioObj = this.sounds.find(sound => sound.name === soundName);
     const audioPath = audioObj?.path;
     if (audioPath) {
-      const audio = new Audio(audioPath);
+      if (this.currentSound) {
+        this.currentSound.pause();
+        this.currentSound.currentTime = 0;
+      }
+
+      let audio: HTMLAudioElement;
+      if (this.audioCache[audioPath]) {
+        audio = this.audioCache[audioPath];
+      } else {
+        audio = new Audio(audioPath);
+        this.audioCache[audioPath] = audio;
+      }
+
       audio.volume = volume;
 
       return new Promise((resolve, reject) => {
-        audio.play().then(() => {
-          this.currentAudio = audio;
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            this.currentSound = audio;
+            resolve(audio);
+          }).catch((error) => {
+            console.error('Error playing audio:', error);
+            reject(error);
+          });
+        } else {
+          this.currentSound = audio;
           resolve(audio);
-        }).catch((error) => {
-          console.error('Error playing audio:', error);
-          reject(error);
-        });
+        }
       });
     } else {
       return Promise.reject(new Error('Audio path not found'));
     }
+  }
+
+  stopAudio(): void {
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio.currentTime = 0;
+    }
+    if (this.currentSound) {
+      this.currentSound.pause();
+      this.currentSound.currentTime = 0;
+    }
+    this.currentAudio = null;
+    this.currentSound = null;
+    this.currentId = null;
+    this.activeId = null;
+  }
+
+  playAudio(id: number, audioUrl: string): void {
+    if (this.soundManager.isSoundEnabled()) {
+      this.playSound('confirm', 0.5);
+    }
+
+    if (this.currentId === id && this.currentAudio) {
+      this.stopAudio();
+      return;
+    }
+
+    this.stopAudio();
+
+    this.isLoading[id] = true;
+    this.fetchAndPlayAudio(id, audioUrl);
+  }
+
+  private fetchAndPlayAudio(id: number, audioUrl: string): void {
+    let audio: HTMLAudioElement;
+    if (this.audioCache[audioUrl]) {
+      audio = this.audioCache[audioUrl];
+    } else {
+      audio = new Audio(audioUrl);
+      this.audioCache[audioUrl] = audio;
+    }
+
+    const playAudioWhenReady = () => {
+      if (this.isLoading[id]) {
+        this.isLoading[id] = false;
+        this.currentAudio = audio;
+        audio.currentTime = 0;  // Reset the audio to the beginning
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.error('Error playing audio:', error);
+            this.resetAudio(id);
+          });
+        }
+        this.currentId = id;
+        this.activeId = id;
+
+        audio.onended = () => this.resetAudio(id);
+      }
+    };
+
+    if (audio.readyState >= 3) {  // HAVE_FUTURE_DATA or HAVE_ENOUGH_DATA
+      playAudioWhenReady();
+    } else {
+      audio.oncanplay = playAudioWhenReady;
+      audio.load();
+    }
+  }
+
+  // ... (keep other methods unchanged)
+
+  ngOnDestroy() {
+    this.stopAudio();
+    // Clear the audio cache
+    for (const key in this.audioCache) {
+      this.audioCache[key].pause();
+      this.audioCache[key].src = '';
+      this.audioCache[key].load();
+    }
+    this.audioCache = {};
   }
 }
