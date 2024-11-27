@@ -36,6 +36,7 @@ A comprehensive skill build calculator and planning tool for Dragon's Crown, fea
 
 ## Project Structure
 
+```
 ├── DB/                           # Database files & schema
 ├── DragonsCrown/                 # Spring Boot Backend
 │   ├── src/main/java
@@ -55,6 +56,7 @@ A comprehensive skill build calculator and planning tool for Dragon's Crown, fea
 │   ├── models/           # TypeScript interfaces
 │   ├── directives/       # Custom directives
 │   └── pipes/            # Calculation pipes
+```
 
 ## Setup & Installation
 
