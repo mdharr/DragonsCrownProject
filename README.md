@@ -36,25 +36,25 @@ A comprehensive skill build calculator and planning tool for Dragon's Crown, fea
 
 ## Project Structure
 
-   ├── DB/                          # Database files & schema
-   ├── DragonsCrown/                # Spring Boot Backend
-   │   ├── src/main/java
-   │   │   ├── controllers/        # REST endpoints
-   │   │   ├── services/          # Business logic
-   │   │   ├── repositories/      # Data access
-   │   │   └── security/          # Basic security
-   │   └── resources/             # Static assets
-   │       └── assets/            # Audio & graphics
-   ├── JPADragonsCrown/           # JPA Entity Project
-   │   └── src/main/java
-   │       └── entities/          # Data models
-   └── ngDragonsCrown/            # Angular Frontend
-       ├── src/app
-       │   ├── components/        # UI components
-       │   ├── services/         # Data services
-       │   ├── models/          # TypeScript interfaces
-       │   ├── directives/      # Custom directives
-       │   └── pipes/           # Calculation pipes
+├── DB/                           # Database files & schema
+├── DragonsCrown/                 # Spring Boot Backend
+│   ├── src/main/java
+│   │   ├── controllers/         # REST endpoints
+│   │   ├── services/           # Business logic
+│   │   ├── repositories/       # Data access
+│   │   └── security/           # Basic security
+│   └── resources/              # Static assets
+│       └── assets/             # Audio & graphics
+├── JPADragonsCrown/            # JPA Entity Project
+│   └── src/main/java
+│       └── entities/           # Data models
+└── ngDragonsCrown/             # Angular Frontend
+├── src/app
+│   ├── components/         # UI components
+│   ├── services/          # Data services
+│   ├── models/           # TypeScript interfaces
+│   ├── directives/       # Custom directives
+│   └── pipes/            # Calculation pipes
 
 ## Setup & Installation
 
